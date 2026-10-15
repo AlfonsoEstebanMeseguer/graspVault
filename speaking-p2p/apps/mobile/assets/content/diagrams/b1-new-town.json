@@ -1,0 +1,12 @@
+{
+  "id": "b1-new-town",
+  "centralQuestion": "What is the best way to meet new people in a new town?",
+  "prompts": [
+    "joining a sports club",
+    "volunteering",
+    "taking an evening class",
+    "going to local festivals",
+    "using a social app"
+  ],
+  "decisionQuestion": "Which activity would be the best way to make friends?"
+}

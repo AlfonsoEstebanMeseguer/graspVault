@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "exams": [
+    {
+      "id": "b1-weekend-city",
+      "level": "B1",
+      "version": 1,
+      "topic": "Free time in your town"
+    },
+    {
+      "id": "b2-community-life",
+      "level": "B2",
+      "version": 1,
+      "topic": "Community life"
+    },
+    {
+      "id": "c1-work-and-technology",
+      "level": "C1",
+      "version": 1,
+      "topic": "Work and technology"
+    }
+  ],
+  "diagrams": [
+    "b1-new-town",
+    "b2-community",
+    "c1-work-tech"
+  ]
+}

@@ -64,3 +64,11 @@ Deno.test("seed/exam_catalog.sql esta al dia con content/", async () => {
   const onDisk = await Deno.readTextFile(new URL("../../apps/backend/supabase/seed/exam_catalog.sql", import.meta.url));
   assertEquals(onDisk, await catalogSql(), "ejecuta scripts/content/sync-catalog.ts");
 });
+
+Deno.test("la copia del contenido en la app esta al dia", async () => {
+  const { appFiles, APP_CONTENT_DIR } = await import("./sync-app.ts");
+  for (const [rel, text] of await appFiles()) {
+    const onDisk = await Deno.readTextFile(new URL(rel, APP_CONTENT_DIR)).catch(() => null);
+    assertEquals(onDisk, text, `${rel} desactualizado: ejecuta scripts/content/sync-app.ts`);
+  }
+});

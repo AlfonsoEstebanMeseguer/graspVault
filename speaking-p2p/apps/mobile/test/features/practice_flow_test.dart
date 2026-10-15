@@ -1,0 +1,99 @@
+// Widget tests at a REAL phone size (vault: the default 800x600 surface hides
+// overflows; and an overflow is only caught with tester.takeException()).
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:speaking_p2p/app.dart';
+import 'package:speaking_p2p/core/theming/preferences.dart';
+import 'package:speaking_p2p/features/exam/reader_player.dart';
+
+Future<SilentReaderPlayer> _pumpApp(WidgetTester tester, {Map<String, Object> prefs = const {}}) async {
+  tester.view.physicalSize = const Size(1080, 2340); // Pixel 5
+  tester.view.devicePixelRatio = 2.75;
+  addTearDown(tester.view.reset);
+  SharedPreferences.setMockInitialValues(prefs);
+  final sp = await SharedPreferences.getInstance();
+  final player = SilentReaderPlayer();
+  await tester.pumpWidget(ProviderScope(
+    overrides: [
+      sharedPreferencesProvider.overrideWithValue(sp),
+      readerPlayerProvider.overrideWithValue(player),
+    ],
+    child: const SpeakingApp(),
+  ));
+  // The search button pulses forever: pumpAndSettle would never settle.
+  for (var i = 0; i < 5; i++) {
+    await tester.pump(const Duration(milliseconds: 100));
+  }
+  return player;
+}
+
+/// Asset loading is real I/O: fake-time pumps alone do not wait for it.
+Future<void> pumpUntilFound(WidgetTester tester, Finder finder) async {
+  for (var i = 0; i < 100 && finder.evaluate().isEmpty; i++) {
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 20)));
+    await tester.pump(const Duration(milliseconds: 50));
+  }
+  expect(finder, findsWidgets);
+}
+
+void main() {
+  // rootBundle caches loadString futures; one created inside a previous test's
+  // fake-async zone never completes in the next test.
+  setUp(() => rootBundle.clear());
+
+  testWidgets('inicio -> practica: cabecera, texto del examinador y conmutadores', (tester) async {
+    await _pumpApp(tester, prefs: {'ui_locale': 'es', 'target_level': 'B2'});
+    expect(find.text('Practicar con compañero simulado'), findsOneWidget);
+    await tester.tap(find.text('Practicar con compañero simulado'));
+    await pumpUntilFound(tester, find.text('PARTE 1 DE 4'));
+    expect(find.text('Interview'), findsOneWidget);
+    expect(find.textContaining('First of all'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    await tester.tap(find.text('Ocultar texto'));
+    await tester.pump();
+    expect(find.textContaining('First of all'), findsNothing);
+    expect(find.text('Ver texto'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Ocultar cronómetro'));
+    await tester.pump();
+    expect(find.byTooltip('Mostrar cronómetro'), findsOneWidget);
+  });
+
+  testWidgets('abandonar: el boton de confirmar esta bloqueado 5 s', (tester) async {
+    await _pumpApp(tester, prefs: {'ui_locale': 'es'});
+    await tester.tap(find.text('Practicar con compañero simulado'));
+    await pumpUntilFound(tester, find.text('Abandonar'));
+    await tester.tap(find.text('Abandonar'));
+    await tester.pump(const Duration(milliseconds: 400));
+    FilledButton confirm() => tester.widget<FilledButton>(find.byKey(const Key('abandon-confirm')));
+    expect(confirm().onPressed, isNull);
+    expect(find.text('Salir del examen (5)'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 4));
+    expect(confirm().onPressed, isNull, reason: 'a los 4 s sigue bloqueado');
+    await tester.pump(const Duration(seconds: 1));
+    expect(confirm().onPressed, isNotNull);
+    await tester.tap(find.byKey(const Key('abandon-confirm')));
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.text('Practicar con compañero simulado'), findsOneWidget, reason: 'vuelve al inicio');
+  });
+
+  testWidgets('ajustes: tema e idioma se guardan y se releen', (tester) async {
+    await _pumpApp(tester, prefs: {'ui_locale': 'es'});
+    await tester.tap(find.text('Ajustes'));
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.tap(find.text('Oscuro'));
+    await tester.tap(find.text('English'));
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(find.text('Settings'), findsWidgets);
+    final sp = await SharedPreferences.getInstance();
+    expect(sp.getString('theme_mode'), 'dark');
+    expect(sp.getString('ui_locale'), 'en');
+    expect(Theme.of(tester.element(find.text('APPEARANCE'))).brightness, Brightness.dark);
+  });
+}

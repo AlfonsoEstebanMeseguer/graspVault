@@ -1,0 +1,189 @@
+{
+  "@@locale": "es",
+  "appName": "Speaking P2P",
+  "tabExam": "Examen",
+  "tabAgenda": "Agenda",
+  "tabProfile": "Perfil",
+  "tabSettings": "Ajustes",
+  "homeHello": "Hola,",
+  "searchPartner": "Buscar pareja",
+  "examOfLevel": "Examen de Speaking {level}",
+  "@examOfLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "examSummary": "4 partes · ~{minutes} min + 5 min de feedback",
+  "@examSummary": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "offlineBanner": "Modo sin conexión: practica con un compañero simulado.",
+  "practiceSimulated": "Practicar con compañero simulado",
+  "levelB1": "B1 Preliminary",
+  "levelB2": "B2 First",
+  "levelC1": "C1 Advanced",
+  "partOf": "PARTE {n} DE 4",
+  "@partOf": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "examiner": "Examinador",
+  "examinerQuestion": "Pregunta del examinador",
+  "hideText": "Ocultar texto",
+  "showText": "Ver texto",
+  "hideTimer": "Ocultar cronómetro",
+  "showTimer": "Mostrar cronómetro",
+  "yourTurn": "Te toca responder a ti",
+  "partnerTurn": "Le toca a {name}",
+  "@partnerTurn": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "micOpen": "Tu micro está abierto",
+  "micMuted": "Tu micro está silenciado",
+  "examinerSpeaking": "El examinador está hablando",
+  "bothMuted": "Micros de los dos silenciados",
+  "addressedToBoth": "Para: los dos",
+  "addressedToYou": "Para: ti",
+  "addressedTo": "Para: {name}",
+  "@addressedTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "you": "Tú",
+  "roleLabel": "{name} · {role}",
+  "@roleLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "statusMuted": "Silenciado",
+  "statusSpeaking": "Hablando",
+  "statusMicOpen": "Micro abierto",
+  "choosesTwoPhotos": "{name} elige dos de estas fotos",
+  "@choosesTwoPhotos": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "describesPhoto": "{name} describe esta foto",
+  "@describesPhoto": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "comparesPhotos": "{name} compara estas fotos",
+  "@comparesPhotos": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "photoPlaceholder": "Foto · {id}",
+  "@photoPlaceholder": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "discussionPhase": "Discusión · {minutes} min",
+  "@discussionPhase": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "decisionPhase": "Decisión · {minutes} min",
+  "@decisionPhase": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "startingIn": "El examen empieza en {seconds}",
+  "@startingIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "abandon": "Abandonar",
+  "abandonTitle": "¿Seguro que quieres salir?",
+  "abandonBody": "El examen terminará para los dos y {name} volverá al inicio. Si estás usando tu test de prueba, se dará por consumido.",
+  "@abandonBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "keepGoing": "Seguir en el examen",
+  "leaveExam": "Salir del examen",
+  "leaveExamIn": "Salir del examen ({seconds})",
+  "@leaveExamIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "partnerLeft": "Tu compañero ha salido",
+  "backHome": "Volver al inicio",
+  "examFinished": "Examen terminado",
+  "feedbackSubtitle": "Ahora tenéis tiempo para daros feedback.",
+  "feedbackTime": "TIEMPO DE FEEDBACK",
+  "micsOpenBoth": "Micros abiertos para los dos",
+  "feedbackIdeas": "IDEAS PARA EMPEZAR",
+  "feedbackIdea1": "¿Qué expresión o palabra del otro te ha gustado?",
+  "feedbackIdea2": "¿Hay algún error que se haya repetido?",
+  "feedbackIdea3": "En la Parte 3, ¿habéis dejado hablar al otro y llegado a una decisión?",
+  "endCall": "Terminar llamada",
+  "simulatedPartner": "compañero_sim",
+  "simulatedPartnerHint": "Modo desarrollo: el compañero es simulado y no habla.",
+  "settingsTitle": "Ajustes",
+  "appearance": "APARIENCIA",
+  "themeLight": "Claro",
+  "themeDark": "Oscuro",
+  "themeSystem": "Sistema",
+  "appLanguage": "IDIOMA DE LA APP",
+  "languageSpanish": "Español",
+  "languageEnglish": "English",
+  "subscription": "SUSCRIPCIÓN",
+  "account": "CUENTA",
+  "termsOfUse": "Términos de uso",
+  "privacyPolicy": "Política de privacidad",
+  "signOut": "Cerrar sesión",
+  "deleteAccount": "Eliminar cuenta",
+  "needsBackend": "Disponible cuando la app esté conectada al servidor.",
+  "agendaTitle": "Agenda",
+  "profileTitle": "Perfil"
+}
