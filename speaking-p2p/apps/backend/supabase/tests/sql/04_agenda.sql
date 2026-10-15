@@ -132,7 +132,12 @@ begin
   o := public.svc_offer_create(a, 'B2', date_trunc('hour', now()) + interval '2 hours', date_trunc('hour', now()) + interval '4 hours');
   r := public.svc_offer_accept(b, o, date_trunc('hour', now()) + interval '2 hours');
   insert into public.chat_messages (chat_id, sender_id, body) values ((r ->> 'chat_id')::uuid, a, 'hola, soy a');
+  insert into public.exam_sessions (level, exam_id, exam_version, user_a, user_b, origin, state, recording_key, recording_expires_at)
+  values ('B2', 'b2-community-life', 1, a, b, 'live', 'ended', 'recordings/x.ogg', now() + interval '20 days');
   perform public.svc_account_prepare_delete(a);
+  perform tests.assert_eq((select count(*)::int from public.storage_gc_queue where object_key = 'recordings/x.ogg'), 1,
+    'la grabacion con la voz de a se encola para borrar en R2');
+  perform tests.assert((select recording_key is null from public.exam_sessions where recording_key is null and user_b = b limit 1), 'y b ya no la ve');
   delete from auth.users where id = a;
   select count(*) into n from public.chat_messages where chat_id = (r ->> 'chat_id')::uuid and kind = 'user' and sender_id is null;
   perform tests.assert_eq(n, 1, 'el mensaje de a queda anonimizado');

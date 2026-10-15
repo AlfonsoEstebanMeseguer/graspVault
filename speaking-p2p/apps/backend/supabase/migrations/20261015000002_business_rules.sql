@@ -638,6 +638,12 @@ begin
   end loop;
   update public.exam_sessions set state = 'aborted', abort_reason = 'left', aborted_by = p_user, ended_at = p_now
   where state not in ('ended', 'aborted') and p_user in (user_a, user_b);
+  -- Recordings carry this person's voice: they go too, for the partner as well (Art. 17 RGPD).
+  insert into public.storage_gc_queue (object_key, reason)
+  select recording_key, 'account_deleted' from public.exam_sessions
+  where recording_key is not null and p_user in (user_a, user_b);
+  update public.exam_sessions set recording_key = null, recording_expires_at = null
+  where recording_key is not null and p_user in (user_a, user_b);
 end $$;
 
 -- ------------------------------------------------------------- lock down
