@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "4984cd9adc9a59aa",
+    "type": "split",
+    "children": [
+      {
+        "id": "1f829ee1351666d9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3983cf28e1a77d45",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Vista gráfica"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a76ecb17e197cb86",
+    "type": "split",
+    "children": [
+      {
+        "id": "00122e23260dbedd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "939634ccc2ec36dc",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de archivos"
+            }
+          },
+          {
+            "id": "7a8fc3aaa30abd33",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Buscar"
+            }
+          },
+          {
+            "id": "3de5e6bb50f96a24",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "b5ae2ac6f856359e",
+    "type": "split",
+    "children": [
+      {
+        "id": "42b976189d2df04c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c9ed7edb8910bf78",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Enlaces entrantes"
+            }
+          },
+          {
+            "id": "c0ecfed829ad1810",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enlaces salientes"
+            }
+          },
+          {
+            "id": "813c3bc1aa16ba24",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "00b9a55ca70866c4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas las propiedades"
+            }
+          },
+          {
+            "id": "3193899043471ddf",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false,
+      "realclaudian:Open Claudian": false
+    }
+  },
+  "active": "3983cf28e1a77d45",
+  "lastOpenFiles": [
+    "00-Metodo/Arrancar-un-proyecto-nuevo.md.tmp.24076.c528723ac82f",
+    "00-Metodo/Arrancar-un-proyecto-nuevo.md.tmp.24076.3dc54eee0880",
+    "05-Skills-de-proceso/Index.md.tmp.24076.a0690aec5a20",
+    "05-Skills-de-proceso/Como-trabajar-en-este-repo.md.tmp.24076.707496f0cd3e",
+    "02-Arquitectura/Almacenamiento-R2-y-voz.md.tmp.24076.a46185bc1ddb",
+    "Home.md.tmp.24076.b5b17f381ae3",
+    "00-Metodo/Index.md.tmp.24076.69296c0f9183",
+    "00-Metodo/Arrancar-un-proyecto-nuevo.md",
+    "00-Metodo/Arrancar-un-proyecto-nuevo.md.tmp.24076.38eec6d5601e",
+    "00-Metodo/Memoria-persistente-y-verificacion.md.tmp.24076.4be801c09b89",
+    "00-Metodo/Principio-cuestionar-antes-de-implementar.md.tmp.24076.e09b461855cd",
+    "03-Invariantes/UI-Flutter-y-producto.md.tmp.24076.78a355e22b24",
+    "04-Decisiones/0044-edad-minima-18.md",
+    "04-Decisiones/0043-moderacion-con-revision-humana.md",
+    "04-Decisiones/0042-pagos-y-vip-se-posponen-hasta-validar.md",
+    "04-Decisiones/0041-tope-diario-de-minutos-en-salas.md",
+    "04-Decisiones/0040-las-solicitudes-se-ven-en-morado.md",
+    "04-Decisiones/0039-una-llamada-silencia-la-sala-sin-sacarte.md",
+    "04-Decisiones/0038-profiles-se-lee-por-columnas.md",
+    "04-Decisiones/0037-el-perfil-ajeno-se-ve-como-el-propio.md",
+    "04-Decisiones/0036-la-app-en-espanol-e-ingles.md",
+    "04-Decisiones/0035-escenario-anfitrion-mas-dos-hablantes.md",
+    "04-Decisiones/0034-apply-migration-permitido-con-canonizacion.md",
+    "04-Decisiones/0033-voiceservice-no-decide-quien-habla.md",
+    "Home.md",
+    "Glosario.md",
+    "01-Referencia-Grasp.md",
+    "05-Skills-de-proceso/Index.md",
+    "05-Skills-de-proceso/Como-trabajar-en-este-repo.md",
+    "07-Auditorias/Index.md",
+    "07-Auditorias/Historial-de-auditorias.md",
+    "03-Invariantes/Index.md",
+    "06-Agentes/Index.md",
+    "06-Agentes/Patron-de-memoria-de-agentes.md",
+    "03-Invariantes/Voz.md",
+    "03-Invariantes/Gifts-y-pagos.md"
+  ]
+}
