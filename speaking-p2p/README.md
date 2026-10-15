@@ -10,6 +10,7 @@ App móvil para simular por parejas el examen oral tipo Cambridge (B1, B2, C1): 
 | Crítica y riesgos | [docs/REVIEW.md](docs/REVIEW.md) |
 | Patrones del vault | [docs/VAULT_NOTES.md](docs/VAULT_NOTES.md) |
 | Servicios a configurar | [docs/SETUP.md](docs/SETUP.md) |
+| Diseño: pantallas → comportamiento → backend | [docs/design/SCREENS.md](docs/design/SCREENS.md) |
 
 ```
 content/                  exámenes y diagramas (JSON, fuente de verdad) + fixtures
