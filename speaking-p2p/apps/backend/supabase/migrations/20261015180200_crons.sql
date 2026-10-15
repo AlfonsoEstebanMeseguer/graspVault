@@ -4,8 +4,8 @@
 --   * pure SQL (agenda, housekeeping): pg_cron calls the svc_* function directly;
 --   * needs the outside world (LiveKit mic pushes, FCM, R2 deletes): pg_cron -> pg_net ->
 --     Edge Function `cron-worker`, authenticated with a DEDICATED token. The token lives in
---     Supabase Vault (`internal_cron_token`); the function only knows its SHA-256 (env
---     INTERNAL_CRON_TOKEN_SHA256). Never verify_jwt, never the service_role key (vault ADR 0011).
+--     Supabase Vault (`internal_cron_token`); the function checks it through
+--     svc_verify_internal_token (D-021). Never verify_jwt, never the service_role key (vault ADR 0011).
 --
 -- Setup once per environment (not in git, see docs/SETUP.md):
 --   select vault.create_secret('<random 48 bytes, base64>', 'internal_cron_token');

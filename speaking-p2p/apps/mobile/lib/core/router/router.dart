@@ -14,6 +14,7 @@ import '../../features/exam/widgets/exam_widgets.dart' show formatMs;
 import '../theming/palette.dart';
 import '../config/env.dart';
 import '../../features/agenda/agenda_screen.dart';
+import '../../features/agenda/chat_screen.dart';
 import '../../features/exam/practice_screen.dart';
 import '../../features/home/home_screen.dart';
 import '../../features/profile/profile_screen.dart';
@@ -61,13 +62,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state, shell) => _TabsScaffold(shell: shell),
         branches: [
           StatefulShellBranch(routes: [GoRoute(path: '/', builder: (_, _) => const HomeScreen())]),
-          StatefulShellBranch(routes: [GoRoute(path: '/agenda', builder: (_, _) => const AgendaScreen())]),
+          StatefulShellBranch(routes: [GoRoute(path: '/agenda', builder: (_, state) => AgendaScreen(openCreate: state.uri.queryParameters['create'] == '1'))]),
           StatefulShellBranch(routes: [GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen())]),
           StatefulShellBranch(routes: [GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen())]),
         ],
       ),
       // Full screen, outside the tabs: no bottom bar and no ads during the exam.
       GoRoute(path: '/search', builder: (_, _) => const SearchScreen()),
+      GoRoute(path: '/chat/:id', builder: (_, state) => ChatScreen(chatId: state.pathParameters['id']!)),
       GoRoute(path: '/session/:id', builder: (_, state) => SessionScreen(sessionId: state.pathParameters['id']!)),
       GoRoute(
         path: '/practice/:level',

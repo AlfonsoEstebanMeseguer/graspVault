@@ -1135,6 +1135,516 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Buscando compañero · {time}'**
   String searchingBanner(String time);
+
+  /// No description provided for @createMeeting.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear reunión'**
+  String get createMeeting;
+
+  /// No description provided for @agendaChats.
+  ///
+  /// In es, this message translates to:
+  /// **'Chats'**
+  String get agendaChats;
+
+  /// No description provided for @agendaBoard.
+  ///
+  /// In es, this message translates to:
+  /// **'Reuniones'**
+  String get agendaBoard;
+
+  /// No description provided for @agendaMine.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi agenda'**
+  String get agendaMine;
+
+  /// No description provided for @noChats.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no tienes chats. Elige una oferta en Reuniones o crea la tuya.'**
+  String get noChats;
+
+  /// No description provided for @noOffers.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay ofertas con este filtro.'**
+  String get noOffers;
+
+  /// No description provided for @noMeetings.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes reuniones confirmadas.'**
+  String get noMeetings;
+
+  /// No description provided for @myOffersCount.
+  ///
+  /// In es, this message translates to:
+  /// **'MIS OFERTAS · {n} DE 2'**
+  String myOffersCount(int n);
+
+  /// No description provided for @interestedCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Nadie interesado aún} =1{1 interesado} other{{n} interesados}}'**
+  String interestedCount(int n);
+
+  /// No description provided for @includeLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'+ Incluir {level}'**
+  String includeLevel(String level);
+
+  /// No description provided for @anyDay.
+  ///
+  /// In es, this message translates to:
+  /// **'Cualquier día'**
+  String get anyDay;
+
+  /// No description provided for @todayLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy'**
+  String get todayLabel;
+
+  /// No description provided for @tomorrowLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Mañana'**
+  String get tomorrowLabel;
+
+  /// No description provided for @otherDay.
+  ///
+  /// In es, this message translates to:
+  /// **'Otro'**
+  String get otherDay;
+
+  /// No description provided for @speaksLangs.
+  ///
+  /// In es, this message translates to:
+  /// **'Habla {langs}'**
+  String speaksLangs(String langs);
+
+  /// No description provided for @availableLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Disponible'**
+  String get availableLabel;
+
+  /// No description provided for @chooseTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir hora'**
+  String get chooseTime;
+
+  /// No description provided for @withdrawOffer.
+  ///
+  /// In es, this message translates to:
+  /// **'Retirar oferta'**
+  String get withdrawOffer;
+
+  /// No description provided for @statusConfirmed.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmada ✓✓'**
+  String get statusConfirmed;
+
+  /// No description provided for @statusAwaitingYou.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta tu confirmación'**
+  String get statusAwaitingYou;
+
+  /// No description provided for @statusAwaitingPartner.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperando a {name}'**
+  String statusAwaitingPartner(String name);
+
+  /// No description provided for @statusClosed.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrada'**
+  String get statusClosed;
+
+  /// No description provided for @statusCancelled.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelada'**
+  String get statusCancelled;
+
+  /// No description provided for @statusDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Hecha'**
+  String get statusDone;
+
+  /// No description provided for @statusNoShow.
+  ///
+  /// In es, this message translates to:
+  /// **'Ausencia'**
+  String get statusNoShow;
+
+  /// No description provided for @meetingLength.
+  ///
+  /// In es, this message translates to:
+  /// **'30 min'**
+  String get meetingLength;
+
+  /// No description provided for @examWith.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen {level} con {name}'**
+  String examWith(String level, String name);
+
+  /// No description provided for @startsInMinutes.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Empieza ya} =1{Empieza en 1 min} other{Empieza en {n} min}}'**
+  String startsInMinutes(int n);
+
+  /// No description provided for @startedMinutesAgo.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezó hace {n} min'**
+  String startedMinutesAgo(int n);
+
+  /// No description provided for @enterRoom.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrar a la sala'**
+  String get enterRoom;
+
+  /// No description provided for @remindBefore.
+  ///
+  /// In es, this message translates to:
+  /// **'Te avisaremos 10 min antes'**
+  String get remindBefore;
+
+  /// No description provided for @dayField.
+  ///
+  /// In es, this message translates to:
+  /// **'Día'**
+  String get dayField;
+
+  /// No description provided for @windowField.
+  ///
+  /// In es, this message translates to:
+  /// **'Franja en la que puedes'**
+  String get windowField;
+
+  /// No description provided for @fromField.
+  ///
+  /// In es, this message translates to:
+  /// **'Desde'**
+  String get fromField;
+
+  /// No description provided for @toField.
+  ///
+  /// In es, this message translates to:
+  /// **'Hasta'**
+  String get toField;
+
+  /// No description provided for @windowHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Quien acepte elegirá una hora exacta dentro de esta franja.'**
+  String get windowHint;
+
+  /// No description provided for @examLevelField.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel del examen'**
+  String get examLevelField;
+
+  /// No description provided for @offersLeft.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Puedes tener 2 ofertas activas · no te quedan} =1{Puedes tener 2 ofertas activas · te queda 1} other{Puedes tener 2 ofertas activas · te quedan {n}}}'**
+  String offersLeft(int n);
+
+  /// No description provided for @publishOffer.
+  ///
+  /// In es, this message translates to:
+  /// **'Publicar oferta'**
+  String get publishOffer;
+
+  /// No description provided for @examWithTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen con {name}'**
+  String examWithTitle(String name);
+
+  /// No description provided for @chooseStart.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige a qué hora empezáis'**
+  String get chooseStart;
+
+  /// No description provided for @busyLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocupado'**
+  String get busyLabel;
+
+  /// No description provided for @busyHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Las horas que chocan con tus reuniones confirmadas aparecen bloqueadas.'**
+  String get busyHint;
+
+  /// No description provided for @proposeAndChat.
+  ///
+  /// In es, this message translates to:
+  /// **'Proponer {time} y abrir chat'**
+  String proposeAndChat(String time);
+
+  /// No description provided for @pickATime.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige una hora'**
+  String get pickATime;
+
+  /// No description provided for @noSlots.
+  ///
+  /// In es, this message translates to:
+  /// **'No quedan horas libres en esta franja.'**
+  String get noSlots;
+
+  /// No description provided for @modifyLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Modificar'**
+  String get modifyLabel;
+
+  /// No description provided for @cancelLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get cancelLabel;
+
+  /// No description provided for @confirmLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar'**
+  String get confirmLabel;
+
+  /// No description provided for @messageHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Mensaje'**
+  String get messageHint;
+
+  /// No description provided for @sendLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar'**
+  String get sendLabel;
+
+  /// No description provided for @sysProposed.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} propuso {when}'**
+  String sysProposed(String name, String when);
+
+  /// No description provided for @sysModified.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} cambió la hora a {when} · confirmaciones reiniciadas'**
+  String sysModified(String name, String when);
+
+  /// No description provided for @sysConfirmedBy.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha confirmado ✓'**
+  String sysConfirmedBy(String name);
+
+  /// No description provided for @sysConfirmed.
+  ///
+  /// In es, this message translates to:
+  /// **'Reunión confirmada. Ya está en Mi agenda.'**
+  String get sysConfirmed;
+
+  /// No description provided for @sysPartnerOverlap.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ya tiene otra reunión a esa hora. Proponed otra.'**
+  String sysPartnerOverlap(String name);
+
+  /// No description provided for @sysUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta reunión ya no está disponible'**
+  String get sysUnavailable;
+
+  /// No description provided for @sysCancelled.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha cancelado la reunión'**
+  String sysCancelled(String name);
+
+  /// No description provided for @sysExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'La hora pasó sin que los dos confirmarais'**
+  String get sysExpired;
+
+  /// No description provided for @sysPartnerDeleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu compañero ha eliminado su cuenta'**
+  String get sysPartnerDeleted;
+
+  /// No description provided for @sysUpdate.
+  ///
+  /// In es, this message translates to:
+  /// **'La reunión ha cambiado'**
+  String get sysUpdate;
+
+  /// No description provided for @deletedUser.
+  ///
+  /// In es, this message translates to:
+  /// **'Usuario eliminado'**
+  String get deletedUser;
+
+  /// No description provided for @modifyTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar hora o nivel'**
+  String get modifyTitle;
+
+  /// No description provided for @saveLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get saveLabel;
+
+  /// No description provided for @cancelMeetingTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cancelar la reunión?'**
+  String get cancelMeetingTitle;
+
+  /// No description provided for @cancelMeetingBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Se avisará a {name} en el chat.'**
+  String cancelMeetingBody(String name);
+
+  /// No description provided for @keepMeeting.
+  ///
+  /// In es, this message translates to:
+  /// **'No, mantener'**
+  String get keepMeeting;
+
+  /// No description provided for @roomOpensBefore.
+  ///
+  /// In es, this message translates to:
+  /// **'La sala se abre 5 min antes'**
+  String get roomOpensBefore;
+
+  /// No description provided for @meetingWith.
+  ///
+  /// In es, this message translates to:
+  /// **'Reunión con {name} · {level}'**
+  String meetingWith(String name, String level);
+
+  /// No description provided for @viewLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver'**
+  String get viewLabel;
+
+  /// No description provided for @errorOverlap.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya tienes otra reunión confirmada a esa hora'**
+  String get errorOverlap;
+
+  /// No description provided for @errorTooManyOffers.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya tienes 2 ofertas activas'**
+  String get errorTooManyOffers;
+
+  /// No description provided for @errorOfferUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta oferta ya no está disponible'**
+  String get errorOfferUnavailable;
+
+  /// No description provided for @errorBadTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Esa hora no es válida'**
+  String get errorBadTime;
+
+  /// No description provided for @errorAlreadyAccepted.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya elegiste esta oferta: búscala en Chats'**
+  String get errorAlreadyAccepted;
+
+  /// No description provided for @errorWindow.
+  ///
+  /// In es, this message translates to:
+  /// **'La franja debe durar al menos 30 min y estar dentro de los próximos 7 días'**
+  String get errorWindow;
+
+  /// No description provided for @errorTooEarly.
+  ///
+  /// In es, this message translates to:
+  /// **'La sala se abre 5 min antes'**
+  String get errorTooEarly;
+
+  /// No description provided for @errorTooLate.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya pasó el tiempo de cortesía'**
+  String get errorTooLate;
+
+  /// No description provided for @errorNotPending.
+  ///
+  /// In es, this message translates to:
+  /// **'La reunión ya no se puede cambiar'**
+  String get errorNotPending;
+
+  /// No description provided for @errorPartnerGone.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu compañero ya no está disponible'**
+  String get errorPartnerGone;
+
+  /// No description provided for @errorSendFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido enviar el mensaje'**
+  String get errorSendFailed;
+
+  /// No description provided for @sysProposedByMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Propusiste {when}'**
+  String sysProposedByMe(String when);
+
+  /// No description provided for @sysModifiedByMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiaste la hora a {when} · confirmaciones reiniciadas'**
+  String sysModifiedByMe(String when);
+
+  /// No description provided for @sysConfirmedByMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Has confirmado ✓'**
+  String get sysConfirmedByMe;
+
+  /// No description provided for @sysCancelledByMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Has cancelado la reunión'**
+  String get sysCancelledByMe;
 }
 
 class _AppLocalizationsDelegate

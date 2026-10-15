@@ -585,4 +585,325 @@ class AppLocalizationsEs extends AppLocalizations {
   String searchingBanner(String time) {
     return 'Buscando compañero · $time';
   }
+
+  @override
+  String get createMeeting => 'Crear reunión';
+
+  @override
+  String get agendaChats => 'Chats';
+
+  @override
+  String get agendaBoard => 'Reuniones';
+
+  @override
+  String get agendaMine => 'Mi agenda';
+
+  @override
+  String get noChats =>
+      'Aún no tienes chats. Elige una oferta en Reuniones o crea la tuya.';
+
+  @override
+  String get noOffers => 'No hay ofertas con este filtro.';
+
+  @override
+  String get noMeetings => 'No tienes reuniones confirmadas.';
+
+  @override
+  String myOffersCount(int n) {
+    return 'MIS OFERTAS · $n DE 2';
+  }
+
+  @override
+  String interestedCount(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n interesados',
+      one: '1 interesado',
+      zero: 'Nadie interesado aún',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String includeLevel(String level) {
+    return '+ Incluir $level';
+  }
+
+  @override
+  String get anyDay => 'Cualquier día';
+
+  @override
+  String get todayLabel => 'Hoy';
+
+  @override
+  String get tomorrowLabel => 'Mañana';
+
+  @override
+  String get otherDay => 'Otro';
+
+  @override
+  String speaksLangs(String langs) {
+    return 'Habla $langs';
+  }
+
+  @override
+  String get availableLabel => 'Disponible';
+
+  @override
+  String get chooseTime => 'Elegir hora';
+
+  @override
+  String get withdrawOffer => 'Retirar oferta';
+
+  @override
+  String get statusConfirmed => 'Confirmada ✓✓';
+
+  @override
+  String get statusAwaitingYou => 'Falta tu confirmación';
+
+  @override
+  String statusAwaitingPartner(String name) {
+    return 'Esperando a $name';
+  }
+
+  @override
+  String get statusClosed => 'Cerrada';
+
+  @override
+  String get statusCancelled => 'Cancelada';
+
+  @override
+  String get statusDone => 'Hecha';
+
+  @override
+  String get statusNoShow => 'Ausencia';
+
+  @override
+  String get meetingLength => '30 min';
+
+  @override
+  String examWith(String level, String name) {
+    return 'Examen $level con $name';
+  }
+
+  @override
+  String startsInMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Empieza en $n min',
+      one: 'Empieza en 1 min',
+      zero: 'Empieza ya',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startedMinutesAgo(int n) {
+    return 'Empezó hace $n min';
+  }
+
+  @override
+  String get enterRoom => 'Entrar a la sala';
+
+  @override
+  String get remindBefore => 'Te avisaremos 10 min antes';
+
+  @override
+  String get dayField => 'Día';
+
+  @override
+  String get windowField => 'Franja en la que puedes';
+
+  @override
+  String get fromField => 'Desde';
+
+  @override
+  String get toField => 'Hasta';
+
+  @override
+  String get windowHint =>
+      'Quien acepte elegirá una hora exacta dentro de esta franja.';
+
+  @override
+  String get examLevelField => 'Nivel del examen';
+
+  @override
+  String offersLeft(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Puedes tener 2 ofertas activas · te quedan $n',
+      one: 'Puedes tener 2 ofertas activas · te queda 1',
+      zero: 'Puedes tener 2 ofertas activas · no te quedan',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get publishOffer => 'Publicar oferta';
+
+  @override
+  String examWithTitle(String name) {
+    return 'Examen con $name';
+  }
+
+  @override
+  String get chooseStart => 'Elige a qué hora empezáis';
+
+  @override
+  String get busyLabel => 'Ocupado';
+
+  @override
+  String get busyHint =>
+      'Las horas que chocan con tus reuniones confirmadas aparecen bloqueadas.';
+
+  @override
+  String proposeAndChat(String time) {
+    return 'Proponer $time y abrir chat';
+  }
+
+  @override
+  String get pickATime => 'Elige una hora';
+
+  @override
+  String get noSlots => 'No quedan horas libres en esta franja.';
+
+  @override
+  String get modifyLabel => 'Modificar';
+
+  @override
+  String get cancelLabel => 'Cancelar';
+
+  @override
+  String get confirmLabel => 'Confirmar';
+
+  @override
+  String get messageHint => 'Mensaje';
+
+  @override
+  String get sendLabel => 'Enviar';
+
+  @override
+  String sysProposed(String name, String when) {
+    return '$name propuso $when';
+  }
+
+  @override
+  String sysModified(String name, String when) {
+    return '$name cambió la hora a $when · confirmaciones reiniciadas';
+  }
+
+  @override
+  String sysConfirmedBy(String name) {
+    return '$name ha confirmado ✓';
+  }
+
+  @override
+  String get sysConfirmed => 'Reunión confirmada. Ya está en Mi agenda.';
+
+  @override
+  String sysPartnerOverlap(String name) {
+    return '$name ya tiene otra reunión a esa hora. Proponed otra.';
+  }
+
+  @override
+  String get sysUnavailable => 'Esta reunión ya no está disponible';
+
+  @override
+  String sysCancelled(String name) {
+    return '$name ha cancelado la reunión';
+  }
+
+  @override
+  String get sysExpired => 'La hora pasó sin que los dos confirmarais';
+
+  @override
+  String get sysPartnerDeleted => 'Tu compañero ha eliminado su cuenta';
+
+  @override
+  String get sysUpdate => 'La reunión ha cambiado';
+
+  @override
+  String get deletedUser => 'Usuario eliminado';
+
+  @override
+  String get modifyTitle => 'Cambiar hora o nivel';
+
+  @override
+  String get saveLabel => 'Guardar';
+
+  @override
+  String get cancelMeetingTitle => '¿Cancelar la reunión?';
+
+  @override
+  String cancelMeetingBody(String name) {
+    return 'Se avisará a $name en el chat.';
+  }
+
+  @override
+  String get keepMeeting => 'No, mantener';
+
+  @override
+  String get roomOpensBefore => 'La sala se abre 5 min antes';
+
+  @override
+  String meetingWith(String name, String level) {
+    return 'Reunión con $name · $level';
+  }
+
+  @override
+  String get viewLabel => 'Ver';
+
+  @override
+  String get errorOverlap => 'Ya tienes otra reunión confirmada a esa hora';
+
+  @override
+  String get errorTooManyOffers => 'Ya tienes 2 ofertas activas';
+
+  @override
+  String get errorOfferUnavailable => 'Esta oferta ya no está disponible';
+
+  @override
+  String get errorBadTime => 'Esa hora no es válida';
+
+  @override
+  String get errorAlreadyAccepted =>
+      'Ya elegiste esta oferta: búscala en Chats';
+
+  @override
+  String get errorWindow =>
+      'La franja debe durar al menos 30 min y estar dentro de los próximos 7 días';
+
+  @override
+  String get errorTooEarly => 'La sala se abre 5 min antes';
+
+  @override
+  String get errorTooLate => 'Ya pasó el tiempo de cortesía';
+
+  @override
+  String get errorNotPending => 'La reunión ya no se puede cambiar';
+
+  @override
+  String get errorPartnerGone => 'Tu compañero ya no está disponible';
+
+  @override
+  String get errorSendFailed => 'No se ha podido enviar el mensaje';
+
+  @override
+  String sysProposedByMe(String when) {
+    return 'Propusiste $when';
+  }
+
+  @override
+  String sysModifiedByMe(String when) {
+    return 'Cambiaste la hora a $when · confirmaciones reiniciadas';
+  }
+
+  @override
+  String get sysConfirmedByMe => 'Has confirmado ✓';
+
+  @override
+  String get sysCancelledByMe => 'Has cancelado la reunión';
 }
