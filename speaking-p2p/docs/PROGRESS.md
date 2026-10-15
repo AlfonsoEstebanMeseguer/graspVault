@@ -1,13 +1,27 @@
 # Progreso
 
-> Actualizado: 2026-10-15. Créditos hasta el 2026-11-04.
+> Actualizado: 2026-10-15 (tarde). Créditos hasta el 2026-11-04.
+
+## Estado en el proyecto real (Supabase `SpeakingApp`, eu-central-1)
+
+| Pieza | Estado |
+|---|---|
+| Migraciones aplicadas | `baseline_schema`, `rules_helpers_onboarding`, `rules_sessions`, `dev_access_and_internal_token`, `security_advisor_fixes` |
+| **Pendientes (necesitan tu aprobación en el diálogo del conector: contienen `DELETE`)** | `rules_matchmaking_agenda`, `rules_crons_accounts`, `crons` |
+| Catálogo de exámenes | Cargado (3 exámenes; md5 verificado contra el repo) |
+| Auditoría de permisos | `anon` sin ningún permiso; `authenticated` solo las columnas previstas (comprobado en `information_schema`) |
+| Asesor de seguridad | Solo queda el aviso informativo "RLS sin políticas" de las 8 tablas de servidor (intencionado) |
+| Edge Functions desplegadas | `onboarding-complete`, `matchmaking`, `avatar-upload-url` (responden su propio 401 sin sesión), `config-check` (diagnóstico, se vaciará) |
+| Pendientes de desplegar | `session-actions`, `meeting-actions`, `media-view-url`, `avatar-confirm`, `account-delete`, `livekit-webhook`, `cron-worker` (tras las migraciones) |
+| Aplazadas por decisión | Google Sign-In, RevenueCat, dominio CDN, TTS, Sentry, AdMob, PostHog, Firebase |
+
 
 ## Estado por hito
 
 | Hito | Estado | Notas |
 |---|---|---|
 | 0. Setup | ✅ Hecho | Scaffold Flutter, CI (`.github/workflows/speaking-p2p.yml`), lints, i18n ES/EN, tema claro/oscuro, VAULT_NOTES |
-| 1. Auth y onboarding | 🟡 Backend hecho, app pendiente | `svc_onboarding_complete` (edad ≥14 en el camino de escritura, username único, lápida del trial), `onboarding-complete`, avatar en R2 (`avatar-upload-url` + `avatar-confirm` con magic bytes). Falta: pantallas de login/onboarding y Google Sign-In nativo → **necesita credenciales** |
+| 1. Auth y onboarding | 🟢 Hecho con email (Google aplazado) | `svc_onboarding_complete` (edad ≥14 en el camino de escritura, username único, lápida del trial), `onboarding-complete`, avatar en R2 (`avatar-upload-url` + `avatar-confirm` con magic bytes). Falta: pantallas de login/onboarding y Google Sign-In nativo → **necesita credenciales** |
 | 2. Motor del examen offline | ✅ Hecho (sin audio real) | Esquema Zod + validador, 1 examen por nivel, 3 diagramas, línea temporal TS/Dart con golden, pantallas de las 4 partes + feedback + abandono, cronómetro y "Ver texto" conmutables, compañero simulado. El lector es **silencioso** hasta que exista el TTS |
 | 3. Llamada y sesión sincronizada | 🟡 Backend hecho | Máquina de estados en SQL con tests, `session-actions`, mic por `canPublish`, webhook de LiveKit (presencia, gracia de 60 s), grabación con Egress. Falta: `VoiceService` + `LiveKitEngine` en la app, lobby, reloj alineado con el servidor, segundo plano |
 | 4. Matchmaking en vivo | 🟡 Backend hecho | FIFO atómico por nivel, latido, elegibilidad en servidor, `hasOpenMeeting` para la ventana de 15 s. Falta: pantallas |
