@@ -24,6 +24,7 @@ String errorText(AppLocalizations l, Object error) {
     'not_pending' || 'not_confirmed' => l.errorNotPending,
     'partner_gone' => l.errorPartnerGone,
     'send_failed' => l.errorSendFailed,
+    'bad_confirmation' => l.errorBadConfirmation,
     _ => l.errorGeneric,
   };
 }

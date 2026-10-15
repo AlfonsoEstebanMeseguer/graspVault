@@ -906,4 +906,92 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get sysCancelledByMe => 'Has cancelado la reunión';
+
+  @override
+  String get editProfile => 'Editar perfil';
+
+  @override
+  String get preparing => 'Preparando';
+
+  @override
+  String get examsDone => 'Exámenes hechos';
+
+  @override
+  String get recordingsTitle => 'GRABACIONES';
+
+  @override
+  String recordingWith(String level, String name) {
+    return '$level con $name';
+  }
+
+  @override
+  String recordingMeta(String date, int minutes) {
+    return '$date · $minutes min';
+  }
+
+  @override
+  String daysLeft(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n días',
+      one: '1 día',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get recordingsDeleted => 'Las grabaciones se borran a los 30 días.';
+
+  @override
+  String get noRecordings =>
+      'Aún no hay grabaciones. Se guardan si los dos activáis «Grabar la sesión».';
+
+  @override
+  String get playbackSoon => 'La reproducción llegará en la próxima versión.';
+
+  @override
+  String get planMonthly => 'Plan mensual';
+
+  @override
+  String get subActive => 'Activa';
+
+  @override
+  String get subInactive => 'Sin suscripción';
+
+  @override
+  String get trialAvailable => 'Test de prueba disponible';
+
+  @override
+  String get nextPayment => 'Próximo pago';
+
+  @override
+  String get storeLater => 'La gestión en la tienda llegará con los pagos.';
+
+  @override
+  String get deleteAccountBody =>
+      'Se borrarán tu perfil, tus datos privados y las grabaciones en las que aparece tu voz. Tus mensajes de chat quedarán anónimos. No se puede deshacer.';
+
+  @override
+  String get deletePhrase => 'ELIMINAR';
+
+  @override
+  String deletePhraseHint(String phrase) {
+    return 'Escribe $phrase para confirmar';
+  }
+
+  @override
+  String get yourPassword => 'Tu contraseña';
+
+  @override
+  String get deleteForever => 'Eliminar para siempre';
+
+  @override
+  String get errorBadConfirmation => 'La frase no coincide';
+
+  @override
+  String get profileSaved => 'Perfil guardado';
+
+  @override
+  String get targetLevelField => 'Examen que preparas';
 }

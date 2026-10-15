@@ -908,4 +908,92 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sysCancelledByMe => 'You cancelled the meeting';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get preparing => 'Preparing for';
+
+  @override
+  String get examsDone => 'Exams done';
+
+  @override
+  String get recordingsTitle => 'RECORDINGS';
+
+  @override
+  String recordingWith(String level, String name) {
+    return '$level with $name';
+  }
+
+  @override
+  String recordingMeta(String date, int minutes) {
+    return '$date · $minutes min';
+  }
+
+  @override
+  String daysLeft(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get recordingsDeleted => 'Recordings are deleted after 30 days.';
+
+  @override
+  String get noRecordings =>
+      'No recordings yet. They\'re saved when both of you turn on “Record the session”.';
+
+  @override
+  String get playbackSoon => 'Playback is coming in the next version.';
+
+  @override
+  String get planMonthly => 'Monthly plan';
+
+  @override
+  String get subActive => 'Active';
+
+  @override
+  String get subInactive => 'No subscription';
+
+  @override
+  String get trialAvailable => 'Trial test available';
+
+  @override
+  String get nextPayment => 'Next payment';
+
+  @override
+  String get storeLater => 'Store management arrives with payments.';
+
+  @override
+  String get deleteAccountBody =>
+      'Your profile, private data and the recordings with your voice will be deleted. Your chat messages will be anonymised. This can\'t be undone.';
+
+  @override
+  String get deletePhrase => 'DELETE';
+
+  @override
+  String deletePhraseHint(String phrase) {
+    return 'Type $phrase to confirm';
+  }
+
+  @override
+  String get yourPassword => 'Your password';
+
+  @override
+  String get deleteForever => 'Delete forever';
+
+  @override
+  String get errorBadConfirmation => 'The phrase doesn\'t match';
+
+  @override
+  String get profileSaved => 'Profile saved';
+
+  @override
+  String get targetLevelField => 'Exam you\'re preparing';
 }

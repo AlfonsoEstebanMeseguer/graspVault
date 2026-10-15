@@ -1645,6 +1645,150 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Has cancelado la reunión'**
   String get sysCancelledByMe;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar perfil'**
+  String get editProfile;
+
+  /// No description provided for @preparing.
+  ///
+  /// In es, this message translates to:
+  /// **'Preparando'**
+  String get preparing;
+
+  /// No description provided for @examsDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Exámenes hechos'**
+  String get examsDone;
+
+  /// No description provided for @recordingsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'GRABACIONES'**
+  String get recordingsTitle;
+
+  /// No description provided for @recordingWith.
+  ///
+  /// In es, this message translates to:
+  /// **'{level} con {name}'**
+  String recordingWith(String level, String name);
+
+  /// No description provided for @recordingMeta.
+  ///
+  /// In es, this message translates to:
+  /// **'{date} · {minutes} min'**
+  String recordingMeta(String date, int minutes);
+
+  /// No description provided for @daysLeft.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 día} other{{n} días}}'**
+  String daysLeft(int n);
+
+  /// No description provided for @recordingsDeleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Las grabaciones se borran a los 30 días.'**
+  String get recordingsDeleted;
+
+  /// No description provided for @noRecordings.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay grabaciones. Se guardan si los dos activáis «Grabar la sesión».'**
+  String get noRecordings;
+
+  /// No description provided for @playbackSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'La reproducción llegará en la próxima versión.'**
+  String get playbackSoon;
+
+  /// No description provided for @planMonthly.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan mensual'**
+  String get planMonthly;
+
+  /// No description provided for @subActive.
+  ///
+  /// In es, this message translates to:
+  /// **'Activa'**
+  String get subActive;
+
+  /// No description provided for @subInactive.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin suscripción'**
+  String get subInactive;
+
+  /// No description provided for @trialAvailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Test de prueba disponible'**
+  String get trialAvailable;
+
+  /// No description provided for @nextPayment.
+  ///
+  /// In es, this message translates to:
+  /// **'Próximo pago'**
+  String get nextPayment;
+
+  /// No description provided for @storeLater.
+  ///
+  /// In es, this message translates to:
+  /// **'La gestión en la tienda llegará con los pagos.'**
+  String get storeLater;
+
+  /// No description provided for @deleteAccountBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Se borrarán tu perfil, tus datos privados y las grabaciones en las que aparece tu voz. Tus mensajes de chat quedarán anónimos. No se puede deshacer.'**
+  String get deleteAccountBody;
+
+  /// No description provided for @deletePhrase.
+  ///
+  /// In es, this message translates to:
+  /// **'ELIMINAR'**
+  String get deletePhrase;
+
+  /// No description provided for @deletePhraseHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe {phrase} para confirmar'**
+  String deletePhraseHint(String phrase);
+
+  /// No description provided for @yourPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu contraseña'**
+  String get yourPassword;
+
+  /// No description provided for @deleteForever.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar para siempre'**
+  String get deleteForever;
+
+  /// No description provided for @errorBadConfirmation.
+  ///
+  /// In es, this message translates to:
+  /// **'La frase no coincide'**
+  String get errorBadConfirmation;
+
+  /// No description provided for @profileSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil guardado'**
+  String get profileSaved;
+
+  /// No description provided for @targetLevelField.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen que preparas'**
+  String get targetLevelField;
 }
 
 class _AppLocalizationsDelegate

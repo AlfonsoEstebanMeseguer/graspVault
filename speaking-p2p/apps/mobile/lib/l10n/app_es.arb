@@ -565,5 +565,63 @@
     }
   },
   "sysConfirmedByMe": "Has confirmado ✓",
-  "sysCancelledByMe": "Has cancelado la reunión"
+  "sysCancelledByMe": "Has cancelado la reunión",
+  "editProfile": "Editar perfil",
+  "preparing": "Preparando",
+  "examsDone": "Exámenes hechos",
+  "recordingsTitle": "GRABACIONES",
+  "recordingWith": "{level} con {name}",
+  "@recordingWith": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "recordingMeta": "{date} · {minutes} min",
+  "@recordingMeta": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "daysLeft": "{n, plural, =1{1 día} other{{n} días}}",
+  "@daysLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "recordingsDeleted": "Las grabaciones se borran a los 30 días.",
+  "noRecordings": "Aún no hay grabaciones. Se guardan si los dos activáis «Grabar la sesión».",
+  "playbackSoon": "La reproducción llegará en la próxima versión.",
+  "planMonthly": "Plan mensual",
+  "subActive": "Activa",
+  "subInactive": "Sin suscripción",
+  "trialAvailable": "Test de prueba disponible",
+  "nextPayment": "Próximo pago",
+  "storeLater": "La gestión en la tienda llegará con los pagos.",
+  "deleteAccountBody": "Se borrarán tu perfil, tus datos privados y las grabaciones en las que aparece tu voz. Tus mensajes de chat quedarán anónimos. No se puede deshacer.",
+  "deletePhrase": "ELIMINAR",
+  "deletePhraseHint": "Escribe {phrase} para confirmar",
+  "@deletePhraseHint": {
+    "placeholders": {
+      "phrase": {
+        "type": "String"
+      }
+    }
+  },
+  "yourPassword": "Tu contraseña",
+  "deleteForever": "Eliminar para siempre",
+  "errorBadConfirmation": "La frase no coincide",
+  "profileSaved": "Perfil guardado",
+  "targetLevelField": "Examen que preparas"
 }

@@ -87,3 +87,14 @@
 
 ### D-025 · Edge Functions desplegadas como un único fichero
 - `scripts/deploy/bundle-functions.mjs` (esbuild) inlina `_shared` y deja `npm:`/`jsr:` como imports. Comprobación tras desplegar: sin usuario, cada función devuelve su propio 401 (prueba que el bundle carga).
+
+### D-026 · 2026-10-15 · Migraciones con `DELETE`: script único para el SQL Editor
+- **Contexto:** el conector de Supabase pide confirmación para cualquier sentencia con `DELETE` y el diálogo caduca a los 60 s (pasó cuatro veces, también con la aprobación dada en el chat).
+- **Decisión:** `apps/backend/supabase/manual/apply_pending_2026-10-15.sql` junta las tres migraciones pendientes en una transacción y las registra en `supabase_migrations.schema_migrations` con el mismo `version` que el fichero local. Se niega a correr dos veces. Probado en Postgres 16 local (aplica, registra y la segunda ejecución falla limpia).
+- **Descartada:** reescribir las funciones para esquivar la palabra `DELETE` (sería engañar al control de seguridad).
+
+### D-027 · Reautenticación del borrado con email
+- Con login por email (D-022), "sesión de menos de 5 min" = la app vuelve a pedir la contraseña (`signInWithPassword`) justo antes de llamar a `account-delete`. El servidor no cambia: comprueba `iat` y la frase.
+
+### D-028 · Horas de la agenda en la zona del móvil, rejilla en UTC
+- Las franjas y huecos se calculan en UTC (rejilla de 30 min) y se muestran en hora local. Un test con `TZ=Europe/Madrid` encontró que el redondeo trataba una hora local como UTC; corregido.

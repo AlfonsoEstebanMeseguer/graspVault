@@ -11,6 +11,9 @@ import '../../core/theming/preferences.dart';
 import '../../data/profile/profile_repository.dart';
 import '../../domain/exam/models.dart';
 import '../matchmaking/matchmaking_controller.dart';
+import '../../data/agenda/agenda_repository.dart';
+import '../../domain/agenda/agenda.dart';
+import '../agenda/agenda_common.dart';
 import 'search_pulse.dart';
 
 class TargetLevelController extends Notifier<Level> {
@@ -93,9 +96,58 @@ class HomeScreen extends ConsumerWidget {
                 child: Text(l.practiceSimulated),
               ),
             const SizedBox(height: 24),
+            if (!offline) const NextMeetingCard(),
             Text(l.examOfLevel(level.code), textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w600, color: p.textPrimary)),
             Text(l.examSummary(_approxMinutes[level]!), textAlign: TextAlign.center, style: TextStyle(color: p.textSecondary)),
             const Spacer(),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+/// "HOY 19:00 · Reunión con dani_r · C1 · La sala se abre 5 min antes · Ver".
+class NextMeetingCard extends ConsumerWidget {
+  const NextMeetingCard({super.key});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final p = context.palette;
+    final repo = ref.watch(agendaRepositoryProvider);
+    if (repo == null) return const SizedBox.shrink();
+    final now = ref.watch(agendaClockProvider)();
+    final list = ref.watch(myMeetingsProvider).value ?? const <Meeting>[];
+    final next = list.where((m) => m.scheduledAt.add(AgendaRules.courtesy).isAfter(now)).firstOrNull;
+    if (next == null) return const SizedBox.shrink();
+    final partner = next.partnerOf(repo.me);
+    final canEnter = AgendaRules.canEnter(next, now);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(dayWord(context, next.scheduledAt, now).toUpperCase(), style: TextStyle(fontSize: 11, color: p.textSecondary)),
+              Text(hm(next.scheduledAt), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, color: p.textPrimary)),
+            ]),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                FutureBuilder(
+                  future: partner == null ? null : repo.profile(partner),
+                  builder: (context, snap) => Text(
+                    l.meetingWith(snap.data?.username ?? (partner == null ? l.deletedUser : '…'), next.level.code),
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                Text(l.roomOpensBefore, style: TextStyle(fontSize: 12, color: p.textSecondary)),
+              ]),
+            ),
+            canEnter
+                ? FilledButton(style: inlineButton, onPressed: () => enterMeeting(context, ref, next), child: Text(l.enterRoom))
+                : TextButton(onPressed: () => context.go('/agenda'), child: Text(l.viewLabel)),
           ]),
         ),
       ),
