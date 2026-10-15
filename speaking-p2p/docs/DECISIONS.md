@@ -66,3 +66,24 @@
 
 ### D-019 · Modo práctica sin conexión
 - `/practice/:level?at=<ms>&role=B` arranca el examen local con compañero simulado y permite saltar a cualquier punto (necesario para probar sin dos dispositivos y sin esperar 15 min).
+
+### D-020 · 2026-10-15 · "Todos han pagado" mientras RevenueCat está aplazado
+- **Contexto:** Alfonso aplaza RevenueCat y asume 8 € de entrada.
+- **Decisión:** `app_config.assume_paid = true` → un trigger da a cada usuario NUEVO suscripción activa hasta 2100. La lógica de test de prueba/paywall sigue intacta y testeada (la suite apaga el interruptor). Apagarlo no toca a los usuarios ya creados.
+- **Descartada:** quitar la comprobación de elegibilidad (habría que volver a escribirla y probarla).
+
+### D-021 · El token del cron se verifica contra Vault
+- `cron-worker` llama a `svc_verify_internal_token`, que compara hashes con el secreto `internal_cron_token` de Vault. Desaparece `INTERNAL_CRON_TOKEN_SHA256`: ningún secreto se copia a mano entre sistemas.
+
+### D-022 · Login por email y contraseña (provisional)
+- Google Sign-In aplazado hasta tener los clientes OAuth. Supabase Auth email+password; el resto del sistema no depende del proveedor. La reautenticación del borrado sigue siendo "sesión de menos de 5 min".
+
+### D-023 · R2: un endpoint por bucket con el bucket en la ruta
+- Nombres del proyecto: `R2_ENDPOINT_SPEAKING_{MEDIA,CONTENT,RECORDINGS}` + `R2_{MEDIA,RECORDINGS}_{ACCESS,SECRET}_KEY`. El bucket se lee de la ruta (no hay variable `*_BUCKET` que pueda contradecirlo) y todos los valores se recortan al leerlos (un salto de línea pegado rompía la firma: pasó).
+- Sin dominio CDN: el contenido del examen también se sirve con URL firmada (`media-view-url`, `kind: content`, 2 h).
+
+### D-024 · Migraciones aplicadas con el MCP y canonizadas
+- Cada fichero local se renombra al `version` que registra Supabase (vault ADR 0034). La regla de negocio se partió en 4 migraciones para que cada `apply` fuera manejable. El catálogo se cargó descargando `seed/exam_catalog.sql` de la rama y comprobando su md5 contra el local antes de ejecutarlo.
+
+### D-025 · Edge Functions desplegadas como un único fichero
+- `scripts/deploy/bundle-functions.mjs` (esbuild) inlina `_shared` y deja `npm:`/`jsr:` como imports. Comprobación tras desplegar: sin usuario, cada función devuelve su propio 401 (prueba que el bundle carga).

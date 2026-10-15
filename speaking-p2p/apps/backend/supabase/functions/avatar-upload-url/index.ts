@@ -2,7 +2,7 @@
 // signs a PUT for exactly the declared content type.
 import { z } from "npm:zod@3.23.8";
 import { handler, json, parseBody } from "../_shared/http.ts";
-import { env, requireAuthUser } from "../_shared/supabase.ts";
+import { requireAuthUser } from "../_shared/supabase.ts";
 import { presign } from "../_shared/r2.ts";
 
 const Body = z.object({ mimeType: z.enum(["image/webp", "image/jpeg"]) });
@@ -12,6 +12,6 @@ Deno.serve(handler(async (req) => {
   const { mimeType } = await parseBody(req, Body);
   const ext = mimeType === "image/webp" ? "webp" : "jpg";
   const key = `avatars/${user.id}/${crypto.randomUUID()}.${ext}`;
-  const url = await presign("PUT", env("R2_MEDIA_BUCKET"), key, 300, mimeType);
+  const url = await presign("PUT", "media", key, 300, mimeType);
   return json({ key, url, expiresIn: 300 });
 }));

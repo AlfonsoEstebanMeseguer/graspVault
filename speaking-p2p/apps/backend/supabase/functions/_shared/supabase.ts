@@ -2,8 +2,10 @@
 import { createClient, type SupabaseClient, type User } from "npm:@supabase/supabase-js@2.45.4";
 import { HttpError, fromDbError } from "./http.ts";
 
+/// Values are always trimmed: a trailing newline pasted into a secret breaks
+/// request signing with an opaque "invalid header" (it happened, see PROGRESS).
 export function env(name: string): string {
-  const v = Deno.env.get(name);
+  const v = Deno.env.get(name)?.trim();
   if (!v) throw new Error(`missing env ${name}`);
   return v;
 }

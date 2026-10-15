@@ -1,10 +1,11 @@
 // Internal worker for the crons that need the outside world. Called only by
 // pg_cron through pg_net with the dedicated token (see migrations/..._crons.sql).
+// The token is checked by the database against Supabase Vault (D-021): nothing
+// is copied by hand into this function's environment.
 import { handler, HttpError, json } from "../_shared/http.ts";
-import { adminClient, env, rpc } from "../_shared/supabase.ts";
-import { requireSecretHash } from "../_shared/internal.ts";
+import { adminClient, rpc } from "../_shared/supabase.ts";
 import { tickAndApply } from "../_shared/session.ts";
-import { deleteObject } from "../_shared/r2.ts";
+import { deleteObject, kindForKey } from "../_shared/r2.ts";
 import { sendPush } from "../_shared/push.ts";
 
 async function sessions() {
@@ -38,9 +39,8 @@ async function storageGc() {
     .eq("status", "pending").order("id").limit(200);
   let done = 0;
   for (const row of rows ?? []) {
-    const bucket = row.object_key.startsWith("recordings/") ? env("R2_RECORDINGS_BUCKET") : env("R2_MEDIA_BUCKET");
     try {
-      await deleteObject(bucket, row.object_key);
+      await deleteObject(kindForKey(row.object_key), row.object_key);
       await db.from("storage_gc_queue").update({ status: "done" }).eq("id", row.id);
       done++;
     } catch (e) {
@@ -52,7 +52,10 @@ async function storageGc() {
 }
 
 Deno.serve(handler(async (req) => {
-  await requireSecretHash(req.headers.get("X-Internal-Token"), Deno.env.get("INTERNAL_CRON_TOKEN_SHA256"));
+  const token = req.headers.get("X-Internal-Token");
+  if (!token || !(await rpc<boolean>("svc_verify_internal_token", { p_token: token }))) {
+    throw new HttpError(401, "unauthenticated");
+  }
   const { task } = await req.json().catch(() => ({ task: null }));
   switch (task) {
     case "sessions": return json(await sessions());

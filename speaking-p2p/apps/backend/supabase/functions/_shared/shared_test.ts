@@ -69,3 +69,15 @@ Deno.test("magic bytes: webp y jpeg si; png o basura no", () => {
   assertEquals(sniffImage(new Uint8Array([0x89, 0x50, 0x4e, 0x47])), null);
   assertEquals(sniffImage(new Uint8Array([])), null);
 });
+
+Deno.test("R2: el bucket sale del endpoint y los valores se recortan", async () => {
+  const { parseEndpoint, kindForKey } = await import("./r2.ts");
+  assertEquals(parseEndpoint(" https://abc.r2.cloudflarestorage.com/speaking-media/\n"),
+    { origin: "https://abc.r2.cloudflarestorage.com", bucket: "speaking-media" });
+  let threw = false;
+  try { parseEndpoint("https://abc.r2.cloudflarestorage.com"); } catch { threw = true; }
+  assert(threw, "sin bucket en la ruta es un error, no un 403 misterioso despues");
+  assertEquals(kindForKey("recordings/x.ogg"), "recordings");
+  assertEquals(kindForKey("audio/B2/e/s.mp3"), "content");
+  assertEquals(kindForKey("avatars/u/x.webp"), "media");
+});

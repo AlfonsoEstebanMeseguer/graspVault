@@ -9,6 +9,7 @@
 //  * For the server, reconnecting is leaving: nothing that changes permissions reconnects.
 //  * Only a 404 means "not in the room".
 import { env } from "./supabase.ts";
+import { bucketConfig } from "./r2.ts";
 
 const enc = new TextEncoder();
 const b64url = (bytes: Uint8Array) =>
@@ -98,6 +99,7 @@ export async function deleteRoom(sessionId: string): Promise<void> {
 
 /// Audio-only room recording into the R2 recordings bucket (lifecycle: 30 days).
 export async function startAudioEgress(sessionId: string, objectKey: string): Promise<string> {
+  const rec = bucketConfig("recordings");
   const res = await twirp("Egress", "StartRoomCompositeEgress", {
     room_name: roomName(sessionId),
     audio_only: true,
@@ -105,10 +107,10 @@ export async function startAudioEgress(sessionId: string, objectKey: string): Pr
       file_type: 2, // OGG
       filepath: objectKey,
       s3: {
-        access_key: env("R2_RECORDINGS_ACCESS_KEY_ID"),
-        secret: env("R2_RECORDINGS_SECRET_ACCESS_KEY"),
-        endpoint: env("R2_ENDPOINT"),
-        bucket: env("R2_RECORDINGS_BUCKET"),
+        access_key: rec.accessKeyId,
+        secret: rec.secretAccessKey,
+        endpoint: rec.origin,
+        bucket: rec.bucket,
         region: "auto",
         force_path_style: true,
       },

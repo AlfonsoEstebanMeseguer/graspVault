@@ -1,6 +1,10 @@
 -- Test helpers (plain SQL suite). Loaded after the migrations and the catalog seed.
 create schema if not exists tests;
 
+-- The suite tests the REAL access rules (trial, paywall). The dev switch that
+-- marks everyone as paid is turned off here and tested on its own in 05.
+update public.app_config set value = 'false' where key = 'assume_paid';
+
 create or replace function tests.assert(cond boolean, msg text) returns void language plpgsql as $$
 begin
   if cond is distinct from true then raise exception 'ASSERT FAILED: %', msg; end if;
