@@ -565,6 +565,360 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Perfil'**
   String get profileTitle;
+
+  /// No description provided for @loginHeadline.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica el Speaking de Cambridge con otro estudiante.'**
+  String get loginHeadline;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Un examinador virtual marca los turnos y el tiempo. Tú solo hablas.'**
+  String get loginSubtitle;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Email'**
+  String get emailLabel;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña'**
+  String get passwordLabel;
+
+  /// No description provided for @signIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrar'**
+  String get signIn;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear cuenta'**
+  String get createAccount;
+
+  /// No description provided for @noAccountYet.
+  ///
+  /// In es, this message translates to:
+  /// **'¿No tienes cuenta? Crear una'**
+  String get noAccountYet;
+
+  /// No description provided for @haveAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya tengo cuenta'**
+  String get haveAccount;
+
+  /// No description provided for @checkYourEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Te hemos enviado un correo para confirmar la cuenta. Ábrelo y vuelve a entrar.'**
+  String get checkYourEmail;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe un email válido'**
+  String get invalidEmail;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Mínimo 8 caracteres'**
+  String get passwordTooShort;
+
+  /// No description provided for @errorInvalidCredentials.
+  ///
+  /// In es, this message translates to:
+  /// **'Email o contraseña incorrectos'**
+  String get errorInvalidCredentials;
+
+  /// No description provided for @errorEmailNotConfirmed.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirma tu email antes de entrar'**
+  String get errorEmailNotConfirmed;
+
+  /// No description provided for @errorEmailExists.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya existe una cuenta con ese email'**
+  String get errorEmailExists;
+
+  /// No description provided for @errorWeakPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'La contraseña es demasiado débil'**
+  String get errorWeakPassword;
+
+  /// No description provided for @errorRateLimited.
+  ///
+  /// In es, this message translates to:
+  /// **'Demasiados intentos. Espera un poco'**
+  String get errorRateLimited;
+
+  /// No description provided for @errorUsernameTaken.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese nombre de usuario ya está cogido'**
+  String get errorUsernameTaken;
+
+  /// No description provided for @errorUnderage.
+  ///
+  /// In es, this message translates to:
+  /// **'Debes tener al menos 14 años'**
+  String get errorUnderage;
+
+  /// No description provided for @errorGeneric.
+  ///
+  /// In es, this message translates to:
+  /// **'Algo ha fallado. Inténtalo de nuevo'**
+  String get errorGeneric;
+
+  /// No description provided for @stepOf.
+  ///
+  /// In es, this message translates to:
+  /// **'Paso {n} de 3'**
+  String stepOf(int n);
+
+  /// No description provided for @visibleToOthers.
+  ///
+  /// In es, this message translates to:
+  /// **'Visible para otros usuarios'**
+  String get visibleToOthers;
+
+  /// No description provided for @privateOnlyYou.
+  ///
+  /// In es, this message translates to:
+  /// **'Privado, solo lo ves tú'**
+  String get privateOnlyYou;
+
+  /// No description provided for @canChangeLater.
+  ///
+  /// In es, this message translates to:
+  /// **'Podrás cambiarlo cuando quieras'**
+  String get canChangeLater;
+
+  /// No description provided for @publicProfileTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu perfil público'**
+  String get publicProfileTitle;
+
+  /// No description provided for @usernameLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre de usuario'**
+  String get usernameLabel;
+
+  /// No description provided for @usernameAvailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Disponible'**
+  String get usernameAvailable;
+
+  /// No description provided for @usernameRules.
+  ///
+  /// In es, this message translates to:
+  /// **'3–20 caracteres: minúsculas, números, _ y .'**
+  String get usernameRules;
+
+  /// No description provided for @languagesYouSpeak.
+  ///
+  /// In es, this message translates to:
+  /// **'Idiomas que hablas'**
+  String get languagesYouSpeak;
+
+  /// No description provided for @otherLanguage.
+  ///
+  /// In es, this message translates to:
+  /// **'+ Otro'**
+  String get otherLanguage;
+
+  /// No description provided for @accountDataTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Datos de tu cuenta'**
+  String get accountDataTitle;
+
+  /// No description provided for @birthDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha de nacimiento'**
+  String get birthDate;
+
+  /// No description provided for @dayLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Día'**
+  String get dayLabel;
+
+  /// No description provided for @monthLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Mes'**
+  String get monthLabel;
+
+  /// No description provided for @yearLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Año'**
+  String get yearLabel;
+
+  /// No description provided for @minAgeHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Debes tener al menos 14 años.'**
+  String get minAgeHint;
+
+  /// No description provided for @invalidDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha no válida'**
+  String get invalidDate;
+
+  /// No description provided for @phoneOptional.
+  ///
+  /// In es, this message translates to:
+  /// **'Teléfono (opcional)'**
+  String get phoneOptional;
+
+  /// No description provided for @invalidPhone.
+  ///
+  /// In es, this message translates to:
+  /// **'Número no válido'**
+  String get invalidPhone;
+
+  /// No description provided for @linkedToAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Vinculado a tu cuenta'**
+  String get linkedToAccount;
+
+  /// No description provided for @whichExamTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué examen preparas?'**
+  String get whichExamTitle;
+
+  /// No description provided for @speakingMinutes.
+  ///
+  /// In es, this message translates to:
+  /// **'Speaking de {minutes} min'**
+  String speakingMinutes(String minutes);
+
+  /// No description provided for @acceptTerms.
+  ///
+  /// In es, this message translates to:
+  /// **'He leído y acepto los Términos de uso y la Política de privacidad.'**
+  String get acceptTerms;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar'**
+  String get continueLabel;
+
+  /// No description provided for @backLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Atrás'**
+  String get backLabel;
+
+  /// No description provided for @startLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezar'**
+  String get startLabel;
+
+  /// No description provided for @langEs.
+  ///
+  /// In es, this message translates to:
+  /// **'Español'**
+  String get langEs;
+
+  /// No description provided for @langEn.
+  ///
+  /// In es, this message translates to:
+  /// **'Inglés'**
+  String get langEn;
+
+  /// No description provided for @langCa.
+  ///
+  /// In es, this message translates to:
+  /// **'Catalán'**
+  String get langCa;
+
+  /// No description provided for @langFr.
+  ///
+  /// In es, this message translates to:
+  /// **'Francés'**
+  String get langFr;
+
+  /// No description provided for @langIt.
+  ///
+  /// In es, this message translates to:
+  /// **'Italiano'**
+  String get langIt;
+
+  /// No description provided for @langDe.
+  ///
+  /// In es, this message translates to:
+  /// **'Alemán'**
+  String get langDe;
+
+  /// No description provided for @langPt.
+  ///
+  /// In es, this message translates to:
+  /// **'Portugués'**
+  String get langPt;
+
+  /// No description provided for @langEu.
+  ///
+  /// In es, this message translates to:
+  /// **'Euskera'**
+  String get langEu;
+
+  /// No description provided for @langGl.
+  ///
+  /// In es, this message translates to:
+  /// **'Gallego'**
+  String get langGl;
+
+  /// No description provided for @langZh.
+  ///
+  /// In es, this message translates to:
+  /// **'Chino'**
+  String get langZh;
+
+  /// No description provided for @langAr.
+  ///
+  /// In es, this message translates to:
+  /// **'Árabe'**
+  String get langAr;
+
+  /// No description provided for @langRu.
+  ///
+  /// In es, this message translates to:
+  /// **'Ruso'**
+  String get langRu;
+
+  /// No description provided for @langUk.
+  ///
+  /// In es, this message translates to:
+  /// **'Ucraniano'**
+  String get langUk;
+
+  /// No description provided for @langRo.
+  ///
+  /// In es, this message translates to:
+  /// **'Rumano'**
+  String get langRo;
 }
 
 class _AppLocalizationsDelegate

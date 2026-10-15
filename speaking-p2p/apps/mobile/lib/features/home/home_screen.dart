@@ -8,6 +8,7 @@ import '../../core/config/env.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/preferences.dart';
+import '../../data/profile/profile_repository.dart';
 import '../../domain/exam/models.dart';
 import 'search_pulse.dart';
 
@@ -42,6 +43,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final p = context.palette;
     final l = context.l10n;
+    final profile = ref.watch(myProfileProvider).value;
     final level = ref.watch(targetLevelProvider);
     final offline = !Env.fromDefines.hasBackend;
     return Scaffold(
@@ -50,7 +52,14 @@ class HomeScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(20),
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(children: [
-              Expanded(child: Text(l.appName, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: p.textPrimary))),
+              Expanded(
+                child: profile == null
+                    ? Text(l.appName, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: p.textPrimary))
+                    : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Text(l.homeHello, style: TextStyle(color: p.textSecondary)),
+                        Text(profile.username, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: p.textPrimary)),
+                      ]),
+              ),
               DropdownButton<Level>(
                 value: level,
                 underline: const SizedBox.shrink(),

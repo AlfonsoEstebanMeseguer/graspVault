@@ -185,5 +185,78 @@
   "deleteAccount": "Eliminar cuenta",
   "needsBackend": "Disponible cuando la app esté conectada al servidor.",
   "agendaTitle": "Agenda",
-  "profileTitle": "Perfil"
+  "profileTitle": "Perfil",
+  "loginHeadline": "Practica el Speaking de Cambridge con otro estudiante.",
+  "loginSubtitle": "Un examinador virtual marca los turnos y el tiempo. Tú solo hablas.",
+  "emailLabel": "Email",
+  "passwordLabel": "Contraseña",
+  "signIn": "Entrar",
+  "createAccount": "Crear cuenta",
+  "noAccountYet": "¿No tienes cuenta? Crear una",
+  "haveAccount": "Ya tengo cuenta",
+  "checkYourEmail": "Te hemos enviado un correo para confirmar la cuenta. Ábrelo y vuelve a entrar.",
+  "invalidEmail": "Escribe un email válido",
+  "passwordTooShort": "Mínimo 8 caracteres",
+  "errorInvalidCredentials": "Email o contraseña incorrectos",
+  "errorEmailNotConfirmed": "Confirma tu email antes de entrar",
+  "errorEmailExists": "Ya existe una cuenta con ese email",
+  "errorWeakPassword": "La contraseña es demasiado débil",
+  "errorRateLimited": "Demasiados intentos. Espera un poco",
+  "errorUsernameTaken": "Ese nombre de usuario ya está cogido",
+  "errorUnderage": "Debes tener al menos 14 años",
+  "errorGeneric": "Algo ha fallado. Inténtalo de nuevo",
+  "stepOf": "Paso {n} de 3",
+  "@stepOf": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "visibleToOthers": "Visible para otros usuarios",
+  "privateOnlyYou": "Privado, solo lo ves tú",
+  "canChangeLater": "Podrás cambiarlo cuando quieras",
+  "publicProfileTitle": "Tu perfil público",
+  "usernameLabel": "Nombre de usuario",
+  "usernameAvailable": "Disponible",
+  "usernameRules": "3–20 caracteres: minúsculas, números, _ y .",
+  "languagesYouSpeak": "Idiomas que hablas",
+  "otherLanguage": "+ Otro",
+  "accountDataTitle": "Datos de tu cuenta",
+  "birthDate": "Fecha de nacimiento",
+  "dayLabel": "Día",
+  "monthLabel": "Mes",
+  "yearLabel": "Año",
+  "minAgeHint": "Debes tener al menos 14 años.",
+  "invalidDate": "Fecha no válida",
+  "phoneOptional": "Teléfono (opcional)",
+  "invalidPhone": "Número no válido",
+  "linkedToAccount": "Vinculado a tu cuenta",
+  "whichExamTitle": "¿Qué examen preparas?",
+  "speakingMinutes": "Speaking de {minutes} min",
+  "@speakingMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "acceptTerms": "He leído y acepto los Términos de uso y la Política de privacidad.",
+  "continueLabel": "Continuar",
+  "backLabel": "Atrás",
+  "startLabel": "Empezar",
+  "langEs": "Español",
+  "langEn": "Inglés",
+  "langCa": "Catalán",
+  "langFr": "Francés",
+  "langIt": "Italiano",
+  "langDe": "Alemán",
+  "langPt": "Portugués",
+  "langEu": "Euskera",
+  "langGl": "Gallego",
+  "langZh": "Chino",
+  "langAr": "Árabe",
+  "langRu": "Ruso",
+  "langUk": "Ucraniano",
+  "langRo": "Rumano"
 }

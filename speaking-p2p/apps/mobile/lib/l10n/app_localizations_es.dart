@@ -277,4 +277,189 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get profileTitle => 'Perfil';
+
+  @override
+  String get loginHeadline =>
+      'Practica el Speaking de Cambridge con otro estudiante.';
+
+  @override
+  String get loginSubtitle =>
+      'Un examinador virtual marca los turnos y el tiempo. Tú solo hablas.';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get passwordLabel => 'Contraseña';
+
+  @override
+  String get signIn => 'Entrar';
+
+  @override
+  String get createAccount => 'Crear cuenta';
+
+  @override
+  String get noAccountYet => '¿No tienes cuenta? Crear una';
+
+  @override
+  String get haveAccount => 'Ya tengo cuenta';
+
+  @override
+  String get checkYourEmail =>
+      'Te hemos enviado un correo para confirmar la cuenta. Ábrelo y vuelve a entrar.';
+
+  @override
+  String get invalidEmail => 'Escribe un email válido';
+
+  @override
+  String get passwordTooShort => 'Mínimo 8 caracteres';
+
+  @override
+  String get errorInvalidCredentials => 'Email o contraseña incorrectos';
+
+  @override
+  String get errorEmailNotConfirmed => 'Confirma tu email antes de entrar';
+
+  @override
+  String get errorEmailExists => 'Ya existe una cuenta con ese email';
+
+  @override
+  String get errorWeakPassword => 'La contraseña es demasiado débil';
+
+  @override
+  String get errorRateLimited => 'Demasiados intentos. Espera un poco';
+
+  @override
+  String get errorUsernameTaken => 'Ese nombre de usuario ya está cogido';
+
+  @override
+  String get errorUnderage => 'Debes tener al menos 14 años';
+
+  @override
+  String get errorGeneric => 'Algo ha fallado. Inténtalo de nuevo';
+
+  @override
+  String stepOf(int n) {
+    return 'Paso $n de 3';
+  }
+
+  @override
+  String get visibleToOthers => 'Visible para otros usuarios';
+
+  @override
+  String get privateOnlyYou => 'Privado, solo lo ves tú';
+
+  @override
+  String get canChangeLater => 'Podrás cambiarlo cuando quieras';
+
+  @override
+  String get publicProfileTitle => 'Tu perfil público';
+
+  @override
+  String get usernameLabel => 'Nombre de usuario';
+
+  @override
+  String get usernameAvailable => 'Disponible';
+
+  @override
+  String get usernameRules => '3–20 caracteres: minúsculas, números, _ y .';
+
+  @override
+  String get languagesYouSpeak => 'Idiomas que hablas';
+
+  @override
+  String get otherLanguage => '+ Otro';
+
+  @override
+  String get accountDataTitle => 'Datos de tu cuenta';
+
+  @override
+  String get birthDate => 'Fecha de nacimiento';
+
+  @override
+  String get dayLabel => 'Día';
+
+  @override
+  String get monthLabel => 'Mes';
+
+  @override
+  String get yearLabel => 'Año';
+
+  @override
+  String get minAgeHint => 'Debes tener al menos 14 años.';
+
+  @override
+  String get invalidDate => 'Fecha no válida';
+
+  @override
+  String get phoneOptional => 'Teléfono (opcional)';
+
+  @override
+  String get invalidPhone => 'Número no válido';
+
+  @override
+  String get linkedToAccount => 'Vinculado a tu cuenta';
+
+  @override
+  String get whichExamTitle => '¿Qué examen preparas?';
+
+  @override
+  String speakingMinutes(String minutes) {
+    return 'Speaking de $minutes min';
+  }
+
+  @override
+  String get acceptTerms =>
+      'He leído y acepto los Términos de uso y la Política de privacidad.';
+
+  @override
+  String get continueLabel => 'Continuar';
+
+  @override
+  String get backLabel => 'Atrás';
+
+  @override
+  String get startLabel => 'Empezar';
+
+  @override
+  String get langEs => 'Español';
+
+  @override
+  String get langEn => 'Inglés';
+
+  @override
+  String get langCa => 'Catalán';
+
+  @override
+  String get langFr => 'Francés';
+
+  @override
+  String get langIt => 'Italiano';
+
+  @override
+  String get langDe => 'Alemán';
+
+  @override
+  String get langPt => 'Portugués';
+
+  @override
+  String get langEu => 'Euskera';
+
+  @override
+  String get langGl => 'Gallego';
+
+  @override
+  String get langZh => 'Chino';
+
+  @override
+  String get langAr => 'Árabe';
+
+  @override
+  String get langRu => 'Ruso';
+
+  @override
+  String get langUk => 'Ucraniano';
+
+  @override
+  String get langRo => 'Rumano';
 }

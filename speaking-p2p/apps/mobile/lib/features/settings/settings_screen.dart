@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/preferences.dart';
+import '../../data/auth/auth_repository.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -47,7 +48,15 @@ class SettingsScreen extends ConsumerWidget {
           // Honest placeholder: text only, no buttons that pretend to do something.
           Text(l.needsBackend, style: TextStyle(color: p.textSecondary)),
           section(l.account),
-          Text(l.needsBackend, style: TextStyle(color: p.textSecondary)),
+          if (ref.watch(authUserProvider).value == null)
+            Text(l.needsBackend, style: TextStyle(color: p.textSecondary))
+          else
+            Card(
+              child: ListTile(
+                title: Text(l.signOut),
+                onTap: () => ref.read(authRepositoryProvider).signOut(),
+              ),
+            ),
         ]),
       ),
     );
