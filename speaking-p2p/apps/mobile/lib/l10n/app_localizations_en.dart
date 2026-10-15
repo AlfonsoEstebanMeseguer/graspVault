@@ -464,4 +464,127 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get langRo => 'Romanian';
+
+  @override
+  String roomTitle(String level) {
+    return 'ROOM · $level';
+  }
+
+  @override
+  String get meetBeforeStart => 'Get to know each other first';
+
+  @override
+  String get examStartsIn => 'The exam starts automatically in';
+
+  @override
+  String get waitingPartner => 'Waiting for your partner…';
+
+  @override
+  String candidateLine(String role, String langs) {
+    return 'Candidate $role · $langs';
+  }
+
+  @override
+  String get notConfirmed => 'Not ready';
+
+  @override
+  String get readyBadge => '✓ Ready';
+
+  @override
+  String get recordSession => 'Record the session';
+
+  @override
+  String recordOnlyIfBoth(String name, String state) {
+    return 'Only if you both turn it on · $name: $state';
+  }
+
+  @override
+  String get switchedOn => 'on';
+
+  @override
+  String get switchedOff => 'off';
+
+  @override
+  String get materialDownloaded => 'Exam material downloaded';
+
+  @override
+  String get materialDownloading => 'Downloading the exam material…';
+
+  @override
+  String get imReady => 'I\'m ready';
+
+  @override
+  String get notReadyYet => 'Not ready yet';
+
+  @override
+  String get leaveRoom => 'Leave the room';
+
+  @override
+  String get connecting => 'Connecting…';
+
+  @override
+  String get sessionError => 'Could not join the room.';
+
+  @override
+  String get contentMissing =>
+      'Update the app: this exam is not in your version.';
+
+  @override
+  String get sessionClosed => 'The session has ended.';
+
+  @override
+  String get partnerNoShow => 'Your partner did not connect.';
+
+  @override
+  String get micOnShort => 'Mic on';
+
+  @override
+  String get micOffShort => 'Mic off';
+
+  @override
+  String get searchingPartner => 'Looking for a partner…';
+
+  @override
+  String get whileYouWait => 'WHILE YOU WAIT';
+
+  @override
+  String get tip1 =>
+      'In Part 2 don\'t just describe the photos: compare them and answer the question.';
+
+  @override
+  String get tip2 =>
+      'In Part 3 ask for your partner\'s opinion: “What do you think?”.';
+
+  @override
+  String get tip3 =>
+      'If you don\'t know a word, explain it with others. Don\'t go silent.';
+
+  @override
+  String get tip4 =>
+      'In Part 1 give short answers, but add a reason or an example.';
+
+  @override
+  String get cancelSearch => 'Cancel search';
+
+  @override
+  String get nobodySearchingTitle => 'It looks like nobody is searching';
+
+  @override
+  String get nobodySearchingBody =>
+      'Would you like to schedule a meeting with someone? We\'ll keep searching meanwhile.';
+
+  @override
+  String get noLabel => 'No';
+
+  @override
+  String get yesSchedule => 'Yes, schedule';
+
+  @override
+  String get errorNotEligible =>
+      'You need an active subscription to find a partner.';
+
+  @override
+  String searchingBanner(String time) {
+    return 'Looking for a partner · $time';
+  }
 }

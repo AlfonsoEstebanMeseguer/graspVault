@@ -7,6 +7,11 @@ import '../../data/profile/profile_repository.dart';
 import '../../domain/exam/models.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/onboarding/onboarding_screen.dart';
+import '../../features/matchmaking/matchmaking_controller.dart';
+import '../../features/matchmaking/search_screen.dart';
+import '../../features/session/session_screen.dart';
+import '../../features/exam/widgets/exam_widgets.dart' show formatMs;
+import '../theming/palette.dart';
 import '../config/env.dart';
 import '../../features/agenda/agenda_screen.dart';
 import '../../features/exam/practice_screen.dart';
@@ -62,6 +67,8 @@ final routerProvider = Provider<GoRouter>((ref) {
         ],
       ),
       // Full screen, outside the tabs: no bottom bar and no ads during the exam.
+      GoRoute(path: '/search', builder: (_, _) => const SearchScreen()),
+      GoRoute(path: '/session/:id', builder: (_, state) => SessionScreen(sessionId: state.pathParameters['id']!)),
       GoRoute(
         path: '/practice/:level',
         builder: (_, state) => PracticeScreen(
@@ -74,15 +81,44 @@ final routerProvider = Provider<GoRouter>((ref) {
   );
 });
 
-class _TabsScaffold extends StatelessWidget {
+class _TabsScaffold extends ConsumerWidget {
   const _TabsScaffold({required this.shell});
   final StatefulNavigationShell shell;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final p = context.palette;
+    final m = ref.watch(matchmakingProvider);
     return Scaffold(
-      body: shell,
+      body: Column(children: [
+        // Still searching while browsing the tabs ("Seguiremos buscando mientras tanto").
+        if (m.searching)
+          Material(
+            color: p.brand,
+            child: SafeArea(
+              bottom: false,
+              child: InkWell(
+                onTap: () => context.go('/search'),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  child: Row(children: [
+                    SizedBox.square(dimension: 14, child: CircularProgressIndicator(strokeWidth: 2, color: p.onBrand)),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        l.searchingBanner(formatMs(DateTime.now().difference(m.startedAt ?? DateTime.now()).inMilliseconds)),
+                        style: TextStyle(color: p.onBrand, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    Icon(Icons.chevron_right, color: p.onBrand),
+                  ]),
+                ),
+              ),
+            ),
+          ),
+        Expanded(child: shell),
+      ]),
       bottomNavigationBar: NavigationBar(
         selectedIndex: shell.currentIndex,
         onDestinationSelected: (i) => shell.goBranch(i, initialLocation: i == shell.currentIndex),

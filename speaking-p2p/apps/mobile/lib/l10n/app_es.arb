@@ -258,5 +258,75 @@
   "langAr": "Árabe",
   "langRu": "Ruso",
   "langUk": "Ucraniano",
-  "langRo": "Rumano"
+  "langRo": "Rumano",
+  "roomTitle": "SALA · {level}",
+  "@roomTitle": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "meetBeforeStart": "Conoceos antes de empezar",
+  "examStartsIn": "El examen empieza solo en",
+  "waitingPartner": "Esperando a tu compañero…",
+  "candidateLine": "Candidato {role} · {langs}",
+  "@candidateLine": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      },
+      "langs": {
+        "type": "String"
+      }
+    }
+  },
+  "notConfirmed": "Sin confirmar",
+  "readyBadge": "✓ Listo",
+  "recordSession": "Grabar la sesión",
+  "recordOnlyIfBoth": "Solo si los dos lo activáis · {name}: {state}",
+  "@recordOnlyIfBoth": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "state": {
+        "type": "String"
+      }
+    }
+  },
+  "switchedOn": "activado",
+  "switchedOff": "desactivado",
+  "materialDownloaded": "Material del examen descargado",
+  "materialDownloading": "Descargando el material del examen…",
+  "imReady": "Estoy listo",
+  "notReadyYet": "Aún no estoy listo",
+  "leaveRoom": "Salir de la sala",
+  "connecting": "Conectando…",
+  "sessionError": "No se ha podido entrar en la sala.",
+  "contentMissing": "Actualiza la app: este examen no está en tu versión.",
+  "sessionClosed": "La sesión ha terminado.",
+  "partnerNoShow": "Tu compañero no se ha conectado.",
+  "micOnShort": "Micro abierto",
+  "micOffShort": "Micro cerrado",
+  "searchingPartner": "Buscando compañero…",
+  "whileYouWait": "MIENTRAS ESPERAS",
+  "tip1": "En la Parte 2 no describas las fotos: compáralas y responde a la pregunta.",
+  "tip2": "En la Parte 3 pregunta la opinión del otro: «What do you think?».",
+  "tip3": "Si no sabes una palabra, explícala con otras. No te quedes callado.",
+  "tip4": "En la Parte 1 da respuestas cortas pero con un motivo o un ejemplo.",
+  "cancelSearch": "Cancelar búsqueda",
+  "nobodySearchingTitle": "Parece que no hay nadie buscando",
+  "nobodySearchingBody": "¿Quieres agendar una reunión con alguien? Seguiremos buscando mientras tanto.",
+  "noLabel": "No",
+  "yesSchedule": "Sí, agendar",
+  "errorNotEligible": "Necesitas una suscripción activa para buscar pareja.",
+  "searchingBanner": "Buscando compañero · {time}",
+  "@searchingBanner": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  }
 }

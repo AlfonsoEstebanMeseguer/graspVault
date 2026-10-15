@@ -12,6 +12,7 @@ String errorText(AppLocalizations l, Object error) {
     'rate_limited' => l.errorRateLimited,
     'username_taken' || 'conflict' => l.errorUsernameTaken,
     'underage' => l.errorUnderage,
+    'not_eligible' => l.errorNotEligible,
     _ => l.errorGeneric,
   };
 }

@@ -462,4 +462,127 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get langRo => 'Rumano';
+
+  @override
+  String roomTitle(String level) {
+    return 'SALA · $level';
+  }
+
+  @override
+  String get meetBeforeStart => 'Conoceos antes de empezar';
+
+  @override
+  String get examStartsIn => 'El examen empieza solo en';
+
+  @override
+  String get waitingPartner => 'Esperando a tu compañero…';
+
+  @override
+  String candidateLine(String role, String langs) {
+    return 'Candidato $role · $langs';
+  }
+
+  @override
+  String get notConfirmed => 'Sin confirmar';
+
+  @override
+  String get readyBadge => '✓ Listo';
+
+  @override
+  String get recordSession => 'Grabar la sesión';
+
+  @override
+  String recordOnlyIfBoth(String name, String state) {
+    return 'Solo si los dos lo activáis · $name: $state';
+  }
+
+  @override
+  String get switchedOn => 'activado';
+
+  @override
+  String get switchedOff => 'desactivado';
+
+  @override
+  String get materialDownloaded => 'Material del examen descargado';
+
+  @override
+  String get materialDownloading => 'Descargando el material del examen…';
+
+  @override
+  String get imReady => 'Estoy listo';
+
+  @override
+  String get notReadyYet => 'Aún no estoy listo';
+
+  @override
+  String get leaveRoom => 'Salir de la sala';
+
+  @override
+  String get connecting => 'Conectando…';
+
+  @override
+  String get sessionError => 'No se ha podido entrar en la sala.';
+
+  @override
+  String get contentMissing =>
+      'Actualiza la app: este examen no está en tu versión.';
+
+  @override
+  String get sessionClosed => 'La sesión ha terminado.';
+
+  @override
+  String get partnerNoShow => 'Tu compañero no se ha conectado.';
+
+  @override
+  String get micOnShort => 'Micro abierto';
+
+  @override
+  String get micOffShort => 'Micro cerrado';
+
+  @override
+  String get searchingPartner => 'Buscando compañero…';
+
+  @override
+  String get whileYouWait => 'MIENTRAS ESPERAS';
+
+  @override
+  String get tip1 =>
+      'En la Parte 2 no describas las fotos: compáralas y responde a la pregunta.';
+
+  @override
+  String get tip2 =>
+      'En la Parte 3 pregunta la opinión del otro: «What do you think?».';
+
+  @override
+  String get tip3 =>
+      'Si no sabes una palabra, explícala con otras. No te quedes callado.';
+
+  @override
+  String get tip4 =>
+      'En la Parte 1 da respuestas cortas pero con un motivo o un ejemplo.';
+
+  @override
+  String get cancelSearch => 'Cancelar búsqueda';
+
+  @override
+  String get nobodySearchingTitle => 'Parece que no hay nadie buscando';
+
+  @override
+  String get nobodySearchingBody =>
+      '¿Quieres agendar una reunión con alguien? Seguiremos buscando mientras tanto.';
+
+  @override
+  String get noLabel => 'No';
+
+  @override
+  String get yesSchedule => 'Sí, agendar';
+
+  @override
+  String get errorNotEligible =>
+      'Necesitas una suscripción activa para buscar pareja.';
+
+  @override
+  String searchingBanner(String time) {
+    return 'Buscando compañero · $time';
+  }
 }

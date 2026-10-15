@@ -10,6 +10,7 @@ import '../../core/theming/palette.dart';
 import '../../core/theming/preferences.dart';
 import '../../data/profile/profile_repository.dart';
 import '../../domain/exam/models.dart';
+import '../matchmaking/matchmaking_controller.dart';
 import 'search_pulse.dart';
 
 class TargetLevelController extends Notifier<Level> {
@@ -79,9 +80,18 @@ class HomeScreen extends ConsumerWidget {
             Center(
               child: SearchPulse(
                 label: offline ? l.practiceSimulated : l.searchPartner,
-                onTap: () => context.go('/practice/${level.code}'),
+                onTap: () {
+                  if (offline) return context.go('/practice/${level.code}');
+                  ref.read(matchmakingProvider.notifier).start(level);
+                  context.go('/search');
+                },
               ),
             ),
+            if (!offline)
+              TextButton(
+                onPressed: () => context.go('/practice/${level.code}'),
+                child: Text(l.practiceSimulated),
+              ),
             const SizedBox(height: 24),
             Text(l.examOfLevel(level.code), textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w600, color: p.textPrimary)),
             Text(l.examSummary(_approxMinutes[level]!), textAlign: TextAlign.center, style: TextStyle(color: p.textSecondary)),

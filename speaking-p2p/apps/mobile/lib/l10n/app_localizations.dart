@@ -919,6 +919,222 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Rumano'**
   String get langRo;
+
+  /// No description provided for @roomTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'SALA · {level}'**
+  String roomTitle(String level);
+
+  /// No description provided for @meetBeforeStart.
+  ///
+  /// In es, this message translates to:
+  /// **'Conoceos antes de empezar'**
+  String get meetBeforeStart;
+
+  /// No description provided for @examStartsIn.
+  ///
+  /// In es, this message translates to:
+  /// **'El examen empieza solo en'**
+  String get examStartsIn;
+
+  /// No description provided for @waitingPartner.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperando a tu compañero…'**
+  String get waitingPartner;
+
+  /// No description provided for @candidateLine.
+  ///
+  /// In es, this message translates to:
+  /// **'Candidato {role} · {langs}'**
+  String candidateLine(String role, String langs);
+
+  /// No description provided for @notConfirmed.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin confirmar'**
+  String get notConfirmed;
+
+  /// No description provided for @readyBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'✓ Listo'**
+  String get readyBadge;
+
+  /// No description provided for @recordSession.
+  ///
+  /// In es, this message translates to:
+  /// **'Grabar la sesión'**
+  String get recordSession;
+
+  /// No description provided for @recordOnlyIfBoth.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo si los dos lo activáis · {name}: {state}'**
+  String recordOnlyIfBoth(String name, String state);
+
+  /// No description provided for @switchedOn.
+  ///
+  /// In es, this message translates to:
+  /// **'activado'**
+  String get switchedOn;
+
+  /// No description provided for @switchedOff.
+  ///
+  /// In es, this message translates to:
+  /// **'desactivado'**
+  String get switchedOff;
+
+  /// No description provided for @materialDownloaded.
+  ///
+  /// In es, this message translates to:
+  /// **'Material del examen descargado'**
+  String get materialDownloaded;
+
+  /// No description provided for @materialDownloading.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargando el material del examen…'**
+  String get materialDownloading;
+
+  /// No description provided for @imReady.
+  ///
+  /// In es, this message translates to:
+  /// **'Estoy listo'**
+  String get imReady;
+
+  /// No description provided for @notReadyYet.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no estoy listo'**
+  String get notReadyYet;
+
+  /// No description provided for @leaveRoom.
+  ///
+  /// In es, this message translates to:
+  /// **'Salir de la sala'**
+  String get leaveRoom;
+
+  /// No description provided for @connecting.
+  ///
+  /// In es, this message translates to:
+  /// **'Conectando…'**
+  String get connecting;
+
+  /// No description provided for @sessionError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido entrar en la sala.'**
+  String get sessionError;
+
+  /// No description provided for @contentMissing.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualiza la app: este examen no está en tu versión.'**
+  String get contentMissing;
+
+  /// No description provided for @sessionClosed.
+  ///
+  /// In es, this message translates to:
+  /// **'La sesión ha terminado.'**
+  String get sessionClosed;
+
+  /// No description provided for @partnerNoShow.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu compañero no se ha conectado.'**
+  String get partnerNoShow;
+
+  /// No description provided for @micOnShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Micro abierto'**
+  String get micOnShort;
+
+  /// No description provided for @micOffShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Micro cerrado'**
+  String get micOffShort;
+
+  /// No description provided for @searchingPartner.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscando compañero…'**
+  String get searchingPartner;
+
+  /// No description provided for @whileYouWait.
+  ///
+  /// In es, this message translates to:
+  /// **'MIENTRAS ESPERAS'**
+  String get whileYouWait;
+
+  /// No description provided for @tip1.
+  ///
+  /// In es, this message translates to:
+  /// **'En la Parte 2 no describas las fotos: compáralas y responde a la pregunta.'**
+  String get tip1;
+
+  /// No description provided for @tip2.
+  ///
+  /// In es, this message translates to:
+  /// **'En la Parte 3 pregunta la opinión del otro: «What do you think?».'**
+  String get tip2;
+
+  /// No description provided for @tip3.
+  ///
+  /// In es, this message translates to:
+  /// **'Si no sabes una palabra, explícala con otras. No te quedes callado.'**
+  String get tip3;
+
+  /// No description provided for @tip4.
+  ///
+  /// In es, this message translates to:
+  /// **'En la Parte 1 da respuestas cortas pero con un motivo o un ejemplo.'**
+  String get tip4;
+
+  /// No description provided for @cancelSearch.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar búsqueda'**
+  String get cancelSearch;
+
+  /// No description provided for @nobodySearchingTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Parece que no hay nadie buscando'**
+  String get nobodySearchingTitle;
+
+  /// No description provided for @nobodySearchingBody.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Quieres agendar una reunión con alguien? Seguiremos buscando mientras tanto.'**
+  String get nobodySearchingBody;
+
+  /// No description provided for @noLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'No'**
+  String get noLabel;
+
+  /// No description provided for @yesSchedule.
+  ///
+  /// In es, this message translates to:
+  /// **'Sí, agendar'**
+  String get yesSchedule;
+
+  /// No description provided for @errorNotEligible.
+  ///
+  /// In es, this message translates to:
+  /// **'Necesitas una suscripción activa para buscar pareja.'**
+  String get errorNotEligible;
+
+  /// No description provided for @searchingBanner.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscando compañero · {time}'**
+  String searchingBanner(String time);
 }
 
 class _AppLocalizationsDelegate
