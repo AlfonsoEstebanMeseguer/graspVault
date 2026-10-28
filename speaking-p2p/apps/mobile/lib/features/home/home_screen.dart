@@ -1,6 +1,5 @@
 // "Practicar" tab: pick the level and look for a partner. Without backend the big
 // button starts the offline practice with a simulated partner.
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -97,18 +96,17 @@ class HomeScreen extends ConsumerWidget {
               body: l.practiceSoloBody,
               onTap: practise,
             ),
-          // Debug only: in release this would hand out the Pro controls for free.
-          if (kDebugMode) ...[
-            const SizedBox(height: 12),
-            _SoloTile(
-              key: const Key('practice-vip'),
-              icon: AppIcons.crown,
-              iconColor: p.pro,
-              title: l.practiceVip,
-              body: l.practiceVipBody,
-              onTap: () => practise(vip: true),
-            ),
-          ],
+          // Also in release builds while testing (D-040): it is offline practice, the Pro controls
+          // only drive the local exam. Decide before publishing whether it stays Pro-only.
+          const SizedBox(height: 12),
+          _SoloTile(
+            key: const Key('practice-vip'),
+            icon: AppIcons.crown,
+            iconColor: p.pro,
+            title: l.practiceVip,
+            body: l.practiceVipBody,
+            onTap: () => practise(vip: true),
+          ),
           const SizedBox(height: 96), // room for the floating tab bar
         ]),
       ),

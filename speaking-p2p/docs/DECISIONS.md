@@ -170,7 +170,7 @@
 
 ### D-040 · 2026-10-24 · Cambio de examen dentro de la sesión
 - En el lobby solo cambia el examen. Durante el examen: nueva `schedule`, pausa `switching`, precarga reiniciada; el tick arranca el nuevo (Parte 1, 3 s de margen) cuando los dos han descargado o a los 45 s. `join` envía la versión de contenido del móvil y no se acepta un examen que el compañero no tenga (`content_missing_partner`). `exam_history` (una fila por usuario y sesión) sigue al examen nuevo.
-- **Práctica con compañero VIP simulado** (petición de Alfonso): solo con `kDebugMode`, en Inicio junto a «Practicar con compañero simulado»; `LocalExamController` aplica el mismo reductor en el móvil y el compañero simulado devuelve el control a los 5 s.
+- **Práctica con compañero VIP simulado** (petición de Alfonso): solo con `kDebugMode`, en Inicio junto a «Practicar con compañero simulado»; `LocalExamController` aplica el mismo reductor en el móvil y el compañero simulado devuelve el control a los 5 s. **2026-10-28 (Alfonso):** también en las versiones release mientras dure la fase de pruebas (el `.ipa` del iPhone no es debug). Es práctica sin conexión: los controles Pro solo mueven el examen local. Antes de publicar, decidir si queda solo para Pro.
 - Migraciones `20261024120418_pro_plan` y `20261024120548_session_control`, aplicadas con el MCP (Alfonso aprobó el aviso del `DROP FUNCTION` a tiempo; el script manual de reserva ya no hace falta).
 
 ### D-041 · 2026-10-24 · «Pregunta anterior» y dock del líder
