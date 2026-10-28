@@ -19,13 +19,14 @@ class SupabaseProfileRepository implements ProfileRepository {
 
   @override
   Future<MyProfile?> loadMine(String userId) async {
-    final row = await _client.from('profiles').select('id, username, languages, target_level').eq('id', userId).maybeSingle();
+    final row = await _client.from('profiles').select('id, username, languages, target_level, avatar_key').eq('id', userId).maybeSingle();
     if (row == null) return null;
     return MyProfile(
       id: row['id'] as String,
       username: row['username'] as String,
       languages: (row['languages'] as List<dynamic>).cast<String>(),
       targetLevel: LevelCode.parse(row['target_level'] as String),
+      avatarKey: row['avatar_key'] as String?,
     );
   }
 

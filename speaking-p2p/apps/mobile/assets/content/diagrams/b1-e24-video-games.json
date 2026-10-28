@@ -1,0 +1,12 @@
+{
+  "id": "b1-e24-video-games",
+  "centralQuestion": "How could a video game afternoon be useful for students?",
+  "prompts": [
+    "a team competition",
+    "a game about history",
+    "a game to learn a language",
+    "learning to create a simple game",
+    "a talk about playing safely"
+  ],
+  "decisionQuestion": "Which idea would be the best for the afternoon?"
+}

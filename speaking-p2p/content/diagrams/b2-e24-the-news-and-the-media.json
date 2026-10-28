@@ -1,0 +1,12 @@
+{
+  "id": "b2-e24-the-news-and-the-media",
+  "centralQuestion": "How might these ideas help people avoid false news?",
+  "prompts": [
+    "checking the source",
+    "comparing different websites",
+    "asking an expert",
+    "looking at the date",
+    "thinking before sharing"
+  ],
+  "decisionQuestion": "Which would be the most useful?"
+}

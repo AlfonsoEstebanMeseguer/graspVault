@@ -12,6 +12,7 @@ export type LoadedContent = {
   index: ContentIndex;
   exams: Exam[];
   diagrams: Map<string, Diagram>;
+  photos: Record<string, string>;
   errors: string[];
 };
 
@@ -32,6 +33,7 @@ export async function loadContent(dir: URL = CONTENT_DIR): Promise<LoadedContent
     if (parsed.data.id !== id) errors.push(`diagrams/${id}.json: id mismatch`);
     diagrams.set(id, parsed.data);
   }
+  const photos = (await readJson(new URL("photos.json", dir))) as Record<string, string>;
   const exams: Exam[] = [];
   for (const entry of index.exams) {
     const path = `exams/${entry.level}/${entry.id}.json`;
@@ -45,6 +47,11 @@ export async function loadContent(dir: URL = CONTENT_DIR): Promise<LoadedContent
       errors.push(`${path}: id/level/version differ from index.json`);
     }
     for (const e of semanticErrors(exam, diagrams)) errors.push(`${path}: ${e}`);
+    for (const part of exam.parts) {
+      for (const st of part.steps) {
+        if (st.kind === "turn") for (const a of st.assets ?? []) if (!photos[a]) errors.push(`${path}: ${st.id}: asset ${a} has no entry in photos.json`);
+      }
+    }
     exams.push(exam);
   }
   // Files on disk that the index forgot are a silent bug: the app would never ship them.
@@ -54,5 +61,5 @@ export async function loadContent(dir: URL = CONTENT_DIR): Promise<LoadedContent
       if (!index.exams.some((e) => e.id === id)) errors.push(`exams/${level}/${f.name}: not in index.json`);
     }
   }
-  return { index, exams, diagrams, errors };
+  return { index, exams, diagrams, photos, errors };
 }

@@ -1,5 +1,6 @@
 // Profile tab and account settings: stats, recordings, entitlement, profile
 // edits (RLS + column grants) and account deletion (`account-delete`).
+import '../../domain/feedback/peer_rating.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
@@ -21,11 +22,15 @@ class RecordingItem {
 }
 
 class Entitlement {
-  const Entitlement({required this.status, this.periodEnd, this.trialUsedAt});
+  const Entitlement({required this.status, this.periodEnd, this.trialUsedAt, this.plan = 'standard'});
   final String? status; // RevenueCat status, null = never subscribed
   final DateTime? periodEnd;
   final DateTime? trialUsedAt;
+
+  /// 'standard' (8 €) or 'pro' (10 €, exam control, D-037).
+  final String plan;
   bool active(DateTime now) => status == 'active' && (periodEnd == null || periodEnd!.isAfter(now));
+  bool isPro(DateTime now) => active(now) && plan == 'pro';
 }
 
 abstract class AccountRepository {
@@ -34,6 +39,9 @@ abstract class AccountRepository {
   Future<Entitlement?> entitlement();
   Future<void> updateProfile({required String username, required List<String> languages, required Level targetLevel});
   Future<String> recordingUrl(String sessionId);
+
+  /// What partners said about me in the rubric (D-042), averaged.
+  Future<FeedbackSummary> feedbackReceived();
 
   /// Re-authenticates (fresh session, the server wants < 5 min) and deletes.
   Future<void> deleteAccount({required String password, required String phrase});
@@ -52,6 +60,17 @@ class SupabaseAccountRepository implements AccountRepository {
       final d = e.details;
       throw AppFailure(d is Map && d['error'] is String ? d['error'] as String : 'server_error');
     }
+  }
+
+  @override
+  Future<FeedbackSummary> feedbackReceived() async {
+    final rows = await _c
+        .from('peer_ratings')
+        .select('grammar, discourse, pronunciation, interaction')
+        .eq('ratee_id', _me)
+        .order('created_at', ascending: false)
+        .limit(50);
+    return FeedbackSummary.of([for (final r in rows) PeerRating.fromRow(r)]);
   }
 
   @override
@@ -85,10 +104,15 @@ class SupabaseAccountRepository implements AccountRepository {
 
   @override
   Future<Entitlement?> entitlement() async {
-    final r = await _c.from('entitlements').select('subscription_status, current_period_end, trial_used_at').eq('user_id', _me).maybeSingle();
+    final r = await _c.from('entitlements').select('subscription_status, current_period_end, trial_used_at, plan').eq('user_id', _me).maybeSingle();
     if (r == null) return null;
     DateTime? t(String k) => r[k] == null ? null : DateTime.parse(r[k] as String);
-    return Entitlement(status: r['subscription_status'] as String?, periodEnd: t('current_period_end'), trialUsedAt: t('trial_used_at'));
+    return Entitlement(
+      status: r['subscription_status'] as String?,
+      periodEnd: t('current_period_end'),
+      trialUsedAt: t('trial_used_at'),
+      plan: r['plan'] as String? ?? 'standard',
+    );
   }
 
   @override

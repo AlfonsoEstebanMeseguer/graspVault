@@ -1,0 +1,12 @@
+{
+  "id": "b1-e19-places-to-stay",
+  "centralQuestion": "Where is the best place for students to stay on a trip?",
+  "prompts": [
+    "a hotel",
+    "a hostel",
+    "a campsite",
+    "staying with a local family",
+    "renting a flat"
+  ],
+  "decisionQuestion": "Which place would be the best for the students?"
+}

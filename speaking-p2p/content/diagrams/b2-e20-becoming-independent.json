@@ -1,0 +1,12 @@
+{
+  "id": "b2-e20-becoming-independent",
+  "centralQuestion": "How might these things help young people become independent?",
+  "prompts": [
+    "having a job",
+    "learning to cook",
+    "managing a budget",
+    "travelling alone",
+    "making their own decisions"
+  ],
+  "decisionQuestion": "Which would be the most important for a young person?"
+}

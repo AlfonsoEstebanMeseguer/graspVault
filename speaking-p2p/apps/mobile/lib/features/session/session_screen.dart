@@ -1,4 +1,5 @@
 // One live session: lobby -> Parts 1-4 -> feedback, driven by the server.
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,13 +9,18 @@ import '../../core/theming/palette.dart';
 import '../../core/voice/livekit_engine.dart';
 import '../../core/voice/voice_service.dart';
 import '../../data/auth/auth_repository.dart';
+import '../../data/agenda/agenda_repository.dart';
 import '../../data/content/content_repository.dart';
 import '../../data/profile/profile_repository.dart';
 import '../../data/session/session_repository.dart';
 import '../../domain/account/account.dart';
+import '../../domain/agenda/agenda.dart' show CompanionLink;
 import '../../domain/exam/timeline.dart';
 import '../exam/exam_screen.dart';
+import '../exam/reader_player.dart';
 import 'live_session.dart';
+import '../../data/safety/safety_repository.dart';
+import '../safety/safety_sheet.dart';
 import 'lobby_view.dart';
 
 /// Overridable in tests (no WebRTC in the test VM).
@@ -42,6 +48,9 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
       repo: repo,
       voice: ref.read(voiceServiceFactoryProvider)(),
       content: BundleExamSource(ref.read(contentRepositoryProvider)),
+      readerAudio: ref.read(readerAudioProvider),
+      voices: ref.read(contentIndexProvider).value?.voices ?? const [],
+      contentVersion: ref.read(contentIndexProvider).value?.version,
     )..start();
   }
 
@@ -65,7 +74,8 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
         final row = s.row;
         if (s.error != null) {
           final missing = s.error is AppFailure && (s.error! as AppFailure).code == 'content_missing';
-          return _Message(text: missing ? l.contentMissing : l.sessionError, action: l.backHome, onAction: _home);
+          final text = missing ? l.contentMissing : l.sessionError;
+          return _Message(text: kDebugMode ? '$text\n\n${s.error}' : text, action: l.backHome, onAction: _home);
         }
         if (row == null || s.myRole == null) return const Scaffold(body: Center(child: CircularProgressIndicator()));
         if (row.state == SessionState.aborted) {
@@ -79,6 +89,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
             session: s,
             myName: profile?.username ?? '',
             myLanguages: profile?.languages ?? const [],
+            myAvatarKey: profile?.avatarKey,
             onLeave: () async {
               await s.abort();
               _home();
@@ -86,11 +97,34 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
           );
         }
         return ExamScreen(
+          // A new exam (the leader switched, D-040) = a new screen: its own reader files and diagram.
+          key: ValueKey(row.examId),
           engine: s.engine!,
+          control: s.hasLeader ? s : null,
           myName: profile?.username ?? l.you,
           partnerName: s.partner?.username ?? '…',
+          myAvatar: (userId: s.myUserId, key: profile?.avatarKey),
+          partnerAvatar: s.partner == null ? null : (userId: s.partner!.id, key: s.partner!.avatarKey),
           nowMs: s.clock.nowMs,
           partnerLeft: s.partnerLeft,
+          selfMuted: s.selfMuted,
+          onToggleMute: s.toggleMute,
+          onDebugSkip: kDebugMode ? () => s.skip().catchError((Object _) {}) : null,
+          readerFiles: s.readerFiles,
+          photoFiles: s.photoFiles,
+          onRate: (r) => ref.read(sessionRepositoryProvider)!.rate(s.sessionId, r),
+          onReport: s.partner == null || ref.read(safetyRepositoryProvider) == null
+              ? null
+              : (where) async {
+                  final blocked = await showSafetySheet(context,
+                      userId: s.partner!.id, name: s.partner!.username, where: where, sessionId: s.sessionId);
+                  // Blocking during the exam also ends it: nobody stays in a call with someone they blocked.
+                  if (blocked) {
+                    await s.abort();
+                    _home();
+                  }
+                },
+          companion: _companion(s),
           onAbandon: () async {
             await s.abort();
             _home();
@@ -98,6 +132,27 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
           onExit: _home,
         );
       },
+    );
+  }
+
+  /// "Añadir a compañeros" / "Repetir con…" (D-046); null without a partner or agenda backend.
+  CompanionHandle? _companion(LiveSession s) {
+    final agenda = ref.read(agendaRepositoryProvider);
+    final partner = s.partner;
+    if (agenda == null || partner == null) return null;
+    Future<CompanionLink> status() async {
+      final c = (await agenda.companions()).where((c) => c.partnerId == partner.id).firstOrNull;
+      if (c == null || !c.iAdded) return CompanionLink.none;
+      return c.mutual ? CompanionLink.mutual : CompanionLink.waiting;
+    }
+
+    return CompanionHandle(
+      status: status,
+      add: () async {
+        await agenda.addCompanion(s.sessionId);
+        return status();
+      },
+      repeat: () => context.go('/agenda?invite=${partner.id}'),
     );
   }
 }

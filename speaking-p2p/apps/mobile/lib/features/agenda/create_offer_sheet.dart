@@ -1,5 +1,6 @@
-// "Crear reunión" (sketch 18): day, window From–To, level, offers left.
-// Same validation as svc_offer_create so the button never lies.
+// "Proponer horario": day, window From–To, level, proposals left. Others book
+// 30-min slots inside it (D-046). Same validation as svc_offer_create so the
+// button never lies.
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -53,8 +54,8 @@ class _CreateOfferSheetState extends ConsumerState<CreateOfferSheet> {
   Future<void> _pickTime(bool from) async {
     final t = await showTimePicker(context: context, initialTime: from ? _from : _to);
     if (t == null) return;
-    // 5-minute grid, like the slots the server accepts.
-    final snapped = TimeOfDay(hour: t.hour, minute: t.minute - t.minute % 5);
+    // Half-hour grid, like the slots people can book.
+    final snapped = TimeOfDay(hour: t.hour, minute: t.minute - t.minute % 30);
     setState(() => from ? _from = snapped : _to = snapped);
   }
 
@@ -150,7 +151,7 @@ class _TimeBox extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: InputDecorator(
-        decoration: InputDecoration(labelText: label, border: const OutlineInputBorder()),
+        decoration: InputDecoration(labelText: label),
         child: Text(MaterialLocalizations.of(context).formatTimeOfDay(value, alwaysUse24HourFormat: true),
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: p.textPrimary)),
       ),

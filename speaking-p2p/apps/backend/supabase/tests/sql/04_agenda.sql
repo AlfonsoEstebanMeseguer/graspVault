@@ -1,10 +1,9 @@
--- Agenda rules: offers, acceptances, the meeting card, overlaps, crons.
+-- Agenda rules (v2, D-046): offers, direct booking, changing the time, overlaps, crons.
 begin;
 do $$
 declare
   a uuid; b uuid; c uuid; d uuid; o uuid; o2 uuid; r1 jsonb; r2 jsonb; m_b uuid; m_c uuid; s uuid;
   t0 timestamptz := date_trunc('hour', now()) + interval '1 hour';  -- aligned start for slots
-  n int; st text;
 begin
   a := tests.user('creator', 'B2'); b := tests.user('acceptor', 'B2'); c := tests.user('third', 'C1'); d := tests.user('fourth', 'B2');
 
@@ -13,62 +12,72 @@ begin
     'window_too_short', 'franja minima de 30 min');
   perform tests.assert_fails(format('select public.svc_offer_create(%L, ''B2'', %L, %L)', a, t0, now() + interval '8 days'),
     'window_out_of_range', 'solo los proximos 7 dias');
-  o := public.svc_offer_create(a, 'B2', t0, t0 + interval '3 hours');
+  o := public.svc_offer_create(a, 'B2', t0, t0 + interval '90 minutes');
   o2 := public.svc_offer_create(a, 'B2', t0 + interval '1 day', t0 + interval '1 day 2 hours');
   perform tests.assert_fails(format('select public.svc_offer_create(%L, ''B2'', %L, %L)', a, t0 + interval '2 days', t0 + interval '2 days 1 hour'),
     'too_many_offers', 'maximo 2 ofertas activas');
   perform public.svc_offer_cancel(a, o2);
   o2 := public.svc_offer_create(a, 'C1', t0 + interval '2 days', t0 + interval '2 days 1 hour');  -- cancelling frees a slot
 
-  -- accepting
+  -- booking a slot
   perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', a, o, t0), 'own_offer', 'no acepto mi propia oferta');
-  perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', b, o, t0 + interval '2 hours 45 minutes'),
+  perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', b, o, t0 + interval '75 minutes'),
     'bad_time', 'la reunion de 30 min tiene que caber en la franja');
-  perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', b, o, t0 + interval '7 minutes'),
-    'bad_time', 'horas en multiplos de 5 min');
+  perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', b, o, t0 + interval '15 minutes'),
+    'bad_time', 'solo huecos de la rejilla de 30 min');
   r1 := public.svc_offer_accept(b, o, t0 + interval '30 minutes');
+  m_b := (r1 ->> 'meeting_id')::uuid;
+  perform tests.assert_eq((select status from public.meetings where id = m_b), 'confirmed', 'reservar confirma la reunion');
+  perform tests.assert((select creator_confirmed and acceptor_confirmed from public.meetings where id = m_b), 'con los dos ticks');
+  perform tests.assert_eq((select system_code from public.chat_messages where chat_id = (r1 ->> 'chat_id')::uuid), 'meeting_booked', 'mensaje de sistema inicial');
+  perform tests.assert_eq((select count(*)::int from public.notification_outbox where user_id = a and kind = 'meeting_booked'), 1, 'aviso al creador');
   perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', b, o, t0 + interval '60 minutes'),
-    'already_accepted', 'una aceptacion por persona y oferta');
-  r2 := public.svc_offer_accept(c, o, t0 + interval '60 minutes');   -- C1 user can accept a B2 offer (adjacent filter)
-  m_b := (r1 ->> 'meeting_id')::uuid; m_c := (r2 ->> 'meeting_id')::uuid;
-  perform tests.assert(r1 ->> 'chat_id' <> r2 ->> 'chat_id', 'cada aceptacion abre su chat');
-  perform tests.assert_eq((select system_code from public.chat_messages where chat_id = (r1 ->> 'chat_id')::uuid), 'meeting_proposed', 'mensaje de sistema inicial');
-  perform tests.assert_eq((select status from public.meeting_offers where id = o), 'open', 'la oferta sigue abierta');
+    'already_accepted', 'una reserva por persona y oferta');
+  perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', c, o, t0 + interval '30 minutes'),
+    'slot_taken', 'ese hueco ya esta reservado');
+  perform tests.assert_eq((select count(*)::int from public.offer_taken_slots(array[o])), 1, 'el tablon ve el hueco ocupado');
+  perform tests.assert_eq((select status from public.meeting_offers where id = o), 'open', 'quedan huecos: la oferta sigue abierta');
+  r2 := public.svc_offer_accept(c, o, t0);   -- C1 user can book a B2 offer (adjacent filter)
+  m_c := (r2 ->> 'meeting_id')::uuid;
+  perform tests.assert(r1 ->> 'chat_id' <> r2 ->> 'chat_id', 'cada reserva abre su chat');
+  perform tests.assert_eq((select status from public.meeting_offers where id = o), 'open', 'aun queda el de t0+60');
+  perform public.svc_offer_accept(d, o, t0 + interval '60 minutes');
+  perform tests.assert_eq((select status from public.meeting_offers where id = o), 'filled', 'sin huecos libres: llena');
+  perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', b, o, t0 + interval '60 minutes'),
+    'offer_unavailable', 'una oferta llena no admite mas');
 
-  -- modify resets confirmations
-  perform public.svc_meeting_confirm(b, m_b);
-  perform tests.assert((select acceptor_confirmed from public.meetings where id = m_b), 'b confirmo');
-  perform public.svc_meeting_modify(a, m_b, t0 + interval '45 minutes', 'B2');
-  perform tests.assert((select not acceptor_confirmed and not creator_confirmed from public.meetings where id = m_b), 'modificar reinicia las dos');
+  -- cancelling a booking
+  perform public.svc_meeting_cancel(c, m_c);
+  perform tests.assert_eq((select status from public.meetings where id = m_c), 'cancelled', 'cancelada');
+
+  -- changing the time: back to pending with my tick; only the other confirms
+  perform public.svc_meeting_modify(a, m_b, t0 + interval '2 hours', 'B2');
+  perform tests.assert_eq((select status from public.meetings where id = m_b), 'pending', 'cambiar hora la deja pendiente');
+  perform tests.assert((select creator_confirmed and not acceptor_confirmed from public.meetings where id = m_b), 'con el tick de quien la cambia');
+  perform tests.assert_fails(format('select public.svc_meeting_modify(%L, %L, %L, ''B2'')', a, m_b, t0 + interval '2 hours 10 minutes'),
+    'bad_time', 'cambiar hora tambien va en la rejilla de 30 min');
   perform tests.assert_fails(format('select public.svc_meeting_modify(%L, %L, %L, ''B2'')', d, m_b, t0), 'not_found', 'un tercero no toca la tarjeta');
+  perform tests.assert_eq(public.svc_meeting_confirm(b, m_b), 'confirmed', 'un toque del otro la confirma');
+  perform tests.assert_fails(format('select public.svc_meeting_confirm(%L, %L)', b, m_b), 'not_pending', 'no se confirma dos veces');
 
-  -- both confirm -> confirmed, offer filled, sibling closed with system message
-  perform tests.assert_eq(public.svc_meeting_confirm(a, m_b), 'pending', 'falta el otro');
-  perform tests.assert_eq(public.svc_meeting_confirm(b, m_b), 'confirmed', 'confirmada por los dos');
-  perform tests.assert_eq((select status from public.meeting_offers where id = o), 'filled', 'oferta retirada del tablon');
-  perform tests.assert_eq((select status from public.meetings where id = m_c), 'closed', 'la otra aceptacion queda cerrada');
-  perform tests.assert_eq((select system_code from public.chat_messages where chat_id = (r2 ->> 'chat_id')::uuid order by created_at desc, id limit 1),
-    'meeting_unavailable', 'la otra recibe "ya no esta disponible"');
-  perform tests.assert_fails(format('select public.svc_meeting_confirm(%L, %L)', c, m_c), 'not_pending', 'no se confirma una cerrada');
-  perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', d, o, t0 + interval '90 minutes'), 'offer_unavailable', 'oferta llena');
+  -- overlap: b is busy at t0+2h
+  o2 := public.svc_offer_create(d, 'B2', t0 + interval '1 hour', t0 + interval '4 hours');
+  perform tests.assert_fails(format('select public.svc_offer_accept(%L, %L, %L)', b, o2, t0 + interval '2 hours'), 'overlap', 'b no puede reservar un solape');
+  r1 := public.svc_offer_accept(b, o2, t0 + interval '150 minutes');
+  perform tests.assert_eq((select status from public.meetings where id = (r1 ->> 'meeting_id')::uuid), 'confirmed', 'contiguo no es solape');
 
-  -- overlap: b already has a confirmed meeting at t0+45; another at t0+60 overlaps the 30-min block
-  o2 := public.svc_offer_create(d, 'B2', t0, t0 + interval '3 hours');
-  r1 := public.svc_offer_accept(b, o2, t0 + interval '60 minutes');
-  perform tests.assert_fails(format('select public.svc_meeting_confirm(%L, %L)', b, (r1 ->> 'meeting_id')), 'overlap', 'b no puede confirmar un solape');
-  -- d confirms first, then b cannot; at 75 min (no overlap with 45-75) it works
-  perform public.svc_meeting_modify(d, (r1 ->> 'meeting_id')::uuid, t0 + interval '75 minutes', 'B2');
-  perform public.svc_meeting_confirm(d, (r1 ->> 'meeting_id')::uuid);
-  perform tests.assert_eq(public.svc_meeting_confirm(b, (r1 ->> 'meeting_id')::uuid), 'confirmed', 'contiguo no es solape');
+  -- withdrawing an offer keeps what was already booked
+  perform public.svc_offer_cancel(d, o2);
+  perform tests.assert_eq((select status from public.meetings where id = (r1 ->> 'meeting_id')::uuid), 'confirmed', 'retirar no cancela lo reservado');
 
   -- open meeting check used by the 15 s prompt
   perform tests.assert(public.svc_has_open_meeting(b), 'b tiene reuniones');
-  perform tests.assert(not public.svc_has_open_meeting(c), 'c no (la suya se cerro)');
+  perform tests.assert(not public.svc_has_open_meeting(c), 'c no (cancelo la suya)');
 
   -- entering the room: window from -5 min; session is shared; attendance recorded
-  perform tests.assert_fails(format('select public.svc_meeting_enter(%L, %L, 1, %L)', a, m_b, t0 + interval '30 minutes'), 'too_early', 'antes de 5 min no');
-  s := public.svc_meeting_enter(a, m_b, 1, t0 + interval '41 minutes');
-  perform tests.assert_eq(public.svc_meeting_enter(b, m_b, 1, t0 + interval '43 minutes'), s, 'misma sesion para los dos');
+  perform tests.assert_fails(format('select public.svc_meeting_enter(%L, %L, 1, %L)', a, m_b, t0 + interval '1 hour'), 'too_early', 'antes de 5 min no');
+  s := public.svc_meeting_enter(a, m_b, 1, t0 + interval '116 minutes');
+  perform tests.assert_eq(public.svc_meeting_enter(b, m_b, 1, t0 + interval '118 minutes'), s, 'misma sesion para los dos');
   perform tests.assert_eq((select origin from public.exam_sessions where id = s), 'meeting', 'origen meeting');
   perform tests.assert_eq((select level from public.exam_sessions where id = s), 'B2', 'nivel de la reunion');
 end $$;
@@ -82,8 +91,9 @@ begin
   a := tests.user('cron_a'); b := tests.user('cron_b'); c := tests.user('cron_c');
   o := public.svc_offer_create(a, 'B2', t0, t0 + interval '1 hour');
   r := public.svc_offer_accept(b, o, t0); m := (r ->> 'meeting_id')::uuid;
+  -- c books and then asks for another time nobody confirms: pending until it passes
   m2 := (public.svc_offer_accept(c, o, t0 + interval '30 minutes') ->> 'meeting_id')::uuid;
-  perform public.svc_meeting_confirm(a, m); perform public.svc_meeting_confirm(b, m);
+  perform public.svc_meeting_modify(c, m2, t0 + interval '30 minutes', 'B1');
 
   res := public.svc_cron_agenda(t0 - interval '11 minutes');
   perform tests.assert_eq((res ->> 'reminders')::int, 0, 'aun no');
@@ -105,8 +115,8 @@ begin
   perform tests.assert_eq((select user_id from public.notification_outbox where kind = 'partner_no_show'), a, 'aviso al que si entro');
   perform tests.assert_eq((select state from public.exam_sessions where meeting_id = m), 'aborted', 'la sala se cierra');
 
-  -- the offer was filled; the pending sibling was closed at confirmation already
-  perform tests.assert_eq((select status from public.meetings where id = m2), 'closed', 'cerrada');
+  perform public.svc_cron_agenda(t0 + interval '31 minutes');
+  perform tests.assert_eq((select status from public.meetings where id = m2), 'closed', 'la pendiente vencida se cierra');
 end $$;
 rollback;
 

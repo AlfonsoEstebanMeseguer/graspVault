@@ -1,0 +1,12 @@
+{
+  "id": "c1-e14-ethics-of-science-and-ai",
+  "centralQuestion": "How important is it to consider these issues before using new technology?",
+  "prompts": [
+    "who is responsible when machines make mistakes",
+    "the effect on jobs",
+    "the risk to personal data",
+    "fair access for everyone",
+    "the impact on the environment"
+  ],
+  "decisionQuestion": "Which issue is the most urgent to resolve?"
+}

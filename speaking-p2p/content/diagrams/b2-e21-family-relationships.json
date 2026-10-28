@@ -1,0 +1,12 @@
+{
+  "id": "b2-e21-family-relationships",
+  "centralQuestion": "How might these things help family members get on well?",
+  "prompts": [
+    "eating meals together",
+    "sharing the housework",
+    "listening to each other",
+    "family holidays",
+    "respecting each other's privacy"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

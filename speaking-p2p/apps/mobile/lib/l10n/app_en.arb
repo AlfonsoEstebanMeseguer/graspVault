@@ -78,8 +78,8 @@
   "needsBackend": "Available once the app is connected to the server.",
   "agendaTitle": "Agenda",
   "profileTitle": "Profile",
-  "loginHeadline": "Practise the Cambridge Speaking test with another student.",
-  "loginSubtitle": "A virtual examiner keeps the turns and the time. You just talk.",
+  "loginHeadline": "Practise Speaking in pairs, with a virtual examiner.",
+  "loginSubtitle": "It runs the turns and the clock. You two just talk.",
   "emailLabel": "Email",
   "passwordLabel": "Password",
   "signIn": "Sign in",
@@ -119,7 +119,7 @@
   "linkedToAccount": "Linked to your account",
   "whichExamTitle": "Which exam are you preparing?",
   "speakingMinutes": "{minutes}-minute Speaking",
-  "acceptTerms": "I have read and accept the Terms of use and the Privacy policy.",
+  "acceptTerms": "I have read and accept the Terms of Use and the Privacy Policy.",
   "continueLabel": "Continue",
   "backLabel": "Back",
   "startLabel": "Start",
@@ -137,7 +137,7 @@
   "langRu": "Russian",
   "langUk": "Ukrainian",
   "langRo": "Romanian",
-  "roomTitle": "ROOM · {level}",
+  "roomTitle": "Waiting room · {level}",
   "meetBeforeStart": "Get to know each other first",
   "examStartsIn": "The exam starts automatically in",
   "waitingPartner": "Waiting for your partner…",
@@ -155,6 +155,10 @@
   "leaveRoom": "Leave the room",
   "connecting": "Connecting…",
   "sessionError": "Could not join the room.",
+  "debugEnterNow": "Create room now (debug)",
+  "debugSkip": "Skip to next part (debug)",
+  "muteMe": "Mute my mic",
+  "unmuteMe": "Unmute my mic",
   "contentMissing": "Update the app: this exam is not in your version.",
   "sessionClosed": "The session has ended.",
   "partnerNoShow": "Your partner did not connect.",
@@ -173,24 +177,18 @@
   "yesSchedule": "Yes, schedule",
   "errorNotEligible": "You need an active subscription to find a partner.",
   "searchingBanner": "Looking for a partner · {time}",
-  "createMeeting": "Create meeting",
-  "agendaChats": "Chats",
-  "agendaBoard": "Meetings",
-  "agendaMine": "My schedule",
-  "noChats": "No chats yet. Pick an offer in Meetings or create your own.",
-  "noOffers": "No offers match this filter.",
-  "noMeetings": "You have no confirmed meetings.",
-  "myOffersCount": "MY OFFERS · {n} OF 2",
+  "createMeeting": "Offer a time slot",
+  "agendaBoard": "Find a slot",
+  "agendaMine": "My exams",
+  "noOffers": "Nobody has offered a time with this filter.",
+  "myOffersCount": "MY PROPOSALS · {n} OF 2",
   "interestedCount": "{n, plural, =0{Nobody interested yet} =1{1 interested} other{{n} interested}}",
-  "includeLevel": "+ Include {level}",
-  "anyDay": "Any day",
   "todayLabel": "Today",
   "tomorrowLabel": "Tomorrow",
   "otherDay": "Other",
   "speaksLangs": "Speaks {langs}",
   "availableLabel": "Available",
-  "chooseTime": "Choose time",
-  "withdrawOffer": "Withdraw offer",
+  "withdrawOffer": "Withdraw",
   "statusConfirmed": "Confirmed ✓✓",
   "statusAwaitingYou": "Waiting for your confirmation",
   "statusAwaitingPartner": "Waiting for {name}",
@@ -205,37 +203,30 @@
   "enterRoom": "Enter the room",
   "remindBefore": "We'll remind you 10 min before",
   "dayField": "Day",
-  "windowField": "When you're available",
+  "windowField": "When are you free?",
   "fromField": "From",
   "toField": "To",
-  "windowHint": "Whoever accepts picks an exact time inside this window.",
+  "windowHint": "Other students will book a 30-min slot inside your window. It can fit more than one exam.",
   "examLevelField": "Exam level",
-  "offersLeft": "{n, plural, =0{You can have 2 active offers · none left} =1{You can have 2 active offers · 1 left} other{You can have 2 active offers · {n} left}}",
-  "publishOffer": "Publish offer",
-  "examWithTitle": "Exam with {name}",
-  "chooseStart": "Choose when you start",
+  "offersLeft": "{n, plural, =0{You can have 2 open proposals · none left} =1{You can have 2 open proposals · 1 left} other{You can have 2 open proposals · {n} left}}",
+  "publishOffer": "Publish proposal",
   "busyLabel": "Busy",
-  "busyHint": "Times that clash with your confirmed meetings are blocked.",
-  "proposeAndChat": "Propose {time} and open chat",
-  "pickATime": "Pick a time",
-  "noSlots": "No free times left in this window.",
-  "modifyLabel": "Change",
+  "modifyLabel": "Change time",
   "cancelLabel": "Cancel",
   "confirmLabel": "Confirm",
   "messageHint": "Message",
   "sendLabel": "Send",
-  "sysProposed": "{name} proposed {when}",
-  "sysModified": "{name} changed the time to {when} · confirmations reset",
+  "sysModified": "{name} suggests {when}",
   "sysConfirmedBy": "{name} confirmed ✓",
-  "sysConfirmed": "Meeting confirmed. It's in My schedule.",
+  "sysConfirmed": "Meeting confirmed.",
   "sysPartnerOverlap": "{name} already has a meeting at that time. Pick another one.",
   "sysUnavailable": "This meeting is no longer available",
   "sysCancelled": "{name} cancelled the meeting",
-  "sysExpired": "The time passed without both confirmations",
+  "sysExpired": "The time passed without confirming the change",
   "sysPartnerDeleted": "Your partner deleted their account",
   "sysUpdate": "The meeting changed",
   "deletedUser": "Deleted user",
-  "modifyTitle": "Change time or level",
+  "modifyTitle": "Suggest another time",
   "saveLabel": "Save",
   "cancelMeetingTitle": "Cancel the meeting?",
   "cancelMeetingBody": "{name} will be told in the chat.",
@@ -245,17 +236,16 @@
   "viewLabel": "View",
   "errorOverlap": "You already have a confirmed meeting at that time",
   "errorTooManyOffers": "You already have 2 active offers",
-  "errorOfferUnavailable": "This offer is no longer available",
+  "errorOfferUnavailable": "This proposal is no longer available",
   "errorBadTime": "That time isn't valid",
-  "errorAlreadyAccepted": "You already picked this offer: see Chats",
+  "errorAlreadyAccepted": "You already booked a slot in this proposal",
   "errorWindow": "The window must last at least 30 min and be within the next 7 days",
   "errorTooEarly": "The room opens 5 min before",
   "errorTooLate": "The grace period is over",
   "errorNotPending": "The meeting can no longer be changed",
   "errorPartnerGone": "Your partner is no longer available",
   "errorSendFailed": "The message couldn't be sent",
-  "sysProposedByMe": "You proposed {when}",
-  "sysModifiedByMe": "You changed the time to {when} · confirmations reset",
+  "sysModifiedByMe": "You suggested {when} · waiting for confirmation",
   "sysConfirmedByMe": "You confirmed ✓",
   "sysCancelledByMe": "You cancelled the meeting",
   "editProfile": "Edit profile",
@@ -281,5 +271,370 @@
   "deleteForever": "Delete forever",
   "errorBadConfirmation": "The phrase doesn't match",
   "profileSaved": "Profile saved",
-  "targetLevelField": "Exam you're preparing"
+  "targetLevelField": "Exam you're preparing",
+  "avatarTitle": "Profile photo",
+  "avatarFromGallery": "Choose from gallery",
+  "avatarFromCamera": "Take a photo",
+  "avatarRemove": "Remove photo",
+  "avatarUpdated": "Photo updated",
+  "avatarRemoved": "Photo removed",
+  "avatarCropTitle": "Adjust your photo",
+  "avatarCropHelp": "Drag and pinch to frame it",
+  "avatarCropUse": "Use this photo",
+  "errorPhotoUpload": "Couldn't upload the photo. Try another image or try again",
+  "practiceVip": "Practise with a simulated VIP partner",
+  "simulatedVipHint": "Development mode: simulated VIP partner. You run the exam.",
+  "controlPanel": "Exam control",
+  "controlTime": "Time",
+  "controlNavigation": "Navigation",
+  "controlExam": "Exam",
+  "controlLeadership": "Who leads",
+  "controlPause": "Pause",
+  "controlResume": "Resume",
+  "controlPauseReader": "You can't pause while the examiner is speaking",
+  "controlSkipReader": "Skip the examiner",
+  "controlRepeat": "Repeat question",
+  "controlNextStep": "Next question",
+  "controlNextPart": "Next part",
+  "controlGoToPart": "Go to part",
+  "controlEndExam": "End exam",
+  "controlEndExamConfirm": "End the exam and go to feedback?",
+  "controlTurnLength": "Turn length in this part",
+  "controlFeedbackTime": "Feedback time",
+  "controlSwitchExam": "Change exam",
+  "controlSwitchConfirm": "The new exam starts from Part 1.",
+  "controlRandom": "Random",
+  "controlCurrent": "Current",
+  "controlSearch": "Search topic",
+  "controlTransfer": "Hand control to {name}",
+  "controlTransferNoPro": "{name} doesn't have Pro",
+  "leaderYou": "You lead",
+  "leaderOther": "Led by {name}",
+  "pausedTitle": "Exam paused",
+  "pausedBy": "Paused by {name} · mics open",
+  "switchingExam": "Changing exam… downloading material",
+  "noticePause": "{name} paused the exam",
+  "noticeResume": "{name} resumed the exam",
+  "noticeSkipReader": "{name} skipped the examiner",
+  "noticeNextStep": "{name} moved to the next question",
+  "noticeNextPart": "{name} moved to the next part",
+  "noticeEndExam": "{name} ended the exam",
+  "noticeRepeat": "{name} repeated the question",
+  "noticeGoToPart": "{name} jumped to another part",
+  "noticeTime": "{name} changed the time",
+  "noticeSwitchExam": "{name} changed the exam",
+  "noticeLeader": "{name} now leads the exam",
+  "noticeLeaderYou": "You now lead the exam",
+  "errorNotLeader": "You're not leading the exam right now",
+  "errorStaleControl": "The exam just changed; try again",
+  "errorPartnerNotPro": "Your partner doesn't have Pro",
+  "errorContentMissingPartner": "Your partner's app doesn't have that exam",
+  "errorControlRange": "That change is out of range",
+  "planStandard": "Standard plan",
+  "planPro": "Pro plan",
+  "upgradePro": "Upgrade to Pro",
+  "proTitle": "Pro: you run the exam",
+  "proPrice": "€10.00 a month · includes everything in Standard",
+  "proFeature1": "Pause the exam and add or remove minutes",
+  "proFeature2": "Skip the examiner and move to the next question or part",
+  "proFeature3": "Change exam whenever you like, from the catalogue or at random",
+  "proFeature4": "If you both have Pro, one leads and can hand control to the other",
+  "proStoreSoon": "Available once the store is live",
+  "dockTitle": "You're running the exam",
+  "dockPrev": "Previous",
+  "dockNext": "Next",
+  "dockNextPart": "Next part",
+  "dockMore": "More",
+  "dockLess": "Less",
+  "dockSkip": "Skip",
+  "dockPaused": "Paused",
+  "controlPrevStep": "Previous question",
+  "controlTurnTime": "Time for this turn",
+  "controlBackToExam": "Back to the last question",
+  "noticePrevStep": "{name} went back to the previous question",
+  "tabPractice": "Practise",
+  "providerSoon": "Signing in with {provider} is coming soon. For now, use your email.",
+  "continueWithApple": "Continue with Apple",
+  "continueWithGoogle": "Continue with Google",
+  "signUpWithEmail": "Sign up with email",
+  "haveAccountQuestion": "Already have an account?",
+  "notAffiliated": "Independent app, not affiliated with Cambridge University Press & Assessment.",
+  "createAccountTitle": "Create your account",
+  "createAccountSubtitle": "With your email and a password. Then you'll pick your name and level.",
+  "welcomeBack": "Welcome back",
+  "welcomeBackSubtitle": "Sign in with your email to keep practising.",
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+  "orContinueWith": "or continue with",
+  "practiceSoloTitle": "Practise alone",
+  "practiceSoloBody": "With a simulated partner, for when nobody is around.",
+  "practiceVipBody": "Development only: you run the exam with the Pro controls.",
+  "meetingWithName": "Meeting with {name}",
+  "aPartner": "a partner",
+  "fullExamOf": "{level} · full exam",
+  "searchKeepsGoing": "We keep searching even if you switch tabs.",
+  "tipLabel": "Tip",
+  "tipForPart": "Tip · Part {n}",
+  "timeUp": "Time",
+  "statusListening": "Listening",
+  "micListening": "Listening",
+  "yourTurnNow": "Your turn",
+  "listeningTo": "Listening to {name}",
+  "textHidden": "Text hidden",
+  "questionsLeft": "{n, plural, =0{Last question} =1{1 question left} other{{n} questions left}}",
+  "examSummaryLine": "{level} · {topic} · {minutes} min",
+  "feedbackIdeasTitle": "Ideas to get started",
+  "criterionGrammar": "Grammar and vocabulary",
+  "criterionDiscourse": "Discourse management",
+  "criterionPronunciation": "Pronunciation",
+  "criterionInteraction": "Interactive communication",
+  "ratePartner": "Rate {name}",
+  "onlyTheySee": "Only {name} will see it",
+  "endFeedback": "Finish",
+  "partN": "Part {n}",
+  "leaderYouLong": "You run the exam",
+  "changeLabel": "Change",
+  "candidateRole": "Candidate {role}",
+  "readyLabel": "Ready",
+  "offerSlot": "Propose",
+  "deletesIn": "{n, plural, =1{Deleted in 1 day} other{Deleted in {n} days}}",
+  "feedbackReceived": "What partners say",
+  "feedbackReceivedEmpty": "When partners rate you after an exam, you'll see it here. Only you can see it.",
+  "ratingsCount": "{n, plural, =1{1 rating} other{{n} ratings}}",
+  "perMonth": "{price} a month",
+  "planStandardShort": "Standard",
+  "planProShort": "Pro",
+  "planStdFeature1": "Unlimited exams",
+  "planStdFeature2": "Matchmaking and agenda",
+  "planProFeature1": "Everything in Standard",
+  "planProFeature2": "Run the exam: pause, time and parts",
+  "readTerms": "Read the Terms",
+  "readPrivacy": "Read the Privacy Policy",
+  "signUpLegalNote": "Before you start using the app we will ask you to accept the Terms of Use and the Privacy Policy.",
+  "legalSection": "LEGAL",
+  "legalSpanishOnly": "These documents are currently available in Spanish only.",
+  "blockedUsers": "Blocked users",
+  "noBlockedUsers": "You haven't blocked anyone.",
+  "unblockAction": "Unblock",
+  "reportOrBlock": "Report or block",
+  "reportPartner": "Report {name}",
+  "reportTitle": "Report {name}",
+  "reportIntro": "We will review it as soon as possible. They won't know who reported them.",
+  "reportDetailsHint": "Tell us what happened (optional)",
+  "alsoBlock": "Also block {name}",
+  "reportSend": "Send report",
+  "reportSent": "Report sent. Thanks for letting us know.",
+  "blockOnly": "Only block {name}",
+  "blockTitle": "Block {name}?",
+  "blockBody": "You won't be matched again, you won't see each other's offers, you can't message each other and your pending meetings will be cancelled. You can unblock in Settings.",
+  "blockAction": "Block",
+  "blockedDone": "You blocked {name}.",
+  "reasonHarassment": "Harassment or insults",
+  "reasonSexual": "Sexual content",
+  "reasonHate": "Hate or discrimination",
+  "reasonMinor": "Risk to a minor",
+  "reasonSpam": "Spam or advertising",
+  "reasonNoShow": "Didn't show up",
+  "reasonOther": "Something else",
+  "@offersLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@myOffersCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@sysModifiedByMe": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@sysModified": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "agendaMineCount": "My exams · {n}",
+  "@agendaMineCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "sectionNeedsYou": "YOUR TURN",
+  "sectionUpcoming": "COMING UP",
+  "pastCount": "Past ({n})",
+  "@pastCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "statusGone": "Off",
+  "noBookingsYet": "No bookings yet",
+  "emptyMine": "No exams scheduled yet.",
+  "proposeMine": "Offer mine",
+  "companionsTitle": "PARTNERS",
+  "companionsEmpty": "After an exam you can add each other as partners and repeat with an invitation.",
+  "inviteLabel": "Invite",
+  "companionAddedYou": "Added you",
+  "addBack": "Add back",
+  "companionPendingShort": "Not added you yet",
+  "examsTogether": "{n, plural, =0{No exams together} =1{1 exam together} other{{n} exams together}}",
+  "@examsTogether": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "removeCompanion": "Remove from partners",
+  "allDays": "All",
+  "seeAlsoLevel": "Also show {level}",
+  "@seeAlsoLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "freeFromTo": "Free {from}–{to}",
+  "@freeFromTo": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "bookTitle": "{level} exam with {name}",
+  "@bookTitle": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bookThisSlot": "Book this slot",
+  "bookHint": "It will be confirmed for both of you, with a chat to organise it.",
+  "stepProposed": "Proposed",
+  "chatClosed": "This chat is closed: it is only for organising its meeting.",
+  "qrLate": "I'll be 5 min late",
+  "qrOtherTime": "Can we change the time?",
+  "qrSeeYou": "See you then!",
+  "sysBookedByMe": "You booked {when}",
+  "@sysBookedByMe": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sysBooked": "{name} booked {when}",
+  "@sysBooked": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sysInvitedByMe": "You invited for {when}",
+  "@sysInvitedByMe": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sysInvited": "{name} invites you: {when}",
+  "@sysInvited": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteTitle": "Invite {name}",
+  "@inviteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "timeField": "Time",
+  "sendInvite": "Send invitation",
+  "inviteHint": "{name} confirms it with one tap.",
+  "@inviteHint": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noTimesLeft": "No times left on this day.",
+  "companionPrompt": "Would you repeat? Add {name} to your partners to invite each other directly.",
+  "@companionPrompt": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "addCompanion": "Add to partners",
+  "companionAdded": "Added. Once {name} adds you too, you can invite each other.",
+  "@companionAdded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "companionMutual": "You and {name} are partners.",
+  "@companionMutual": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "repeatWith": "Repeat with {name}",
+  "@repeatWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSlotTaken": "That slot is already booked",
+  "errorNotCompanion": "You can only invite your partners",
+  "errorTooManyInvites": "You already have 3 unconfirmed invitations",
+  "errorTooManyCompanions": "You already have 20 partners",
+  "errorSessionNotEnded": "You can add them when the exam is over"
 }

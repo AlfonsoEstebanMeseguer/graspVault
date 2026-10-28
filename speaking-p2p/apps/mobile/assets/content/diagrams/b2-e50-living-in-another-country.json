@@ -1,0 +1,12 @@
+{
+  "id": "b2-e50-living-in-another-country",
+  "centralQuestion": "How might these things help people settle in a new country?",
+  "prompts": [
+    "learning the language",
+    "having a job",
+    "friendly neighbours",
+    "support from their community",
+    "understanding local customs"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

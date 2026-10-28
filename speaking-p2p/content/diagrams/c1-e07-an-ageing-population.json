@@ -1,0 +1,12 @@
+{
+  "id": "c1-e07-an-ageing-population",
+  "centralQuestion": "How might these issues affect a country as its population ages?",
+  "prompts": [
+    "the cost of health care",
+    "the number of people able to work",
+    "pensions",
+    "the need for caring at home",
+    "attitudes towards older workers"
+  ],
+  "decisionQuestion": "Which poses the greatest challenge for governments?"
+}

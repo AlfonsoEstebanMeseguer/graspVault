@@ -1,0 +1,12 @@
+{
+  "id": "b1-e03-getting-around-the-city",
+  "centralQuestion": "What would make travel in a town better?",
+  "prompts": [
+    "more bus routes",
+    "cheaper train tickets",
+    "new cycle lanes",
+    "free parking",
+    "fewer cars in the centre"
+  ],
+  "decisionQuestion": "Which idea would be the most useful for the town?"
+}

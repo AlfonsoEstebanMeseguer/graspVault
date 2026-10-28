@@ -1,0 +1,12 @@
+{
+  "id": "b2-e41-fitness-and-gyms",
+  "centralQuestion": "How might these things help people to keep exercising?",
+  "prompts": [
+    "exercising with friends",
+    "setting goals",
+    "having a personal trainer",
+    "tracking progress on an app",
+    "rewarding yourself"
+  ],
+  "decisionQuestion": "Which is the most effective?"
+}

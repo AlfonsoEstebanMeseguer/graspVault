@@ -44,7 +44,7 @@ begin
   s := (public.svc_match_enqueue(b, 'C1', 1, t0) ->> 'session_id')::uuid;
   select * into sess from public.exam_sessions where id = s;
   perform tests.assert_eq(sess.state, 'lobby', 'empieza en lobby');
-  perform tests.assert_eq(sess.exam_id, 'c1-work-and-technology', 'examen del nivel');
+  perform tests.assert_eq((select level from public.exam_catalog where id = sess.exam_id), 'C1', 'examen del nivel');
 
   -- ghost: only one joins, live session aborts as no_show after 90 s
   perform public.svc_session_presence(s, a, true, t0);
@@ -78,7 +78,7 @@ begin
   perform tests.assert_eq(r ->> 'segment', '0', 'antes del arranque: segmento 0');
   perform tests.assert_eq(r -> 'mic', '{"A":false,"B":false}'::jsonb, 'lector: micros cerrados');
   perform tests.assert_eq(r ->> 'needs_push', 'true', 'hay que empujar el silencio a LiveKit');
-  perform public.svc_session_mark_applied(s, 0);
+  perform public.svc_session_mark_applied_key(s, r ->> 'key');
   perform tests.assert_eq(public.svc_session_tick(s, sess.exam_started_at) ->> 'needs_push', 'false', 'ya aplicado');
   -- first 'speak' segment of Part 1 is candidate A's turn
   select (seg ->> 'startMs')::bigint, (seg ->> 'index')::int into total, n from jsonb_array_elements(sess.schedule -> 'segments') seg
@@ -134,10 +134,12 @@ begin
   perform tests.assert_eq((select completed from public.exam_history where session_id = s and user_id = b), false, 'no completado');
 
   -- rotation: with two B1 exams, the next session picks the one neither has done
+  -- (the rest of the bank is switched off so the test does not depend on its size)
+  update public.exam_catalog set active = false where level = 'B1' and id <> sess.exam_id;
   insert into public.exam_catalog (id, level, version, content_version, timeline, total_ms)
-  select 'b1-second', 'B1', 1, 1, timeline, total_ms from public.exam_catalog where id = 'b1-weekend-city';
+  select 'b1-second', 'B1', 1, 1, timeline, total_ms from public.exam_catalog where id = sess.exam_id;
   insert into public.exam_catalog (id, level, version, content_version, timeline, total_ms)
-  select 'b1-future', 'B1', 1, 99, timeline, total_ms from public.exam_catalog where id = 'b1-weekend-city';
+  select 'b1-future', 'B1', 1, 99, timeline, total_ms from public.exam_catalog where id = sess.exam_id;
   for i in 1..5 loop
     ex := private.pick_exam('B1', a, b, 1);
     perform tests.assert_eq(ex, 'b1-second', 'el que ninguno ha hecho (y nunca uno de contenido mas nuevo que la app)');
@@ -145,7 +147,7 @@ begin
   insert into public.exam_sessions (level, exam_id, exam_version, user_a, user_b, origin, state)
   values ('B1', 'b1-second', 1, a, b, 'live', 'ended') returning id into s;
   insert into public.exam_history (user_id, exam_id, session_id, started_at) values (b, 'b1-second', s, t0 + interval '1 hour');
-  perform tests.assert_eq(private.pick_exam('B1', a, b, 1), 'b1-weekend-city', 'todos hechos: el mas antiguo para ambos');
+  perform tests.assert_eq(private.pick_exam('B1', a, b, 1), sess.exam_id, 'todos hechos: el mas antiguo para ambos');
 end $$;
 rollback;
 

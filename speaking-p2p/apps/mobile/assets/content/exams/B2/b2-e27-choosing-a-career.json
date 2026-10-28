@@ -1,0 +1,205 @@
+{
+  "id": "b2-e27-choosing-a-career",
+  "level": "B2",
+  "version": 1,
+  "topic": "Choosing a career",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what do you do, or what would you like to do in the future?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e27-choosing-a-career/p1-q1.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you enjoy most about your work or studies?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e27-choosing-a-career/p1-q2.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how important is it to enjoy your job?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e27-choosing-a-career/p1-q3.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what job would you never want to do?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e27-choosing-a-career/p1-q4.mp3",
+          "audioMs": 3700
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e27-a1",
+            "b2-e27-a2"
+          ],
+          "text": "Candidate A, your photographs show people at work. Compare the photographs, and say what the advantages and disadvantages of these jobs might be.",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p2-a.mp3",
+          "audioMs": 10600
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these jobs would you prefer to do? Why?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p2-a-follow.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e27-b1",
+            "b2-e27-b2"
+          ],
+          "text": "Candidate B, your photographs show people at work. Compare the photographs, and say how the people might be feeling about their jobs.",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p2-b.mp3",
+          "audioMs": 9000
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, do you think people choose jobs for the right reasons? Why or why not?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p2-b-follow.mp3",
+          "audioMs": 5800
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some things that people think about when they choose a career, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p3-intro.mp3",
+          "audioMs": 10900
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e27-choosing-a-career",
+          "text": "Talk to each other about this question: How might these things influence a young person choosing a career?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p3-discuss.mp3",
+          "audioMs": 7400
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e27-choosing-a-career",
+          "text": "Now you have about a minute to decide together. Which is the most important?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p3-decide.mp3",
+          "audioMs": 5400
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about careers and jobs.",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p4-intro.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that it is better to choose a job you love than a job that pays well. What do you think?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p4-q1.mp3",
+          "audioMs": 7100
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, how important is it to get work experience before starting a career?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p4-q2.mp3",
+          "audioMs": 6100
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, do you think a person should stay in one company for a long time?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p4-q3.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Will there be enough jobs for everyone in the future?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p4-q4.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, who should help young people choose a career, teachers or parents?",
+          "audio": "audio/B2/b2-e27-choosing-a-career/p4-q5.mp3",
+          "audioMs": 5600
+        }
+      ]
+    }
+  ]
+}

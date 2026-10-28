@@ -36,6 +36,10 @@ const STATUS_BY_CODE: Record<string, number> = {
   too_many_offers: 409,
   overlap: 409,
   offer_unavailable: 409,
+  // Agenda v2 (D-046)
+  slot_taken: 409,
+  too_many_invites: 409,
+  not_companion: 403,
   not_pending: 409,
   not_in_lobby: 409,
   not_confirmed: 409,
@@ -55,6 +59,25 @@ const STATUS_BY_CODE: Record<string, number> = {
   not_found: 404,
   session_not_found: 404,
   not_participant: 404,
+  // Pro exam control (D-039)
+  not_leader: 403,
+  not_pro: 402,
+  stale_control: 409,
+  partner_not_pro: 409,
+  content_missing_partner: 409,
+  reader_speaking: 409,
+  already_paused: 409,
+  not_paused: 409,
+  not_reader: 409,
+  not_in_part: 409,
+  not_in_exam: 409,
+  not_started: 409,
+  switching: 409,
+  not_switching: 409,
+  session_closed: 410,
+  out_of_range: 422,
+  bad_delta: 422,
+  bad_op: 422,
 };
 
 /// Turns a PostgREST/RPC error into an HttpError, or rethrows an unknown one as 500.

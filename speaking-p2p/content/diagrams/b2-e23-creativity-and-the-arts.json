@@ -1,0 +1,12 @@
+{
+  "id": "b2-e23-creativity-and-the-arts",
+  "centralQuestion": "How might these ideas encourage more people to enjoy art?",
+  "prompts": [
+    "free entry to galleries",
+    "art lessons at school",
+    "public sculptures in the street",
+    "art classes for adults",
+    "exhibitions online"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

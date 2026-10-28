@@ -20,6 +20,7 @@ Deno.serve(handler(async (req) => {
     p_status: mapped.status,
     p_period_end: mapped.periodEnd?.toISOString() ?? null,
     p_event_at: new Date(e.event_timestamp_ms).toISOString(),
+    p_plan: mapped.plan,
   });
   return json({ applied });
 }));

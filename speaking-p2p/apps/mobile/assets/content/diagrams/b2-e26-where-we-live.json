@@ -1,0 +1,12 @@
+{
+  "id": "b2-e26-where-we-live",
+  "centralQuestion": "How might these things influence people when they choose where to live?",
+  "prompts": [
+    "the price",
+    "the neighbours",
+    "the size",
+    "the distance from work",
+    "the view"
+  ],
+  "decisionQuestion": "Which is the most important for a young family?"
+}

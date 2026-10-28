@@ -1,0 +1,12 @@
+{
+  "id": "b1-e14-part-time-jobs",
+  "centralQuestion": "Which summer job would be the best for a student?",
+  "prompts": [
+    "working in a cafe",
+    "looking after children",
+    "delivering pizzas",
+    "working in a shop",
+    "helping at a summer camp"
+  ],
+  "decisionQuestion": "Which job would be the best for a student?"
+}

@@ -1,0 +1,193 @@
+{
+  "id": "b1-e02-cooking-and-eating-at-home",
+  "level": "B1",
+  "version": 1,
+  "topic": "Cooking and eating at home",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p1-intro.mp3",
+          "audioMs": 6600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, who usually cooks in your home?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p1-q1.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is your favourite meal?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p1-q2.mp3",
+          "audioMs": 3200
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a meal you enjoyed with your family.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p1-q3.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you eat breakfast every day? What do you usually have?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p1-q4.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how often do you eat in restaurants?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p1-q5.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what would you like to learn to cook?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p1-q6.mp3",
+          "audioMs": 3500
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e02-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a father and his daughter cooking a meal at home. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p2-a.mp3",
+          "audioMs": 8700
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e02-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows friends having dinner together in a restaurant. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p2-b.mp3",
+          "audioMs": 8600
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e02-cooking-and-eating-at-home",
+          "text": "Your class is going to have a lunch together on the last day of the school year. Here are some ideas for the lunch. Talk together about the different ideas, and say which would be the best.",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p3-discuss.mp3",
+          "audioMs": 11700
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about food and cooking.",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p4-intro.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think it is better to cook at home or to eat out? Why?",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p4-q1.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think people eat too much fast food nowadays?",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p4-q2.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what food is typical in your country at a party?",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p4-q3.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Why do you think sharing a meal is important for friends and families?",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p4-q4.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, would you like to have a cooking lesson?",
+          "audio": "audio/B1/b1-e02-cooking-and-eating-at-home/p4-q5.mp3",
+          "audioMs": 3600
+        }
+      ]
+    }
+  ]
+}

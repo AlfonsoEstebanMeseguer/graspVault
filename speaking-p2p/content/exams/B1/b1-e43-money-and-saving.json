@@ -1,0 +1,193 @@
+{
+  "id": "b1-e43-money-and-saving",
+  "level": "B1",
+  "version": 1,
+  "topic": "Money and saving",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e43-money-and-saving/p1-intro.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you get pocket money?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e43-money-and-saving/p1-q1.mp3",
+          "audioMs": 3100
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you save money?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e43-money-and-saving/p1-q2.mp3",
+          "audioMs": 2800
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about something expensive that you would like to have.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e43-money-and-saving/p1-q3.mp3",
+          "audioMs": 5200
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer to buy new things or to save your money?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e43-money-and-saving/p1-q4.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you pay when you shop?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e43-money-and-saving/p1-q5.mp3",
+          "audioMs": 3200
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what are you going to do with your first salary?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e43-money-and-saving/p1-q6.mp3",
+          "audioMs": 3900
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e43-money-and-saving/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e43-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a boy saving money in a piggy bank. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e43-money-and-saving/p2-a.mp3",
+          "audioMs": 8300
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e43-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a woman paying with her phone. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e43-money-and-saving/p2-b.mp3",
+          "audioMs": 7600
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e43-money-and-saving/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e43-money-and-saving",
+          "text": "A group of friends wants to save money for a trip together. Here are some ways they could do it. Talk together about the different ways, and say which would be the best.",
+          "audio": "audio/B1/b1-e43-money-and-saving/p3-discuss.mp3",
+          "audioMs": 10300
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about money.",
+          "audio": "audio/B1/b1-e43-money-and-saving/p4-intro.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think it is difficult to save money? Why?",
+          "audio": "audio/B1/b1-e43-money-and-saving/p4-q1.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think young people should learn about money at school?",
+          "audio": "audio/B1/b1-e43-money-and-saving/p4-q2.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what is the best thing you have ever spent money on?",
+          "audio": "audio/B1/b1-e43-money-and-saving/p4-q3.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Would you rather have more money or more free time?",
+          "audio": "audio/B1/b1-e43-money-and-saving/p4-q4.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think money can make people happy?",
+          "audio": "audio/B1/b1-e43-money-and-saving/p4-q5.mp3",
+          "audioMs": 3900
+        }
+      ]
+    }
+  ]
+}

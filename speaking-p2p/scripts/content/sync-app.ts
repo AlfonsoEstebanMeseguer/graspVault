@@ -13,6 +13,7 @@ export async function appFiles(): Promise<Map<string, string>> {
   const files = new Map<string, string>();
   const add = async (rel: string) => files.set(rel, await Deno.readTextFile(new URL(rel, CONTENT_DIR)));
   await add("index.json");
+  await add("photos.json");
   for (const e of index.exams) await add(`exams/${e.level}/${e.id}.json`);
   for (const d of index.diagrams) await add(`diagrams/${d}.json`);
   return files;

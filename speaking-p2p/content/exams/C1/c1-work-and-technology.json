@@ -13,7 +13,7 @@
           "kind": "narration",
           "text": "Good afternoon. First of all, we'd like to know a little about you.",
           "audio": "audio/C1/c1-work-and-technology/p1-intro.mp3",
-          "audioMs": 5200
+          "audioMs": 4500
         },
         {
           "id": "p1-q1",
@@ -21,7 +21,7 @@
           "target": "A",
           "text": "Candidate A, what do you enjoy most about the place where you live?",
           "audio": "audio/C1/c1-work-and-technology/p1-q1.mp3",
-          "audioMs": 5200,
+          "audioMs": 4600,
           "durationSec": 25
         },
         {
@@ -30,7 +30,7 @@
           "target": "B",
           "text": "Candidate B, how do you think your working life will be different from your parents'?",
           "audio": "audio/C1/c1-work-and-technology/p1-q2.mp3",
-          "audioMs": 6000,
+          "audioMs": 5200,
           "durationSec": 30
         },
         {
@@ -39,7 +39,7 @@
           "target": "A",
           "text": "Candidate A, what skill would you most like to learn in the next few years, and why?",
           "audio": "audio/C1/c1-work-and-technology/p1-q3.mp3",
-          "audioMs": 6800,
+          "audioMs": 5900,
           "durationSec": 30
         },
         {
@@ -48,7 +48,7 @@
           "target": "B",
           "text": "Candidate B, how much do you rely on technology in your daily routine?",
           "audio": "audio/C1/c1-work-and-technology/p1-q4.mp3",
-          "audioMs": 5200,
+          "audioMs": 5500,
           "durationSec": 25
         }
       ]
@@ -62,7 +62,7 @@
           "kind": "narration",
           "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
           "audio": "audio/C1/c1-work-and-technology/p2-intro.mp3",
-          "audioMs": 16800
+          "audioMs": 13200
         },
         {
           "id": "p2-a",
@@ -70,7 +70,7 @@
           "target": "A",
           "text": "Candidate A, your pictures show people working closely together in different situations. Choose two of the pictures and say why these people might need to work closely together, and how difficult it might be.",
           "audio": "audio/C1/c1-work-and-technology/p2-a.mp3",
-          "audioMs": 13600,
+          "audioMs": 13400,
           "durationSec": 60,
           "assets": [
             "mountain-rescue",
@@ -84,7 +84,7 @@
           "target": "B",
           "text": "Candidate B, in which situation do you think teamwork is most important? Why?",
           "audio": "audio/C1/c1-work-and-technology/p2-a-follow.mp3",
-          "audioMs": 5200,
+          "audioMs": 6300,
           "durationSec": 30
         },
         {
@@ -107,7 +107,7 @@
           "target": "A",
           "text": "Candidate A, which of these jobs do you think has changed the most because of technology?",
           "audio": "audio/C1/c1-work-and-technology/p2-b-follow.mp3",
-          "audioMs": 6400,
+          "audioMs": 6600,
           "durationSec": 30
         }
       ]
@@ -121,7 +121,7 @@
           "kind": "narration",
           "text": "Now I'd like you to talk about something together for about two minutes. Here are some ways in which technology has changed the way people work, and a question for you to discuss.",
           "audio": "audio/C1/c1-work-and-technology/p3-intro.mp3",
-          "audioMs": 13200
+          "audioMs": 11600
         },
         {
           "id": "p3-discuss",
@@ -129,7 +129,7 @@
           "target": "both",
           "text": "Talk to each other about how these changes might have affected people's lives.",
           "audio": "audio/C1/c1-work-and-technology/p3-discuss.mp3",
-          "audioMs": 5200,
+          "audioMs": 5500,
           "durationSec": 120,
           "diagram": "c1-work-tech"
         },
@@ -139,7 +139,7 @@
           "target": "both",
           "text": "Now you have about a minute to decide which change has had the greatest impact on people's wellbeing.",
           "audio": "audio/C1/c1-work-and-technology/p3-decide.mp3",
-          "audioMs": 7200,
+          "audioMs": 7100,
           "durationSec": 60,
           "diagram": "c1-work-tech"
         }
@@ -162,7 +162,7 @@
           "target": "A",
           "text": "Candidate A, some people say that being always connected makes it impossible to switch off from work. How far do you agree?",
           "audio": "audio/C1/c1-work-and-technology/p4-q1.mp3",
-          "audioMs": 8800,
+          "audioMs": 8600,
           "durationSec": 50
         },
         {
@@ -171,7 +171,7 @@
           "target": "B",
           "text": "Candidate B, will artificial intelligence create more jobs than it destroys?",
           "audio": "audio/C1/c1-work-and-technology/p4-q2.mp3",
-          "audioMs": 4400,
+          "audioMs": 5900,
           "durationSec": 50
         },
         {
@@ -189,7 +189,7 @@
           "target": "both",
           "text": "What qualities will be most valued in workers twenty years from now?",
           "audio": "audio/C1/c1-work-and-technology/p4-q4.mp3",
-          "audioMs": 4800,
+          "audioMs": 5100,
           "durationSec": 50
         },
         {
@@ -207,7 +207,7 @@
           "target": "B",
           "text": "Candidate B, how should schools prepare students for jobs that don't exist yet?",
           "audio": "audio/C1/c1-work-and-technology/p4-q6.mp3",
-          "audioMs": 5200,
+          "audioMs": 5700,
           "durationSec": 45
         }
       ]

@@ -77,6 +77,9 @@ export const ContentIndex = z.object({
     topic: z.string(),
   }).strict()),
   diagrams: z.array(slug),
+  /// Examiner voices rendered for every step (D-033). Both clients of a session
+  /// pick the same one from the session id.
+  voices: z.array(z.string().regex(/^[a-z]{2}_[a-z]+$/)).min(1),
 }).strict();
 export type ContentIndex = z.infer<typeof ContentIndex>;
 
@@ -85,6 +88,9 @@ export const PART2_ASSETS_PER_TURN: Record<Level, number> = { B1: 1, B2: 2, C1: 
 
 export const audioPath = (level: Level, examId: string, stepId: string) =>
   `audio/${level}/${examId}/${stepId}.mp3`;
+/// Where a voice's rendering of a step lives in R2 (D-033): the step keeps its
+/// voice-less path in the JSON; the voice is inserted after "audio/".
+export const voiceAudioPath = (voice: string, audio: string) => audio.replace(/^audio\//, `audio/${voice}/`);
 export const imagePath = (level: Level, examId: string, assetId: string) =>
   `img/${level}/${examId}/${assetId}.webp`;
 

@@ -2,6 +2,306 @@
   "version": 1,
   "exams": [
     {
+      "id": "b1-e01-shopping-for-clothes",
+      "level": "B1",
+      "version": 1,
+      "topic": "Shopping for clothes"
+    },
+    {
+      "id": "b1-e02-cooking-and-eating-at-home",
+      "level": "B1",
+      "version": 1,
+      "topic": "Cooking and eating at home"
+    },
+    {
+      "id": "b1-e03-getting-around-the-city",
+      "level": "B1",
+      "version": 1,
+      "topic": "Getting around the city"
+    },
+    {
+      "id": "b1-e04-a-birthday-party",
+      "level": "B1",
+      "version": 1,
+      "topic": "A birthday party"
+    },
+    {
+      "id": "b1-e05-learning-english",
+      "level": "B1",
+      "version": 1,
+      "topic": "Learning English"
+    },
+    {
+      "id": "b1-e06-keeping-fit",
+      "level": "B1",
+      "version": 1,
+      "topic": "Keeping fit"
+    },
+    {
+      "id": "b1-e07-pets-and-animals",
+      "level": "B1",
+      "version": 1,
+      "topic": "Pets and animals"
+    },
+    {
+      "id": "b1-e08-a-weekend-trip",
+      "level": "B1",
+      "version": 1,
+      "topic": "A weekend trip"
+    },
+    {
+      "id": "b1-e09-music-and-concerts",
+      "level": "B1",
+      "version": 1,
+      "topic": "Music and concerts"
+    },
+    {
+      "id": "b1-e10-using-phones",
+      "level": "B1",
+      "version": 1,
+      "topic": "Using phones"
+    },
+    {
+      "id": "b1-e11-weather-and-seasons",
+      "level": "B1",
+      "version": 1,
+      "topic": "Weather and seasons"
+    },
+    {
+      "id": "b1-e12-hobbies-at-home",
+      "level": "B1",
+      "version": 1,
+      "topic": "Hobbies at home"
+    },
+    {
+      "id": "b1-e13-studying",
+      "level": "B1",
+      "version": 1,
+      "topic": "Studying"
+    },
+    {
+      "id": "b1-e14-part-time-jobs",
+      "level": "B1",
+      "version": 1,
+      "topic": "Part-time jobs"
+    },
+    {
+      "id": "b1-e15-reading-books",
+      "level": "B1",
+      "version": 1,
+      "topic": "Reading books"
+    },
+    {
+      "id": "b1-e16-going-to-the-cinema",
+      "level": "B1",
+      "version": 1,
+      "topic": "Going to the cinema"
+    },
+    {
+      "id": "b1-e17-friends",
+      "level": "B1",
+      "version": 1,
+      "topic": "Friends"
+    },
+    {
+      "id": "b1-e18-life-in-the-countryside",
+      "level": "B1",
+      "version": 1,
+      "topic": "Life in the countryside"
+    },
+    {
+      "id": "b1-e19-places-to-stay",
+      "level": "B1",
+      "version": 1,
+      "topic": "Places to stay"
+    },
+    {
+      "id": "b1-e20-a-day-at-the-beach",
+      "level": "B1",
+      "version": 1,
+      "topic": "A day at the beach"
+    },
+    {
+      "id": "b1-e21-recycling-and-the-environment",
+      "level": "B1",
+      "version": 1,
+      "topic": "Recycling and the environment"
+    },
+    {
+      "id": "b1-e22-festivals-in-town",
+      "level": "B1",
+      "version": 1,
+      "topic": "Festivals in town"
+    },
+    {
+      "id": "b1-e23-parks-and-gardens",
+      "level": "B1",
+      "version": 1,
+      "topic": "Parks and gardens"
+    },
+    {
+      "id": "b1-e24-video-games",
+      "level": "B1",
+      "version": 1,
+      "topic": "Video games"
+    },
+    {
+      "id": "b1-e25-school-uniforms",
+      "level": "B1",
+      "version": 1,
+      "topic": "School uniforms"
+    },
+    {
+      "id": "b1-e26-meeting-in-cafes",
+      "level": "B1",
+      "version": 1,
+      "topic": "Meeting in cafes"
+    },
+    {
+      "id": "b1-e27-housework",
+      "level": "B1",
+      "version": 1,
+      "topic": "Housework"
+    },
+    {
+      "id": "b1-e28-helping-other-people",
+      "level": "B1",
+      "version": 1,
+      "topic": "Helping other people"
+    },
+    {
+      "id": "b1-e29-museums-and-history",
+      "level": "B1",
+      "version": 1,
+      "topic": "Museums and history"
+    },
+    {
+      "id": "b1-e30-taking-photos",
+      "level": "B1",
+      "version": 1,
+      "topic": "Taking photos"
+    },
+    {
+      "id": "b1-e31-daily-routines",
+      "level": "B1",
+      "version": 1,
+      "topic": "Daily routines"
+    },
+    {
+      "id": "b1-e32-healthy-eating",
+      "level": "B1",
+      "version": 1,
+      "topic": "Healthy eating"
+    },
+    {
+      "id": "b1-e33-learning-to-drive",
+      "level": "B1",
+      "version": 1,
+      "topic": "Learning to drive"
+    },
+    {
+      "id": "b1-e34-flying-abroad",
+      "level": "B1",
+      "version": 1,
+      "topic": "Flying abroad"
+    },
+    {
+      "id": "b1-e35-my-neighbours",
+      "level": "B1",
+      "version": 1,
+      "topic": "My neighbours"
+    },
+    {
+      "id": "b1-e36-art-and-painting",
+      "level": "B1",
+      "version": 1,
+      "topic": "Art and painting"
+    },
+    {
+      "id": "b1-e37-famous-people",
+      "level": "B1",
+      "version": 1,
+      "topic": "Famous people"
+    },
+    {
+      "id": "b1-e38-watching-sport",
+      "level": "B1",
+      "version": 1,
+      "topic": "Watching sport"
+    },
+    {
+      "id": "b1-e39-moving-house",
+      "level": "B1",
+      "version": 1,
+      "topic": "Moving house"
+    },
+    {
+      "id": "b1-e40-after-school-activities",
+      "level": "B1",
+      "version": 1,
+      "topic": "After-school activities"
+    },
+    {
+      "id": "b1-e41-computers-at-school",
+      "level": "B1",
+      "version": 1,
+      "topic": "Computers at school"
+    },
+    {
+      "id": "b1-e42-board-games",
+      "level": "B1",
+      "version": 1,
+      "topic": "Board games"
+    },
+    {
+      "id": "b1-e43-money-and-saving",
+      "level": "B1",
+      "version": 1,
+      "topic": "Money and saving"
+    },
+    {
+      "id": "b1-e44-hiking-in-the-mountains",
+      "level": "B1",
+      "version": 1,
+      "topic": "Hiking in the mountains"
+    },
+    {
+      "id": "b1-e45-fashion-and-hairstyles",
+      "level": "B1",
+      "version": 1,
+      "topic": "Fashion and hairstyles"
+    },
+    {
+      "id": "b1-e46-the-past",
+      "level": "B1",
+      "version": 1,
+      "topic": "The past"
+    },
+    {
+      "id": "b1-e47-tourists-in-my-country",
+      "level": "B1",
+      "version": 1,
+      "topic": "Tourists in my country"
+    },
+    {
+      "id": "b1-e48-family-time",
+      "level": "B1",
+      "version": 1,
+      "topic": "Family time"
+    },
+    {
+      "id": "b1-e49-jobs-of-the-future",
+      "level": "B1",
+      "version": 1,
+      "topic": "Jobs of the future"
+    },
+    {
+      "id": "b1-e50-television-and-news",
+      "level": "B1",
+      "version": 1,
+      "topic": "Television and news"
+    },
+    {
       "id": "b1-weekend-city",
       "level": "B1",
       "version": 1,
@@ -14,6 +314,606 @@
       "topic": "Community life"
     },
     {
+      "id": "b2-e01-working-from-home",
+      "level": "B2",
+      "version": 1,
+      "topic": "Working from home"
+    },
+    {
+      "id": "b2-e02-social-media-and-friendship",
+      "level": "B2",
+      "version": 1,
+      "topic": "Social media and friendship"
+    },
+    {
+      "id": "b2-e03-the-impact-of-tourism",
+      "level": "B2",
+      "version": 1,
+      "topic": "The impact of tourism"
+    },
+    {
+      "id": "b2-e04-the-pressure-of-competition",
+      "level": "B2",
+      "version": 1,
+      "topic": "The pressure of competition"
+    },
+    {
+      "id": "b2-e05-learning-in-different-ways",
+      "level": "B2",
+      "version": 1,
+      "topic": "Learning in different ways"
+    },
+    {
+      "id": "b2-e06-eating-habits",
+      "level": "B2",
+      "version": 1,
+      "topic": "Eating habits"
+    },
+    {
+      "id": "b2-e07-climate-and-everyday-choices",
+      "level": "B2",
+      "version": 1,
+      "topic": "Climate and everyday choices"
+    },
+    {
+      "id": "b2-e08-streaming-and-entertainment",
+      "level": "B2",
+      "version": 1,
+      "topic": "Streaming and entertainment"
+    },
+    {
+      "id": "b2-e09-stress-and-well-being",
+      "level": "B2",
+      "version": 1,
+      "topic": "Stress and well-being"
+    },
+    {
+      "id": "b2-e10-moving-to-the-city",
+      "level": "B2",
+      "version": 1,
+      "topic": "Moving to the city"
+    },
+    {
+      "id": "b2-e11-money-and-consumerism",
+      "level": "B2",
+      "version": 1,
+      "topic": "Money and consumerism"
+    },
+    {
+      "id": "b2-e12-image-and-fashion",
+      "level": "B2",
+      "version": 1,
+      "topic": "Image and fashion"
+    },
+    {
+      "id": "b2-e13-technology-in-the-home",
+      "level": "B2",
+      "version": 1,
+      "topic": "Technology in the home"
+    },
+    {
+      "id": "b2-e14-charity-and-giving",
+      "level": "B2",
+      "version": 1,
+      "topic": "Charity and giving"
+    },
+    {
+      "id": "b2-e15-live-music",
+      "level": "B2",
+      "version": 1,
+      "topic": "Live music"
+    },
+    {
+      "id": "b2-e16-the-future-of-books",
+      "level": "B2",
+      "version": 1,
+      "topic": "The future of books"
+    },
+    {
+      "id": "b2-e17-languages-and-cultures",
+      "level": "B2",
+      "version": 1,
+      "topic": "Languages and cultures"
+    },
+    {
+      "id": "b2-e18-hobbies-and-free-time",
+      "level": "B2",
+      "version": 1,
+      "topic": "Hobbies and free time"
+    },
+    {
+      "id": "b2-e19-commuting",
+      "level": "B2",
+      "version": 1,
+      "topic": "Commuting"
+    },
+    {
+      "id": "b2-e20-becoming-independent",
+      "level": "B2",
+      "version": 1,
+      "topic": "Becoming independent"
+    },
+    {
+      "id": "b2-e21-family-relationships",
+      "level": "B2",
+      "version": 1,
+      "topic": "Family relationships"
+    },
+    {
+      "id": "b2-e22-teamwork",
+      "level": "B2",
+      "version": 1,
+      "topic": "Teamwork"
+    },
+    {
+      "id": "b2-e23-creativity-and-the-arts",
+      "level": "B2",
+      "version": 1,
+      "topic": "Creativity and the arts"
+    },
+    {
+      "id": "b2-e24-the-news-and-the-media",
+      "level": "B2",
+      "version": 1,
+      "topic": "The news and the media"
+    },
+    {
+      "id": "b2-e25-adventure-and-risk",
+      "level": "B2",
+      "version": 1,
+      "topic": "Adventure and risk"
+    },
+    {
+      "id": "b2-e26-where-we-live",
+      "level": "B2",
+      "version": 1,
+      "topic": "Where we live"
+    },
+    {
+      "id": "b2-e27-choosing-a-career",
+      "level": "B2",
+      "version": 1,
+      "topic": "Choosing a career"
+    },
+    {
+      "id": "b2-e28-traditions-and-festivals",
+      "level": "B2",
+      "version": 1,
+      "topic": "Traditions and festivals"
+    },
+    {
+      "id": "b2-e29-wildlife-and-nature",
+      "level": "B2",
+      "version": 1,
+      "topic": "Wildlife and nature"
+    },
+    {
+      "id": "b2-e30-challenges-and-goals",
+      "level": "B2",
+      "version": 1,
+      "topic": "Challenges and goals"
+    },
+    {
+      "id": "b2-e31-shopping-online",
+      "level": "B2",
+      "version": 1,
+      "topic": "Shopping online"
+    },
+    {
+      "id": "b2-e32-photos-and-memories",
+      "level": "B2",
+      "version": 1,
+      "topic": "Photos and memories"
+    },
+    {
+      "id": "b2-e33-studying-abroad",
+      "level": "B2",
+      "version": 1,
+      "topic": "Studying abroad"
+    },
+    {
+      "id": "b2-e34-public-spaces",
+      "level": "B2",
+      "version": 1,
+      "topic": "Public spaces"
+    },
+    {
+      "id": "b2-e35-cooking-and-restaurants",
+      "level": "B2",
+      "version": 1,
+      "topic": "Cooking and restaurants"
+    },
+    {
+      "id": "b2-e36-growing-things",
+      "level": "B2",
+      "version": 1,
+      "topic": "Growing things"
+    },
+    {
+      "id": "b2-e37-museums-and-heritage",
+      "level": "B2",
+      "version": 1,
+      "topic": "Museums and heritage"
+    },
+    {
+      "id": "b2-e38-gaming-and-e-sports",
+      "level": "B2",
+      "version": 1,
+      "topic": "Gaming and e-sports"
+    },
+    {
+      "id": "b2-e39-extreme-weather",
+      "level": "B2",
+      "version": 1,
+      "topic": "Extreme weather"
+    },
+    {
+      "id": "b2-e40-role-models",
+      "level": "B2",
+      "version": 1,
+      "topic": "Role models"
+    },
+    {
+      "id": "b2-e41-fitness-and-gyms",
+      "level": "B2",
+      "version": 1,
+      "topic": "Fitness and gyms"
+    },
+    {
+      "id": "b2-e42-children-and-screens",
+      "level": "B2",
+      "version": 1,
+      "topic": "Children and screens"
+    },
+    {
+      "id": "b2-e43-the-power-of-advertising",
+      "level": "B2",
+      "version": 1,
+      "topic": "The power of advertising"
+    },
+    {
+      "id": "b2-e44-rules-and-laws",
+      "level": "B2",
+      "version": 1,
+      "topic": "Rules and laws"
+    },
+    {
+      "id": "b2-e45-exams-and-pressure",
+      "level": "B2",
+      "version": 1,
+      "topic": "Exams and pressure"
+    },
+    {
+      "id": "b2-e46-powering-the-future",
+      "level": "B2",
+      "version": 1,
+      "topic": "Powering the future"
+    },
+    {
+      "id": "b2-e47-science-and-space",
+      "level": "B2",
+      "version": 1,
+      "topic": "Science and space"
+    },
+    {
+      "id": "b2-e48-young-and-old",
+      "level": "B2",
+      "version": 1,
+      "topic": "Young and old"
+    },
+    {
+      "id": "b2-e49-learning-practical-skills",
+      "level": "B2",
+      "version": 1,
+      "topic": "Learning practical skills"
+    },
+    {
+      "id": "b2-e50-living-in-another-country",
+      "level": "B2",
+      "version": 1,
+      "topic": "Living in another country"
+    },
+    {
+      "id": "c1-e01-digital-overload",
+      "level": "C1",
+      "version": 1,
+      "topic": "Digital overload"
+    },
+    {
+      "id": "c1-e02-global-and-local-identity",
+      "level": "C1",
+      "version": 1,
+      "topic": "Global and local identity"
+    },
+    {
+      "id": "c1-e03-work-life-balance",
+      "level": "C1",
+      "version": 1,
+      "topic": "Work-life balance"
+    },
+    {
+      "id": "c1-e04-greener-cities",
+      "level": "C1",
+      "version": 1,
+      "topic": "Greener cities"
+    },
+    {
+      "id": "c1-e05-the-value-of-the-arts",
+      "level": "C1",
+      "version": 1,
+      "topic": "The value of the arts"
+    },
+    {
+      "id": "c1-e06-the-cost-of-fashion",
+      "level": "C1",
+      "version": 1,
+      "topic": "The cost of fashion"
+    },
+    {
+      "id": "c1-e07-an-ageing-population",
+      "level": "C1",
+      "version": 1,
+      "topic": "An ageing population"
+    },
+    {
+      "id": "c1-e08-is-university-worth-it",
+      "level": "C1",
+      "version": 1,
+      "topic": "Is university worth it?"
+    },
+    {
+      "id": "c1-e09-privacy-and-surveillance",
+      "level": "C1",
+      "version": 1,
+      "topic": "Privacy and surveillance"
+    },
+    {
+      "id": "c1-e10-taking-entrepreneurial-risks",
+      "level": "C1",
+      "version": 1,
+      "topic": "Taking entrepreneurial risks"
+    },
+    {
+      "id": "c1-e11-fame-and-public-attention",
+      "level": "C1",
+      "version": 1,
+      "topic": "Fame and public attention"
+    },
+    {
+      "id": "c1-e12-community-and-well-being",
+      "level": "C1",
+      "version": 1,
+      "topic": "Community and well-being"
+    },
+    {
+      "id": "c1-e13-the-way-language-changes",
+      "level": "C1",
+      "version": 1,
+      "topic": "The way language changes"
+    },
+    {
+      "id": "c1-e14-ethics-of-science-and-ai",
+      "level": "C1",
+      "version": 1,
+      "topic": "Ethics of science and AI"
+    },
+    {
+      "id": "c1-e15-buildings-and-character",
+      "level": "C1",
+      "version": 1,
+      "topic": "Buildings and character"
+    },
+    {
+      "id": "c1-e16-prevention-in-health-care",
+      "level": "C1",
+      "version": 1,
+      "topic": "Prevention in health care"
+    },
+    {
+      "id": "c1-e17-money-and-professional-sport",
+      "level": "C1",
+      "version": 1,
+      "topic": "Money and professional sport"
+    },
+    {
+      "id": "c1-e18-feeding-the-world",
+      "level": "C1",
+      "version": 1,
+      "topic": "Feeding the world"
+    },
+    {
+      "id": "c1-e19-leadership",
+      "level": "C1",
+      "version": 1,
+      "topic": "Leadership"
+    },
+    {
+      "id": "c1-e20-innovation-at-work",
+      "level": "C1",
+      "version": 1,
+      "topic": "Innovation at work"
+    },
+    {
+      "id": "c1-e21-civic-duty",
+      "level": "C1",
+      "version": 1,
+      "topic": "Civic duty"
+    },
+    {
+      "id": "c1-e22-slow-travel-and-authenticity",
+      "level": "C1",
+      "version": 1,
+      "topic": "Slow travel and authenticity"
+    },
+    {
+      "id": "c1-e23-wealth-and-happiness",
+      "level": "C1",
+      "version": 1,
+      "topic": "Wealth and happiness"
+    },
+    {
+      "id": "c1-e24-lifelong-learning",
+      "level": "C1",
+      "version": 1,
+      "topic": "Lifelong learning"
+    },
+    {
+      "id": "c1-e25-the-gig-economy",
+      "level": "C1",
+      "version": 1,
+      "topic": "The gig economy"
+    },
+    {
+      "id": "c1-e26-young-people-and-politics",
+      "level": "C1",
+      "version": 1,
+      "topic": "Young people and politics"
+    },
+    {
+      "id": "c1-e27-who-should-act-on-climate",
+      "level": "C1",
+      "version": 1,
+      "topic": "Who should act on climate?"
+    },
+    {
+      "id": "c1-e28-influencers-and-authenticity",
+      "level": "C1",
+      "version": 1,
+      "topic": "Influencers and authenticity"
+    },
+    {
+      "id": "c1-e29-memory-and-nostalgia",
+      "level": "C1",
+      "version": 1,
+      "topic": "Memory and nostalgia"
+    },
+    {
+      "id": "c1-e30-taking-risks-for-thrills",
+      "level": "C1",
+      "version": 1,
+      "topic": "Taking risks for thrills"
+    },
+    {
+      "id": "c1-e31-transport-of-the-future",
+      "level": "C1",
+      "version": 1,
+      "topic": "Transport of the future"
+    },
+    {
+      "id": "c1-e32-the-pace-of-life",
+      "level": "C1",
+      "version": 1,
+      "topic": "The pace of life"
+    },
+    {
+      "id": "c1-e33-fairness-at-work",
+      "level": "C1",
+      "version": 1,
+      "topic": "Fairness at work"
+    },
+    {
+      "id": "c1-e34-development-or-wildlife",
+      "level": "C1",
+      "version": 1,
+      "topic": "Development or wildlife?"
+    },
+    {
+      "id": "c1-e35-competition-or-cooperation",
+      "level": "C1",
+      "version": 1,
+      "topic": "Competition or cooperation"
+    },
+    {
+      "id": "c1-e36-music-and-identity",
+      "level": "C1",
+      "version": 1,
+      "topic": "Music and identity"
+    },
+    {
+      "id": "c1-e37-the-power-of-documentaries",
+      "level": "C1",
+      "version": 1,
+      "topic": "The power of documentaries"
+    },
+    {
+      "id": "c1-e38-home-and-belonging",
+      "level": "C1",
+      "version": 1,
+      "topic": "Home and belonging"
+    },
+    {
+      "id": "c1-e39-a-matter-of-time",
+      "level": "C1",
+      "version": 1,
+      "topic": "A matter of time"
+    },
+    {
+      "id": "c1-e40-water-a-precious-resource",
+      "level": "C1",
+      "version": 1,
+      "topic": "Water: a precious resource"
+    },
+    {
+      "id": "c1-e41-design-in-everyday-life",
+      "level": "C1",
+      "version": 1,
+      "topic": "Design in everyday life"
+    },
+    {
+      "id": "c1-e42-trusting-the-experts",
+      "level": "C1",
+      "version": 1,
+      "topic": "Trusting the experts"
+    },
+    {
+      "id": "c1-e43-reviving-rural-life",
+      "level": "C1",
+      "version": 1,
+      "topic": "Reviving rural life"
+    },
+    {
+      "id": "c1-e44-parenting-styles",
+      "level": "C1",
+      "version": 1,
+      "topic": "Parenting styles"
+    },
+    {
+      "id": "c1-e45-tradition-for-sale",
+      "level": "C1",
+      "version": 1,
+      "topic": "Tradition for sale"
+    },
+    {
+      "id": "c1-e46-access-for-all",
+      "level": "C1",
+      "version": 1,
+      "topic": "Access for all"
+    },
+    {
+      "id": "c1-e47-learning-from-failure",
+      "level": "C1",
+      "version": 1,
+      "topic": "Learning from failure"
+    },
+    {
+      "id": "c1-e48-global-cooperation",
+      "level": "C1",
+      "version": 1,
+      "topic": "Global cooperation"
+    },
+    {
+      "id": "c1-e49-talent-or-hard-work",
+      "level": "C1",
+      "version": 1,
+      "topic": "Talent or hard work?"
+    },
+    {
+      "id": "c1-e50-deep-reading",
+      "level": "C1",
+      "version": 1,
+      "topic": "Deep reading"
+    },
+    {
       "id": "c1-work-and-technology",
       "level": "C1",
       "version": 1,
@@ -21,8 +921,164 @@
     }
   ],
   "diagrams": [
+    "b1-e01-shopping-for-clothes",
+    "b1-e02-cooking-and-eating-at-home",
+    "b1-e03-getting-around-the-city",
+    "b1-e04-a-birthday-party",
+    "b1-e05-learning-english",
+    "b1-e06-keeping-fit",
+    "b1-e07-pets-and-animals",
+    "b1-e08-a-weekend-trip",
+    "b1-e09-music-and-concerts",
+    "b1-e10-using-phones",
+    "b1-e11-weather-and-seasons",
+    "b1-e12-hobbies-at-home",
+    "b1-e13-studying",
+    "b1-e14-part-time-jobs",
+    "b1-e15-reading-books",
+    "b1-e16-going-to-the-cinema",
+    "b1-e17-friends",
+    "b1-e18-life-in-the-countryside",
+    "b1-e19-places-to-stay",
+    "b1-e20-a-day-at-the-beach",
+    "b1-e21-recycling-and-the-environment",
+    "b1-e22-festivals-in-town",
+    "b1-e23-parks-and-gardens",
+    "b1-e24-video-games",
+    "b1-e25-school-uniforms",
+    "b1-e26-meeting-in-cafes",
+    "b1-e27-housework",
+    "b1-e28-helping-other-people",
+    "b1-e29-museums-and-history",
+    "b1-e30-taking-photos",
+    "b1-e31-daily-routines",
+    "b1-e32-healthy-eating",
+    "b1-e33-learning-to-drive",
+    "b1-e34-flying-abroad",
+    "b1-e35-my-neighbours",
+    "b1-e36-art-and-painting",
+    "b1-e37-famous-people",
+    "b1-e38-watching-sport",
+    "b1-e39-moving-house",
+    "b1-e40-after-school-activities",
+    "b1-e41-computers-at-school",
+    "b1-e42-board-games",
+    "b1-e43-money-and-saving",
+    "b1-e44-hiking-in-the-mountains",
+    "b1-e45-fashion-and-hairstyles",
+    "b1-e46-the-past",
+    "b1-e47-tourists-in-my-country",
+    "b1-e48-family-time",
+    "b1-e49-jobs-of-the-future",
+    "b1-e50-television-and-news",
     "b1-new-town",
     "b2-community",
+    "b2-e01-working-from-home",
+    "b2-e02-social-media-and-friendship",
+    "b2-e03-the-impact-of-tourism",
+    "b2-e04-the-pressure-of-competition",
+    "b2-e05-learning-in-different-ways",
+    "b2-e06-eating-habits",
+    "b2-e07-climate-and-everyday-choices",
+    "b2-e08-streaming-and-entertainment",
+    "b2-e09-stress-and-well-being",
+    "b2-e10-moving-to-the-city",
+    "b2-e11-money-and-consumerism",
+    "b2-e12-image-and-fashion",
+    "b2-e13-technology-in-the-home",
+    "b2-e14-charity-and-giving",
+    "b2-e15-live-music",
+    "b2-e16-the-future-of-books",
+    "b2-e17-languages-and-cultures",
+    "b2-e18-hobbies-and-free-time",
+    "b2-e19-commuting",
+    "b2-e20-becoming-independent",
+    "b2-e21-family-relationships",
+    "b2-e22-teamwork",
+    "b2-e23-creativity-and-the-arts",
+    "b2-e24-the-news-and-the-media",
+    "b2-e25-adventure-and-risk",
+    "b2-e26-where-we-live",
+    "b2-e27-choosing-a-career",
+    "b2-e28-traditions-and-festivals",
+    "b2-e29-wildlife-and-nature",
+    "b2-e30-challenges-and-goals",
+    "b2-e31-shopping-online",
+    "b2-e32-photos-and-memories",
+    "b2-e33-studying-abroad",
+    "b2-e34-public-spaces",
+    "b2-e35-cooking-and-restaurants",
+    "b2-e36-growing-things",
+    "b2-e37-museums-and-heritage",
+    "b2-e38-gaming-and-e-sports",
+    "b2-e39-extreme-weather",
+    "b2-e40-role-models",
+    "b2-e41-fitness-and-gyms",
+    "b2-e42-children-and-screens",
+    "b2-e43-the-power-of-advertising",
+    "b2-e44-rules-and-laws",
+    "b2-e45-exams-and-pressure",
+    "b2-e46-powering-the-future",
+    "b2-e47-science-and-space",
+    "b2-e48-young-and-old",
+    "b2-e49-learning-practical-skills",
+    "b2-e50-living-in-another-country",
+    "c1-e01-digital-overload",
+    "c1-e02-global-and-local-identity",
+    "c1-e03-work-life-balance",
+    "c1-e04-greener-cities",
+    "c1-e05-the-value-of-the-arts",
+    "c1-e06-the-cost-of-fashion",
+    "c1-e07-an-ageing-population",
+    "c1-e08-is-university-worth-it",
+    "c1-e09-privacy-and-surveillance",
+    "c1-e10-taking-entrepreneurial-risks",
+    "c1-e11-fame-and-public-attention",
+    "c1-e12-community-and-well-being",
+    "c1-e13-the-way-language-changes",
+    "c1-e14-ethics-of-science-and-ai",
+    "c1-e15-buildings-and-character",
+    "c1-e16-prevention-in-health-care",
+    "c1-e17-money-and-professional-sport",
+    "c1-e18-feeding-the-world",
+    "c1-e19-leadership",
+    "c1-e20-innovation-at-work",
+    "c1-e21-civic-duty",
+    "c1-e22-slow-travel-and-authenticity",
+    "c1-e23-wealth-and-happiness",
+    "c1-e24-lifelong-learning",
+    "c1-e25-the-gig-economy",
+    "c1-e26-young-people-and-politics",
+    "c1-e27-who-should-act-on-climate",
+    "c1-e28-influencers-and-authenticity",
+    "c1-e29-memory-and-nostalgia",
+    "c1-e30-taking-risks-for-thrills",
+    "c1-e31-transport-of-the-future",
+    "c1-e32-the-pace-of-life",
+    "c1-e33-fairness-at-work",
+    "c1-e34-development-or-wildlife",
+    "c1-e35-competition-or-cooperation",
+    "c1-e36-music-and-identity",
+    "c1-e37-the-power-of-documentaries",
+    "c1-e38-home-and-belonging",
+    "c1-e39-a-matter-of-time",
+    "c1-e40-water-a-precious-resource",
+    "c1-e41-design-in-everyday-life",
+    "c1-e42-trusting-the-experts",
+    "c1-e43-reviving-rural-life",
+    "c1-e44-parenting-styles",
+    "c1-e45-tradition-for-sale",
+    "c1-e46-access-for-all",
+    "c1-e47-learning-from-failure",
+    "c1-e48-global-cooperation",
+    "c1-e49-talent-or-hard-work",
+    "c1-e50-deep-reading",
     "c1-work-tech"
+  ],
+  "voices": [
+    "bf_emma",
+    "bm_george",
+    "bf_isabella",
+    "bm_lewis"
   ]
 }

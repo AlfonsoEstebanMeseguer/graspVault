@@ -9,6 +9,9 @@ export type TickResult = {
   segment: number;
   mic: { A: boolean; B: boolean };
   needs_push: boolean;
+  /// `${control_version}:${segment}`: the mic mark is keyed, so a jump BACK is pushed too (D-039).
+  key: string;
+  paused: boolean;
   server_now: string;
   abort_reason: string | null;
 };
@@ -40,7 +43,7 @@ export async function tickAndApply(sessionId: string): Promise<TickResult> {
   if (r.needs_push) {
     try {
       await applyMicPolicy(sessionId, s.user_a, s.user_b, r.mic);
-      await rpc("svc_session_mark_applied", { p_session: sessionId, p_idx: r.segment });
+      await rpc("svc_session_mark_applied_key", { p_session: sessionId, p_key: r.key });
     } catch (e) {
       // Not marked as applied: the next tick (client or cron) retries.
       console.error("mic push failed", sessionId, e);

@@ -62,6 +62,13 @@ Deno.test("RevenueCat: cancelar no quita el periodo pagado; expirar si", () => {
   assertEquals(mapRcEvent({ ...base, type: "TEST" }), null);
 });
 
+Deno.test("RevenueCat: el plan sale de los entitlements (D-037)", () => {
+  const base = { id: "e", app_user_id: "u", event_timestamp_ms: 1, expiration_at_ms: 2_000_000_000_000, type: "PRODUCT_CHANGE" };
+  assertEquals(mapRcEvent({ ...base, entitlement_ids: ["standard", "pro"] })?.plan, "pro");
+  assertEquals(mapRcEvent({ ...base, entitlement_ids: ["standard"] })?.plan, "standard");
+  assertEquals(mapRcEvent({ ...base, entitlement_ids: null })?.plan, null, "sin ids no se toca el plan");
+});
+
 Deno.test("magic bytes: webp y jpeg si; png o basura no", () => {
   const webp = new TextEncoder().encode("RIFF\0\0\0\0WEBPVP8 ");
   assertEquals(sniffImage(webp), "webp");

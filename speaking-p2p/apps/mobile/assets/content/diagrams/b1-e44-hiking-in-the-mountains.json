@@ -1,0 +1,12 @@
+{
+  "id": "b1-e44-hiking-in-the-mountains",
+  "centralQuestion": "What is the best way to spend a day in nature?",
+  "prompts": [
+    "a mountain walk",
+    "a bike ride",
+    "a picnic by a lake",
+    "canoeing on the river",
+    "looking for wild animals"
+  ],
+  "decisionQuestion": "Which activity would be the best for the day?"
+}

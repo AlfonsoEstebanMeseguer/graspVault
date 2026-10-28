@@ -6,6 +6,7 @@ analyzer:
     - lib/l10n/app_localizations*.dart
     - android/**
     - ios/**
+    - web/**
   language:
     strict-casts: true
     strict-raw-types: true

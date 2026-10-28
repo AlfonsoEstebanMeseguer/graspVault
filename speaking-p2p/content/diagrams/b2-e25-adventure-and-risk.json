@@ -1,0 +1,12 @@
+{
+  "id": "b2-e25-adventure-and-risk",
+  "centralQuestion": "How might these things affect someone who is thinking about doing a dangerous activity?",
+  "prompts": [
+    "the cost",
+    "safety equipment",
+    "the opinion of family",
+    "being with experienced people",
+    "the reward"
+  ],
+  "decisionQuestion": "Which is the most important to think about?"
+}

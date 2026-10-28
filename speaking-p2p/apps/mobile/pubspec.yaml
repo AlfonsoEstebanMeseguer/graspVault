@@ -9,11 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_image_compress: 2.5.1
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^3.4.3
   go_router: ^18.1.0
   google_sign_in: ^7.2.0
+  image_picker: 1.2.3
   intl: ^0.20.3
   just_audio: ^0.10.6
   livekit_client: ^2.13.1
@@ -29,6 +31,47 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  # Design 2.0 (docs/img/img_remaked): OFL fonts, bundled so the exam never
+  # waits for a download. Licences in assets/fonts/OFL-*.txt and LICENSE-phosphor.txt.
+  fonts:
+    - family: InstrumentSans
+      fonts:
+        - asset: assets/fonts/InstrumentSans-400.ttf
+          weight: 400
+        - asset: assets/fonts/InstrumentSans-500.ttf
+          weight: 500
+        - asset: assets/fonts/InstrumentSans-600.ttf
+          weight: 600
+        - asset: assets/fonts/InstrumentSans-700.ttf
+          weight: 700
+    - family: Newsreader
+      fonts:
+        - asset: assets/fonts/Newsreader-500.ttf
+          weight: 500
+        - asset: assets/fonts/Newsreader-500Italic.ttf
+          weight: 500
+          style: italic
+    - family: PlexMono
+      fonts:
+        - asset: assets/fonts/IBMPlexMono-500.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexMono-600.ttf
+          weight: 600
+    - family: PhosphorRegular
+      fonts:
+        - asset: assets/fonts/Phosphor-Regular.ttf
+    - family: PhosphorFill
+      fonts:
+        - asset: assets/fonts/Phosphor-Fill.ttf
+    - family: PhosphorBold
+      fonts:
+        - asset: assets/fonts/Phosphor-Bold.ttf
+    - family: Caveat
+      fonts:
+        - asset: assets/fonts/Caveat-500.ttf
+          weight: 500
+        - asset: assets/fonts/Caveat-600.ttf
+          weight: 600
   # Copied from /content by scripts/content/sync-app.ts (CI checks it is fresh).
   # Binaries (reader audio, photos) are NOT bundled: they come from R2/CDN.
   assets:
@@ -37,3 +80,8 @@ flutter:
     - assets/content/exams/B2/
     - assets/content/exams/C1/
     - assets/content/diagrams/
+    - assets/legal/
+    - assets/fonts/OFL-instrumentsans.txt
+    - assets/fonts/OFL-newsreader.txt
+    - assets/fonts/OFL-ibmplexmono.txt
+    - assets/fonts/OFL-caveat.txt

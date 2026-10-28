@@ -1,0 +1,205 @@
+{
+  "id": "b2-e32-photos-and-memories",
+  "level": "B2",
+  "version": 1,
+  "topic": "Photos and memories",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you take a lot of photos?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e32-photos-and-memories/p1-q1.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you usually do with your photos?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e32-photos-and-memories/p1-q2.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a photo that is important to you.",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e32-photos-and-memories/p1-q3.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer looking at old photos or taking new ones?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e32-photos-and-memories/p1-q4.mp3",
+          "audioMs": 5200
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e32-a1",
+            "b2-e32-a2"
+          ],
+          "text": "Candidate A, your photographs show people with photographs. Compare the photographs, and say what the people might be thinking.",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p2-a.mp3",
+          "audioMs": 8400
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, how important are photographs to you?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p2-a-follow.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e32-b1",
+            "b2-e32-b2"
+          ],
+          "text": "Candidate B, your photographs show people working with photographs. Compare the photographs, and say what skills the people might need.",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p2-b.mp3",
+          "audioMs": 9100
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, would you like to be a photographer? Why or why not?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p2-b-follow.mp3",
+          "audioMs": 4900
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some reasons why people take photos, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p3-intro.mp3",
+          "audioMs": 10000
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e32-photos-and-memories",
+          "text": "Talk to each other about this question: How might these reasons explain why people take so many photos?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p3-discuss.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e32-photos-and-memories",
+          "text": "Now you have about a minute to decide together. Which is the most common reason in your opinion?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p3-decide.mp3",
+          "audioMs": 6700
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about photography and memories.",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p4-intro.mp3",
+          "audioMs": 5400
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that taking photos stops us from enjoying the moment. What is your opinion?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p4-q1.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think people share too much of their private life through photos?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p4-q2.mp3",
+          "audioMs": 5700
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, how do photos change the way we remember the past?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p4-q3.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Should people ask permission before they photograph others?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p4-q4.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, how might photography change in the next few years?",
+          "audio": "audio/B2/b2-e32-photos-and-memories/p4-q5.mp3",
+          "audioMs": 4600
+        }
+      ]
+    }
+  ]
+}

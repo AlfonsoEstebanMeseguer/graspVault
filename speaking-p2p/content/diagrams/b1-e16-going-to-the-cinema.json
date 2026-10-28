@@ -1,0 +1,12 @@
+{
+  "id": "b1-e16-going-to-the-cinema",
+  "centralQuestion": "What is the best way to enjoy a film with friends?",
+  "prompts": [
+    "go to a big cinema",
+    "watch at home with snacks",
+    "have an outdoor cinema night",
+    "watch in a student club",
+    "go to a film festival"
+  ],
+  "decisionQuestion": "Which idea would be the best evening with friends?"
+}

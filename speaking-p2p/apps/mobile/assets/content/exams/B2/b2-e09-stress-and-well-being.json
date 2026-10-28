@@ -1,0 +1,205 @@
+{
+  "id": "b2-e09-stress-and-well-being",
+  "level": "B2",
+  "version": 1,
+  "topic": "Stress and well-being",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you usually spend your weekends?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p1-q1.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you do to relax after a busy day?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p1-q2.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you find it easy to switch off from work or study?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p1-q3.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you think people today are more stressed than in the past?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p1-q4.mp3",
+          "audioMs": 5100
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e09-a1",
+            "b2-e09-a2"
+          ],
+          "text": "Candidate A, your photographs show people in different situations. Compare the photographs, and say how the people might be feeling and why.",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p2-a.mp3",
+          "audioMs": 9600
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these situations is more like your daily life? Why?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p2-a-follow.mp3",
+          "audioMs": 5900
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e09-b1",
+            "b2-e09-b2"
+          ],
+          "text": "Candidate B, your photographs show people looking after their health. Compare the photographs, and say why the people might have decided to do this.",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p2-b.mp3",
+          "audioMs": 9700
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, how do you take care of your health?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p2-b-follow.mp3",
+          "audioMs": 3500
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some things that can help people deal with stress, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p3-intro.mp3",
+          "audioMs": 10400
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e09-stress-and-well-being",
+          "text": "Talk to each other about this question: How might these things help people to deal with stress?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p3-discuss.mp3",
+          "audioMs": 6200
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e09-stress-and-well-being",
+          "text": "Now you have about a minute to decide together. Which would be the most helpful for a busy student?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p3-decide.mp3",
+          "audioMs": 6600
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about health and stress.",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p4-intro.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people think that stress is a normal part of modern life. What is your view?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p4-q1.mp3",
+          "audioMs": 5700
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think schools should teach students how to manage stress?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p4-q2.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, how can employers make their staff feel less stressed?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p4-q3.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Do you think technology makes our lives more stressful or less stressful?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p4-q4.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, is it better to have a very busy life or a calm life?",
+          "audio": "audio/B2/b2-e09-stress-and-well-being/p4-q5.mp3",
+          "audioMs": 5300
+        }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,8 @@ import { handler, HttpError, json, parseBody } from "../_shared/http.ts";
 import { adminClient, requireAuthUser } from "../_shared/supabase.ts";
 import { presign } from "../_shared/r2.ts";
 
-const CONTENT_KEY = /^(audio\/(B1|B2|C1)\/[a-z0-9-]+\/[a-z0-9-]+\.mp3|img\/(B1|B2|C1)\/[a-z0-9-]+\/[a-z0-9-]+\.webp)$/;
+// Reader audio carries the examiner voice (D-033): audio/{voice}/{level}/{exam}/{step}.mp3
+const CONTENT_KEY = /^(audio\/[a-z]{2}_[a-z]+\/(B1|B2|C1)\/[a-z0-9-]+\/[a-z0-9-]+\.mp3|img\/(B1|B2|C1)\/[a-z0-9-]+\/[a-z0-9-]+\.webp)$/;
 
 const Body = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("avatar"), userId: z.string().uuid() }),

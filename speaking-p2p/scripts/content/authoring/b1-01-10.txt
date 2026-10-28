@@ -1,0 +1,159 @@
+=== B1 01 | Shopping for clothes | shopping
+P1: where do you usually buy your clothes?
+P1: do you enjoy shopping? Why or why not?
+P1: tell us about something you bought recently.
+P1: do you prefer shopping with friends or on your own?
+P1: what do you like to spend your money on?
+P1: what would you like to buy next month?
+P2: young woman trying on a jacket in a clothes shop || people choosing clothes in a clothes shop
+P2: man shopping on a laptop at home || a man shopping on the internet at home
+P3: A friend of yours wants to buy a birthday present for his sister. Here are some places where he could buy it. Talk together about the different places, and say which would be the best. || Where is the best place to buy a birthday present? || a big department store ; a street market ; an online shop ; a small gift shop ; a shopping centre || Which place would be the best for buying the present?
+P4: both: Do you think shopping online is better than going to the shops? Why?
+P4: A: do you think young people spend too much money on clothes?
+P4: B: do you ever buy second-hand things? Why or why not?
+P4: both: What is the most difficult thing to choose when you buy a present for someone?
+P4: A: what is your favourite shop in your town?
+
+=== B1 02 | Cooking and eating at home | food and cooking
+P1: who usually cooks in your home?
+P1: what is your favourite meal?
+P1: tell us about a meal you enjoyed with your family.
+P1: do you eat breakfast every day? What do you usually have?
+P1: how often do you eat in restaurants?
+P1: what would you like to learn to cook?
+P2: father and daughter cooking together in a kitchen || a father and his daughter cooking a meal at home
+P2: friends eating at a restaurant table || friends having dinner together in a restaurant
+P3: Your class is going to have a lunch together on the last day of the school year. Here are some ideas for the lunch. Talk together about the different ideas, and say which would be the best. || What is the best way to organise a class lunch? || everyone brings a dish ; a picnic in the park ; a pizza delivery ; a barbecue at school ; a table at a restaurant || Which idea would be the best for the class lunch?
+P4: both: Do you think it is better to cook at home or to eat out? Why?
+P4: A: do you think people eat too much fast food nowadays?
+P4: B: what food is typical in your country at a party?
+P4: both: Why do you think sharing a meal is important for friends and families?
+P4: B: would you like to have a cooking lesson?
+
+=== B1 03 | Getting around the city | travelling around town
+P1: how do you get to school or work every day?
+P1: do you prefer travelling by bus or by train? Why?
+P1: tell us about a journey you made recently.
+P1: is it easy to travel around the place where you live?
+P1: do you ever ride a bicycle?
+P1: how do you think you will travel to your next holiday?
+P2: crowded bus stop with people waiting in the rain || people waiting for a bus in the rain
+P2: woman riding a bike along a city street || a young woman cycling to work in a city
+P3: Some people want to make travel in their town better. Here are some ideas the town could try. Talk together about the different ideas, and say which would be the most useful. || What would make travel in a town better? || more bus routes ; cheaper train tickets ; new cycle lanes ; free parking ; fewer cars in the centre || Which idea would be the most useful for the town?
+P4: both: Do you think people should use their cars less? Why?
+P4: A: what do you think is the most difficult thing about travelling in a big city?
+P4: B: would you like to live in a place without cars?
+P4: both: Is it better to travel to work by bike or by public transport?
+P4: A: how could your town help people who find it difficult to travel?
+
+=== B1 04 | A birthday party | celebrations
+P1: how do you usually celebrate your birthday?
+P1: tell us about a party you enjoyed.
+P1: what is your favourite day of the year? Why?
+P1: do you like giving presents to people?
+P1: who do you spend most time with at weekends?
+P1: what are you going to do for your next birthday?
+P2: group of friends around a birthday cake with candles || a group of friends celebrating a birthday
+P2: family dancing at a wedding party outdoors || a family dancing at a wedding
+P3: Your friend is going to have a birthday party and wants it to be special. Here are some things she could do. Talk together about the different ideas, and say which would be the best for the party. || What would make a birthday party special? || a live band ; a surprise guest ; a themed costume party ; a party in a park ; a big dinner at home || Which idea would make the best party?
+P4: both: Do you prefer big parties or small parties? Why?
+P4: A: what do you think is a good present for a friend?
+P4: B: is there a celebration in your country that you really like?
+P4: both: Do you think people spend too much money on parties and presents?
+P4: B: what is the best way to say thank you for a present?
+
+=== B1 05 | Learning English | learning languages
+P1: how long have you been learning English?
+P1: why do you want to learn English?
+P1: what do you find most difficult about English?
+P1: do you like speaking to people in English?
+P1: tell us about your favourite teacher.
+P1: how do you hope to use English in the future?
+P2: students listening to a teacher in a language class || students in a language classroom
+P2: young man watching a film in English on his laptop || a young man learning English by watching a film
+P3: A friend of yours wants to improve her English quickly before a trip. Here are some things she could do. Talk together about the different ideas, and say which would be the best way to improve. || What is the best way to improve your English? || go to evening classes ; watch films in English ; chat with people online ; read books in English ; travel to an English-speaking country || Which idea would be the best way to improve her English?
+P4: both: Do you think it is easy to learn a language at school? Why or why not?
+P4: A: do you think everybody should learn English?
+P4: B: how often do you practise English outside class?
+P4: both: Is it better to learn a language alone or in a group?
+P4: A: would you like to learn another language? Which one?
+
+=== B1 06 | Keeping fit | sport and health
+P1: do you do any sport?
+P1: what sports are popular in your country?
+P1: tell us about a time you went for a long walk or ran a race.
+P1: do you prefer playing sport or watching it?
+P1: how much sleep do you usually get?
+P1: what would you like to do to be healthier?
+P2: group of people running together in a park || a group of people running in a park
+P2: woman doing yoga at home with a laptop || a woman doing exercise at home
+P3: A friend of yours wants to get fitter and healthier. Here are some activities he could do. Talk together about the different activities, and say which would be the best. || What is the best way to get fit? || joining a gym ; running in the park ; swimming ; playing in a football team ; cycling to work || Which activity would be the best way to get fit?
+P4: both: Do you think it is better to exercise alone or with other people? Why?
+P4: A: do you think young people do enough sport?
+P4: B: what do you do to relax after a busy day?
+P4: both: Why is it sometimes difficult for people to keep fit?
+P4: B: should schools have more sport lessons?
+
+=== B1 07 | Pets and animals | animals
+P1: do you have a pet at home?
+P1: what is your favourite animal?
+P1: tell us about a time you saw an interesting animal.
+P1: do you like going to the zoo?
+P1: do you live in a house or a flat?
+P1: would you like to have a pet in the future?
+P2: girl playing with a dog in the garden || a girl playing with her dog
+P2: family looking at elephants in a zoo || a family looking at animals at a zoo
+P3: A family wants to have a pet but they live in a small flat. Here are some animals they could choose. Talk together about the different animals, and say which would be the best pet for them. || Which pet would be the best for a family in a small flat? || a cat ; a small dog ; a fish ; a rabbit ; a bird || Which animal would be the best pet for the family?
+P4: both: Do you think it is a good idea to keep animals in a flat? Why or why not?
+P4: A: do you think children learn anything from having a pet?
+P4: B: what is difficult about looking after a pet?
+P4: both: Should people keep wild animals in zoos?
+P4: B: are there any animals you are afraid of?
+
+=== B1 08 | A weekend trip | short trips and holidays
+P1: where did you go on your last holiday?
+P1: do you prefer holidays by the sea or in the mountains?
+P1: tell us about a place you would like to visit.
+P1: who do you usually travel with?
+P1: what do you always take with you on a trip?
+P1: where are you going to go next summer?
+P2: tourists walking through an old town with maps || tourists visiting an old town
+P2: family camping with a tent next to a lake || a family camping by a lake
+P3: Some friends are planning a weekend trip together. Here are some places they could go. Talk together about the different places, and say which would be the best for a weekend. || Where is the best place to go for a weekend trip? || a city with museums ; a beach ; a campsite in the mountains ; a small village ; a theme park || Which place would be the best for the weekend?
+P4: both: Do you prefer short trips or long holidays? Why?
+P4: A: what do you think is the best way to find a cheap place to stay?
+P4: B: is it better to plan a trip carefully or to decide when you arrive?
+P4: both: Why do you think so many people like to travel?
+P4: A: have you ever had a problem on a trip?
+
+=== B1 09 | Music and concerts | music
+P1: what kind of music do you like?
+P1: how often do you listen to music?
+P1: tell us about a concert or a festival you went to.
+P1: do you play a musical instrument?
+P1: where do you usually listen to music?
+P1: would you like to learn an instrument one day?
+P2: young band playing on a stage at night || a band playing at a concert
+P2: boy practising the guitar in his bedroom || a boy playing the guitar at home
+P3: Your school wants to organise a music event to get money for a charity. Here are some ideas. Talk together about the different ideas, and say which would be the best. || What would be the best music event for the school? || a rock concert ; a talent show ; a choir evening ; a disco ; a street concert || Which event would be the best to get money for the charity?
+P4: both: Do you think it is better to listen to live music or to recorded music? Why?
+P4: A: do you think everybody should learn to play an instrument?
+P4: B: what music do you think is popular with young people today?
+P4: both: Why do you think music is so important for many people?
+P4: B: have you ever gone to a concert with a friend?
+
+=== B1 10 | Using phones | technology and phones
+P1: how often do you use your phone?
+P1: what do you use your phone for most?
+P1: tell us about the first time you used a computer.
+P1: do you prefer to send messages or to phone people?
+P1: do you play games on your phone?
+P1: how do you think phones will change in the future?
+P2: group of teenagers all looking at their phones || teenagers looking at their phones
+P2: grandmother learning to use a tablet with her grandson || an older woman learning to use a tablet
+P3: A school wants to help its students use their phones in a more useful way. Here are some ideas. Talk together about the different ideas, and say which would be the most useful. || What would help students use their phones in a better way? || using phones in lessons ; a phone-free lunch break ; learning to stay safe online ; an app for homework ; a school phone club || Which idea would be the most useful for the students?
+P4: both: Do you think people spend too much time on their phones? Why?
+P4: A: is it a good idea to let young children have a phone?
+P4: B: how do phones help you with your studies?
+P4: both: Are there places where people should not use their phones?
+P4: B: what would you do if you had no phone for a week?

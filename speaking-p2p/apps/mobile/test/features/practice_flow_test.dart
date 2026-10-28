@@ -19,7 +19,7 @@ Future<SilentReaderPlayer> _pumpApp(WidgetTester tester, {Map<String, Object> pr
   await tester.pumpWidget(ProviderScope(
     overrides: [
       sharedPreferencesProvider.overrideWithValue(sp),
-      readerPlayerProvider.overrideWithValue(player),
+      readerPlayerFactoryProvider.overrideWithValue((_) => player),
     ],
     child: const SpeakingApp(),
   ));
@@ -47,16 +47,18 @@ void main() {
   testWidgets('inicio -> practica: cabecera, texto del examinador y conmutadores', (tester) async {
     await _pumpApp(tester, prefs: {'ui_locale': 'es', 'target_level': 'B2'});
     expect(find.text('Practicar con compañero simulado'), findsOneWidget);
+    expect(find.text('Practicar con compañero VIP simulado'), findsOneWidget, reason: 'modo debug');
     await tester.tap(find.text('Practicar con compañero simulado'));
     await pumpUntilFound(tester, find.text('PARTE 1 DE 4'));
     expect(find.text('Interview'), findsOneWidget);
     expect(find.textContaining('First of all'), findsOneWidget);
     expect(tester.takeException(), isNull);
+    expect(find.byKey(const Key('leader-dock')), findsNothing, reason: 'sin VIP no hay controles de líder');
 
-    await tester.tap(find.text('Ocultar texto'));
+    await tester.tap(find.byTooltip('Ocultar texto'));
     await tester.pump();
     expect(find.textContaining('First of all'), findsNothing);
-    expect(find.text('Ver texto'), findsOneWidget);
+    expect(find.byTooltip('Ver texto'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Ocultar cronómetro'));
     await tester.pump();
@@ -66,8 +68,8 @@ void main() {
   testWidgets('abandonar: el boton de confirmar esta bloqueado 5 s', (tester) async {
     await _pumpApp(tester, prefs: {'ui_locale': 'es'});
     await tester.tap(find.text('Practicar con compañero simulado'));
-    await pumpUntilFound(tester, find.text('Abandonar'));
-    await tester.tap(find.text('Abandonar'));
+    await pumpUntilFound(tester, find.byTooltip('Abandonar'));
+    await tester.tap(find.byTooltip('Abandonar'));
     await tester.pump(const Duration(milliseconds: 400));
     FilledButton confirm() => tester.widget<FilledButton>(find.byKey(const Key('abandon-confirm')));
     expect(confirm().onPressed, isNull);

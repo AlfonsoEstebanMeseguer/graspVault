@@ -11,6 +11,8 @@ class LiveKitEngine implements VoiceService {
   final _speakers = StreamController<Set<String>>.broadcast();
   lk.Room? _room;
   lk.EventsListener<lk.RoomEvent>? _listener;
+  bool _serverAllows = false;
+  bool _selfMuted = false;
 
   @override
   Stream<VoiceConnection> get connection => _conn.stream;
@@ -40,14 +42,26 @@ class LiveKitEngine implements VoiceService {
   }
 
   Future<void> _applyPermission(bool canPublish) async {
+    _serverAllows = canPublish;
     _can.add(canPublish);
+    await _syncMic();
+  }
+
+  // Opening the mic only when the server allows it AND the user has not muted
+  // themselves; when the server revokes, LiveKit unpublishes the track and this
+  // just keeps the local state in sync.
+  Future<void> _syncMic() async {
     try {
-      // Opening the mic only when the server allows it; when it revokes,
-      // LiveKit unpublishes the track and this just keeps the local state in sync.
-      await _room?.localParticipant?.setMicrophoneEnabled(canPublish);
+      await _room?.localParticipant?.setMicrophoneEnabled(_serverAllows && !_selfMuted);
     } catch (_) {
       // Missing OS permission: the UI shows the mic as closed; the exam goes on.
     }
+  }
+
+  @override
+  Future<void> setSelfMuted(bool muted) async {
+    _selfMuted = muted;
+    await _syncMic();
   }
 
   @override

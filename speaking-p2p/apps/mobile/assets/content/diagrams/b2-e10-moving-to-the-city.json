@@ -1,0 +1,12 @@
+{
+  "id": "b2-e10-moving-to-the-city",
+  "centralQuestion": "How might these things improve life in a city?",
+  "prompts": [
+    "more parks",
+    "cheaper housing",
+    "better public transport",
+    "safer streets",
+    "more cultural events"
+  ],
+  "decisionQuestion": "Which would be the most important for the people living there?"
+}

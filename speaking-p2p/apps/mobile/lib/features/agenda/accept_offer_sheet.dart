@@ -1,37 +1,39 @@
-// "Elegir hora" (sketch 19): 30-min slots inside the window; the ones that clash
-// with my confirmed meetings are blocked ("Ocupado"). Returns the new chat id.
+// "Reservar este hueco" (D-046): the slot was tapped on the board card; this
+// confirms it. Booking makes the meeting confirmed for both. Returns the chat id.
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
+import '../../core/theming/tokens.dart';
 import '../../data/agenda/agenda_repository.dart';
 import '../../domain/agenda/agenda.dart';
-import '../home/home_screen.dart' show levelName;
+import '../../domain/exam/models.dart';
+import '../profile/avatar/user_avatar.dart';
 import 'agenda_common.dart';
 
-Future<String?> showAcceptOfferSheet(BuildContext context, Offer offer) => showModalBottomSheet<String>(
+Future<String?> showBookSlotSheet(BuildContext context, Offer offer, DateTime at) => showModalBottomSheet<String>(
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
-      builder: (_) => AcceptOfferSheet(offer: offer),
+      builder: (_) => BookSlotSheet(offer: offer, at: at),
     );
 
-class AcceptOfferSheet extends ConsumerStatefulWidget {
-  const AcceptOfferSheet({super.key, required this.offer});
+class BookSlotSheet extends ConsumerStatefulWidget {
+  const BookSlotSheet({super.key, required this.offer, required this.at});
   final Offer offer;
+  final DateTime at;
   @override
-  ConsumerState<AcceptOfferSheet> createState() => _AcceptOfferSheetState();
+  ConsumerState<BookSlotSheet> createState() => _BookSlotSheetState();
 }
 
-class _AcceptOfferSheetState extends ConsumerState<AcceptOfferSheet> {
-  DateTime? _picked;
+class _BookSlotSheetState extends ConsumerState<BookSlotSheet> {
   bool _busy = false;
 
-  Future<void> _accept() async {
+  Future<void> _book() async {
     setState(() => _busy = true);
     try {
-      final r = await ref.read(agendaRepositoryProvider)!.accept(widget.offer.id, _picked!);
+      final r = await ref.read(agendaRepositoryProvider)!.accept(widget.offer.id, widget.at);
       if (mounted) Navigator.of(context).pop(r.chatId);
     } catch (e) {
       if (mounted) {
@@ -48,84 +50,27 @@ class _AcceptOfferSheetState extends ConsumerState<AcceptOfferSheet> {
     final o = widget.offer;
     final now = ref.watch(agendaClockProvider)();
     final name = o.creatorName ?? l.deletedUser;
-    final busy = ref.watch(myMeetingsProvider).value?.map((m) => m.scheduledAt).toList() ?? const <DateTime>[];
-    final slots = AgendaRules.slots(o.windowStart, o.windowEnd, now, busy);
     return SafeArea(
-      child: SingleChildScrollView(
+      child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.min, children: [
           Row(children: [
-            InitialAvatar(name: name, size: 48),
+            UserAvatar(name: name, userId: o.creatorId, avatarKey: o.creatorAvatarKey, size: 48),
             const SizedBox(width: 12),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(l.examWithTitle(name), style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: p.textPrimary)),
-                Text('${windowText(context, o.windowStart, o.windowEnd, now)} · ${levelName(l, o.level)}',
-                    style: TextStyle(color: p.textSecondary)),
-              ]),
-            ),
+            Expanded(child: Text(l.bookTitle(o.level.code, name), style: AppType.title2.copyWith(color: p.textPrimary))),
           ]),
-          const SizedBox(height: 20),
-          Text(l.chooseStart, style: TextStyle(fontWeight: FontWeight.w600, color: p.textPrimary)),
-          const SizedBox(height: 10),
-          if (slots.isEmpty)
-            Text(l.noSlots, style: TextStyle(color: p.textSecondary))
-          else
-            GridView.count(
-              crossAxisCount: 3,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              childAspectRatio: 2.2,
-              children: [
-                for (final s in slots)
-                  _Slot(
-                    time: hm(s.at),
-                    busy: s.busy,
-                    selected: _picked == s.at,
-                    onTap: () => setState(() => _picked = s.at),
-                  ),
-              ],
-            ),
-          const SizedBox(height: 10),
-          Text(l.busyHint, style: TextStyle(fontSize: 12, color: p.textSecondary)),
           const SizedBox(height: 16),
+          Text(whenText(context, widget.at, now), style: AppType.timer.copyWith(fontSize: 26, color: p.textPrimary)),
+          Text(l.meetingLength, style: AppType.footnote.copyWith(color: p.textSecondary, fontWeight: FontWeight.w400)),
+          const SizedBox(height: 12),
+          Text(l.bookHint, style: AppType.body.copyWith(color: p.textSecondary)),
+          const SizedBox(height: 18),
           FilledButton(
-            onPressed: _picked == null || _busy ? null : _accept,
-            child: Text(_picked == null ? l.pickATime : l.proposeAndChat(hm(_picked!))),
+            key: const Key('book-slot'),
+            onPressed: _busy ? null : _book,
+            child: _busy ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2)) : Text(l.bookThisSlot),
           ),
         ]),
-      ),
-    );
-  }
-}
-
-class _Slot extends StatelessWidget {
-  const _Slot({required this.time, required this.busy, required this.selected, required this.onTap});
-  final String time;
-  final bool busy, selected;
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    final p = context.palette;
-    final l = context.l10n;
-    final bg = selected ? p.brand : (busy ? p.surfaceMuted : p.surface);
-    final fg = selected ? p.onBrand : (busy ? p.textSecondary : p.textPrimary);
-    return Material(
-      color: bg,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: BorderSide(color: selected ? p.brand : p.border)),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: busy ? null : onTap,
-        child: Center(
-          child: FittedBox(
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Text(time, style: TextStyle(fontWeight: FontWeight.w700, color: fg, decoration: busy ? TextDecoration.lineThrough : null)),
-              if (busy) Text(l.busyLabel, style: TextStyle(fontSize: 11, color: fg)),
-            ]),
-          ),
-        ),
       ),
     );
   }

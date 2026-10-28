@@ -1,0 +1,12 @@
+{
+  "id": "b1-e33-learning-to-drive",
+  "centralQuestion": "What is the most important thing when you buy your first car?",
+  "prompts": [
+    "the price",
+    "how much petrol it uses",
+    "the size",
+    "how safe it is",
+    "the colour and the look"
+  ],
+  "decisionQuestion": "Which thing is the most important?"
+}

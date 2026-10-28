@@ -1,0 +1,12 @@
+{
+  "id": "b2-e06-eating-habits",
+  "centralQuestion": "How might these things help people eat in a healthier way?",
+  "prompts": [
+    "cooking lessons at school",
+    "cheaper fruit and vegetables",
+    "clear labels on food",
+    "less advertising for sweet food",
+    "eating together as a family"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

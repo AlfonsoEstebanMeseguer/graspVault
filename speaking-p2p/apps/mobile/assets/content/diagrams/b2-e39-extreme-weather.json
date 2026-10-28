@@ -1,0 +1,12 @@
+{
+  "id": "b2-e39-extreme-weather",
+  "centralQuestion": "How might these things help communities cope with extreme weather?",
+  "prompts": [
+    "early warnings",
+    "stronger buildings",
+    "emergency shelters",
+    "planting trees",
+    "teaching people what to do"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b1-e23-parks-and-gardens",
+  "centralQuestion": "How could the old park become more popular?",
+  "prompts": [
+    "a playground",
+    "a cafe",
+    "a small zoo",
+    "sports courts",
+    "a flower garden"
+  ],
+  "decisionQuestion": "Which idea would be the best for the park?"
+}

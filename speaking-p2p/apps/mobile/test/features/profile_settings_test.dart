@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speaking_p2p/domain/feedback/peer_rating.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,6 +24,11 @@ class FakeAccount implements AccountRepository {
 
   @override
   Future<int> examsDone() async => 7;
+  @override
+  Future<FeedbackSummary> feedbackReceived() async => FeedbackSummary.of(const [
+        PeerRating(scores: {Criterion.grammar: 4, Criterion.discourse: 3, Criterion.pronunciation: 4, Criterion.interaction: 5}),
+        PeerRating(scores: {Criterion.grammar: 3, Criterion.discourse: 4, Criterion.pronunciation: 5, Criterion.interaction: 4}),
+      ]);
   @override
   Future<List<RecordingItem>> recordings() async => [
         RecordingItem(
@@ -82,8 +88,8 @@ void main() {
     expect(find.text('laura_m'), findsOneWidget);
     expect(find.text('C1 Advanced'), findsOneWidget);
     expect(find.text('7'), findsOneWidget);
-    expect(find.text('C1 con Usuario eliminado'), findsOneWidget);
-    expect(find.text('28 días'), findsOneWidget);
+    expect(find.text('C1 con un compañero'), findsOneWidget);
+    expect(find.text('Se borra en 28 días'), findsOneWidget);
   });
 
   testWidgets('perfil: editar envía username, idiomas y nivel', (tester) async {
@@ -105,8 +111,15 @@ void main() {
 
   testWidgets('ajustes: el modo "todos pagan" no inventa una fecha de pago', (tester) async {
     await pump(tester, const SettingsScreen());
-    expect(find.text('Activa'), findsOneWidget);
+    expect(find.text('Activo'), findsOneWidget);
     expect(find.textContaining('Próximo pago'), findsNothing);
+    // D-037: standard plan, with the Pro comparison (purchase waits for the store)
+    expect(find.text('Plan Estándar'), findsOneWidget);
+    await tester.ensureVisible(find.byKey(const Key('upgrade-pro')));
+    await tester.tap(find.byKey(const Key('upgrade-pro')));
+    await tester.pumpAndSettle();
+    expect(find.text('Pro: tú diriges el examen'), findsOneWidget);
+    expect(tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Disponible cuando se active la tienda')).onPressed, isNull);
   });
 
   testWidgets('eliminar cuenta: exige contraseña y la frase ELIMINAR', (tester) async {

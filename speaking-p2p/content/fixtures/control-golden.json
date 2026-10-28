@@ -1,0 +1,430 @@
+{
+ "description": "Pro controls (D-039). Applied in order from the initial state; an error leaves the state unchanged. The timeline is timeline-golden.json's; switch_exam loads the same timeline under another id. Checked by apps/mobile/test/domain/control_golden_test.dart and apps/backend/supabase/tests/sql/07_session_control.sql.",
+ "examId": "golden",
+ "startedAtMs": 1000000,
+ "cases": [
+  {
+   "nowMs": 1003000,
+   "op": "pause",
+   "args": {},
+   "expect": {
+    "error": "reader_speaking"
+   }
+  },
+  {
+   "nowMs": 1010000,
+   "op": "pause",
+   "args": {},
+   "expect": {
+    "startedAtMs": 1000000,
+    "pausedAtMs": 1010000,
+    "pauseReason": "leader",
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1677200,
+    "version": 1,
+    "state": "part1",
+    "segment": 2
+   }
+  },
+  {
+   "nowMs": 1050000,
+   "op": "pause",
+   "args": {},
+   "expect": {
+    "error": "already_paused"
+   }
+  },
+  {
+   "nowMs": 1050000,
+   "op": "resume",
+   "args": {},
+   "expect": {
+    "startedAtMs": 1040000,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1717200,
+    "version": 2,
+    "state": "part1",
+    "segment": 2
+   }
+  },
+  {
+   "nowMs": 1060000,
+   "op": "skip_reader",
+   "args": {},
+   "expect": {
+    "error": "not_reader"
+   }
+  },
+  {
+   "nowMs": 1060000,
+   "op": "next_step",
+   "args": {},
+   "expect": {
+    "startedAtMs": 1035300,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1712500,
+    "version": 3,
+    "state": "part1",
+    "segment": 3
+   }
+  },
+  {
+   "nowMs": 1061000,
+   "op": "skip_reader",
+   "args": {},
+   "expect": {
+    "startedAtMs": 1034300,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1711500,
+    "version": 4,
+    "state": "part1",
+    "segment": 4
+   }
+  },
+  {
+   "nowMs": 1062000,
+   "op": "next_part",
+   "args": {},
+   "expect": {
+    "startedAtMs": 1015300,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1692500,
+    "version": 5,
+    "state": "part2",
+    "segment": 5
+   }
+  },
+  {
+   "nowMs": 1063000,
+   "op": "extend",
+   "args": {
+    "deltaMs": 60000
+   },
+   "expect": {
+    "startedAtMs": 1015300,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 437200,
+    "feedbackEndsAtMs": 1752500,
+    "version": 6,
+    "state": "part2",
+    "segment": 5,
+    "durationsMs": [
+     2600,
+     2100,
+     20000,
+     2000,
+     20000,
+     4600,
+     120000,
+     1600,
+     30000,
+     3600,
+     120000,
+     2600,
+     60000,
+     3100,
+     45000
+    ]
+   }
+  },
+  {
+   "nowMs": 1063000,
+   "op": "extend",
+   "args": {
+    "deltaMs": 45000
+   },
+   "expect": {
+    "error": "bad_delta"
+   }
+  },
+  {
+   "nowMs": 1063000,
+   "op": "set_part_speak",
+   "args": {
+    "ms": 90000
+   },
+   "expect": {
+    "startedAtMs": 1015300,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 407200,
+    "feedbackEndsAtMs": 1722500,
+    "version": 7,
+    "state": "part2",
+    "segment": 5,
+    "durationsMs": [
+     2600,
+     2100,
+     20000,
+     2000,
+     20000,
+     4600,
+     90000,
+     1600,
+     30000,
+     3600,
+     120000,
+     2600,
+     60000,
+     3100,
+     45000
+    ]
+   }
+  },
+  {
+   "nowMs": 1063000,
+   "op": "set_part_speak",
+   "args": {
+    "ms": 5000
+   },
+   "expect": {
+    "error": "out_of_range"
+   }
+  },
+  {
+   "nowMs": 1070000,
+   "op": "extend",
+   "args": {
+    "deltaMs": -30000
+   },
+   "expect": {
+    "startedAtMs": 1015300,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1692500,
+    "version": 8,
+    "state": "part2",
+    "segment": 6,
+    "durationsMs": [
+     2600,
+     2100,
+     20000,
+     2000,
+     20000,
+     4600,
+     60000,
+     1600,
+     30000,
+     3600,
+     120000,
+     2600,
+     60000,
+     3100,
+     45000
+    ]
+   }
+  },
+  {
+   "nowMs": 1070000,
+   "op": "repeat_step",
+   "args": {},
+   "expect": {
+    "startedAtMs": 1023300,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1700500,
+    "version": 9,
+    "state": "part2",
+    "segment": 5
+   }
+  },
+  {
+   "nowMs": 1071000,
+   "op": "go_to_part",
+   "args": {
+    "part": 1
+   },
+   "expect": {
+    "startedAtMs": 1071000,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1748200,
+    "version": 10,
+    "state": "part1",
+    "segment": 0
+   }
+  },
+  {
+   "nowMs": 1071000,
+   "op": "go_to_part",
+   "args": {
+    "part": 5
+   },
+   "expect": {
+    "error": "out_of_range"
+   }
+  },
+  {
+   "nowMs": 1072000,
+   "op": "end_exam",
+   "args": {},
+   "expect": {
+    "startedAtMs": 694800,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1372000,
+    "version": 11,
+    "state": "feedback",
+    "segment": null
+   }
+  },
+  {
+   "nowMs": 1073000,
+   "op": "pause",
+   "args": {},
+   "expect": {
+    "error": "not_in_part"
+   }
+  },
+  {
+   "nowMs": 1073000,
+   "op": "extend",
+   "args": {
+    "deltaMs": 120000
+   },
+   "expect": {
+    "startedAtMs": 694800,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1492000,
+    "version": 12,
+    "state": "feedback",
+    "segment": null
+   }
+  },
+  {
+   "nowMs": 1073000,
+   "op": "extend",
+   "args": {
+    "deltaMs": -30000
+   },
+   "expect": {
+    "startedAtMs": 694800,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1462000,
+    "version": 13,
+    "state": "feedback",
+    "segment": null
+   }
+  },
+  {
+   "nowMs": 1073000,
+   "op": "next_part",
+   "args": {},
+   "expect": {
+    "error": "not_in_part"
+   }
+  },
+  {
+   "nowMs": 1080000,
+   "op": "switch_exam",
+   "args": {
+    "examId": "golden-2"
+   },
+   "expect": {
+    "startedAtMs": 1080000,
+    "pausedAtMs": 1080000,
+    "pauseReason": "switching",
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1757200,
+    "version": 14,
+    "state": "part1",
+    "segment": 0,
+    "examId": "golden-2"
+   }
+  },
+  {
+   "nowMs": 1081000,
+   "op": "pause",
+   "args": {},
+   "expect": {
+    "error": "switching"
+   }
+  },
+  {
+   "nowMs": 1090000,
+   "op": "finish_switch",
+   "args": {},
+   "expect": {
+    "startedAtMs": 1093000,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1770200,
+    "version": 15,
+    "state": "part1",
+    "segment": 0,
+    "examId": "golden-2"
+   }
+  },
+  {
+   "nowMs": 1120000,
+   "op": "prev_step",
+   "args": {},
+   "expect": {
+    "startedAtMs": 1117400,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1794600,
+    "version": 16,
+    "state": "part1",
+    "segment": 1
+   }
+  },
+  {
+   "nowMs": 1118000,
+   "op": "prev_step",
+   "args": {},
+   "expect": {
+    "error": "out_of_range"
+   }
+  },
+  {
+   "nowMs": 1118000,
+   "op": "end_exam",
+   "args": {},
+   "expect": {
+    "startedAtMs": 740800,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1418000,
+    "version": 17,
+    "state": "feedback",
+    "segment": null
+   }
+  },
+  {
+   "nowMs": 1119000,
+   "op": "prev_step",
+   "args": {},
+   "expect": {
+    "startedAtMs": 789900,
+    "pausedAtMs": null,
+    "pauseReason": null,
+    "totalMs": 377200,
+    "feedbackEndsAtMs": 1467100,
+    "version": 18,
+    "state": "part4",
+    "segment": 13
+   }
+  }
+ ]
+}

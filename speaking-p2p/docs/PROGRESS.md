@@ -1,6 +1,6 @@
 # Progreso
 
-> Actualizado: 2026-10-15 (noche). Créditos hasta el 2026-11-04.
+> Actualizado: 2026-10-24. Créditos hasta el 2026-11-04.
 
 ## Estado en el proyecto real (Supabase `SpeakingApp`, eu-central-1)
 
@@ -25,7 +25,7 @@
 | 3. Llamada y sesión sincronizada | ✅ código / ⬜ probado con 2 móviles | LiveKit solo audio, lobby, reloj del servidor, micros por `canPublish` |
 | 4. Matchmaking en vivo | ✅ código | Búsqueda con latido, aviso a los 15 s → Agenda › Crear reunión. Necesita las migraciones pendientes |
 | 5. Agenda | ✅ código | Chats, tablón (filtro de nivel adyacente y día), mis ofertas con interesados, crear (máx. 2), elegir hora con "Ocupado", chat en tiempo real con tarjeta (Modificar/Cancelar/Confirmar, ✓/○, mensajes de sistema traducidos), Mi agenda con "Entrar a la sala" de −5 a +10 min, tarjeta de próxima reunión en Inicio. Push ⏸️ (Firebase) |
-| 6. Acceso y monetización | 🟡 | Elegibilidad en servidor; "todos pagan" (D-020). Paywall/RevenueCat/App Open Ad ⏸️ |
+| 6. Acceso y monetización | 🟡 | Elegibilidad en servidor; "todos pagan" (D-020). **Plan Pro (10 €) con control del examen y líder (D-037…D-040)**: migraciones aplicadas en Supabase y `session-actions`, `livekit-webhook` y `cron-worker` desplegadas (`revenuecat-webhook` sigue sin desplegar: RevenueCat aplazado). Falta: prueba con dos móviles. Paywall/RevenueCat/App Open Ad ⏸️ |
 | 7. Contenido completo, grabación, cuenta | 🟡 | Perfil (exámenes hechos, grabaciones con días restantes, editar), Ajustes (estado de suscripción, eliminar cuenta con contraseña + frase, D-027). Falta: reproductor de grabaciones, 4 exámenes más por nivel, Términos/Privacidad (textos) |
 | 8. Pulido | ⬜ | |
 
@@ -37,11 +37,20 @@ deno test --allow-read --allow-env scripts/content apps/backend/supabase/functio
 deno check apps/backend/supabase/functions/*/index.ts
 # SQL (Postgres ≥15 con el shim de Supabase)
 PGHOST=... PGUSER=postgres apps/backend/supabase/tests/run-plain.sh
+# ...o en Docker desde Git Bash (MSYS_NO_PATHCONV=1):
+docker run -d --name pgtest -e POSTGRES_PASSWORD=pg -v "D:/VSCODE/SpeakingApp/graspVault/speaking-p2p:/repo" postgres:16
+docker exec -u postgres pgtest bash -c "cd /repo/apps/backend/supabase && PGUSER=postgres bash tests/run-plain.sh"
 # App
 cd apps/mobile && flutter analyze && flutter test
 ```
 
-Resultado en esta sesión: 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tests Flutter ✅** (también con `TZ=Europe/Madrid`), `flutter analyze` y `deno check` limpios. El script del SQL Editor se probó en Postgres local (aplica, registra la versión, se niega a repetir).
+2026-10-25 (tarde): migración `20261025085249_report_block` **aplicada** en Supabase (asesor sin avisos nuevos inesperados). App solo en vertical (iPad con `UIRequiresFullScreen`) y ondas del botón de Inicio en mandarina (D-043). `flutter analyze` limpio, 87 tests ✅; la prueba de capturas volvía a fallar porque no sustituía `safetyRepositoryProvider` (arreglado). Agenda v2 aprobada e implementada (D-046): migración `20261025160537_agenda_v2` aplicada en Supabase (SQL 01–10 ✅ en Docker) y `meeting-actions` v3 desplegada (códigos de error nuevos en `_shared/http.ts`). 98 tests Flutter ✅.
+
+2026-10-25: **87 tests Flutter ✅**, SQL 01–09 ✅ (en Docker). Migración `report_block` pendiente de aplicar en Supabase.
+
+2026-10-24: **79 tests Flutter ✅**, 12 Deno ✅, SQL 01–07 ✅ (en Docker, Postgres 16), `flutter analyze` y `deno check` limpios.
+
+Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tests Flutter ✅** (también con `TZ=Europe/Madrid`), `flutter analyze` y `deno check` limpios. El script del SQL Editor se probó en Postgres local (aplica, registra la versión, se niega a repetir).
 
 ## Lo que NO está verificado contra el sistema real
 
@@ -54,10 +63,17 @@ Resultado en esta sesión: 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tests Flu
 | Qué | Por qué | Cómo se quita |
 |---|---|---|
 | Lector silencioso | No hay TTS | Proveedor de TTS + subir audio a R2 |
-| Fotos como recuadros | No hay imágenes | Generar/seleccionar fotos y anotar licencias |
 | Push (`sendPush` "not configured") | Sin Firebase | Proyecto Firebase + `FCM_SERVICE_ACCOUNT_JSON` |
 | Grabaciones sin botón de reproducir | Falta un paquete de audio | Añadir reproductor (p. ej. `just_audio`) usando `media-view-url {recording}` |
 | Suscripción solo informativa | RevenueCat aplazado | SDK + webhook (ya escrito) |
+
+## Rediseño 2.0 (2026-10-24, D-043)
+- Hecho: tokens, tema, fuentes, iconos, tab bar glass, login/registro (Apple y Google solo interfaz), onboarding, Inicio, búsqueda, sala de espera, examen (progreso, reloj de anillo, tira A/B, tarjeta obsidiana, fotos en carrusel, diagrama manuscrito, dock del líder + hoja «Más»), feedback con rúbrica (D-042), agenda, chat, perfil y ajustes. Capturas en `docs/screenshots/`.
+- Pendiente: probarlo en el Xiaomi; conectar Sign in with Apple / Google cuando se decida.
+
+## Fotos de la Parte 2 (2026-10-28, D-047)
+- 416 de 612 elegidas a mano en Pixabay (hojas de contacto por examen), comprimidas a WebP 4:3 (media 69 KB, ~28 MB en total) y subidas a R2. Autor y página de cada una en `content/LICENSES.md`.
+- 196 generadas con la API de OpenAI (`gpt-image-1-mini`, calidad media, 2,49 $) con los prompts de `content/photos/PROMPTS_IA.md`, revisadas una a una (3 rehechas: un emblema de la Cruz Roja y 2 bloqueadas por el filtro). **612 de 612 en R2: los 153 exámenes tienen todas sus fotos.**
 
 ## Siguiente paso
 

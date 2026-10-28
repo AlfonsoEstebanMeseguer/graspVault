@@ -8,11 +8,14 @@ class AuthUser {
 }
 
 class MyProfile {
-  const MyProfile({required this.id, required this.username, required this.languages, required this.targetLevel});
+  const MyProfile({required this.id, required this.username, required this.languages, required this.targetLevel, this.avatarKey});
   final String id;
   final String username;
   final List<String> languages;
   final Level targetLevel;
+
+  /// R2 key of the profile photo (never a URL); null = initial letter.
+  final String? avatarKey;
 }
 
 /// Everything the onboarding collects (CLAUDE.md §3, steps 2-8).
@@ -46,7 +49,8 @@ class OnboardingData {
 
 /// Current version of the Terms + Privacy Policy. Bump it when they change:
 /// the accepted version and date are stored with the profile.
-const termsVersion = '2026-10-15';
+/// The version of the Terms and Privacy Policy (assets/legal) the user accepts.
+const termsVersion = '2026-10-24';
 
 /// Business error coming back from the server (stable code -> i18n key).
 class AppFailure implements Exception {

@@ -1,0 +1,216 @@
+{
+  "id": "c1-e43-reviving-rural-life",
+  "level": "C1",
+  "version": 1,
+  "topic": "Reviving rural life",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know a little about you.",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p1-intro.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you have any connection with the countryside?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p1-q1.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you think are the main attractions of rural life?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p1-q2.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, could you imagine yourself living in a small village?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p1-q3.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what problems do you think rural communities face?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p1-q4.mp3",
+          "audioMs": 4700
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p2-intro.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "c1-e43-a1",
+            "c1-e43-a2",
+            "c1-e43-a3"
+          ],
+          "text": "Candidate A, your pictures show life in rural places. Choose two of the pictures and say what it might be like to live in these places, and what might attract or discourage people.",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p2-a.mp3",
+          "audioMs": 12300
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these places would you most like to live in?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p2-a-follow.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "c1-e43-b1",
+            "c1-e43-b2",
+            "c1-e43-b3"
+          ],
+          "text": "Candidate B, your pictures show rural communities. Choose two of the pictures and say what challenges the communities might be facing, and what could be done to help them.",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p2-b.mp3",
+          "audioMs": 11300
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, how can small communities survive?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p2-b-follow.mp3",
+          "audioMs": 3900
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some ways of encouraging people to live in the countryside, and a question for you to discuss.",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p3-intro.mp3",
+          "audioMs": 11000
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "c1-e43-reviving-rural-life",
+          "text": "Talk to each other about this question: How might these ideas help to bring new life to rural areas?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p3-discuss.mp3",
+          "audioMs": 7400
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "c1-e43-reviving-rural-life",
+          "text": "Now you have about a minute to decide together. Which would be the most effective?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p3-decide.mp3",
+          "audioMs": 5700
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about rural life and repopulation.",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p4-intro.mp3",
+          "audioMs": 5900
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Is the decline of rural areas inevitable?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p4-q1.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, to what extent should governments support small villages that are losing population?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p4-q2.mp3",
+          "audioMs": 6900
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, do you think remote working could change where people choose to live?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p4-q3.mp3",
+          "audioMs": 5600
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "What do cities and the countryside need from each other?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p4-q4.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, is farming still an attractive career for young people?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p4-q5.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q6",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, are traditional rural lifestyles worth preserving?",
+          "audio": "audio/C1/c1-e43-reviving-rural-life/p4-q6.mp3",
+          "audioMs": 4800
+        }
+      ]
+    }
+  ]
+}

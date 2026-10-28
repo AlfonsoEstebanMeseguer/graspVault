@@ -569,13 +569,13 @@ abstract class AppLocalizations {
   /// No description provided for @loginHeadline.
   ///
   /// In es, this message translates to:
-  /// **'Practica el Speaking de Cambridge con otro estudiante.'**
+  /// **'Practica el Speaking en pareja, con un examinador virtual.'**
   String get loginHeadline;
 
   /// No description provided for @loginSubtitle.
   ///
   /// In es, this message translates to:
-  /// **'Un examinador virtual marca los turnos y el tiempo. Tú solo hablas.'**
+  /// **'Él marca los turnos y el tiempo. Vosotros solo habláis.'**
   String get loginSubtitle;
 
   /// No description provided for @emailLabel.
@@ -923,7 +923,7 @@ abstract class AppLocalizations {
   /// No description provided for @roomTitle.
   ///
   /// In es, this message translates to:
-  /// **'SALA · {level}'**
+  /// **'Sala de espera · {level}'**
   String roomTitle(String level);
 
   /// No description provided for @meetBeforeStart.
@@ -1027,6 +1027,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No se ha podido entrar en la sala.'**
   String get sessionError;
+
+  /// No description provided for @debugEnterNow.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear sala ahora (debug)'**
+  String get debugEnterNow;
+
+  /// No description provided for @debugSkip.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar al siguiente tramo (debug)'**
+  String get debugSkip;
+
+  /// No description provided for @muteMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Silenciar mi micro'**
+  String get muteMe;
+
+  /// No description provided for @unmuteMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Activar mi micro'**
+  String get unmuteMe;
 
   /// No description provided for @contentMissing.
   ///
@@ -1139,49 +1163,31 @@ abstract class AppLocalizations {
   /// No description provided for @createMeeting.
   ///
   /// In es, this message translates to:
-  /// **'Crear reunión'**
+  /// **'Proponer horario'**
   String get createMeeting;
-
-  /// No description provided for @agendaChats.
-  ///
-  /// In es, this message translates to:
-  /// **'Chats'**
-  String get agendaChats;
 
   /// No description provided for @agendaBoard.
   ///
   /// In es, this message translates to:
-  /// **'Reuniones'**
+  /// **'Buscar horario'**
   String get agendaBoard;
 
   /// No description provided for @agendaMine.
   ///
   /// In es, this message translates to:
-  /// **'Mi agenda'**
+  /// **'Mis exámenes'**
   String get agendaMine;
-
-  /// No description provided for @noChats.
-  ///
-  /// In es, this message translates to:
-  /// **'Aún no tienes chats. Elige una oferta en Reuniones o crea la tuya.'**
-  String get noChats;
 
   /// No description provided for @noOffers.
   ///
   /// In es, this message translates to:
-  /// **'No hay ofertas con este filtro.'**
+  /// **'Nadie ha propuesto horario con este filtro.'**
   String get noOffers;
-
-  /// No description provided for @noMeetings.
-  ///
-  /// In es, this message translates to:
-  /// **'No tienes reuniones confirmadas.'**
-  String get noMeetings;
 
   /// No description provided for @myOffersCount.
   ///
   /// In es, this message translates to:
-  /// **'MIS OFERTAS · {n} DE 2'**
+  /// **'MIS PROPUESTAS · {n} DE 2'**
   String myOffersCount(int n);
 
   /// No description provided for @interestedCount.
@@ -1189,18 +1195,6 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'{n, plural, =0{Nadie interesado aún} =1{1 interesado} other{{n} interesados}}'**
   String interestedCount(int n);
-
-  /// No description provided for @includeLevel.
-  ///
-  /// In es, this message translates to:
-  /// **'+ Incluir {level}'**
-  String includeLevel(String level);
-
-  /// No description provided for @anyDay.
-  ///
-  /// In es, this message translates to:
-  /// **'Cualquier día'**
-  String get anyDay;
 
   /// No description provided for @todayLabel.
   ///
@@ -1232,16 +1226,10 @@ abstract class AppLocalizations {
   /// **'Disponible'**
   String get availableLabel;
 
-  /// No description provided for @chooseTime.
-  ///
-  /// In es, this message translates to:
-  /// **'Elegir hora'**
-  String get chooseTime;
-
   /// No description provided for @withdrawOffer.
   ///
   /// In es, this message translates to:
-  /// **'Retirar oferta'**
+  /// **'Retirar'**
   String get withdrawOffer;
 
   /// No description provided for @statusConfirmed.
@@ -1331,7 +1319,7 @@ abstract class AppLocalizations {
   /// No description provided for @windowField.
   ///
   /// In es, this message translates to:
-  /// **'Franja en la que puedes'**
+  /// **'¿Cuándo estás libre?'**
   String get windowField;
 
   /// No description provided for @fromField.
@@ -1349,7 +1337,7 @@ abstract class AppLocalizations {
   /// No description provided for @windowHint.
   ///
   /// In es, this message translates to:
-  /// **'Quien acepte elegirá una hora exacta dentro de esta franja.'**
+  /// **'Otros estudiantes reservarán un hueco de 30 min dentro de tu franja. Puede salir más de un examen.'**
   String get windowHint;
 
   /// No description provided for @examLevelField.
@@ -1361,26 +1349,14 @@ abstract class AppLocalizations {
   /// No description provided for @offersLeft.
   ///
   /// In es, this message translates to:
-  /// **'{n, plural, =0{Puedes tener 2 ofertas activas · no te quedan} =1{Puedes tener 2 ofertas activas · te queda 1} other{Puedes tener 2 ofertas activas · te quedan {n}}}'**
+  /// **'{n, plural, =0{Puedes tener 2 propuestas abiertas · no te quedan} =1{Puedes tener 2 propuestas abiertas · te queda 1} other{Puedes tener 2 propuestas abiertas · te quedan {n}}}'**
   String offersLeft(int n);
 
   /// No description provided for @publishOffer.
   ///
   /// In es, this message translates to:
-  /// **'Publicar oferta'**
+  /// **'Publicar propuesta'**
   String get publishOffer;
-
-  /// No description provided for @examWithTitle.
-  ///
-  /// In es, this message translates to:
-  /// **'Examen con {name}'**
-  String examWithTitle(String name);
-
-  /// No description provided for @chooseStart.
-  ///
-  /// In es, this message translates to:
-  /// **'Elige a qué hora empezáis'**
-  String get chooseStart;
 
   /// No description provided for @busyLabel.
   ///
@@ -1388,34 +1364,10 @@ abstract class AppLocalizations {
   /// **'Ocupado'**
   String get busyLabel;
 
-  /// No description provided for @busyHint.
-  ///
-  /// In es, this message translates to:
-  /// **'Las horas que chocan con tus reuniones confirmadas aparecen bloqueadas.'**
-  String get busyHint;
-
-  /// No description provided for @proposeAndChat.
-  ///
-  /// In es, this message translates to:
-  /// **'Proponer {time} y abrir chat'**
-  String proposeAndChat(String time);
-
-  /// No description provided for @pickATime.
-  ///
-  /// In es, this message translates to:
-  /// **'Elige una hora'**
-  String get pickATime;
-
-  /// No description provided for @noSlots.
-  ///
-  /// In es, this message translates to:
-  /// **'No quedan horas libres en esta franja.'**
-  String get noSlots;
-
   /// No description provided for @modifyLabel.
   ///
   /// In es, this message translates to:
-  /// **'Modificar'**
+  /// **'Cambiar hora'**
   String get modifyLabel;
 
   /// No description provided for @cancelLabel.
@@ -1442,16 +1394,10 @@ abstract class AppLocalizations {
   /// **'Enviar'**
   String get sendLabel;
 
-  /// No description provided for @sysProposed.
-  ///
-  /// In es, this message translates to:
-  /// **'{name} propuso {when}'**
-  String sysProposed(String name, String when);
-
   /// No description provided for @sysModified.
   ///
   /// In es, this message translates to:
-  /// **'{name} cambió la hora a {when} · confirmaciones reiniciadas'**
+  /// **'{name} propone cambiar a {when}'**
   String sysModified(String name, String when);
 
   /// No description provided for @sysConfirmedBy.
@@ -1463,7 +1409,7 @@ abstract class AppLocalizations {
   /// No description provided for @sysConfirmed.
   ///
   /// In es, this message translates to:
-  /// **'Reunión confirmada. Ya está en Mi agenda.'**
+  /// **'Reunión confirmada.'**
   String get sysConfirmed;
 
   /// No description provided for @sysPartnerOverlap.
@@ -1487,7 +1433,7 @@ abstract class AppLocalizations {
   /// No description provided for @sysExpired.
   ///
   /// In es, this message translates to:
-  /// **'La hora pasó sin que los dos confirmarais'**
+  /// **'La hora pasó sin confirmar el cambio'**
   String get sysExpired;
 
   /// No description provided for @sysPartnerDeleted.
@@ -1511,7 +1457,7 @@ abstract class AppLocalizations {
   /// No description provided for @modifyTitle.
   ///
   /// In es, this message translates to:
-  /// **'Cambiar hora o nivel'**
+  /// **'Proponer otra hora'**
   String get modifyTitle;
 
   /// No description provided for @saveLabel.
@@ -1571,7 +1517,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorOfferUnavailable.
   ///
   /// In es, this message translates to:
-  /// **'Esta oferta ya no está disponible'**
+  /// **'Esta propuesta ya no está disponible'**
   String get errorOfferUnavailable;
 
   /// No description provided for @errorBadTime.
@@ -1583,7 +1529,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorAlreadyAccepted.
   ///
   /// In es, this message translates to:
-  /// **'Ya elegiste esta oferta: búscala en Chats'**
+  /// **'Ya tienes un hueco reservado en esta propuesta'**
   String get errorAlreadyAccepted;
 
   /// No description provided for @errorWindow.
@@ -1622,16 +1568,10 @@ abstract class AppLocalizations {
   /// **'No se ha podido enviar el mensaje'**
   String get errorSendFailed;
 
-  /// No description provided for @sysProposedByMe.
-  ///
-  /// In es, this message translates to:
-  /// **'Propusiste {when}'**
-  String sysProposedByMe(String when);
-
   /// No description provided for @sysModifiedByMe.
   ///
   /// In es, this message translates to:
-  /// **'Cambiaste la hora a {when} · confirmaciones reiniciadas'**
+  /// **'Propusiste cambiar a {when} · falta que confirme'**
   String sysModifiedByMe(String when);
 
   /// No description provided for @sysConfirmedByMe.
@@ -1715,7 +1655,7 @@ abstract class AppLocalizations {
   /// No description provided for @subActive.
   ///
   /// In es, this message translates to:
-  /// **'Activa'**
+  /// **'Activo'**
   String get subActive;
 
   /// No description provided for @subInactive.
@@ -1789,6 +1729,1266 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Examen que preparas'**
   String get targetLevelField;
+
+  /// No description provided for @avatarTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Foto de perfil'**
+  String get avatarTitle;
+
+  /// No description provided for @avatarFromGallery.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir de la galería'**
+  String get avatarFromGallery;
+
+  /// No description provided for @avatarFromCamera.
+  ///
+  /// In es, this message translates to:
+  /// **'Hacer una foto'**
+  String get avatarFromCamera;
+
+  /// No description provided for @avatarRemove.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar foto'**
+  String get avatarRemove;
+
+  /// No description provided for @avatarUpdated.
+  ///
+  /// In es, this message translates to:
+  /// **'Foto actualizada'**
+  String get avatarUpdated;
+
+  /// No description provided for @avatarRemoved.
+  ///
+  /// In es, this message translates to:
+  /// **'Foto eliminada'**
+  String get avatarRemoved;
+
+  /// No description provided for @avatarCropTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ajusta tu foto'**
+  String get avatarCropTitle;
+
+  /// No description provided for @avatarCropHelp.
+  ///
+  /// In es, this message translates to:
+  /// **'Arrastra y pellizca para encuadrarla'**
+  String get avatarCropHelp;
+
+  /// No description provided for @avatarCropUse.
+  ///
+  /// In es, this message translates to:
+  /// **'Usar esta foto'**
+  String get avatarCropUse;
+
+  /// No description provided for @errorPhotoUpload.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo subir la foto. Prueba con otra imagen o inténtalo de nuevo'**
+  String get errorPhotoUpload;
+
+  /// No description provided for @practiceVip.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar con compañero VIP simulado'**
+  String get practiceVip;
+
+  /// No description provided for @simulatedVipHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Modo desarrollo: compañero VIP simulado. Tú diriges el examen.'**
+  String get simulatedVipHint;
+
+  /// No description provided for @controlPanel.
+  ///
+  /// In es, this message translates to:
+  /// **'Control del examen'**
+  String get controlPanel;
+
+  /// No description provided for @controlTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo'**
+  String get controlTime;
+
+  /// No description provided for @controlNavigation.
+  ///
+  /// In es, this message translates to:
+  /// **'Navegación'**
+  String get controlNavigation;
+
+  /// No description provided for @controlExam.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen'**
+  String get controlExam;
+
+  /// No description provided for @controlLeadership.
+  ///
+  /// In es, this message translates to:
+  /// **'Quién dirige'**
+  String get controlLeadership;
+
+  /// No description provided for @controlPause.
+  ///
+  /// In es, this message translates to:
+  /// **'Pausar'**
+  String get controlPause;
+
+  /// No description provided for @controlResume.
+  ///
+  /// In es, this message translates to:
+  /// **'Reanudar'**
+  String get controlResume;
+
+  /// No description provided for @controlPauseReader.
+  ///
+  /// In es, this message translates to:
+  /// **'No se puede pausar mientras habla el examinador'**
+  String get controlPauseReader;
+
+  /// No description provided for @controlSkipReader.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar al examinador'**
+  String get controlSkipReader;
+
+  /// No description provided for @controlRepeat.
+  ///
+  /// In es, this message translates to:
+  /// **'Repetir pregunta'**
+  String get controlRepeat;
+
+  /// No description provided for @controlNextStep.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente pregunta'**
+  String get controlNextStep;
+
+  /// No description provided for @controlNextPart.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente parte'**
+  String get controlNextPart;
+
+  /// No description provided for @controlGoToPart.
+  ///
+  /// In es, this message translates to:
+  /// **'Ir a la parte'**
+  String get controlGoToPart;
+
+  /// No description provided for @controlEndExam.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminar examen'**
+  String get controlEndExam;
+
+  /// No description provided for @controlEndExamConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Terminar el examen y pasar al feedback?'**
+  String get controlEndExamConfirm;
+
+  /// No description provided for @controlTurnLength.
+  ///
+  /// In es, this message translates to:
+  /// **'Duración de los turnos de esta parte'**
+  String get controlTurnLength;
+
+  /// No description provided for @controlFeedbackTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo de feedback'**
+  String get controlFeedbackTime;
+
+  /// No description provided for @controlSwitchExam.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar de examen'**
+  String get controlSwitchExam;
+
+  /// No description provided for @controlSwitchConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'El examen nuevo empieza desde la Parte 1.'**
+  String get controlSwitchConfirm;
+
+  /// No description provided for @controlRandom.
+  ///
+  /// In es, this message translates to:
+  /// **'Aleatorio'**
+  String get controlRandom;
+
+  /// No description provided for @controlCurrent.
+  ///
+  /// In es, this message translates to:
+  /// **'Actual'**
+  String get controlCurrent;
+
+  /// No description provided for @controlSearch.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar tema'**
+  String get controlSearch;
+
+  /// No description provided for @controlTransfer.
+  ///
+  /// In es, this message translates to:
+  /// **'Ceder el control a {name}'**
+  String controlTransfer(String name);
+
+  /// No description provided for @controlTransferNoPro.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} no tiene Pro'**
+  String controlTransferNoPro(String name);
+
+  /// No description provided for @leaderYou.
+  ///
+  /// In es, this message translates to:
+  /// **'Diriges tú'**
+  String get leaderYou;
+
+  /// No description provided for @leaderOther.
+  ///
+  /// In es, this message translates to:
+  /// **'Dirige: {name}'**
+  String leaderOther(String name);
+
+  /// No description provided for @pausedTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen en pausa'**
+  String get pausedTitle;
+
+  /// No description provided for @pausedBy.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo ha pausado {name} · micros abiertos'**
+  String pausedBy(String name);
+
+  /// No description provided for @switchingExam.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiando de examen… descargando material'**
+  String get switchingExam;
+
+  /// No description provided for @noticePause.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha pausado el examen'**
+  String noticePause(String name);
+
+  /// No description provided for @noticeResume.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha reanudado el examen'**
+  String noticeResume(String name);
+
+  /// No description provided for @noticeSkipReader.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha saltado al examinador'**
+  String noticeSkipReader(String name);
+
+  /// No description provided for @noticeNextStep.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha pasado a la siguiente pregunta'**
+  String noticeNextStep(String name);
+
+  /// No description provided for @noticeNextPart.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha pasado a la siguiente parte'**
+  String noticeNextPart(String name);
+
+  /// No description provided for @noticeEndExam.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha terminado el examen'**
+  String noticeEndExam(String name);
+
+  /// No description provided for @noticeRepeat.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha repetido la pregunta'**
+  String noticeRepeat(String name);
+
+  /// No description provided for @noticeGoToPart.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha ido a otra parte'**
+  String noticeGoToPart(String name);
+
+  /// No description provided for @noticeTime.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha cambiado el tiempo'**
+  String noticeTime(String name);
+
+  /// No description provided for @noticeSwitchExam.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha cambiado de examen'**
+  String noticeSwitchExam(String name);
+
+  /// No description provided for @noticeLeader.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} dirige ahora el examen'**
+  String noticeLeader(String name);
+
+  /// No description provided for @noticeLeaderYou.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora diriges tú el examen'**
+  String get noticeLeaderYou;
+
+  /// No description provided for @errorNotLeader.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora mismo no diriges el examen'**
+  String get errorNotLeader;
+
+  /// No description provided for @errorStaleControl.
+  ///
+  /// In es, this message translates to:
+  /// **'El examen acaba de cambiar; inténtalo otra vez'**
+  String get errorStaleControl;
+
+  /// No description provided for @errorPartnerNotPro.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu compañero no tiene Pro'**
+  String get errorPartnerNotPro;
+
+  /// No description provided for @errorContentMissingPartner.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu compañero no tiene ese examen en su versión de la app'**
+  String get errorContentMissingPartner;
+
+  /// No description provided for @errorControlRange.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese cambio se sale de los límites'**
+  String get errorControlRange;
+
+  /// No description provided for @planStandard.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan Estándar'**
+  String get planStandard;
+
+  /// No description provided for @planPro.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan Pro'**
+  String get planPro;
+
+  /// No description provided for @upgradePro.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejorar a Pro'**
+  String get upgradePro;
+
+  /// No description provided for @proTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Pro: tú diriges el examen'**
+  String get proTitle;
+
+  /// No description provided for @proPrice.
+  ///
+  /// In es, this message translates to:
+  /// **'10,00 € al mes · incluye todo lo del plan Estándar'**
+  String get proPrice;
+
+  /// No description provided for @proFeature1.
+  ///
+  /// In es, this message translates to:
+  /// **'Pausar el examen y añadir o quitar minutos'**
+  String get proFeature1;
+
+  /// No description provided for @proFeature2.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar al examinador y pasar de pregunta o de parte'**
+  String get proFeature2;
+
+  /// No description provided for @proFeature3.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar de examen cuando quieras, desde el catálogo o al azar'**
+  String get proFeature3;
+
+  /// No description provided for @proFeature4.
+  ///
+  /// In es, this message translates to:
+  /// **'Si los dos tenéis Pro, uno dirige y puede cederle el control al otro'**
+  String get proFeature4;
+
+  /// No description provided for @proStoreSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Disponible cuando se active la tienda'**
+  String get proStoreSoon;
+
+  /// No description provided for @dockTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Diriges el examen'**
+  String get dockTitle;
+
+  /// No description provided for @dockPrev.
+  ///
+  /// In es, this message translates to:
+  /// **'Anterior'**
+  String get dockPrev;
+
+  /// No description provided for @dockNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente'**
+  String get dockNext;
+
+  /// No description provided for @dockNextPart.
+  ///
+  /// In es, this message translates to:
+  /// **'Sig. parte'**
+  String get dockNextPart;
+
+  /// No description provided for @dockMore.
+  ///
+  /// In es, this message translates to:
+  /// **'Más'**
+  String get dockMore;
+
+  /// No description provided for @dockLess.
+  ///
+  /// In es, this message translates to:
+  /// **'Menos'**
+  String get dockLess;
+
+  /// No description provided for @dockSkip.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar'**
+  String get dockSkip;
+
+  /// No description provided for @dockPaused.
+  ///
+  /// In es, this message translates to:
+  /// **'En pausa'**
+  String get dockPaused;
+
+  /// No description provided for @controlPrevStep.
+  ///
+  /// In es, this message translates to:
+  /// **'Pregunta anterior'**
+  String get controlPrevStep;
+
+  /// No description provided for @controlTurnTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo de este turno'**
+  String get controlTurnTime;
+
+  /// No description provided for @controlBackToExam.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver a la última pregunta'**
+  String get controlBackToExam;
+
+  /// No description provided for @noticePrevStep.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} ha vuelto a la pregunta anterior'**
+  String noticePrevStep(String name);
+
+  /// No description provided for @tabPractice.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar'**
+  String get tabPractice;
+
+  /// No description provided for @providerSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrar con {provider} llegará pronto. De momento, usa tu email.'**
+  String providerSoon(String provider);
+
+  /// No description provided for @continueWithApple.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar con Apple'**
+  String get continueWithApple;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar con Google'**
+  String get continueWithGoogle;
+
+  /// No description provided for @signUpWithEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear cuenta con email'**
+  String get signUpWithEmail;
+
+  /// No description provided for @haveAccountQuestion.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Ya tienes cuenta?'**
+  String get haveAccountQuestion;
+
+  /// No description provided for @notAffiliated.
+  ///
+  /// In es, this message translates to:
+  /// **'App independiente, sin afiliación con Cambridge University Press & Assessment.'**
+  String get notAffiliated;
+
+  /// No description provided for @createAccountTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Crea tu cuenta'**
+  String get createAccountTitle;
+
+  /// No description provided for @createAccountSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Con tu email y una contraseña. Después elegirás tu nombre y tu nivel.'**
+  String get createAccountSubtitle;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In es, this message translates to:
+  /// **'Hola de nuevo'**
+  String get welcomeBack;
+
+  /// No description provided for @welcomeBackSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Entra con tu email para seguir practicando.'**
+  String get welcomeBackSubtitle;
+
+  /// No description provided for @showPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrar contraseña'**
+  String get showPassword;
+
+  /// No description provided for @hidePassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocultar contraseña'**
+  String get hidePassword;
+
+  /// No description provided for @orContinueWith.
+  ///
+  /// In es, this message translates to:
+  /// **'o continúa con'**
+  String get orContinueWith;
+
+  /// No description provided for @practiceSoloTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar solo'**
+  String get practiceSoloTitle;
+
+  /// No description provided for @practiceSoloBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Con un compañero simulado, para cuando no hay nadie.'**
+  String get practiceSoloBody;
+
+  /// No description provided for @practiceVipBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo en desarrollo: diriges el examen con los controles Pro.'**
+  String get practiceVipBody;
+
+  /// No description provided for @meetingWithName.
+  ///
+  /// In es, this message translates to:
+  /// **'Reunión con {name}'**
+  String meetingWithName(String name);
+
+  /// No description provided for @aPartner.
+  ///
+  /// In es, this message translates to:
+  /// **'un compañero'**
+  String get aPartner;
+
+  /// No description provided for @fullExamOf.
+  ///
+  /// In es, this message translates to:
+  /// **'{level} · examen completo'**
+  String fullExamOf(String level);
+
+  /// No description provided for @searchKeepsGoing.
+  ///
+  /// In es, this message translates to:
+  /// **'Seguimos buscando aunque cambies de pestaña.'**
+  String get searchKeepsGoing;
+
+  /// No description provided for @tipLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Consejo'**
+  String get tipLabel;
+
+  /// No description provided for @tipForPart.
+  ///
+  /// In es, this message translates to:
+  /// **'Consejo · Parte {n}'**
+  String tipForPart(int n);
+
+  /// No description provided for @timeUp.
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo'**
+  String get timeUp;
+
+  /// No description provided for @statusListening.
+  ///
+  /// In es, this message translates to:
+  /// **'Escucha'**
+  String get statusListening;
+
+  /// No description provided for @micListening.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchando'**
+  String get micListening;
+
+  /// No description provided for @yourTurnNow.
+  ///
+  /// In es, this message translates to:
+  /// **'Te toca a ti'**
+  String get yourTurnNow;
+
+  /// No description provided for @listeningTo.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchando a {name}'**
+  String listeningTo(String name);
+
+  /// No description provided for @textHidden.
+  ///
+  /// In es, this message translates to:
+  /// **'Texto oculto'**
+  String get textHidden;
+
+  /// No description provided for @questionsLeft.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Última pregunta} =1{Queda 1 pregunta} other{Quedan {n} preguntas}}'**
+  String questionsLeft(int n);
+
+  /// No description provided for @examSummaryLine.
+  ///
+  /// In es, this message translates to:
+  /// **'{level} · {topic} · {minutes} min'**
+  String examSummaryLine(String level, String topic, int minutes);
+
+  /// No description provided for @feedbackIdeasTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ideas para empezar'**
+  String get feedbackIdeasTitle;
+
+  /// No description provided for @criterionGrammar.
+  ///
+  /// In es, this message translates to:
+  /// **'Gramática y vocabulario'**
+  String get criterionGrammar;
+
+  /// No description provided for @criterionDiscourse.
+  ///
+  /// In es, this message translates to:
+  /// **'Gestión del discurso'**
+  String get criterionDiscourse;
+
+  /// No description provided for @criterionPronunciation.
+  ///
+  /// In es, this message translates to:
+  /// **'Pronunciación'**
+  String get criterionPronunciation;
+
+  /// No description provided for @criterionInteraction.
+  ///
+  /// In es, this message translates to:
+  /// **'Comunicación interactiva'**
+  String get criterionInteraction;
+
+  /// No description provided for @ratePartner.
+  ///
+  /// In es, this message translates to:
+  /// **'Valora a {name}'**
+  String ratePartner(String name);
+
+  /// No description provided for @onlyTheySee.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo lo verá {name}'**
+  String onlyTheySee(String name);
+
+  /// No description provided for @endFeedback.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminar'**
+  String get endFeedback;
+
+  /// No description provided for @partN.
+  ///
+  /// In es, this message translates to:
+  /// **'Parte {n}'**
+  String partN(int n);
+
+  /// No description provided for @leaderYouLong.
+  ///
+  /// In es, this message translates to:
+  /// **'Diriges tú el examen'**
+  String get leaderYouLong;
+
+  /// No description provided for @changeLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar'**
+  String get changeLabel;
+
+  /// No description provided for @candidateRole.
+  ///
+  /// In es, this message translates to:
+  /// **'Candidato {role}'**
+  String candidateRole(String role);
+
+  /// No description provided for @readyLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Listo'**
+  String get readyLabel;
+
+  /// No description provided for @offerSlot.
+  ///
+  /// In es, this message translates to:
+  /// **'Proponer'**
+  String get offerSlot;
+
+  /// No description provided for @deletesIn.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{Se borra en 1 día} other{Se borra en {n} días}}'**
+  String deletesIn(int n);
+
+  /// No description provided for @feedbackReceived.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo que dicen de ti'**
+  String get feedbackReceived;
+
+  /// No description provided for @feedbackReceivedEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuando tus compañeros te valoren al final de un examen, lo verás aquí. Solo lo ves tú.'**
+  String get feedbackReceivedEmpty;
+
+  /// No description provided for @ratingsCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 valoración} other{{n} valoraciones}}'**
+  String ratingsCount(int n);
+
+  /// No description provided for @perMonth.
+  ///
+  /// In es, this message translates to:
+  /// **'{price} al mes'**
+  String perMonth(String price);
+
+  /// No description provided for @planStandardShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Estándar'**
+  String get planStandardShort;
+
+  /// No description provided for @planProShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Pro'**
+  String get planProShort;
+
+  /// No description provided for @planStdFeature1.
+  ///
+  /// In es, this message translates to:
+  /// **'Exámenes sin límite'**
+  String get planStdFeature1;
+
+  /// No description provided for @planStdFeature2.
+  ///
+  /// In es, this message translates to:
+  /// **'Matchmaking y agenda'**
+  String get planStdFeature2;
+
+  /// No description provided for @planProFeature1.
+  ///
+  /// In es, this message translates to:
+  /// **'Todo lo de Estándar'**
+  String get planProFeature1;
+
+  /// No description provided for @planProFeature2.
+  ///
+  /// In es, this message translates to:
+  /// **'Diriges el examen: pausa, tiempo y partes'**
+  String get planProFeature2;
+
+  /// No description provided for @readTerms.
+  ///
+  /// In es, this message translates to:
+  /// **'Leer los Términos'**
+  String get readTerms;
+
+  /// No description provided for @readPrivacy.
+  ///
+  /// In es, this message translates to:
+  /// **'Leer la Política de privacidad'**
+  String get readPrivacy;
+
+  /// No description provided for @signUpLegalNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Antes de empezar a usar la app te pediremos que aceptes los Términos de uso y la Política de privacidad.'**
+  String get signUpLegalNote;
+
+  /// No description provided for @legalSection.
+  ///
+  /// In es, this message translates to:
+  /// **'LEGAL'**
+  String get legalSection;
+
+  /// No description provided for @legalSpanishOnly.
+  ///
+  /// In es, this message translates to:
+  /// **''**
+  String get legalSpanishOnly;
+
+  /// No description provided for @blockedUsers.
+  ///
+  /// In es, this message translates to:
+  /// **'Usuarios bloqueados'**
+  String get blockedUsers;
+
+  /// No description provided for @noBlockedUsers.
+  ///
+  /// In es, this message translates to:
+  /// **'No has bloqueado a nadie.'**
+  String get noBlockedUsers;
+
+  /// No description provided for @unblockAction.
+  ///
+  /// In es, this message translates to:
+  /// **'Desbloquear'**
+  String get unblockAction;
+
+  /// No description provided for @reportOrBlock.
+  ///
+  /// In es, this message translates to:
+  /// **'Reportar o bloquear'**
+  String get reportOrBlock;
+
+  /// No description provided for @reportPartner.
+  ///
+  /// In es, this message translates to:
+  /// **'Reportar a {name}'**
+  String reportPartner(String name);
+
+  /// No description provided for @reportTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Reportar a {name}'**
+  String reportTitle(String name);
+
+  /// No description provided for @reportIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo revisaremos lo antes posible. {name} no sabrá quién le ha reportado.'**
+  String reportIntro(String name);
+
+  /// No description provided for @reportDetailsHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuéntanos qué ha pasado (opcional)'**
+  String get reportDetailsHint;
+
+  /// No description provided for @alsoBlock.
+  ///
+  /// In es, this message translates to:
+  /// **'Bloquear también a {name}'**
+  String alsoBlock(String name);
+
+  /// No description provided for @reportSend.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar reporte'**
+  String get reportSend;
+
+  /// No description provided for @reportSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Reporte enviado. Gracias por avisarnos.'**
+  String get reportSent;
+
+  /// No description provided for @blockOnly.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo bloquear a {name}'**
+  String blockOnly(String name);
+
+  /// No description provided for @blockTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Bloquear a {name}?'**
+  String blockTitle(String name);
+
+  /// No description provided for @blockBody.
+  ///
+  /// In es, this message translates to:
+  /// **'No volveréis a coincidir en el emparejamiento, no veréis vuestras ofertas, no podréis escribiros y se cancelarán vuestras reuniones pendientes. Puedes desbloquear en Ajustes.'**
+  String get blockBody;
+
+  /// No description provided for @blockAction.
+  ///
+  /// In es, this message translates to:
+  /// **'Bloquear'**
+  String get blockAction;
+
+  /// No description provided for @blockedDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Has bloqueado a {name}.'**
+  String blockedDone(String name);
+
+  /// No description provided for @reasonHarassment.
+  ///
+  /// In es, this message translates to:
+  /// **'Acoso o insultos'**
+  String get reasonHarassment;
+
+  /// No description provided for @reasonSexual.
+  ///
+  /// In es, this message translates to:
+  /// **'Contenido sexual'**
+  String get reasonSexual;
+
+  /// No description provided for @reasonHate.
+  ///
+  /// In es, this message translates to:
+  /// **'Odio o discriminación'**
+  String get reasonHate;
+
+  /// No description provided for @reasonMinor.
+  ///
+  /// In es, this message translates to:
+  /// **'Riesgo para un menor'**
+  String get reasonMinor;
+
+  /// No description provided for @reasonSpam.
+  ///
+  /// In es, this message translates to:
+  /// **'Spam o publicidad'**
+  String get reasonSpam;
+
+  /// No description provided for @reasonNoShow.
+  ///
+  /// In es, this message translates to:
+  /// **'No se presentó'**
+  String get reasonNoShow;
+
+  /// No description provided for @reasonOther.
+  ///
+  /// In es, this message translates to:
+  /// **'Otro motivo'**
+  String get reasonOther;
+
+  /// No description provided for @agendaMineCount.
+  ///
+  /// In es, this message translates to:
+  /// **'Mis exámenes · {n}'**
+  String agendaMineCount(int n);
+
+  /// No description provided for @sectionNeedsYou.
+  ///
+  /// In es, this message translates to:
+  /// **'TE TOCA'**
+  String get sectionNeedsYou;
+
+  /// No description provided for @sectionUpcoming.
+  ///
+  /// In es, this message translates to:
+  /// **'PRÓXIMOS'**
+  String get sectionUpcoming;
+
+  /// No description provided for @pastCount.
+  ///
+  /// In es, this message translates to:
+  /// **'Anteriores ({n})'**
+  String pastCount(int n);
+
+  /// No description provided for @statusGone.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya no va'**
+  String get statusGone;
+
+  /// No description provided for @noBookingsYet.
+  ///
+  /// In es, this message translates to:
+  /// **'Nadie ha reservado todavía'**
+  String get noBookingsYet;
+
+  /// No description provided for @emptyMine.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no tienes exámenes agendados.'**
+  String get emptyMine;
+
+  /// No description provided for @proposeMine.
+  ///
+  /// In es, this message translates to:
+  /// **'Proponer el mío'**
+  String get proposeMine;
+
+  /// No description provided for @companionsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'COMPAÑEROS'**
+  String get companionsTitle;
+
+  /// No description provided for @companionsEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Al terminar un examen podéis añadiros como compañeros y repetir con una invitación.'**
+  String get companionsEmpty;
+
+  /// No description provided for @inviteLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Invitar'**
+  String get inviteLabel;
+
+  /// No description provided for @companionAddedYou.
+  ///
+  /// In es, this message translates to:
+  /// **'Te ha añadido'**
+  String get companionAddedYou;
+
+  /// No description provided for @addBack.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir también'**
+  String get addBack;
+
+  /// No description provided for @companionPendingShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta que te añada'**
+  String get companionPendingShort;
+
+  /// No description provided for @examsTogether.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Sin exámenes juntos} =1{1 examen juntos} other{{n} exámenes juntos}}'**
+  String examsTogether(int n);
+
+  /// No description provided for @removeCompanion.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar de compañeros'**
+  String get removeCompanion;
+
+  /// No description provided for @allDays.
+  ///
+  /// In es, this message translates to:
+  /// **'Todos'**
+  String get allDays;
+
+  /// No description provided for @seeAlsoLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver también {level}'**
+  String seeAlsoLevel(String level);
+
+  /// No description provided for @freeFromTo.
+  ///
+  /// In es, this message translates to:
+  /// **'Libre de {from} a {to}'**
+  String freeFromTo(String from, String to);
+
+  /// No description provided for @bookTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen {level} con {name}'**
+  String bookTitle(String level, String name);
+
+  /// No description provided for @bookThisSlot.
+  ///
+  /// In es, this message translates to:
+  /// **'Reservar este hueco'**
+  String get bookThisSlot;
+
+  /// No description provided for @bookHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Quedará confirmado para los dos. Tendréis un chat para organizaros.'**
+  String get bookHint;
+
+  /// No description provided for @stepProposed.
+  ///
+  /// In es, this message translates to:
+  /// **'Propuesta'**
+  String get stepProposed;
+
+  /// No description provided for @chatClosed.
+  ///
+  /// In es, this message translates to:
+  /// **'Este chat ya se cerró: solo sirve para organizar su reunión.'**
+  String get chatClosed;
+
+  /// No description provided for @qrLate.
+  ///
+  /// In es, this message translates to:
+  /// **'Llego 5 min tarde'**
+  String get qrLate;
+
+  /// No description provided for @qrOtherTime.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cambiamos la hora?'**
+  String get qrOtherTime;
+
+  /// No description provided for @qrSeeYou.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Nos vemos!'**
+  String get qrSeeYou;
+
+  /// No description provided for @sysBookedByMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Reservaste {when}'**
+  String sysBookedByMe(String when);
+
+  /// No description provided for @sysBooked.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} reservó {when}'**
+  String sysBooked(String name, String when);
+
+  /// No description provided for @sysInvitedByMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Invitaste para {when}'**
+  String sysInvitedByMe(String when);
+
+  /// No description provided for @sysInvited.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} te invita: {when}'**
+  String sysInvited(String name, String when);
+
+  /// No description provided for @inviteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Invitar a {name}'**
+  String inviteTitle(String name);
+
+  /// No description provided for @timeField.
+  ///
+  /// In es, this message translates to:
+  /// **'Hora'**
+  String get timeField;
+
+  /// No description provided for @sendInvite.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar invitación'**
+  String get sendInvite;
+
+  /// No description provided for @inviteHint.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} lo confirmará con un toque.'**
+  String inviteHint(String name);
+
+  /// No description provided for @noTimesLeft.
+  ///
+  /// In es, this message translates to:
+  /// **'No quedan horas libres este día.'**
+  String get noTimesLeft;
+
+  /// No description provided for @companionPrompt.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Repetiríais? Añade a {name} a tus compañeros para invitaros directamente.'**
+  String companionPrompt(String name);
+
+  /// No description provided for @addCompanion.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir a compañeros'**
+  String get addCompanion;
+
+  /// No description provided for @companionAdded.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadido. Cuando {name} también te añada, podréis invitaros.'**
+  String companionAdded(String name);
+
+  /// No description provided for @companionMutual.
+  ///
+  /// In es, this message translates to:
+  /// **'{name} y tú ya sois compañeros.'**
+  String companionMutual(String name);
+
+  /// No description provided for @repeatWith.
+  ///
+  /// In es, this message translates to:
+  /// **'Repetir con {name}'**
+  String repeatWith(String name);
+
+  /// No description provided for @errorSlotTaken.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese hueco ya está reservado'**
+  String get errorSlotTaken;
+
+  /// No description provided for @errorNotCompanion.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo puedes invitar a tus compañeros'**
+  String get errorNotCompanion;
+
+  /// No description provided for @errorTooManyInvites.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya tienes 3 invitaciones sin confirmar'**
+  String get errorTooManyInvites;
+
+  /// No description provided for @errorTooManyCompanions.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya tienes 20 compañeros'**
+  String get errorTooManyCompanions;
+
+  /// No description provided for @errorSessionNotEnded.
+  ///
+  /// In es, this message translates to:
+  /// **'Podrás añadirle al terminar el examen'**
+  String get errorSessionNotEnded;
 }
 
 class _AppLocalizationsDelegate

@@ -1,0 +1,216 @@
+{
+  "id": "c1-e42-trusting-the-experts",
+  "level": "C1",
+  "version": 1,
+  "topic": "Trusting the experts",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. First of all, we'd like to know a little about you.",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p1-intro.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, whose advice do you trust most when you need to make a decision?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p1-q1.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you check information before you believe it?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p1-q2.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you decide whether a source is reliable?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p1-q3.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, have you ever changed your mind after hearing an expert?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p1-q4.mp3",
+          "audioMs": 5100
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p2-intro.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "c1-e42-a1",
+            "c1-e42-a2",
+            "c1-e42-a3"
+          ],
+          "text": "Candidate A, your pictures show people listening to or questioning experts. Choose two of the pictures and say why the people might trust or distrust what they hear, and what could be the consequences.",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p2-a.mp3",
+          "audioMs": 13300
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these situations do you find most familiar?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p2-a-follow.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "c1-e42-b1",
+            "c1-e42-b2",
+            "c1-e42-b3"
+          ],
+          "text": "Candidate B, your pictures show people relying on knowledge. Choose two of the pictures and say what knowledge the people depend on, and what could happen if it is wrong.",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p2-b.mp3",
+          "audioMs": 11100
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, when is it right to question an expert?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p2-b-follow.mp3",
+          "audioMs": 4000
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some factors that influence how much people trust experts, and a question for you to discuss.",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p3-intro.mp3",
+          "audioMs": 11400
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "c1-e42-trusting-the-experts",
+          "text": "Talk to each other about this question: How might these factors affect public trust in experts?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p3-discuss.mp3",
+          "audioMs": 6900
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "c1-e42-trusting-the-experts",
+          "text": "Now you have about a minute to decide together. Which has the greatest effect?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p3-decide.mp3",
+          "audioMs": 5300
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about trust in experts and expertise.",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p4-intro.mp3",
+          "audioMs": 5900
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Why do you think some people have lost confidence in experts?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p4-q1.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, to what extent should governments follow expert advice?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p4-q2.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, do you think everyone has a right to their opinion, even if it is not based on facts?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p4-q3.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "How can experts do a better job of explaining their work to ordinary people?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p4-q4.mp3",
+          "audioMs": 5400
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, is the internet making it harder to know whom to believe?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p4-q5.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q6",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, should schools teach students to question what they are told?",
+          "audio": "audio/C1/c1-e42-trusting-the-experts/p4-q6.mp3",
+          "audioMs": 5000
+        }
+      ]
+    }
+  ]
+}

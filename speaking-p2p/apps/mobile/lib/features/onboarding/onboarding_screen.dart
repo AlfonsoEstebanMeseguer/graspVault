@@ -7,14 +7,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/l10n/errors.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
+import '../../core/theming/tokens.dart';
+import '../../core/ui/kit.dart';
+import '../../core/ui/pico.dart';
 import '../../data/auth/auth_repository.dart';
 import '../../data/profile/profile_repository.dart';
 import '../../domain/account/account.dart';
 import '../../domain/exam/models.dart';
+import '../agenda/agenda_common.dart' show Pill;
+import '../legal/legal_screen.dart' show LegalDoc, LegalDocAsset;
 import '../home/home_screen.dart' show levelName;
 
 const _mainLanguages = ['es', 'en', 'ca', 'fr', 'it'];
@@ -156,30 +162,30 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+          padding: const EdgeInsets.fromLTRB(AppSpace.screen, 16, AppSpace.screen, 16),
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(children: [
               for (var i = 0; i < 3; i++) ...[
                 Expanded(
                   child: Container(
                     height: 4,
-                    decoration: BoxDecoration(color: i <= _step ? p.brand : p.border, borderRadius: BorderRadius.circular(2)),
+                    decoration: BoxDecoration(color: i <= _step ? p.link : p.overlay, borderRadius: BorderRadius.circular(2)),
                   ),
                 ),
                 if (i < 2) const SizedBox(width: 6),
               ],
             ]),
-            const SizedBox(height: 14),
+            const SizedBox(height: 18),
             Row(children: [
-              if (_step == 1) Padding(padding: const EdgeInsets.only(right: 4), child: Icon(Icons.lock_outline, size: 14, color: p.textSecondary)),
-              Flexible(child: Text('${l.stepOf(_step + 1)} · $caption', style: TextStyle(fontSize: 13, color: p.textSecondary))),
+              if (_step == 1) Padding(padding: const EdgeInsets.only(right: 6), child: Icon(AppIcons.lock, size: 13, color: p.textSecondary)),
+              Flexible(child: Overline('${l.stepOf(_step + 1)} · $caption')),
             ]),
             const SizedBox(height: 6),
             Expanded(child: SingleChildScrollView(child: [_publicStep, _privateStep, _levelStep][_step]())),
             if (_error != null)
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: Text(_error!, key: const Key('onboarding-error'), style: TextStyle(color: p.danger)),
+                child: Text(_error!, key: const Key('onboarding-error'), style: AppType.body.copyWith(color: p.danger)),
               ),
             Row(children: [
               if (_step > 0) ...[
@@ -203,13 +209,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _title(String t) => Padding(
-        padding: const EdgeInsets.only(bottom: 18),
-        child: Text(t, style: TextStyle(fontSize: 26, fontWeight: FontWeight.w800, color: context.palette.textPrimary)),
+        padding: const EdgeInsets.only(bottom: 22),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          Expanded(child: Text(t, style: AppType.largeTitle.copyWith(color: context.palette.textPrimary))),
+          Pico(size: 64, mood: _step == 2 ? PicoMood.celebrate : PicoMood.wave, level: _step == 2 ? _level : null),
+        ]),
       );
 
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, top: 4),
-        child: Text(t, style: TextStyle(fontWeight: FontWeight.w600, color: context.palette.textPrimary)),
+        child: Text(t, style: AppType.headline.copyWith(fontSize: 15, color: context.palette.textPrimary)),
       );
 
   Widget _publicStep() {
@@ -233,22 +242,22 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         onChanged: _onUsernameChanged,
         decoration: InputDecoration(
           prefixText: '@ ',
-          border: const OutlineInputBorder(),
+
           suffixIcon: switch (_usernameState) {
-            _UsernameState.available => Icon(Icons.check, color: p.success),
+            _UsernameState.available => Icon(AppIcons.check, color: p.success),
             _UsernameState.checking => const Padding(padding: EdgeInsets.all(14), child: CircularProgressIndicator(strokeWidth: 2)),
             _ => null,
           },
         ),
       ),
-      Padding(padding: const EdgeInsets.only(top: 6, bottom: 18), child: Text(helper, style: TextStyle(fontSize: 12, color: color))),
+      Padding(padding: const EdgeInsets.only(top: 8, bottom: 20, left: 4), child: Text(helper, style: AppType.footnote.copyWith(color: color))),
       _label(l.languagesYouSpeak),
       Wrap(spacing: 8, runSpacing: 8, children: [
         for (final code in languages)
-          FilterChip(
-            label: Text(languageName(l, code)),
+          Pill(
+            label: languageName(l, code),
             selected: _languages.contains(code),
-            onSelected: (on) => setState(() => on ? _languages.add(code) : _languages.remove(code)),
+            onTap: () => setState(() => _languages.contains(code) ? _languages.remove(code) : _languages.add(code)),
           ),
         if (!_showMoreLanguages)
           ActionChip(label: Text(l.otherLanguage), onPressed: () => setState(() => _showMoreLanguages = true)),
@@ -273,7 +282,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(max)],
             onChanged: (_) => setState(() {}),
-            decoration: InputDecoration(labelText: label, border: const OutlineInputBorder()),
+            decoration: InputDecoration(labelText: label),
           ),
         );
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -288,7 +297,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       ]),
       Padding(
         padding: const EdgeInsets.only(top: 6, bottom: 18),
-        child: Text(dateError ?? l.minAgeHint, style: TextStyle(fontSize: 12, color: dateError == null ? p.textSecondary : p.danger)),
+        child: Text(dateError ?? l.minAgeHint, style: AppType.footnote.copyWith(color: dateError == null ? p.textSecondary : p.danger)),
       ),
       _label(l.phoneOptional),
       Row(children: [
@@ -305,7 +314,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             keyboardType: TextInputType.phone,
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9 -]'))],
             onChanged: (_) => setState(() {}),
-            decoration: InputDecoration(border: const OutlineInputBorder(), errorText: _phoneValid ? null : l.invalidPhone),
+            decoration: InputDecoration(errorText: _phoneValid ? null : l.invalidPhone),
           ),
         ),
       ]),
@@ -314,9 +323,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       TextField(
         controller: TextEditingController(text: email),
         enabled: false,
-        decoration: InputDecoration(border: const OutlineInputBorder(), filled: true, fillColor: p.surfaceMuted),
+        decoration: InputDecoration(filled: true, fillColor: p.surfaceMuted),
       ),
-      Padding(padding: const EdgeInsets.only(top: 6), child: Text(l.linkedToAccount, style: TextStyle(fontSize: 12, color: p.textSecondary))),
+      Padding(padding: const EdgeInsets.only(top: 8, left: 4), child: Text(l.linkedToAccount, style: AppType.footnote.copyWith(color: p.textSecondary))),
     ]);
   }
 
@@ -335,31 +344,23 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               padding: const EdgeInsets.only(bottom: 10),
               child: InkWell(
                 key: Key('onboarding-level-${lv.code}'),
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(AppRadii.card),
                 onTap: () => setState(() => _level = lv),
-                child: Container(
-                  padding: const EdgeInsets.all(14),
+                child: AnimatedContainer(
+                  duration: AppMotion.smooth,
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: _level == lv ? p.brandSoft : p.surface,
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: _level == lv ? p.brand : p.border, width: _level == lv ? 2 : 1),
+                    color: p.surface,
+                    borderRadius: BorderRadius.circular(AppRadii.card),
+                    border: Border.all(color: _level == lv ? p.level(lv) : Colors.transparent, width: 2),
                   ),
                   child: Row(children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: _level == lv ? p.brand : p.surfaceMuted,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(lv.code, style: TextStyle(fontWeight: FontWeight.w700, color: _level == lv ? p.onBrand : p.textPrimary)),
-                    ),
-                    const SizedBox(width: 12),
+                    LevelBadge(lv, size: 18),
+                    const SizedBox(width: 14),
                     Expanded(
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text(levelName(l, lv), style: TextStyle(fontWeight: FontWeight.w600, color: p.textPrimary)),
-                        Text(l.speakingMinutes(minutes[lv]!), style: TextStyle(fontSize: 12, color: p.textSecondary)),
+                        Text(levelName(l, lv), style: AppType.headline.copyWith(color: p.textPrimary)),
+                        Text(l.speakingMinutes(minutes[lv]!), style: AppType.footnote.copyWith(color: p.textSecondary, fontWeight: FontWeight.w400)),
                       ]),
                     ),
                     Radio<Level>(value: lv),
@@ -376,8 +377,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         controlAffinity: ListTileControlAffinity.leading,
         value: _terms,
         onChanged: (v) => setState(() => _terms = v ?? false),
-        title: Text(l.acceptTerms, style: TextStyle(fontSize: 13, color: p.textPrimary)),
+        title: Text(l.acceptTerms, style: AppType.footnote.copyWith(fontSize: 14, color: p.textPrimary, fontWeight: FontWeight.w400)),
       ),
+      // Read before signing: both documents open in the app.
+      Wrap(spacing: 4, children: [
+        TextButton(key: const Key('onboarding-read-terms'), onPressed: () => context.push(LegalDoc.terms.path), child: Text(l.readTerms)),
+        TextButton(key: const Key('onboarding-read-privacy'), onPressed: () => context.push(LegalDoc.privacy.path), child: Text(l.readPrivacy)),
+      ]),
     ]);
   }
 }

@@ -1,0 +1,12 @@
+{
+  "id": "c1-e10-taking-entrepreneurial-risks",
+  "centralQuestion": "How might these factors contribute to the success of a start-up?",
+  "prompts": [
+    "a unique idea",
+    "sufficient funding",
+    "a skilled team",
+    "good timing",
+    "support from mentors"
+  ],
+  "decisionQuestion": "Which is the most important in the first year?"
+}

@@ -12,6 +12,7 @@ class ExamSnapshot {
     required this.elapsedMs,
     this.part,
     this.step,
+    this.pauseReason,
   });
 
   final PhaseAt phase;
@@ -23,11 +24,16 @@ class ExamSnapshot {
   final Part? part;
   final ExamStep? step;
 
+  /// 'leader' (paused by the leader) or 'switching' (loading another exam); null = running.
+  final String? pauseReason;
+  bool get paused => pauseReason != null;
+
   SessionState get state => phase.state;
   Segment? get segment => phase.segment;
   bool get readerSpeaking => segment?.phase == Phase.reader;
-  bool get myMicOn => phase.mic.forRole(myRole);
-  bool get partnerMicOn => phase.mic.forRole(myRole.other);
+  /// While paused both mics are open: a pause is free conversation (D-039).
+  bool get myMicOn => paused || phase.mic.forRole(myRole);
+  bool get partnerMicOn => paused || phase.mic.forRole(myRole.other);
 
   /// Turn steps (Parts 1-2) in their speaking window: whose turn it is.
   Role? get turnOwner {
@@ -38,27 +44,42 @@ class ExamSnapshot {
 }
 
 class ExamEngine {
-  ExamEngine({required this.exam, required this.myRole, required this.examStartedAtMs})
-      : timeline = buildTimeline(exam);
+  /// [timeline] is the session's copy when the leader may have changed it
+  /// (live: exam_sessions.schedule); by default the exam's own. While
+  /// [pausedAtMs] is set the clock stands still at that instant (D-039).
+  ExamEngine({
+    required this.exam,
+    required this.myRole,
+    required this.examStartedAtMs,
+    Timeline? timeline,
+    this.pausedAtMs,
+    this.pauseReason,
+    this._feedbackEndsAtMs,
+  }) : timeline = timeline ?? buildTimeline(exam);
 
   final Exam exam;
   final Role myRole;
   final int examStartedAtMs;
   final Timeline timeline;
+  final int? pausedAtMs;
+  final String? pauseReason;
+  final int? _feedbackEndsAtMs;
 
-  int get feedbackEndsAtMs => examStartedAtMs + timeline.totalMs + feedbackMs;
+  int get feedbackEndsAtMs => _feedbackEndsAtMs ?? examStartedAtMs + timeline.totalMs + feedbackMs;
 
   ExamSnapshot at(int nowMs) {
-    final elapsed = nowMs - examStartedAtMs;
-    final phase = phaseAt(timeline, elapsed);
+    final paused = pausedAtMs != null;
+    final elapsed = (pausedAtMs ?? nowMs) - examStartedAtMs;
+    final phase = phaseAt(timeline, elapsed, feedbackEndMs: feedbackEndsAtMs - examStartedAtMs);
     final seg = phase.segment;
     return ExamSnapshot(
       phase: phase,
       myRole: myRole,
-      startsInMs: elapsed < 0 ? -elapsed : 0,
+      startsInMs: elapsed < 0 && !paused ? -elapsed : 0,
       elapsedMs: elapsed,
       part: seg == null ? null : exam.parts[seg.part - 1],
       step: seg == null ? null : exam.step(seg.stepId),
+      pauseReason: paused ? (pauseReason ?? 'leader') : null,
     );
   }
 
@@ -67,7 +88,7 @@ class ExamEngine {
   /// Null if there is nothing (left) to play.
   ({ExamStep step, int offsetMs})? readerCue(ExamSnapshot snap) {
     final seg = snap.segment;
-    if (seg == null || seg.phase != Phase.reader || snap.startsInMs > 0) return null;
+    if (seg == null || seg.phase != Phase.reader || snap.startsInMs > 0 || snap.paused) return null;
     final offset = snap.elapsedMs - seg.startMs;
     final step = snap.step!;
     if (offset >= step.audioMs) return null;

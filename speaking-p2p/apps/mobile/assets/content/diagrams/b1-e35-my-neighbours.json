@@ -1,0 +1,12 @@
+{
+  "id": "b1-e35-my-neighbours",
+  "centralQuestion": "What is the best way to welcome new neighbours?",
+  "prompts": [
+    "bake a cake",
+    "invite them for dinner",
+    "leave a card with a map of the area",
+    "show them the local shops",
+    "organise a street party"
+  ],
+  "decisionQuestion": "Which idea would be the best way to welcome them?"
+}

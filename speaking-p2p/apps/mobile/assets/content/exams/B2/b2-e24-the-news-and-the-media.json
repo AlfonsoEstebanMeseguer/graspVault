@@ -1,0 +1,205 @@
+{
+  "id": "b2-e24-the-news-and-the-media",
+  "level": "B2",
+  "version": 1,
+  "topic": "The news and the media",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you usually find out what is happening in the world?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p1-q1.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you read the news every day?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p1-q2.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you trust what you read online?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p1-q3.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, which do you find more interesting, local news or international news?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p1-q4.mp3",
+          "audioMs": 6200
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e24-a1",
+            "b2-e24-a2"
+          ],
+          "text": "Candidate A, your photographs show people following the news. Compare the photographs, and say why the people might have chosen to read the news in this way.",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p2-a.mp3",
+          "audioMs": 10200
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, how do you prefer to follow the news? Why?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p2-a-follow.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e24-b1",
+            "b2-e24-b2"
+          ],
+          "text": "Candidate B, your photographs show people working in the media. Compare the photographs, and say what the advantages and disadvantages of these jobs might be.",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p2-b.mp3",
+          "audioMs": 11100
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, would you like to work in the media? Why or why not?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p2-b-follow.mp3",
+          "audioMs": 4800
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some ways to check if news is true, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p3-intro.mp3",
+          "audioMs": 9700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e24-the-news-and-the-media",
+          "text": "Talk to each other about this question: How might these ideas help people avoid false news?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p3-discuss.mp3",
+          "audioMs": 6900
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e24-the-news-and-the-media",
+          "text": "Now you have about a minute to decide together. Which would be the most useful?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p3-decide.mp3",
+          "audioMs": 5400
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about news and media.",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p4-intro.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that false news is a danger to society. What do you think?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p4-q1.mp3",
+          "audioMs": 5700
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think social media companies should be responsible for what is shared?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p4-q2.mp3",
+          "audioMs": 6200
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, why do you think many people prefer to read only news they agree with?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p4-q3.mp3",
+          "audioMs": 5800
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Should schools teach students how to understand the media?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p4-q4.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, is there too much bad news in the media?",
+          "audio": "audio/B2/b2-e24-the-news-and-the-media/p4-q5.mp3",
+          "audioMs": 4100
+        }
+      ]
+    }
+  ]
+}

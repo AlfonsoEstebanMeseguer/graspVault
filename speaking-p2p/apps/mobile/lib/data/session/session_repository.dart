@@ -1,5 +1,7 @@
 // Live exam session: the server is the authority (CLAUDE.md §6). The app reads
 // the row through RLS + Realtime and acts through `session-actions`.
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
@@ -7,6 +9,7 @@ import '../../core/config/env.dart';
 import '../../domain/account/account.dart';
 import '../../domain/exam/models.dart';
 import '../../domain/exam/timeline.dart';
+import '../../domain/feedback/peer_rating.dart';
 
 class SessionRow {
   const SessionRow({
@@ -26,6 +29,15 @@ class SessionRow {
     this.examStartedAt,
     this.abortedBy,
     this.abortReason,
+    this.schedule,
+    this.feedbackEndsAt,
+    this.leaderId,
+    this.proA = false,
+    this.proB = false,
+    this.pausedAt,
+    this.pauseReason,
+    this.controlVersion = 0,
+    this.lastControl,
   });
 
   final String id;
@@ -39,6 +51,22 @@ class SessionRow {
   final DateTime? examStartedAt;
   final String? abortedBy;
   final String? abortReason;
+
+  /// The session's own timeline: the leader may have changed durations (D-039).
+  final Map<String, Object?>? schedule;
+  final DateTime? feedbackEndsAt;
+
+  /// Pro exam control (D-038): who leads, who has Pro, the frozen clock.
+  final String? leaderId;
+  final bool proA, proB;
+  final DateTime? pausedAt;
+  final String? pauseReason;
+  final int controlVersion;
+
+  /// {op, by, at, args}: the last thing the leader did (for the toast).
+  final Map<String, Object?>? lastControl;
+
+  bool proOf(Role r) => r == Role.a ? proA : proB;
 
   Role? roleOf(String userId) => userId == userA ? Role.a : (userId == userB ? Role.b : null);
   String? userOf(Role r) => r == Role.a ? userA : userB;
@@ -64,6 +92,15 @@ class SessionRow {
       examStartedAt: t('exam_started_at'),
       abortedBy: j['aborted_by'] as String?,
       abortReason: j['abort_reason'] as String?,
+      schedule: (j['schedule'] as Map?)?.cast<String, Object?>(),
+      feedbackEndsAt: t('feedback_ends_at'),
+      leaderId: j['leader_id'] as String?,
+      proA: j['pro_a'] as bool? ?? false,
+      proB: j['pro_b'] as bool? ?? false,
+      pausedAt: t('paused_at'),
+      pauseReason: j['pause_reason'] as String?,
+      controlVersion: j['control_version'] as int? ?? 0,
+      lastControl: (j['last_control'] as Map?)?.cast<String, Object?>(),
     );
   }
 }
@@ -86,11 +123,23 @@ class PublicProfile {
 
 abstract class SessionRepository {
   Stream<SessionRow> watch(String sessionId);
-  Future<JoinResult> join(String sessionId);
+  /// [contentVersion] = this build's content, so the leader never switches
+  /// to an exam this phone does not have (D-040).
+  Future<JoinResult> join(String sessionId, {int? contentVersion});
   Future<DateTime> tick(String sessionId);
   Future<void> setFlag(String sessionId, String flag, bool value);
   Future<void> abort(String sessionId, {String reason = 'left'});
+
+  /// Debug builds only: jump to the next boundary of the exam (D-031).
+  Future<void> skip(String sessionId);
+
+  /// Pro exam control (D-039). [expectedVersion] = the control_version this
+  /// phone saw; the server refuses a stale one (`stale_control`).
+  Future<void> control(String sessionId, {required String op, Map<String, Object?> args, required int expectedVersion});
   Future<PublicProfile?> publicProfile(String userId);
+
+  /// The private feedback rubric for the partner (D-042); upserts.
+  Future<void> rate(String sessionId, PeerRating rating);
 }
 
 class SupabaseSessionRepository implements SessionRepository {
@@ -110,17 +159,62 @@ class SupabaseSessionRepository implements SessionRepository {
   static DateTime _serverNow(Map<String, dynamic> body) =>
       DateTime.parse(((body['tick'] as Map)['server_now']) as String);
 
+  /// Only the columns `authenticated` may read (column grants, vault ADR 0038).
+  /// `.stream()` selects `*` and is refused because recording_key stays private.
+  static const _columns = 'id, level, exam_id, user_a, user_b, state, lobby_deadline, ready_a, ready_b, '
+      'preloaded_a, preloaded_b, recording_consent_a, recording_consent_b, exam_started_at, aborted_by, abort_reason, '
+      'schedule, feedback_ends_at, leader_id, pro_a, pro_b, paused_at, pause_reason, control_version, last_control';
+
+  Future<SessionRow?> _fetch(String sessionId) async {
+    final r = await _c.from('exam_sessions').select(_columns).eq('id', sessionId).maybeSingle();
+    return r == null ? null : SessionRow.fromJson(r);
+  }
+
+  /// Realtime only says "this row changed"; the row is re-read by columns, so
+  /// the change payload is never trusted for content.
   @override
-  Stream<SessionRow> watch(String sessionId) => _c
-      .from('exam_sessions')
-      .stream(primaryKey: ['id'])
-      .eq('id', sessionId)
-      .where((rows) => rows.isNotEmpty)
-      .map((rows) => SessionRow.fromJson(rows.first));
+  Stream<SessionRow> watch(String sessionId) {
+    late final StreamController<SessionRow> out;
+    sb.RealtimeChannel? channel;
+    var closed = false;
+    Future<void> refresh() async {
+      try {
+        final row = await _fetch(sessionId);
+        if (row != null && !closed) out.add(row);
+      } catch (e, st) {
+        if (!closed) out.addError(e, st);
+      }
+    }
+
+    out = StreamController<SessionRow>(
+      onListen: () {
+        channel = _c
+            .channel('exam_session:$sessionId')
+            .onPostgresChanges(
+              event: sb.PostgresChangeEvent.update,
+              schema: 'public',
+              table: 'exam_sessions',
+              filter: sb.PostgresChangeFilter(type: sb.PostgresChangeFilterType.eq, column: 'id', value: sessionId),
+              callback: (_) => refresh(),
+            )
+            .subscribe((status, _) {
+              // (Re)subscribed: catch up with anything missed while offline.
+              if (status == sb.RealtimeSubscribeStatus.subscribed) refresh();
+            });
+        refresh();
+      },
+      onCancel: () async {
+        closed = true;
+        final ch = channel;
+        if (ch != null) await _c.removeChannel(ch);
+      },
+    );
+    return out.stream;
+  }
 
   @override
-  Future<JoinResult> join(String sessionId) async {
-    final b = await _call({'action': 'join', 'sessionId': sessionId});
+  Future<JoinResult> join(String sessionId, {int? contentVersion}) async {
+    final b = await _call({'action': 'join', 'sessionId': sessionId, 'contentVersion': ?contentVersion});
     return JoinResult(
       token: b['token'] as String,
       url: b['url'] as String,
@@ -139,6 +233,30 @@ class SupabaseSessionRepository implements SessionRepository {
   @override
   Future<void> abort(String sessionId, {String reason = 'left'}) =>
       _call({'action': 'abort', 'sessionId': sessionId, 'reason': reason});
+
+  @override
+  Future<void> skip(String sessionId) => _call({'action': 'skip', 'sessionId': sessionId});
+
+  @override
+  Future<void> control(String sessionId, {required String op, Map<String, Object?> args = const {}, required int expectedVersion}) =>
+      _call({
+        'action': 'control',
+        'sessionId': sessionId,
+        'expectedVersion': expectedVersion,
+        'control': {'op': op, if (args.isNotEmpty) 'args': args},
+      });
+
+  @override
+  Future<void> rate(String sessionId, PeerRating rating) async {
+    try {
+      await _c.rpc('rate_partner', params: {
+        'p_session': sessionId,
+        for (final MapEntry(:key, :value) in rating.toRow().entries) 'p_$key': value,
+      });
+    } on sb.PostgrestException catch (e) {
+      throw AppFailure(const {'not_participant', 'not_started', 'partner_gone'}.contains(e.message) ? e.message : 'server_error');
+    }
+  }
 
   @override
   Future<PublicProfile?> publicProfile(String userId) async {

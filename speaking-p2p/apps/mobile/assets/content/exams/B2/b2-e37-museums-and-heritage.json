@@ -1,0 +1,205 @@
+{
+  "id": "b2-e37-museums-and-heritage",
+  "level": "B2",
+  "version": 1,
+  "topic": "Museums and heritage",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p1-intro.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you enjoy visiting museums?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p1-q1.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is the most interesting place you have visited in your country?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p1-q2.mp3",
+          "audioMs": 5800
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you like to learn about history?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p1-q3.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer old buildings or new ones?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p1-q4.mp3",
+          "audioMs": 4300
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e37-a1",
+            "b2-e37-a2"
+          ],
+          "text": "Candidate A, your photographs show people learning about the past. Compare the photographs, and say why the people might have chosen to learn about history in these ways.",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p2-a.mp3",
+          "audioMs": 11300
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which way of learning about history do you prefer?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p2-a-follow.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e37-b1",
+            "b2-e37-b2"
+          ],
+          "text": "Candidate B, your photographs show people connected with history. Compare the photographs, and say what difficulties the people might have.",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p2-b.mp3",
+          "audioMs": 9400
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, would you like to work in a museum?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p2-b-follow.mp3",
+          "audioMs": 3600
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some ways to make museums more attractive, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p3-intro.mp3",
+          "audioMs": 10300
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e37-museums-and-heritage",
+          "text": "Talk to each other about this question: How might these ideas attract more visitors to a museum?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p3-discuss.mp3",
+          "audioMs": 7100
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e37-museums-and-heritage",
+          "text": "Now you have about a minute to decide together. Which would be the most effective?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p3-decide.mp3",
+          "audioMs": 5700
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about museums and heritage.",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p4-intro.mp3",
+          "audioMs": 5400
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that museums are boring for young people. What do you think?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p4-q1.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think museums should return objects to the countries they came from?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p4-q2.mp3",
+          "audioMs": 6100
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, is it worth spending money to preserve old buildings?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p4-q3.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Can we learn more from visiting a place than from reading about it?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p4-q4.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, how might museums look in the future?",
+          "audio": "audio/B2/b2-e37-museums-and-heritage/p4-q5.mp3",
+          "audioMs": 3800
+        }
+      ]
+    }
+  ]
+}

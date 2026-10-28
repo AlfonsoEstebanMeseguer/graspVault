@@ -1,0 +1,193 @@
+{
+  "id": "b1-e28-helping-other-people",
+  "level": "B1",
+  "version": 1,
+  "topic": "Helping other people",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e28-helping-other-people/p1-intro.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you like helping other people?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e28-helping-other-people/p1-q1.mp3",
+          "audioMs": 3400
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how do you help your family and friends?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e28-helping-other-people/p1-q2.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a time when someone helped you.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e28-helping-other-people/p1-q3.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, have you ever given something to charity?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e28-helping-other-people/p1-q4.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you prefer to help people you know or people you do not know?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e28-helping-other-people/p1-q5.mp3",
+          "audioMs": 5400
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, would you like to do some voluntary work in the future?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e28-helping-other-people/p1-q6.mp3",
+          "audioMs": 4800
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e28-helping-other-people/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e28-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows volunteers serving food to people. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e28-helping-other-people/p2-a.mp3",
+          "audioMs": 8200
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e28-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a young person helping an older man. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e28-helping-other-people/p2-b.mp3",
+          "audioMs": 8200
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e28-helping-other-people/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e28-helping-other-people",
+          "text": "A group of students wants to do something to help people in their town. Here are some ideas. Talk together about the different ideas, and say which would be the best.",
+          "audio": "audio/B1/b1-e28-helping-other-people/p3-discuss.mp3",
+          "audioMs": 10600
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about volunteering and helping.",
+          "audio": "audio/B1/b1-e28-helping-other-people/p4-intro.mp3",
+          "audioMs": 5200
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think young people should do voluntary work? Why?",
+          "audio": "audio/B1/b1-e28-helping-other-people/p4-q1.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, what can we learn from helping others?",
+          "audio": "audio/B1/b1-e28-helping-other-people/p4-q2.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, is it better to give money or to give time?",
+          "audio": "audio/B1/b1-e28-helping-other-people/p4-q3.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Why do you think some people do not help others?",
+          "audio": "audio/B1/b1-e28-helping-other-people/p4-q4.mp3",
+          "audioMs": 3100
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, have you ever seen somebody do something kind in the street?",
+          "audio": "audio/B1/b1-e28-helping-other-people/p4-q5.mp3",
+          "audioMs": 5100
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b2-e15-live-music",
+  "centralQuestion": "How might these things make a concert special for the audience?",
+  "prompts": [
+    "the atmosphere",
+    "the quality of the sound",
+    "seeing the musicians close up",
+    "meeting other fans",
+    "hearing old songs"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

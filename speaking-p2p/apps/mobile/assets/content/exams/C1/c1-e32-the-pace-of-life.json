@@ -1,0 +1,216 @@
+{
+  "id": "c1-e32-the-pace-of-life",
+  "level": "C1",
+  "version": 1,
+  "topic": "The pace of life",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. First of all, we'd like to know a little about you.",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, would you describe yourself as someone who is always busy?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p1-q1.mp3",
+          "audioMs": 5200
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you do to slow down?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p1-q2.mp3",
+          "audioMs": 3300
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you think life is moving faster than it used to?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p1-q3.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how does the pace of life in your town compare with other places?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p1-q4.mp3",
+          "audioMs": 5700
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p2-intro.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "c1-e32-a1",
+            "c1-e32-a2",
+            "c1-e32-a3"
+          ],
+          "text": "Candidate A, your pictures show people living at different speeds. Choose two of the pictures and say how the people might be feeling, and what effect their way of life could have on them.",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p2-a.mp3",
+          "audioMs": 11900
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these ways of living would you prefer?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p2-a-follow.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "c1-e32-b1",
+            "c1-e32-b2",
+            "c1-e32-b3"
+          ],
+          "text": "Candidate B, your pictures show people dealing with time. Choose two of the pictures and say what pressure the people might be under, and how they could handle it.",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p2-b.mp3",
+          "audioMs": 10500
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, do you ever feel that there is not enough time in the day?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p2-b-follow.mp3",
+          "audioMs": 4700
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some factors that have made life faster, and a question for you to discuss.",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p3-intro.mp3",
+          "audioMs": 9800
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "c1-e32-the-pace-of-life",
+          "text": "Talk to each other about this question: How have these factors changed the pace of modern life?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p3-discuss.mp3",
+          "audioMs": 6600
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "c1-e32-the-pace-of-life",
+          "text": "Now you have about a minute to decide together. Which has had the greatest effect?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p3-decide.mp3",
+          "audioMs": 5500
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about the pace of modern life.",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p4-intro.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Is the idea of slowing down realistic in a competitive world?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p4-q1.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, to what extent is it the individual's own choice to live at a fast pace?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p4-q2.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, do you think a slower way of life leads to greater happiness?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p4-q3.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "How might children be affected by living in a world that is always in a hurry?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p4-q4.mp3",
+          "audioMs": 5200
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, should employers encourage staff to take more time off?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p4-q5.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p4-q6",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, could technology help us to save time or does it just fill the time with new tasks?",
+          "audio": "audio/C1/c1-e32-the-pace-of-life/p4-q6.mp3",
+          "audioMs": 7000
+        }
+      ]
+    }
+  ]
+}

@@ -5,11 +5,19 @@ import { handler, HttpError, json, parseBody } from "../_shared/http.ts";
 import { adminClient, requireAuthUser } from "../_shared/supabase.ts";
 import { deleteObject, getObjectHead, sniffImage } from "../_shared/r2.ts";
 
-const Body = z.object({ key: z.string().max(200) });
+// `remove` drops the photo (back to the initial); the same trigger queues the
+// old object for deletion.
+const Body = z.union([z.object({ key: z.string().max(200) }), z.object({ remove: z.literal(true) })]);
 
 Deno.serve(handler(async (req) => {
   const { user } = await requireAuthUser(req);
-  const { key } = await parseBody(req, Body);
+  const body = await parseBody(req, Body);
+  if ("remove" in body) {
+    const { error } = await adminClient().from("profiles").update({ avatar_key: null }).eq("id", user.id);
+    if (error) throw new HttpError(500, "internal");
+    return json({ avatarKey: null });
+  }
+  const { key } = body;
   const m = key.match(/^avatars\/([0-9a-f-]{36})\/[0-9a-f-]{36}\.(webp|jpg)$/);
   if (!m || m[1] !== user.id) throw new HttpError(422, "invalid_key");
   const head = await getObjectHead("media", key);

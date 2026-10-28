@@ -1,0 +1,205 @@
+{
+  "id": "b2-e10-moving-to-the-city",
+  "level": "B2",
+  "version": 1,
+  "topic": "Moving to the city",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p1-intro.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you live in a house or a flat?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p1-q1.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what would you change about the place where you live?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p1-q2.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you prefer to live in the city or the countryside?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p1-q3.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what are the best things about your neighbourhood?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p1-q4.mp3",
+          "audioMs": 4100
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e10-a1",
+            "b2-e10-a2"
+          ],
+          "text": "Candidate A, your photographs show different places to live. Compare the photographs, and say what the advantages and disadvantages of living in these places might be.",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p2-a.mp3",
+          "audioMs": 12000
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these places would you prefer to live in? Why?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p2-a-follow.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e10-b1",
+            "b2-e10-b2"
+          ],
+          "text": "Candidate B, your photographs show people at home. Compare the photographs, and say why the people might have chosen to live in this way.",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p2-b.mp3",
+          "audioMs": 9100
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, would you like to share a flat? Why or why not?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p2-b-follow.mp3",
+          "audioMs": 4700
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some things that can make a city a better place to live, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p3-intro.mp3",
+          "audioMs": 10900
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e10-moving-to-the-city",
+          "text": "Talk to each other about this question: How might these things improve life in a city?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p3-discuss.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e10-moving-to-the-city",
+          "text": "Now you have about a minute to decide together. Which would be the most important for the people living there?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p3-decide.mp3",
+          "audioMs": 7100
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about cities and living spaces.",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p4-intro.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that cities are becoming too big. What do you think?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p4-q1.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, why do you think so many young people move to big cities?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p4-q2.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, what can be done to help people who cannot afford to live in the city?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p4-q3.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Is it better for cities to grow upwards with tall buildings or outwards?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p4-q4.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, would you like to live in a very different place in the future?",
+          "audio": "audio/B2/b2-e10-moving-to-the-city/p4-q5.mp3",
+          "audioMs": 5100
+        }
+      ]
+    }
+  ]
+}

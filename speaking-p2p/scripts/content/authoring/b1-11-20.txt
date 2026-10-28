@@ -1,0 +1,159 @@
+=== B1 11 | Weather and seasons | weather and the seasons
+P1: what is the weather like where you live?
+P1: which season do you like best? Why?
+P1: tell us about a day when the weather was very bad.
+P1: do you change what you do when the weather changes?
+P1: what do you usually wear in winter?
+P1: what are you going to do if it is sunny this weekend?
+P2: children playing in the snow with a snowman || children playing in the snow
+P2: people lying on a crowded beach in the sun || people relaxing on a beach on a hot day
+P3: A group of friends wants to do something together on a rainy Saturday. Here are some things they could do. Talk together about the different ideas, and say which would be the best for a rainy day. || What is the best thing to do on a rainy day? || go to the cinema ; visit a museum ; play board games at home ; cook a meal together ; go to a swimming pool || Which activity would be the best for a rainy day?
+P4: both: Do you prefer hot weather or cold weather? Why?
+P4: A: do you think the weather changes how people feel?
+P4: B: what do you do at home when it is raining?
+P4: both: Is it a good idea to plan outdoor activities in a country with a lot of rain?
+P4: B: have you ever missed an event because of bad weather?
+
+=== B1 12 | Hobbies at home | hobbies
+P1: what do you like doing in your free time?
+P1: do you have a hobby?
+P1: tell us about something new you tried recently.
+P1: do you prefer hobbies you do alone or with other people?
+P1: how much time do you have for hobbies during the week?
+P1: is there a hobby you would like to start?
+P2: man painting a picture in a bright room || a man painting at home
+P2: two friends playing chess in a park || two friends playing a board game
+P3: A friend of yours has a lot of free time and wants to start a new hobby. Here are some hobbies he could try. Talk together about the different hobbies, and say which would be the best. || Which hobby would be the best to start? || painting ; learning to cook ; collecting stamps ; playing an instrument ; growing plants || Which hobby would be the best for your friend?
+P4: both: Do you think hobbies are important in our lives? Why?
+P4: A: is it better to have a hobby that is cheap or one that costs a lot of money?
+P4: B: do you think children should have hobbies after school?
+P4: both: Can a hobby become a job? Why or why not?
+P4: A: have you ever stopped doing a hobby? Why?
+
+=== B1 13 | Studying | studying and school
+P1: what are you studying at the moment?
+P1: what is your favourite subject? Why?
+P1: tell us about your school or college.
+P1: do you prefer studying in the morning or in the evening?
+P1: where do you usually do your homework?
+P1: what would you like to study in the future?
+P2: students working together at a table in a library || students studying together in a library
+P2: boy doing homework on a bed with headphones || a boy studying alone in his room
+P3: A student has an important exam next month and wants to study better. Here are some ideas to help her. Talk together about the different ideas, and say which would be the most useful. || What is the best way to prepare for an exam? || study in a library ; make a plan ; study with friends ; ask the teacher for help ; take short breaks || Which idea would be the most useful for the student?
+P4: both: Do you think it is better to study alone or in a group? Why?
+P4: A: do you think students have too many exams?
+P4: B: what makes a good teacher?
+P4: both: Is it important to have good marks at school?
+P4: B: how do you feel before an exam?
+
+=== B1 14 | Part-time jobs | work and jobs
+P1: do you have a job at the moment?
+P1: what job would you like to do in the future?
+P1: tell us about someone you know who has an interesting job.
+P1: would you prefer to work indoors or outdoors?
+P1: what did you want to be when you were a child?
+P1: what are you going to do after you finish studying?
+P2: waiter carrying plates in a busy restaurant || a waiter working in a restaurant
+P2: girl giving out leaflets in a street || a young woman working outside in a city
+P3: Some students want to get a part-time job in the summer. Here are some jobs they could do. Talk together about the different jobs, and say which would be the best. || Which summer job would be the best for a student? || working in a cafe ; looking after children ; delivering pizzas ; working in a shop ; helping at a summer camp || Which job would be the best for a student?
+P4: both: Do you think it is a good idea for students to have a job? Why?
+P4: A: what is the most important thing when you choose a job, money or interest?
+P4: B: would you like to work for yourself one day?
+P4: both: What are the difficult things about starting your first job?
+P4: A: do you think young people can learn useful things from a summer job?
+
+=== B1 15 | Reading books | books and reading
+P1: do you like reading?
+P1: what kind of books do you enjoy?
+P1: tell us about a book you have read recently.
+P1: do you prefer paper books or books on a screen?
+P1: where do you usually read?
+P1: are you going to read anything this summer?
+P2: woman reading a book on a sofa with a cup of tea || a woman reading at home
+P2: children choosing books in a library || children in a library
+P3: A town library wants more young people to come. Here are some ideas to make the library more popular. Talk together about the different ideas, and say which would be the best. || How could a library get more young people to visit it? || a coffee shop ; free internet ; a reading club ; special events with writers ; longer opening hours || Which idea would be the best to get more young people?
+P4: both: Do you think people read less than in the past? Why?
+P4: A: do you think libraries are still important?
+P4: B: what is a good book to give as a present?
+P4: both: Is it better to read a book before you see the film?
+P4: B: should children read more at school?
+
+=== B1 16 | Going to the cinema | films and cinema
+P1: how often do you go to the cinema?
+P1: what kind of films do you like?
+P1: tell us about the last film you saw.
+P1: do you prefer watching films at home or at the cinema?
+P1: who do you usually go to see films with?
+P1: what film would you like to see next?
+P2: audience laughing in a dark cinema with popcorn || people watching a film in a cinema
+P2: family watching a film at home on the sofa || a family watching a film at home
+P3: A group of friends want to spend an evening together watching a film. Here are some ways they could do it. Talk together about the different ideas, and say which would be the best evening. || What is the best way to enjoy a film with friends? || go to a big cinema ; watch at home with snacks ; have an outdoor cinema night ; watch in a student club ; go to a film festival || Which idea would be the best evening with friends?
+P4: both: Do you think the cinema is more fun than watching a film at home? Why?
+P4: A: do you think films are too expensive nowadays?
+P4: B: do you ever watch films in English?
+P4: both: Can a film teach you something? Why or why not?
+P4: B: who is your favourite actor, and why?
+
+=== B1 17 | Friends | friends and friendship
+P1: do you have a lot of friends?
+P1: how did you meet your best friend?
+P1: tell us about something nice you did with a friend.
+P1: do you prefer going out in a big group or with one friend?
+P1: how often do you see your friends?
+P1: what are you going to do with your friends next weekend?
+P2: group of teenagers laughing at a table in a cafe || a group of friends laughing in a cafe
+P2: two older men fishing on a lake || two older men fishing together
+P3: Your friend is feeling sad because his best friend has moved to another city. Here are some things he could do. Talk together about the different ideas, and say which would be the best. || How can you help a friend who feels sad? || phone him every day ; visit the other city ; join a club to meet new people ; plan a surprise for him ; invite him for a day out || Which idea would be the best to help your friend?
+P4: both: Do you think it is easy to stay friends when you live far away? Why?
+P4: A: what is the most important thing in a good friend?
+P4: B: do you think you can make real friends on the internet?
+P4: both: Is it better to have a few close friends or many friends?
+P4: A: have you ever helped a friend with a problem?
+
+=== B1 18 | Life in the countryside | town and country life
+P1: do you live in a town or in the countryside?
+P1: what do you like about the place where you live?
+P1: tell us about a visit you made to the countryside.
+P1: do you prefer cities or small villages?
+P1: how do you spend time with your neighbours?
+P1: where would you like to live in the future?
+P2: farmer feeding chickens in a village || a farmer working on a farm
+P2: crowded city street with tall buildings and traffic || a busy street in a big city
+P3: A family is thinking about moving from a city to the countryside. Here are some things they should think about. Talk together about the different things, and say which is the most important. || What is the most important thing when moving to the countryside? || a good school nearby ; a job close to home ; shops and services ; a nice house with a garden ; friendly neighbours || Which thing is the most important for the family?
+P4: both: Do you think life is better in the countryside or in a city? Why?
+P4: A: do you think young people want to leave small villages?
+P4: B: what can you do in a city that you cannot do in the countryside?
+P4: both: Would you like to live on a farm?
+P4: B: is it expensive to live in a big city?
+
+=== B1 19 | Places to stay | hotels and places to stay
+P1: have you ever stayed in a hotel?
+P1: do you prefer staying with family or in a hotel?
+P1: tell us about a place where you stayed that you really liked.
+P1: what is the most important thing for you in a place to sleep?
+P1: do you like staying in other people's houses?
+P1: where are you going to stay on your next trip?
+P2: tourists at a hotel reception desk with suitcases || tourists arriving at a hotel
+P2: young people in a small hostel room with bunk beds || young people staying in a hostel
+P3: A group of students is planning a trip to another country and needs a cheap place to stay. Here are some places. Talk together about the different places, and say which would be the best. || Where is the best place for students to stay on a trip? || a hotel ; a hostel ; a campsite ; staying with a local family ; renting a flat || Which place would be the best for the students?
+P4: both: Do you think it is better to stay in a hotel or in a flat? Why?
+P4: A: what is important when you choose where to stay?
+P4: B: have you ever had a problem in a hotel?
+P4: both: Why do some people like staying in the same place every year?
+P4: B: would you like to work in a hotel?
+
+=== B1 20 | A day at the beach | the beach and the sea
+P1: do you live near the sea?
+P1: do you like swimming?
+P1: tell us about a day you spent at the beach.
+P1: do you prefer sunbathing or doing water sports?
+P1: what do you take with you when you go to the beach?
+P1: are you going to go to the beach this summer?
+P2: surfers carrying boards on a beach at sunset || surfers on a beach
+P2: family building sandcastles on the sand || a family playing on the sand at the beach
+P3: A group of friends are going to the beach for the day. Here are some activities they could do. Talk together about the different activities, and say which would be the best. || What is the best thing to do on a day at the beach? || swimming ; playing volleyball ; having a barbecue ; learning to surf ; walking along the coast || Which activity would be the best for the day?
+P4: both: Do you think a day at the beach is a good way to relax? Why?
+P4: A: do you think beaches are too crowded in summer?
+P4: B: what can you do to keep the beach clean?
+P4: both: Is the sea important for the place where you live?
+P4: B: do you prefer the beach in summer or in winter?

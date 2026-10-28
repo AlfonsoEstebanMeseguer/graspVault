@@ -16,12 +16,22 @@ class ContentIndexEntry {
 }
 
 class ContentIndex {
-  const ContentIndex(this.version, this.exams, this.diagrams);
+  const ContentIndex(this.version, this.exams, this.diagrams, [this.voices = const []]);
 
   /// Sent to the server when matching: it never picks an exam this build lacks.
   final int version;
   final List<ContentIndexEntry> exams;
   final List<String> diagrams;
+
+  /// Examiner voices rendered in R2 (D-033).
+  final List<String> voices;
+}
+
+/// Part 2 photos: [captions] says what each photo shows (photos.json). The
+/// images themselves come from R2 in the lobby (D-036).
+class PhotoCatalog {
+  const PhotoCatalog({this.captions = const {}});
+  final Map<String, String> captions;
 }
 
 class ContentRepository {
@@ -43,6 +53,7 @@ class ContentRepository {
             e['topic']! as String,
           )).toList(growable: false),
       (j['diagrams']! as List<Object?>).cast<String>(),
+      (j['voices'] as List<Object?>? ?? const []).cast<String>(),
     );
   }
 
@@ -56,8 +67,18 @@ class ContentRepository {
     }
   }
 
+  /// Never throws: a missing catalog just means placeholders without caption.
+  Future<PhotoCatalog> photoCatalog() async {
+    try {
+      return PhotoCatalog(captions: (await _json('photos.json')).map((k, v) => MapEntry(k, v! as String)));
+    } catch (_) {
+      return const PhotoCatalog();
+    }
+  }
+
   Future<Diagram> diagram(String id) async => Diagram.fromJson(await _json('diagrams/$id.json'));
 }
 
 final contentRepositoryProvider = Provider<ContentRepository>((ref) => ContentRepository(rootBundle));
 final contentIndexProvider = FutureProvider<ContentIndex>((ref) => ref.watch(contentRepositoryProvider).index());
+final photoCatalogProvider = FutureProvider<PhotoCatalog>((ref) => ref.watch(contentRepositoryProvider).photoCatalog());

@@ -1,0 +1,12 @@
+{
+  "id": "b1-e36-art-and-painting",
+  "centralQuestion": "What kind of art would be good for a town square?",
+  "prompts": [
+    "a big statue",
+    "paintings by local people",
+    "a wall painting",
+    "a fountain with lights",
+    "music and dance shows"
+  ],
+  "decisionQuestion": "Which idea would be the best for the square?"
+}

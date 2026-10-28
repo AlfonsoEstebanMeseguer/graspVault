@@ -1,0 +1,205 @@
+{
+  "id": "b2-e35-cooking-and-restaurants",
+  "level": "B2",
+  "version": 1,
+  "topic": "Cooking and restaurants",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how often do you eat out?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p1-q1.mp3",
+          "audioMs": 3100
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you enjoy cooking for other people?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p1-q2.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what is your favourite restaurant?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p1-q3.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is the best meal you have ever had?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p1-q4.mp3",
+          "audioMs": 4000
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e35-a1",
+            "b2-e35-a2"
+          ],
+          "text": "Candidate A, your photographs show people eating in different places. Compare the photographs, and say why the people might have chosen to eat in these places.",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p2-a.mp3",
+          "audioMs": 10600
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, where do you prefer to eat? Why?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p2-a-follow.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e35-b1",
+            "b2-e35-b2"
+          ],
+          "text": "Candidate B, your photographs show people cooking. Compare the photographs, and say how the people might be feeling.",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p2-b.mp3",
+          "audioMs": 7900
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, do you think cooking is a skill everybody should have?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p2-b-follow.mp3",
+          "audioMs": 4800
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some things that make a restaurant successful, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p3-intro.mp3",
+          "audioMs": 9900
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e35-cooking-and-restaurants",
+          "text": "Talk to each other about this question: How might these things help a new restaurant to succeed?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p3-discuss.mp3",
+          "audioMs": 6400
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e35-cooking-and-restaurants",
+          "text": "Now you have about a minute to decide together. Which is the most important?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p3-decide.mp3",
+          "audioMs": 5400
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about restaurants and cooking.",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p4-intro.mp3",
+          "audioMs": 5200
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that traditional cooking is disappearing. What do you think?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p4-q1.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, why do you think cooking programmes are so popular on television?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p4-q2.mp3",
+          "audioMs": 5700
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, is it better to eat at home or in restaurants?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p4-q3.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Should restaurants be more careful about wasting food?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p4-q4.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think working in a restaurant is a good job?",
+          "audio": "audio/B2/b2-e35-cooking-and-restaurants/p4-q5.mp3",
+          "audioMs": 4600
+        }
+      ]
+    }
+  ]
+}

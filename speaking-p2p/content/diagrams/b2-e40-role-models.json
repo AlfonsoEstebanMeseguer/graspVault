@@ -1,0 +1,12 @@
+{
+  "id": "b2-e40-role-models",
+  "centralQuestion": "How might these people influence young people?",
+  "prompts": [
+    "parents",
+    "teachers",
+    "sports stars",
+    "online influencers",
+    "scientists"
+  ],
+  "decisionQuestion": "Which has the strongest influence?"
+}

@@ -1,0 +1,216 @@
+{
+  "id": "c1-e11-fame-and-public-attention",
+  "level": "C1",
+  "version": 1,
+  "topic": "Fame and public attention",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. First of all, we'd like to know a little about you.",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you feel about being the centre of attention?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p1-q1.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, which public figures do you admire, and why?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p1-q2.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how much interest do you take in the lives of famous people?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p1-q3.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, would you like a job in the public eye?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p1-q4.mp3",
+          "audioMs": 3900
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p2-intro.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "c1-e11-a1",
+            "c1-e11-a2",
+            "c1-e11-a3"
+          ],
+          "text": "Candidate A, your pictures show people who attract public attention. Choose two of the pictures and say what the pressures of being in the public eye might be, and why people might want this kind of life.",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p2-a.mp3",
+          "audioMs": 13100
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these roles would you find the most difficult?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p2-a-follow.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "c1-e11-b1",
+            "c1-e11-b2",
+            "c1-e11-b3"
+          ],
+          "text": "Candidate B, your pictures show people connected to fame. Choose two of the pictures and say what motivates these people, and how they might be affected by what they do.",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p2-b.mp3",
+          "audioMs": 11200
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, why do you think people are so interested in celebrities?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p2-b-follow.mp3",
+          "audioMs": 5000
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some effects that fame can have on a person, and a question for you to discuss.",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p3-intro.mp3",
+          "audioMs": 10100
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "c1-e11-fame-and-public-attention",
+          "text": "Talk to each other about this question: How might these effects change a famous person's life?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p3-discuss.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "c1-e11-fame-and-public-attention",
+          "text": "Now you have about a minute to decide together. Which would be the hardest to deal with?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p3-decide.mp3",
+          "audioMs": 5600
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about celebrity and fame.",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p4-intro.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "To what extent do you think celebrities have a responsibility to set a good example?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p4-q1.mp3",
+          "audioMs": 6300
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, is the attention paid to famous people's private lives justified?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p4-q2.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, could social media have made it too easy to become famous without talent?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p4-q3.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "How might growing up in the public eye affect a child's development?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p4-q4.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think society values fame too highly?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p4-q5.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q6",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, should famous people be allowed to use their influence in politics?",
+          "audio": "audio/C1/c1-e11-fame-and-public-attention/p4-q6.mp3",
+          "audioMs": 5600
+        }
+      ]
+    }
+  ]
+}

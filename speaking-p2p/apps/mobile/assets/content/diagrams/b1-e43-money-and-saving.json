@@ -1,0 +1,12 @@
+{
+  "id": "b1-e43-money-and-saving",
+  "centralQuestion": "What is the best way to save money for a trip?",
+  "prompts": [
+    "put some money aside each month",
+    "sell old things",
+    "get a weekend job",
+    "spend less on clothes",
+    "cook at home instead of eating out"
+  ],
+  "decisionQuestion": "Which way would be the best to save money?"
+}

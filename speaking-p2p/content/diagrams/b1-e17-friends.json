@@ -1,0 +1,12 @@
+{
+  "id": "b1-e17-friends",
+  "centralQuestion": "How can you help a friend who feels sad?",
+  "prompts": [
+    "phone him every day",
+    "visit the other city",
+    "join a club to meet new people",
+    "plan a surprise for him",
+    "invite him for a day out"
+  ],
+  "decisionQuestion": "Which idea would be the best to help your friend?"
+}

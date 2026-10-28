@@ -1,0 +1,12 @@
+{
+  "id": "b1-e42-board-games",
+  "centralQuestion": "What would be the best game for a weekend with friends?",
+  "prompts": [
+    "a quiz game",
+    "playing cards",
+    "a big puzzle",
+    "a guessing game",
+    "a board game about money"
+  ],
+  "decisionQuestion": "Which one would be the best for the weekend?"
+}

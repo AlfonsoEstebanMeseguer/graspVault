@@ -1,0 +1,12 @@
+{
+  "id": "b1-e12-hobbies-at-home",
+  "centralQuestion": "Which hobby would be the best to start?",
+  "prompts": [
+    "painting",
+    "learning to cook",
+    "collecting stamps",
+    "playing an instrument",
+    "growing plants"
+  ],
+  "decisionQuestion": "Which hobby would be the best for your friend?"
+}

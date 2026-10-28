@@ -1,0 +1,12 @@
+{
+  "id": "b1-e08-a-weekend-trip",
+  "centralQuestion": "Where is the best place to go for a weekend trip?",
+  "prompts": [
+    "a city with museums",
+    "a beach",
+    "a campsite in the mountains",
+    "a small village",
+    "a theme park"
+  ],
+  "decisionQuestion": "Which place would be the best for the weekend?"
+}

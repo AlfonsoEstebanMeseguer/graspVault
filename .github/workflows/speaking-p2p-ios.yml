@@ -1,0 +1,78 @@
+# iOS build of Speaking P2P without a Mac (same approach as Grasp's ios.yml): compiles on a GitHub macOS runner
+# and, with "ipa" checked, packages an UNSIGNED .ipa as an artifact. It is signed when installing it on the iPhone
+# with Sideloadly or iPASide and a free Apple ID (expires after 7 days, no push, max 3 apps).
+#
+# Manual only (Actions -> "speaking-p2p iOS" -> Run workflow, or `gh workflow run speaking-p2p-ios.yml -f ipa=true
+# --ref <branch>`): macOS runners burn Actions minutes 10 times faster than Linux ones.
+#
+# Backend config: env/dev.json (Supabase URL + publishable key, public by design; RLS protects the data). The
+# secret MOBILE_DEFINES, if set, replaces it (e.g. another project), and its values are never printed.
+name: speaking-p2p iOS
+
+on:
+  workflow_dispatch:
+    inputs:
+      ipa:
+        description: "Package an unsigned .ipa (for Sideloadly / iPASide)"
+        type: boolean
+        default: true
+      runner:
+        description: "macOS machine. If macos-latest (ARM) stays queued and GitHub cancels it for capacity, use Intel"
+        type: choice
+        options: [macos-latest, macos-15-intel]
+        default: macos-latest
+
+concurrency:
+  group: speaking-p2p-ios-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: speaking-p2p/apps/mobile
+
+jobs:
+  ios:
+    runs-on: ${{ inputs.runner || 'macos-latest' }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Some plugins already use the iOS 26 SDK; the Intel image defaults to an older Xcode.
+      - name: Select the newest Xcode
+        working-directory: .
+        run: |
+          XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          flutter-version: 3.47.7
+          channel: stable
+          cache: true
+      - name: Backend config (secret MOBILE_DEFINES if set, else env/dev.json)
+        env:
+          MOBILE_DEFINES: ${{ secrets.MOBILE_DEFINES }}
+        run: |
+          if [ -n "$MOBILE_DEFINES" ]; then printf '%s\n' "$MOBILE_DEFINES" > env/dev.json; fi
+          python3 -c "import json;d=json.load(open('env/dev.json'));print('keys:', sorted(d))"
+      - name: Check the plists
+        run: plutil -lint ios/Runner/Info.plist
+      - name: flutter build ios (unsigned)
+        run: |
+          flutter pub get
+          flutter build ios --release --no-codesign --dart-define-from-file=env/dev.json
+      - name: Package the .ipa
+        if: ${{ inputs.ipa }}
+        working-directory: speaking-p2p/apps/mobile/build/ios/iphoneos
+        run: |
+          mkdir Payload
+          cp -R Runner.app Payload/
+          zip -qr SpeakingP2P-sin-firmar.ipa Payload
+          ls -lh SpeakingP2P-sin-firmar.ipa
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: ${{ inputs.ipa }}
+        with:
+          name: SpeakingP2P-sin-firmar
+          path: speaking-p2p/apps/mobile/build/ios/iphoneos/SpeakingP2P-sin-firmar.ipa
+          retention-days: 7

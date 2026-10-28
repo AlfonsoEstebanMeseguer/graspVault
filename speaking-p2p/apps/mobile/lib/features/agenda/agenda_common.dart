@@ -26,11 +26,16 @@ final myMeetingsProvider = FutureProvider.autoDispose<List<Meeting>>((ref) async
   return await ref.watch(agendaRepositoryProvider)?.myMeetings() ?? const [];
 });
 
+final companionsProvider = FutureProvider.autoDispose<List<Companion>>((ref) async {
+  return await ref.watch(agendaRepositoryProvider)?.companions() ?? const [];
+});
+
 /// Every agenda list after a write: cheap, and the lists are small.
 void refreshAgenda(WidgetRef ref) {
   ref.invalidate(myOffersProvider);
   ref.invalidate(chatsProvider);
   ref.invalidate(myMeetingsProvider);
+  ref.invalidate(companionsProvider);
 }
 
 /// Test seam for "now" (minute-level wording, the enter window).
@@ -83,7 +88,9 @@ String systemText(BuildContext context, ChatMessage msg, String me, String partn
   final at = msg.systemArgs['scheduled_at'] is String ? DateTime.tryParse(msg.systemArgs['scheduled_at'] as String) : null;
   final when = at == null ? '' : whenText(context, at, now);
   return switch (msg.systemCode) {
-    'meeting_proposed' => mine ? l.sysProposedByMe(when) : l.sysProposed(partnerName, when),
+    // 'meeting_proposed' = acceptances before direct booking (D-046).
+    'meeting_booked' || 'meeting_proposed' => mine ? l.sysBookedByMe(when) : l.sysBooked(partnerName, when),
+    'meeting_invited' => mine ? l.sysInvitedByMe(when) : l.sysInvited(partnerName, when),
     'meeting_modified' => mine ? l.sysModifiedByMe(when) : l.sysModified(partnerName, when),
     'meeting_confirmed_by' => mine ? l.sysConfirmedByMe : l.sysConfirmedBy(partnerName),
     'meeting_confirmed' => l.sysConfirmed,
@@ -120,31 +127,15 @@ void showError(BuildContext context, Object e) {
 }
 
 /// "Entrar a la sala": the server creates (or returns) the meeting's session.
-Future<void> enterMeeting(BuildContext context, WidgetRef ref, Meeting m) async {
+Future<void> enterMeeting(BuildContext context, WidgetRef ref, Meeting m, {bool now = false}) async {
   final repo = ref.read(agendaRepositoryProvider);
   if (repo == null) return;
   try {
     final version = (await ref.read(contentIndexProvider.future)).version;
-    final id = await repo.enter(m.id, version);
+    final id = now ? await repo.enterNow(m.id, version) : await repo.enter(m.id, version);
     if (context.mounted) context.go('/session/$id');
   } catch (e) {
     if (context.mounted) showError(context, e);
-  }
-}
-
-class InitialAvatar extends StatelessWidget {
-  const InitialAvatar({super.key, required this.name, this.size = 40});
-  final String name;
-  final double size;
-  @override
-  Widget build(BuildContext context) {
-    final p = context.palette;
-    return CircleAvatar(
-      radius: size / 2,
-      backgroundColor: p.brandSoft,
-      child: Text(name.isEmpty ? '?' : name[0].toUpperCase(),
-          style: TextStyle(color: p.onBrandSoft, fontWeight: FontWeight.w700, fontSize: size * 0.4)),
-    );
   }
 }
 

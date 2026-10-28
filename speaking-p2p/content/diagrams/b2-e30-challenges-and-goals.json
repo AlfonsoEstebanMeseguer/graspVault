@@ -1,0 +1,12 @@
+{
+  "id": "b2-e30-challenges-and-goals",
+  "centralQuestion": "How might these things help people reach their goals?",
+  "prompts": [
+    "a clear plan",
+    "help from friends",
+    "being patient",
+    "a good teacher",
+    "belief in yourself"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

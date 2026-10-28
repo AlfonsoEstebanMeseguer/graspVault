@@ -1,0 +1,12 @@
+{
+  "id": "c1-e15-buildings-and-character",
+  "centralQuestion": "How might these factors influence the design of a new building?",
+  "prompts": [
+    "respect for the surrounding area",
+    "cost",
+    "energy efficiency",
+    "the needs of the people who will use it",
+    "making a bold statement"
+  ],
+  "decisionQuestion": "Which should be given the highest priority?"
+}

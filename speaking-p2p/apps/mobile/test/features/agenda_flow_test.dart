@@ -19,12 +19,21 @@ import 'package:speaking_p2p/features/agenda/chat_screen.dart';
 final now = DateTime(2026, 10, 15, 16, 0);
 DateTime today(int h, [int m = 0]) => DateTime(2026, 10, 15, h, m);
 
-Meeting meeting({String id = 'm1', MeetingStatus status = MeetingStatus.pending, DateTime? at, bool creatorOk = false, bool acceptorOk = false}) =>
+Meeting meeting({
+  String id = 'm1',
+  MeetingStatus status = MeetingStatus.pending,
+  DateTime? at,
+  bool creatorOk = false,
+  bool acceptorOk = false,
+  String? offerId,
+  String creator = 'marta',
+  String acceptor = 'me',
+}) =>
     Meeting(
       id: id,
-      offerId: 'o-mine',
-      creatorId: 'marta',
-      acceptorId: 'me',
+      offerId: offerId,
+      creatorId: creator,
+      acceptorId: acceptor,
       level: Level.c1,
       scheduledAt: at ?? DateTime(2026, 10, 16, 18, 30),
       creatorConfirmed: creatorOk,
@@ -34,15 +43,53 @@ Meeting meeting({String id = 'm1', MeetingStatus status = MeetingStatus.pending,
 
 class FakeAgenda implements AgendaRepository {
   List<Offer> mine = [
-    Offer(id: 'o-mine', creatorId: 'me', level: Level.c1, windowStart: DateTime(2026, 10, 16, 17), windowEnd: DateTime(2026, 10, 16, 20), status: OfferStatus.open, interested: 2),
+    Offer(id: 'o-mine', creatorId: 'me', level: Level.c1, windowStart: DateTime(2026, 10, 16, 17), windowEnd: DateTime(2026, 10, 16, 20), status: OfferStatus.open, interested: 1),
   ];
   List<Offer> boardOffers = [
-    Offer(id: 'o-sergi', creatorId: 'sergi', level: Level.c1, windowStart: today(18), windowEnd: today(21), status: OfferStatus.open, creatorName: 'sergi_cae', creatorLanguages: const ['es', 'ca', 'en']),
+    Offer(
+      id: 'o-sergi',
+      creatorId: 'sergi',
+      level: Level.c1,
+      windowStart: today(18),
+      windowEnd: today(21),
+      status: OfferStatus.open,
+      creatorName: 'sergi_cae',
+      creatorLanguages: const ['es', 'ca', 'en'],
+      taken: [today(18, 30)],
+    ),
   ];
-  List<Meeting> confirmed = [meeting(id: 'm-busy', status: MeetingStatus.confirmed, at: today(19))];
+  List<Meeting> confirmed = [meeting(id: 'm-busy', status: MeetingStatus.confirmed, at: today(19), creatorOk: true, acceptorOk: true)];
+
+  /// marta changed the time and confirmed; I have not yet ("Te toca").
   Meeting card = meeting(creatorOk: true);
+  List<ChatSummary> extraChats = [
+    ChatSummary(
+      chatId: 'c-busy',
+      meeting: meeting(id: 'm-busy', status: MeetingStatus.confirmed, at: today(19), creatorOk: true, acceptorOk: true, creator: 'pau'),
+      partnerId: 'pau',
+      partnerName: 'pau_v',
+    ),
+    ChatSummary(
+      chatId: 'c-booked',
+      meeting: meeting(id: 'm-booked', status: MeetingStatus.confirmed, at: DateTime(2026, 10, 16, 17, 30), creatorOk: true, acceptorOk: true, offerId: 'o-mine', creator: 'me', acceptor: 'laura'),
+      partnerId: 'laura',
+      partnerName: 'laura_m',
+    ),
+    ChatSummary(
+      chatId: 'c-old',
+      meeting: meeting(id: 'm-old', status: MeetingStatus.cancelled, at: DateTime(2026, 10, 14, 18), creator: 'joan'),
+      partnerId: 'joan',
+      partnerName: 'joan_r',
+    ),
+  ];
+  List<Companion> friends = [
+    const Companion(partnerId: 'ana', iAdded: true, theyAdded: true, name: 'ana_p', sessionsTogether: 3, lastSessionId: 's-ana'),
+    const Companion(partnerId: 'leo', iAdded: false, theyAdded: true, name: 'leo_k', sessionsTogether: 1, lastSessionId: 's-leo'),
+  ];
   final accepted = <(String, DateTime)>[];
   final created = <(Level, DateTime, DateTime)>[];
+  final invites = <(String, DateTime, Level)>[];
+  final added = <String>[];
   final sent = <String>[];
   final confirms = <String>[];
   List<List<Level>> boardQueries = [];
@@ -67,14 +114,15 @@ class FakeAgenda implements AgendaRepository {
           partnerLanguages: const ['es', 'en'],
           lastMessage: ChatMessage(id: 'x', senderId: 'marta', kind: 'user', createdAt: today(15, 40), body: '¿Y si mejor a las 18:30?'),
         ),
-      ];
+        ...extraChats,
+      ].where((c) => chatId == null || c.chatId == chatId).toList();
   @override
   Future<List<Meeting>> myMeetings() async => confirmed;
   @override
   Stream<Meeting> watchMeeting(String meetingId) => Stream.value(card);
   @override
   Stream<List<ChatMessage>> watchMessages(String chatId) => Stream.value([
-        ChatMessage(id: '1', senderId: null, kind: 'system', createdAt: today(10), systemCode: 'meeting_proposed',
+        ChatMessage(id: '1', senderId: null, kind: 'system', createdAt: today(10), systemCode: 'meeting_booked',
             systemArgs: {'by': 'me', 'scheduled_at': DateTime(2026, 10, 16, 18).toUtc().toIso8601String(), 'level': 'C1'}),
         ChatMessage(id: '2', senderId: 'marta', kind: 'user', createdAt: today(10, 5), body: '¿Te va bien a las 18:30?'),
         ChatMessage(id: '3', senderId: null, kind: 'system', createdAt: today(10, 6), systemCode: 'meeting_modified',
@@ -96,7 +144,13 @@ class FakeAgenda implements AgendaRepository {
   @override
   Future<({String meetingId, String chatId})> accept(String offerId, DateTime at) async {
     accepted.add((offerId, at));
-    return (meetingId: 'm2', chatId: 'c2');
+    return (meetingId: 'm2', chatId: 'c1');
+  }
+
+  @override
+  Future<({String meetingId, String chatId})> invite(String partnerId, DateTime at, Level level) async {
+    invites.add((partnerId, at, level));
+    return (meetingId: 'm3', chatId: 'c1');
   }
 
   @override
@@ -111,6 +165,14 @@ class FakeAgenda implements AgendaRepository {
   Future<void> cancel(String meetingId) async {}
   @override
   Future<String> enter(String meetingId, int contentVersion) async => throw const AppFailure('too_early');
+  @override
+  Future<String> enterNow(String meetingId, int contentVersion) async => throw const AppFailure('not_found');
+  @override
+  Future<List<Companion>> companions() async => friends;
+  @override
+  Future<void> addCompanion(String sessionId) async => added.add(sessionId);
+  @override
+  Future<void> removeCompanion(String userId) async {}
 }
 
 Future<FakeAgenda> pump(WidgetTester tester, {String location = '/agenda', FakeAgenda? fake}) async {
@@ -121,7 +183,10 @@ Future<FakeAgenda> pump(WidgetTester tester, {String location = '/agenda', FakeA
   final prefs = await SharedPreferences.getInstance();
   final f = fake ?? FakeAgenda();
   final router = GoRouter(initialLocation: location, routes: [
-    GoRoute(path: '/agenda', builder: (_, s) => AgendaScreen(openCreate: s.uri.queryParameters['create'] == '1')),
+    GoRoute(
+      path: '/agenda',
+      builder: (_, s) => AgendaScreen(openCreate: s.uri.queryParameters['create'] == '1', invite: s.uri.queryParameters['invite']),
+    ),
     GoRoute(path: '/chat/:id', builder: (_, s) => ChatScreen(chatId: s.pathParameters['id']!)),
   ]);
   await tester.pumpWidget(ProviderScope(
@@ -145,73 +210,151 @@ Future<FakeAgenda> pump(WidgetTester tester, {String location = '/agenda', FakeA
 }
 
 void main() {
-  testWidgets('tablón: mis ofertas, filtro adyacente y elegir hora con "Ocupado"', (tester) async {
+  testWidgets('mis exámenes: te toca, próximos, mis propuestas con quién reservó, anteriores', (tester) async {
     final f = await pump(tester);
-    expect(find.text('MIS OFERTAS · 1 DE 2'), findsOneWidget);
-    expect(find.text('2 interesados'), findsOneWidget);
-    expect(find.text('sergi_cae'), findsOneWidget);
-    expect(find.text('Hoy · 18:00–21:00'), findsOneWidget);
-    expect(f.boardQueries.last, [Level.c1]);
+    expect(find.text('Mis exámenes · 3'), findsOneWidget);
+    expect(find.text('TE TOCA'), findsOneWidget);
+    expect(find.text('Falta tu confirmación'), findsOneWidget);
+    expect(find.text('PRÓXIMOS'), findsOneWidget);
+    expect(find.text('Examen C1 con pau_v'), findsOneWidget);
+    expect(find.text('MIS PROPUESTAS · 1 DE 2'), findsOneWidget);
+    expect(find.text('laura_m · 17:30'), findsOneWidget, reason: 'quien reservó y a qué hora, en mi propuesta');
+    expect(find.text('COMPAÑEROS'), findsOneWidget);
+    expect(find.text('Invitar'), findsOneWidget);
+    expect(find.text('Añadir también'), findsOneWidget);
 
-    await tester.tap(find.text('+ Incluir B2'));
+    await tester.tap(find.byKey(const Key('confirm-m1')));
     await tester.pump();
-    expect(f.boardQueries.last, [Level.c1, Level.b2]);
-    await tester.pump(const Duration(milliseconds: 50));
+    expect(f.confirms, ['m1']);
 
-    await tester.tap(find.text('Elegir hora'));
+    await tester.scrollUntilVisible(find.text('Anteriores (1)'), 200, scrollable: find.byWidgetPredicate((w) => w is Scrollable && w.axisDirection == AxisDirection.down).first);
+    expect(find.text('Examen C1 con joan_r'), findsNothing, reason: 'las anteriores van plegadas');
+    await tester.tap(find.text('Anteriores (1)'));
     await tester.pumpAndSettle();
-    expect(find.text('Examen con sergi_cae'), findsOneWidget);
-    expect(find.text('Ocupado'), findsOneWidget, reason: '19:00 choca con una reunión confirmada');
-    await tester.tap(find.text('19:00'));
-    await tester.pump();
-    expect(find.text('Elige una hora'), findsOneWidget, reason: 'una hora ocupada no se puede elegir');
-    await tester.tap(find.text('19:30'));
-    await tester.pump();
-    await tester.tap(find.text('Proponer 19:30 y abrir chat'));
+    expect(find.text('Examen C1 con joan_r'), findsOneWidget);
+  });
+
+  testWidgets('buscar horario: huecos en la tarjeta, reservados ocultos, ocupados tachados y reservar', (tester) async {
+    final f = await pump(tester);
+    await tester.tap(find.byKey(const Key('agenda-tab-board')));
+    await tester.pumpAndSettle();
+    expect(find.text('sergi_cae'), findsOneWidget);
+    expect(find.text('Libre de 18:00 a 21:00'), findsOneWidget);
+    expect(f.boardQueries.last, [Level.c1]);
+    expect(find.byKey(const Key('slot-o-sergi-18:30')), findsNothing, reason: 'ya reservado por otra persona');
+    expect(find.byKey(const Key('slot-o-sergi-19:00')), findsOneWidget, reason: 'choca con mi reunión: se ve tachado');
+
+    await tester.tap(find.byKey(const Key('slot-o-sergi-19:00')));
+    await tester.pumpAndSettle();
+    expect(find.text('Reservar este hueco'), findsNothing, reason: 'un hueco ocupado no se puede reservar');
+
+    await tester.tap(find.byKey(const Key('board-adjacent')));
+    await tester.pumpAndSettle();
+    expect(f.boardQueries.last, [Level.c1, Level.b2]);
+
+    await tester.tap(find.byKey(const Key('slot-o-sergi-19:30')));
+    await tester.pumpAndSettle();
+    expect(find.text('Examen C1 con sergi_cae'), findsOneWidget);
+    await tester.tap(find.text('Reservar este hueco'));
     await tester.pumpAndSettle();
     expect(f.accepted.single.$1, 'o-sergi');
     expect(f.accepted.single.$2.isAtSameMomentAs(today(19, 30)), isTrue);
-    expect(find.text('marta.eng'), findsWidgets, reason: 'tras aceptar se abre el chat');
+    expect(find.text('marta.eng'), findsWidgets, reason: 'tras reservar se abre el chat');
   });
 
-  testWidgets('chat: tarjeta con ✓/○, mensajes de sistema traducidos, confirmar y enviar', (tester) async {
+  testWidgets('chat: pasos de confirmación, mensajes de sistema, confirmar, enviar y respuestas rápidas', (tester) async {
     final f = await pump(tester, location: '/chat/c1');
-    expect(find.text('✓ marta.eng'), findsOneWidget);
-    expect(find.text('○ Tú'), findsOneWidget);
+    expect(find.text('Propuesta ✓'), findsOneWidget);
+    expect(find.text('marta.eng ✓'), findsOneWidget);
+    expect(find.text('Tú'), findsOneWidget);
     expect(find.text('Mañana · 18:30 · C1'), findsOneWidget);
-    expect(find.text('Propusiste Mañana · 18:00'), findsOneWidget);
-    expect(find.text('marta.eng cambió la hora a Mañana · 18:30 · confirmaciones reiniciadas'), findsOneWidget);
+    expect(find.text('Reservaste Mañana · 18:00'), findsOneWidget);
+    expect(find.text('marta.eng propone cambiar a Mañana · 18:30'), findsOneWidget);
     expect(find.text('marta.eng ha confirmado ✓'), findsOneWidget);
 
-    await tester.tap(find.text('Confirmar'));
+    await tester.tap(find.byKey(const Key('card-confirm')));
     await tester.pump();
     expect(f.confirms, ['m1']);
 
     await tester.enterText(find.byType(TextField), '  Perfecto, ahora confirmo ');
     await tester.tap(find.byTooltip('Enviar'));
     await tester.pump();
-    expect(f.sent, ['Perfecto, ahora confirmo']);
+    await tester.tap(find.text('Llego 5 min tarde'));
+    await tester.pump();
+    expect(f.sent, ['Perfecto, ahora confirmo', 'Llego 5 min tarde']);
   });
 
-  testWidgets('crear reunión: abre con ?create=1, cuenta las ofertas y publica', (tester) async {
+  testWidgets('chat: una reunión cancelada deja el chat en solo lectura', (tester) async {
+    final fake = FakeAgenda()..card = meeting(status: MeetingStatus.cancelled);
+    await pump(tester, location: '/chat/c1', fake: fake);
+    expect(find.byType(TextField), findsNothing);
+    expect(find.text('Este chat ya se cerró: solo sirve para organizar su reunión.'), findsOneWidget);
+  });
+
+  testWidgets('compañeros: invitar a un compañero mutuo con día, hora y nivel', (tester) async {
+    final f = await pump(tester);
+    await tester.tap(find.byKey(const Key('companion-ana')));
+    await tester.pumpAndSettle();
+    expect(find.text('3 exámenes juntos'), findsOneWidget);
+    await tester.tap(find.widgetWithText(FilledButton, 'Invitar'));
+    await tester.pumpAndSettle();
+    expect(find.text('Invitar a ana_p'), findsOneWidget);
+    await tester.tap(find.text('Mañana'));
+    await tester.pump();
+    await tester.ensureVisible(find.text('10:00'));
+    await tester.tap(find.text('10:00'));
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('send-invite')));
+    await tester.pumpAndSettle();
+    expect(f.invites.single.$1, 'ana');
+    expect(f.invites.single.$2.isAtSameMomentAs(DateTime(2026, 10, 16, 10)), isTrue);
+    expect(f.invites.single.$3, Level.c1);
+  });
+
+  testWidgets('compañeros: añadir también a quien ya me añadió', (tester) async {
+    final f = await pump(tester);
+    await tester.tap(find.byKey(const Key('companion-leo')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(FilledButton, 'Añadir también'));
+    await tester.pumpAndSettle();
+    expect(f.added, ['s-leo']);
+  });
+
+  testWidgets('"Repetir con…" abre la invitación con ?invite=', (tester) async {
+    await pump(tester, location: '/agenda?invite=ana');
+    await tester.pumpAndSettle();
+    expect(find.text('Invitar a ana_p'), findsOneWidget);
+  });
+
+  testWidgets('proponer horario: abre con ?create=1, cuenta las propuestas y publica', (tester) async {
     final f = await pump(tester, location: '/agenda?create=1');
     await tester.pumpAndSettle();
-    expect(find.text('Puedes tener 2 ofertas activas · te queda 1'), findsOneWidget);
+    expect(find.text('Puedes tener 2 propuestas abiertas · te queda 1'), findsOneWidget);
     await tester.tap(find.text('B2').last);
     await tester.pump();
-    await tester.tap(find.text('Publicar oferta'));
+    await tester.tap(find.text('Publicar propuesta'));
     await tester.pumpAndSettle();
     expect(f.created.single, (Level.b2, today(17), today(20)));
   });
 
-  testWidgets('crear reunión: con 2 ofertas abiertas el botón está desactivado', (tester) async {
+  testWidgets('proponer horario: con 2 propuestas abiertas el botón está desactivado', (tester) async {
     final fake = FakeAgenda();
     fake.mine = [...fake.mine, fake.mine.first];
     await pump(tester, location: '/agenda?create=1', fake: fake);
     await tester.pumpAndSettle();
-    expect(find.text('Puedes tener 2 ofertas activas · no te quedan'), findsOneWidget);
-    final button = tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Publicar oferta'));
+    expect(find.text('Puedes tener 2 propuestas abiertas · no te quedan'), findsOneWidget);
+    final button = tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Publicar propuesta'));
     expect(button.onPressed, isNull);
+  });
+
+  testWidgets('sin nada mío la agenda abre en "Buscar horario"', (tester) async {
+    final fake = FakeAgenda()
+      ..mine = []
+      ..extraChats = []
+      ..card = meeting(status: MeetingStatus.closed);
+    await pump(tester, fake: fake);
+    await tester.pumpAndSettle();
+    expect(find.text('sergi_cae'), findsOneWidget);
   });
 
   test('canEnter respeta −5 min / +10 min y solo confirmadas', () {

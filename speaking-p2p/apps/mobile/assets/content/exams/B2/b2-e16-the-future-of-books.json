@@ -1,0 +1,205 @@
+{
+  "id": "b2-e16-the-future-of-books",
+  "level": "B2",
+  "version": 1,
+  "topic": "The future of books",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p1-intro.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you enjoy reading in your free time?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e16-the-future-of-books/p1-q1.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what was the last book you read?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e16-the-future-of-books/p1-q2.mp3",
+          "audioMs": 3400
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you prefer reading on a screen or on paper?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e16-the-future-of-books/p1-q3.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, did you read a lot as a child?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e16-the-future-of-books/p1-q4.mp3",
+          "audioMs": 3700
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e16-a1",
+            "b2-e16-a2"
+          ],
+          "text": "Candidate A, your photographs show people reading in different places. Compare the photographs, and say why the people might have chosen to read in these places.",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p2-a.mp3",
+          "audioMs": 10700
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, where do you prefer to read? Why?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p2-a-follow.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e16-b1",
+            "b2-e16-b2"
+          ],
+          "text": "Candidate B, your photographs show people connected with books. Compare the photographs, and say how the people might be feeling.",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p2-b.mp3",
+          "audioMs": 8700
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, would you like to meet your favourite writer? Why or why not?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p2-b-follow.mp3",
+          "audioMs": 5400
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some things that could encourage more people to read, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p3-intro.mp3",
+          "audioMs": 10700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e16-the-future-of-books",
+          "text": "Talk to each other about this question: How might these ideas encourage people to read more?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p3-discuss.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e16-the-future-of-books",
+          "text": "Now you have about a minute to decide together. Which would be the most effective?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p3-decide.mp3",
+          "audioMs": 5700
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about books and reading.",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p4-intro.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that young people read less than in the past. What do you think?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p4-q1.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think books will disappear one day?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p4-q2.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, is it important for children to read classic books?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p4-q3.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Can a book teach us as much as a film or a documentary?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p4-q4.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, how important are libraries in the age of the internet?",
+          "audio": "audio/B2/b2-e16-the-future-of-books/p4-q5.mp3",
+          "audioMs": 5200
+        }
+      ]
+    }
+  ]
+}

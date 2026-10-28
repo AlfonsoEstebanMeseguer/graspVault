@@ -18,6 +18,11 @@ abstract class VoiceService {
 
   Future<void> join({required String url, required String token});
   Future<void> leave();
+
+  /// The user's own mute. It can only close the mic: while muted the mic stays
+  /// off even if the server allows it; unmuting reopens it only if the server
+  /// still allows it. Nobody can mute or unmute someone else.
+  Future<void> setSelfMuted(bool muted);
 }
 
 /// No audio at all: offline practice, tests and devices without permission.
@@ -42,6 +47,10 @@ class SilentVoiceService implements VoiceService {
 
   @override
   Future<void> leave() async => _conn.add(VoiceConnection.disconnected);
+
+  bool selfMuted = false;
+  @override
+  Future<void> setSelfMuted(bool muted) async => selfMuted = muted;
 
   /// Test hook: simulate a permission change coming from the server.
   void emitCanSpeak(bool v) => _can.add(v);

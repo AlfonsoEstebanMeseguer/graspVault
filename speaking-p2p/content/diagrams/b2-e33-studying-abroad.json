@@ -1,0 +1,12 @@
+{
+  "id": "b2-e33-studying-abroad",
+  "centralQuestion": "How might these things help a student in a new country?",
+  "prompts": [
+    "a welcome meeting",
+    "a local guide",
+    "language classes",
+    "clubs for international students",
+    "contact with family at home"
+  ],
+  "decisionQuestion": "Which would be the most useful?"
+}

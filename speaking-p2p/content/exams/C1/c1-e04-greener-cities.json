@@ -1,0 +1,216 @@
+{
+  "id": "c1-e04-greener-cities",
+  "level": "C1",
+  "version": 1,
+  "topic": "Greener cities",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know a little about you.",
+          "audio": "audio/C1/c1-e04-greener-cities/p1-intro.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what is the best thing about the city or town you live in?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e04-greener-cities/p1-q1.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how green is the area where you live?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e04-greener-cities/p1-q2.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, would you ever consider living in a different type of place?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e04-greener-cities/p1-q3.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how do you think cities will have changed in thirty years' time?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e04-greener-cities/p1-q4.mp3",
+          "audioMs": 5500
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
+          "audio": "audio/C1/c1-e04-greener-cities/p2-intro.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "c1-e04-a1",
+            "c1-e04-a2",
+            "c1-e04-a3"
+          ],
+          "text": "Candidate A, your pictures show different approaches to city design. Choose two of the pictures and say what effect these designs might have on the people who live there, and how successful they might be.",
+          "audio": "audio/C1/c1-e04-greener-cities/p2-a.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these designs would you most like to see in your city?",
+          "audio": "audio/C1/c1-e04-greener-cities/p2-a-follow.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "c1-e04-b1",
+            "c1-e04-b2",
+            "c1-e04-b3"
+          ],
+          "text": "Candidate B, your pictures show different types of urban transport. Choose two of the pictures and say what the benefits of these forms of transport might be, and what problems the people might face.",
+          "audio": "audio/C1/c1-e04-greener-cities/p2-b.mp3",
+          "audioMs": 13100
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, how do you prefer to travel around cities?",
+          "audio": "audio/C1/c1-e04-greener-cities/p2-b-follow.mp3",
+          "audioMs": 4200
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some ways to make cities more sustainable, and a question for you to discuss.",
+          "audio": "audio/C1/c1-e04-greener-cities/p3-intro.mp3",
+          "audioMs": 10000
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "c1-e04-greener-cities",
+          "text": "Talk to each other about this question: How might these ideas change the quality of life in a large city?",
+          "audio": "audio/C1/c1-e04-greener-cities/p3-discuss.mp3",
+          "audioMs": 7600
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "c1-e04-greener-cities",
+          "text": "Now you have about a minute to decide together. Which would be the most effective in making the city a better place to live?",
+          "audio": "audio/C1/c1-e04-greener-cities/p3-decide.mp3",
+          "audioMs": 8200
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about urban planning and green spaces.",
+          "audio": "audio/C1/c1-e04-greener-cities/p4-intro.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Is it realistic to expect people to give up their cars in the interests of the environment?",
+          "audio": "audio/C1/c1-e04-greener-cities/p4-q1.mp3",
+          "audioMs": 6400
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, to what extent should city planners consult local residents before making big decisions?",
+          "audio": "audio/C1/c1-e04-greener-cities/p4-q2.mp3",
+          "audioMs": 7300
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, do you think green spaces are a luxury or a necessity in cities?",
+          "audio": "audio/C1/c1-e04-greener-cities/p4-q3.mp3",
+          "audioMs": 6200
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "How can cities remain affordable while becoming more sustainable?",
+          "audio": "audio/C1/c1-e04-greener-cities/p4-q4.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, is it better to build new cities from scratch or to improve existing ones?",
+          "audio": "audio/C1/c1-e04-greener-cities/p4-q5.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p4-q6",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, could the idea of smaller, self-sufficient neighbourhoods work in practice?",
+          "audio": "audio/C1/c1-e04-greener-cities/p4-q6.mp3",
+          "audioMs": 6200
+        }
+      ]
+    }
+  ]
+}

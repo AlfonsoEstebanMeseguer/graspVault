@@ -1,0 +1,12 @@
+{
+  "id": "b1-e27-housework",
+  "centralQuestion": "What is the fairest way to share the housework?",
+  "prompts": [
+    "a list on the wall",
+    "take turns every week",
+    "each person does a different job",
+    "pay someone to clean",
+    "clean together on Saturdays"
+  ],
+  "decisionQuestion": "Which idea would be the fairest?"
+}

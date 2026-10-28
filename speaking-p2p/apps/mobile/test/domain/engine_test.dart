@@ -70,4 +70,23 @@ void main() {
     expect(e.at(t0 + e.timeline.totalMs).myMicOn, isTrue);
     expect(e.at(e.feedbackEndsAtMs).state, SessionState.ended);
   });
+
+  test('pausa del líder: el reloj se para, micros abiertos y sin lector (D-039)', () {
+    final seg = firstSpeak(ExamEngine(exam: b2, myRole: Role.b, examStartedAtMs: t0), part: 1);
+    final pausedAt = t0 + seg.startMs + 5000;
+    final e = ExamEngine(exam: b2, myRole: Role.b, examStartedAtMs: t0, pausedAtMs: pausedAt, pauseReason: 'leader');
+    final a = e.at(pausedAt + 1000), b = e.at(pausedAt + 60000);
+    expect(a.paused, isTrue);
+    expect(b.phase.remainingMs, a.phase.remainingMs, reason: 'el tiempo no corre');
+    expect(b.segment!.index, seg.index);
+    expect(b.myMicOn && b.partnerMicOn, isTrue, reason: 'la pausa es conversación libre');
+    expect(e.readerCue(b), isNull);
+  });
+
+  test('feedback alargado por el líder', () {
+    final base = ExamEngine(exam: b2, myRole: Role.a, examStartedAtMs: t0);
+    final e = ExamEngine(exam: b2, myRole: Role.a, examStartedAtMs: t0, feedbackEndsAtMs: base.feedbackEndsAtMs + 120000);
+    expect(e.at(base.feedbackEndsAtMs).state, SessionState.feedback);
+    expect(e.at(base.feedbackEndsAtMs + 120000).state, SessionState.ended);
+  });
 }

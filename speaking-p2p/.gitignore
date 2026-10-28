@@ -6,3 +6,12 @@
 **/supabase/.branches/
 node_modules/
 .DS_Store
+content/.audio-build/
+content/.img-build/
+content/.pixabay/
+content/.openai/
+# Part 2 photo originals: R2 is the source of truth (D-036/D-047); not redistributed in this public repo.
+content/photos/*.jpg
+content/photos/*.jpeg
+content/photos/*.png
+content/photos/*.webp

@@ -1,0 +1,12 @@
+{
+  "id": "b1-e13-studying",
+  "centralQuestion": "What is the best way to prepare for an exam?",
+  "prompts": [
+    "study in a library",
+    "make a plan",
+    "study with friends",
+    "ask the teacher for help",
+    "take short breaks"
+  ],
+  "decisionQuestion": "Which idea would be the most useful for the student?"
+}

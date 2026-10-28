@@ -1,0 +1,12 @@
+{
+  "id": "b2-e37-museums-and-heritage",
+  "centralQuestion": "How might these ideas attract more visitors to a museum?",
+  "prompts": [
+    "interactive displays",
+    "special events at night",
+    "cheaper tickets",
+    "guided tours by actors",
+    "a good cafe"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

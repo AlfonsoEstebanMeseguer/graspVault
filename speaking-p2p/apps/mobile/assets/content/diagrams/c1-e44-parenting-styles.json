@@ -1,0 +1,12 @@
+{
+  "id": "c1-e44-parenting-styles",
+  "centralQuestion": "How might these approaches affect a child as they grow up?",
+  "prompts": [
+    "setting strict rules",
+    "allowing a lot of freedom",
+    "praising every achievement",
+    "giving children responsibilities",
+    "spending a lot of time together"
+  ],
+  "decisionQuestion": "Which is likely to have the most positive effect?"
+}

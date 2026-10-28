@@ -1,0 +1,12 @@
+{
+  "id": "b2-e07-climate-and-everyday-choices",
+  "centralQuestion": "How might these things help people look after the environment?",
+  "prompts": [
+    "using public transport",
+    "buying less",
+    "eating less meat",
+    "recycling",
+    "saving energy at home"
+  ],
+  "decisionQuestion": "Which would make the biggest difference?"
+}

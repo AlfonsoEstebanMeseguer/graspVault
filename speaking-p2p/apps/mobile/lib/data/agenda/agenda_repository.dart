@@ -1,5 +1,7 @@
 // Agenda data: reads through RLS (+ Realtime for the chat), every write except
 // sending a chat message goes through `meeting-actions` (CLAUDE.md §8).
+// Companions use their own RPCs (companion_add/remove, my_companions), which
+// only ever touch rows of the caller (D-046).
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
@@ -22,11 +24,24 @@ abstract class AgendaRepository {
 
   Future<String> createOffer(Level level, DateTime start, DateTime end);
   Future<void> cancelOffer(String offerId);
+  /// Books a slot of someone's offer: the meeting is born confirmed (D-046).
   Future<({String meetingId, String chatId})> accept(String offerId, DateTime at);
+
+  /// Invites a mutual companion; they confirm with one tap.
+  Future<({String meetingId, String chatId})> invite(String partnerId, DateTime at, Level level);
   Future<void> modify(String meetingId, DateTime at, Level level);
   Future<String> confirm(String meetingId);
   Future<void> cancel(String meetingId);
   Future<String> enter(String meetingId, int contentVersion);
+
+  /// Debug builds only: open a room now, skipping the time window (D-029).
+  Future<String> enterNow(String meetingId, int contentVersion);
+
+  Future<List<Companion>> companions();
+
+  /// Adds the partner of a session that reached the feedback.
+  Future<void> addCompanion(String sessionId);
+  Future<void> removeCompanion(String userId);
 }
 
 class SupabaseAgendaRepository implements AgendaRepository {
@@ -63,7 +78,7 @@ class SupabaseAgendaRepository implements AgendaRepository {
     };
   }
 
-  Offer _offer(Map<String, dynamic> r, {PublicProfile? creator, int interested = 0}) => Offer(
+  Offer _offer(Map<String, dynamic> r, {PublicProfile? creator, int interested = 0, List<DateTime> taken = const []}) => Offer(
         id: r['id'] as String,
         creatorId: r['creator_id'] as String,
         level: LevelCode.parse(r['level'] as String),
@@ -71,8 +86,10 @@ class SupabaseAgendaRepository implements AgendaRepository {
         windowEnd: DateTime.parse(r['window_end'] as String),
         status: OfferStatus.values.byName(r['status'] as String),
         creatorName: creator?.username,
+        creatorAvatarKey: creator?.avatarKey,
         creatorLanguages: creator?.languages ?? const [],
         interested: interested,
+        taken: taken,
       );
 
   @override
@@ -85,12 +102,12 @@ class SupabaseAgendaRepository implements AgendaRepository {
         .gt('window_end', DateTime.now().toUtc().toIso8601String())
         .order('window_start');
     if (rows.isEmpty) return const [];
-    // The creator is a participant of every acceptance, so RLS lets us count them.
+    // The creator is a participant of every booking, so RLS lets us count them.
     final pending = await _c
         .from('meetings')
         .select('offer_id')
         .inFilter('offer_id', [for (final r in rows) r['id'] as String])
-        .eq('status', 'pending');
+        .inFilter('status', ['pending', 'confirmed']);
     final counts = <String, int>{};
     for (final m in pending) {
       counts.update(m['offer_id'] as String, (v) => v + 1, ifAbsent: () => 1);
@@ -110,14 +127,22 @@ class SupabaseAgendaRepository implements AgendaRepository {
         .order('window_start')
         .limit(100);
     final people = await _profiles(rows.map((r) => r['creator_id'] as String));
+    // Booked slots: only times come back, never who booked them.
+    final taken = <String, List<DateTime>>{};
+    if (rows.isNotEmpty) {
+      final t = await _c.rpc('offer_taken_slots', params: {'p_offers': [for (final r in rows) r['id'] as String]}) as List<dynamic>;
+      for (final x in t.cast<Map<String, dynamic>>()) {
+        taken.putIfAbsent(x['offer_id'] as String, () => []).add(DateTime.parse(x['scheduled_at'] as String));
+      }
+    }
     // An offer whose creator has no public profile (deleted account) is not shown.
     return [
       for (final r in rows)
-        if (people[r['creator_id']] != null) _offer(r, creator: people[r['creator_id']]),
+        if (people[r['creator_id']] != null) _offer(r, creator: people[r['creator_id']], taken: taken[r['id']] ?? const []),
     ];
   }
 
-  static const _meetingCols = 'id, offer_id, creator_id, acceptor_id, level, scheduled_at, creator_confirmed, acceptor_confirmed, status';
+  static const _meetingCols = 'id, offer_id, creator_id, acceptor_id, level, scheduled_at, creator_confirmed, acceptor_confirmed, status, origin';
 
   @override
   Future<List<ChatSummary>> chats({String? chatId}) async {
@@ -146,6 +171,7 @@ class SupabaseAgendaRepository implements AgendaRepository {
           partnerId: meetings[r['id']]!.partnerOf(me),
           partnerName: people[meetings[r['id']]!.partnerOf(me)]?.username,
           partnerLanguages: people[meetings[r['id']]!.partnerOf(me)]?.languages ?? const [],
+          partnerAvatarKey: people[meetings[r['id']]!.partnerOf(me)]?.avatarKey,
           lastMessage: last[r['id']],
         ),
     ];
@@ -205,6 +231,12 @@ class SupabaseAgendaRepository implements AgendaRepository {
   }
 
   @override
+  Future<({String meetingId, String chatId})> invite(String partnerId, DateTime at, Level level) async {
+    final b = await _call({'action': 'invite', 'partnerId': partnerId, 'scheduledAt': _iso(at), 'level': level.code});
+    return (meetingId: b['meeting_id'] as String, chatId: b['chat_id'] as String);
+  }
+
+  @override
   Future<void> modify(String meetingId, DateTime at, Level level) =>
       _call({'action': 'modify', 'meetingId': meetingId, 'scheduledAt': _iso(at), 'level': level.code});
 
@@ -217,6 +249,46 @@ class SupabaseAgendaRepository implements AgendaRepository {
   @override
   Future<String> enter(String meetingId, int contentVersion) async =>
       (await _call({'action': 'enter', 'meetingId': meetingId, 'contentVersion': contentVersion}))['sessionId'] as String;
+
+  @override
+  Future<String> enterNow(String meetingId, int contentVersion) async =>
+      (await _call({'action': 'enter_now', 'meetingId': meetingId, 'contentVersion': contentVersion}))['sessionId'] as String;
+
+  Future<void> _rpc(String fn, Map<String, Object?> params) async {
+    try {
+      await _c.rpc(fn, params: params);
+    } on sb.PostgrestException catch (e) {
+      const known = {'too_many_companions', 'session_not_ended', 'partner_gone', 'bad_user', 'not_found'};
+      throw AppFailure(known.contains(e.message) ? e.message : 'server_error');
+    }
+  }
+
+  @override
+  Future<List<Companion>> companions() async {
+    final rows = (await _c.rpc('my_companions') as List<dynamic>).cast<Map<String, dynamic>>();
+    final people = await _profiles(rows.map((r) => r['partner_id'] as String));
+    return [
+      for (final r in rows)
+        // A deleted account has no public profile: it simply disappears from the list.
+        if (people[r['partner_id']] case final PublicProfile who)
+          Companion(
+            partnerId: who.id,
+            iAdded: r['i_added'] as bool,
+            theyAdded: r['they_added'] as bool,
+            name: who.username,
+            avatarKey: who.avatarKey,
+            languages: who.languages,
+            sessionsTogether: r['sessions_together'] as int? ?? 0,
+            lastSessionId: r['last_session_id'] as String?,
+          ),
+    ];
+  }
+
+  @override
+  Future<void> addCompanion(String sessionId) => _rpc('companion_add', {'p_session': sessionId});
+
+  @override
+  Future<void> removeCompanion(String userId) => _rpc('companion_remove', {'p_user': userId});
 }
 
 final agendaRepositoryProvider = Provider<AgendaRepository?>((ref) {

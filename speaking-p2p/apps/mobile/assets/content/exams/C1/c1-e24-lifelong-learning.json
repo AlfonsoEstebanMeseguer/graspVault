@@ -1,0 +1,216 @@
+{
+  "id": "c1-e24-lifelong-learning",
+  "level": "C1",
+  "version": 1,
+  "topic": "Lifelong learning",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. First of all, we'd like to know a little about you.",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p1-intro.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what is the most useful thing you have learnt outside school?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e24-lifelong-learning/p1-q1.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how do you feel about learning something completely new?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e24-lifelong-learning/p1-q2.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you think it becomes harder to learn as we get older?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e24-lifelong-learning/p1-q3.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what would you like to be able to do in ten years' time that you cannot do now?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e24-lifelong-learning/p1-q4.mp3",
+          "audioMs": 6300
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p2-intro.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "c1-e24-a1",
+            "c1-e24-a2",
+            "c1-e24-a3"
+          ],
+          "text": "Candidate A, your pictures show adults learning. Choose two of the pictures and say why the people might have decided to learn, and what difficulties they could face.",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p2-a.mp3",
+          "audioMs": 10900
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these ways of learning would suit you best?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p2-a-follow.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "c1-e24-b1",
+            "c1-e24-b2",
+            "c1-e24-b3"
+          ],
+          "text": "Candidate B, your pictures show people learning in different settings. Choose two of the pictures and say what the people might get from learning in these ways, and how effective they could be.",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p2-b.mp3",
+          "audioMs": 12100
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, do you think learning is more effective when it is formal or informal?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p2-b-follow.mp3",
+          "audioMs": 5900
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some reasons why people continue learning throughout their lives, and a question for you to discuss.",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p3-intro.mp3",
+          "audioMs": 11500
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "c1-e24-lifelong-learning",
+          "text": "Talk to each other about this question: How might these reasons motivate adults to keep learning?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p3-discuss.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "c1-e24-lifelong-learning",
+          "text": "Now you have about a minute to decide together. Which is the strongest motivation?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p3-decide.mp3",
+          "audioMs": 5900
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about lifelong learning.",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p4-intro.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Should employers be responsible for helping their staff learn new skills?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p4-q1.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, to what extent should education systems prepare people to keep learning?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p4-q2.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, do you think adults learn better than children when they are motivated?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p4-q3.mp3",
+          "audioMs": 5700
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Is it realistic to expect people to retrain several times in their working lives?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p4-q4.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, how has the internet changed the way adults can learn?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p4-q5.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p4-q6",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, should governments provide free training for older workers?",
+          "audio": "audio/C1/c1-e24-lifelong-learning/p4-q6.mp3",
+          "audioMs": 5100
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "id": "b2-e40-role-models",
+  "level": "B2",
+  "version": 1,
+  "topic": "Role models",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e40-role-models/p1-intro.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, who do you admire most?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e40-role-models/p1-q1.mp3",
+          "audioMs": 3200
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what qualities do you look for in a friend?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e40-role-models/p1-q2.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, who has had the greatest influence on you?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e40-role-models/p1-q3.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, have you ever wanted to be like someone famous?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e40-role-models/p1-q4.mp3",
+          "audioMs": 4300
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e40-role-models/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e40-a1",
+            "b2-e40-a2"
+          ],
+          "text": "Candidate A, your photographs show people who might be role models. Compare the photographs, and say why the people might be admired.",
+          "audio": "audio/B2/b2-e40-role-models/p2-a.mp3",
+          "audioMs": 9000
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these people would be a better role model? Why?",
+          "audio": "audio/B2/b2-e40-role-models/p2-a-follow.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e40-b1",
+            "b2-e40-b2"
+          ],
+          "text": "Candidate B, your photographs show people at work. Compare the photographs, and say what qualities the people might need.",
+          "audio": "audio/B2/b2-e40-role-models/p2-b.mp3",
+          "audioMs": 8400
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, would you like to have either of these jobs?",
+          "audio": "audio/B2/b2-e40-role-models/p2-b-follow.mp3",
+          "audioMs": 4100
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some people who can be role models for young people, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e40-role-models/p3-intro.mp3",
+          "audioMs": 10400
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e40-role-models",
+          "text": "Talk to each other about this question: How might these people influence young people?",
+          "audio": "audio/B2/b2-e40-role-models/p3-discuss.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e40-role-models",
+          "text": "Now you have about a minute to decide together. Which has the strongest influence?",
+          "audio": "audio/B2/b2-e40-role-models/p3-decide.mp3",
+          "audioMs": 5700
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about role models and heroes.",
+          "audio": "audio/B2/b2-e40-role-models/p4-intro.mp3",
+          "audioMs": 5600
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that famous people should always behave well because children copy them. What do you think?",
+          "audio": "audio/B2/b2-e40-role-models/p4-q1.mp3",
+          "audioMs": 7000
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think online influencers are good role models?",
+          "audio": "audio/B2/b2-e40-role-models/p4-q2.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, is it better to have role models you know personally or famous ones?",
+          "audio": "audio/B2/b2-e40-role-models/p4-q3.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Why do some people become heroes?",
+          "audio": "audio/B2/b2-e40-role-models/p4-q4.mp3",
+          "audioMs": 2800
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think you could be a role model for someone?",
+          "audio": "audio/B2/b2-e40-role-models/p4-q5.mp3",
+          "audioMs": 4200
+        }
+      ]
+    }
+  ]
+}

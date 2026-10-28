@@ -1,0 +1,12 @@
+{
+  "id": "c1-e42-trusting-the-experts",
+  "centralQuestion": "How might these factors affect public trust in experts?",
+  "prompts": [
+    "a record of past mistakes",
+    "clear language",
+    "independence from business interests",
+    "the opinions of friends and family",
+    "how the media reports their views"
+  ],
+  "decisionQuestion": "Which has the greatest effect?"
+}

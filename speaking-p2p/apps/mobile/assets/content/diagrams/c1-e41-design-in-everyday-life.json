@@ -1,0 +1,12 @@
+{
+  "id": "c1-e41-design-in-everyday-life",
+  "centralQuestion": "How might these qualities contribute to the success of a product?",
+  "prompts": [
+    "simplicity",
+    "durability",
+    "low cost",
+    "attractive appearance",
+    "environmentally friendly materials"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

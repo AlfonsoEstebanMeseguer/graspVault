@@ -1,0 +1,12 @@
+{
+  "id": "b2-e38-gaming-and-e-sports",
+  "centralQuestion": "How might games affect young people?",
+  "prompts": [
+    "making friends",
+    "improving concentration",
+    "spending less time outside",
+    "learning to work in a team",
+    "spending too much money"
+  ],
+  "decisionQuestion": "Which is the most important effect?"
+}

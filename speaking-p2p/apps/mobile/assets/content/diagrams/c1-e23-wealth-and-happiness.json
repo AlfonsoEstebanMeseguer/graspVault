@@ -1,0 +1,12 @@
+{
+  "id": "c1-e23-wealth-and-happiness",
+  "centralQuestion": "How much might these things contribute to a person's happiness?",
+  "prompts": [
+    "a high salary",
+    "good relationships",
+    "meaningful work",
+    "good health",
+    "free time"
+  ],
+  "decisionQuestion": "Which is the most essential?"
+}

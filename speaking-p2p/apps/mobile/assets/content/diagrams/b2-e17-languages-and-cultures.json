@@ -1,0 +1,12 @@
+{
+  "id": "b2-e17-languages-and-cultures",
+  "centralQuestion": "How might these experiences help people understand another culture?",
+  "prompts": [
+    "living in the country",
+    "making friends from there",
+    "watching films",
+    "trying the food",
+    "learning the language"
+  ],
+  "decisionQuestion": "Which would give the best understanding?"
+}

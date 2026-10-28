@@ -6,6 +6,9 @@ enum OfferStatus { open, filled, cancelled, expired }
 
 enum MeetingStatus { pending, confirmed, cancelled, closed, done, noShow }
 
+/// How a meeting was born: booking a slot of an offer, or inviting a companion (D-046).
+enum MeetingOrigin { offer, invite }
+
 MeetingStatus meetingStatusFrom(String v) => v == 'no_show' ? MeetingStatus.noShow : MeetingStatus.values.byName(v);
 
 class Offer {
@@ -18,7 +21,9 @@ class Offer {
     required this.status,
     this.creatorName,
     this.creatorLanguages = const [],
+    this.creatorAvatarKey,
     this.interested = 0,
+    this.taken = const [],
   });
   final String id;
   final String creatorId;
@@ -28,7 +33,12 @@ class Offer {
   final OfferStatus status;
   final String? creatorName;
   final List<String> creatorLanguages;
+  final String? creatorAvatarKey;
+  /// Live bookings of my own offer.
   final int interested;
+
+  /// Board only: start times already booked in this offer (the creator is busy then).
+  final List<DateTime> taken;
 }
 
 class Meeting {
@@ -42,6 +52,7 @@ class Meeting {
     required this.creatorConfirmed,
     required this.acceptorConfirmed,
     required this.status,
+    this.origin = MeetingOrigin.offer,
   });
   final String id;
   final String? offerId;
@@ -52,6 +63,7 @@ class Meeting {
   final bool creatorConfirmed;
   final bool acceptorConfirmed;
   final MeetingStatus status;
+  final MeetingOrigin origin;
 
   String? partnerOf(String me) => me == creatorId ? acceptorId : creatorId;
   bool confirmedBy(String? user) => user == creatorId ? creatorConfirmed : (user == acceptorId ? acceptorConfirmed : false);
@@ -66,6 +78,7 @@ class Meeting {
         creatorConfirmed: j['creator_confirmed'] as bool? ?? false,
         acceptorConfirmed: j['acceptor_confirmed'] as bool? ?? false,
         status: meetingStatusFrom(j['status'] as String),
+        origin: j['origin'] == 'invite' ? MeetingOrigin.invite : MeetingOrigin.offer,
       );
 }
 
@@ -101,14 +114,75 @@ class ChatMessage {
 }
 
 class ChatSummary {
-  const ChatSummary({required this.chatId, required this.meeting, required this.partnerId, this.partnerName, this.partnerLanguages = const [], this.lastMessage});
+  const ChatSummary({required this.chatId, required this.meeting, required this.partnerId, this.partnerName, this.partnerLanguages = const [], this.partnerAvatarKey, this.lastMessage});
   final String chatId;
   final Meeting meeting;
   final String? partnerId;
   final String? partnerName;
   final List<String> partnerLanguages;
+  final String? partnerAvatarKey;
   final ChatMessage? lastMessage;
 }
+
+/// Someone I finished an exam with. Only mutual companions can invite each other.
+class Companion {
+  const Companion({
+    required this.partnerId,
+    required this.iAdded,
+    required this.theyAdded,
+    this.name,
+    this.avatarKey,
+    this.languages = const [],
+    this.sessionsTogether = 0,
+    this.lastSessionId,
+  });
+  final String partnerId;
+  final bool iAdded;
+  final bool theyAdded;
+  final String? name;
+  final String? avatarKey;
+  final List<String> languages;
+  final int sessionsTogether;
+
+  /// The last exam we finished together: proves we met, to add someone back.
+  final String? lastSessionId;
+
+  bool get mutual => iAdded && theyAdded;
+}
+
+/// Where I stand with the partner of an exam: not added, waiting for them, or companions.
+enum CompanionLink { none, waiting, mutual }
+
+/// "Mis exámenes": what waits for me, what is coming, and the rest.
+class AgendaBuckets {
+  const AgendaBuckets({required this.needsMe, required this.upcoming, required this.past});
+  final List<ChatSummary> needsMe;
+  final List<ChatSummary> upcoming;
+  final List<ChatSummary> past;
+
+  bool get isEmpty => needsMe.isEmpty && upcoming.isEmpty;
+
+  factory AgendaBuckets.of(List<ChatSummary> chats, String me) {
+    final needsMe = <ChatSummary>[], upcoming = <ChatSummary>[], past = <ChatSummary>[];
+    for (final c in chats) {
+      final m = c.meeting;
+      if (m.status == MeetingStatus.pending && !m.confirmedBy(me) && c.partnerId != null) {
+        needsMe.add(c);
+      } else if (m.status == MeetingStatus.pending || m.status == MeetingStatus.confirmed) {
+        upcoming.add(c);
+      } else {
+        past.add(c);
+      }
+    }
+    int byTime(ChatSummary a, ChatSummary b) => a.meeting.scheduledAt.compareTo(b.meeting.scheduledAt);
+    needsMe.sort(byTime);
+    upcoming.sort(byTime);
+    past.sort((a, b) => byTime(b, a));
+    return AgendaBuckets(needsMe: needsMe, upcoming: upcoming, past: past);
+  }
+}
+
+enum SlotState { free, busy, taken }
 
 abstract final class AgendaRules {
   static const meetingBlock = Duration(minutes: 30);
@@ -116,6 +190,11 @@ abstract final class AgendaRules {
   static const horizon = Duration(days: 7);
   static const enterBefore = Duration(minutes: 5);
   static const courtesy = Duration(minutes: 10);
+
+  /// The chat stays writable until 2 h after the meeting's time (chat_messages_meeting_alive).
+  static const chatAfter = Duration(hours: 2);
+  static const maxMessage = 500;
+  static const maxInvites = 3;
 
   /// B1<->B2, B2<->C1 (board filter only; live matching is exact level).
   static List<Level> adjacent(Level l) => switch (l) {
@@ -126,17 +205,40 @@ abstract final class AgendaRules {
 
   static bool overlaps(DateTime a, DateTime b) => a.isBefore(b.add(meetingBlock)) && b.isBefore(a.add(meetingBlock));
 
-  /// Start times the acceptor can pick: every 30 min inside the window,
-  /// the whole 30-min meeting must fit, not in the past. `busy` = my confirmed meetings.
-  static List<({DateTime at, bool busy})> slots(DateTime windowStart, DateTime windowEnd, DateTime now, List<DateTime> busy) {
-    final out = <({DateTime at, bool busy})>[];
+  /// Start times inside a window: every 30 min on the UTC grid, the whole 30-min
+  /// meeting must fit, not in the past. `busy` = my confirmed meetings, `taken` =
+  /// already booked in this offer (same checks as svc_offer_accept).
+  static List<({DateTime at, SlotState state})> slots(DateTime windowStart, DateTime windowEnd, DateTime now, List<DateTime> busy,
+      [List<DateTime> taken = const []]) {
+    final out = <({DateTime at, SlotState state})>[];
     var t = _ceilTo30(windowStart);
     while (!t.add(meetingBlock).isAfter(windowEnd)) {
-      if (t.isAfter(now)) out.add((at: t, busy: busy.any((b) => overlaps(b, t))));
+      if (t.isAfter(now)) {
+        final state = taken.any((b) => overlaps(b, t))
+            ? SlotState.taken
+            : (busy.any((b) => overlaps(b, t)) ? SlotState.busy : SlotState.free);
+        out.add((at: t, state: state));
+      }
       t = t.add(meetingBlock);
     }
     return out;
   }
+
+  /// Half-hour start times of one local day that are still ahead (invitations, changing the time).
+  static List<DateTime> dayGrid(DateTime localMidnight, DateTime now) => [
+        for (var t = _ceilTo30(localMidnight); t.isBefore(localMidnight.add(const Duration(days: 1))); t = t.add(meetingBlock))
+          if (t.isAfter(now) && !t.isAfter(now.add(horizon))) t,
+      ];
+
+  static bool onGrid(DateTime t) {
+    final u = t.toUtc();
+    return u.second == 0 && u.millisecond == 0 && (u.minute == 0 || u.minute == 30);
+  }
+
+  /// Can I still write in this chat? (mirrors the RLS policy)
+  static bool chatOpen(Meeting m, DateTime now) =>
+      const {MeetingStatus.pending, MeetingStatus.confirmed, MeetingStatus.done, MeetingStatus.noShow}.contains(m.status) &&
+      now.isBefore(m.scheduledAt.add(chatAfter));
 
   static DateTime _ceilTo30(DateTime t) {
     final u = t.toUtc(); // never reinterpret a local wall time as UTC

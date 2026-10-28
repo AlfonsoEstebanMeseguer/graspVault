@@ -1,0 +1,205 @@
+{
+  "id": "b2-e46-powering-the-future",
+  "level": "B2",
+  "version": 1,
+  "topic": "Powering the future",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e46-powering-the-future/p1-intro.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you try to save energy at home?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e46-powering-the-future/p1-q1.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what kind of energy is used in your country?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e46-powering-the-future/p1-q2.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you think about the future of your city?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e46-powering-the-future/p1-q3.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how will your daily life be different in twenty years?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e46-powering-the-future/p1-q4.mp3",
+          "audioMs": 4800
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e46-powering-the-future/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e46-a1",
+            "b2-e46-a2"
+          ],
+          "text": "Candidate A, your photographs show different ways of producing energy. Compare the photographs, and say what the advantages and disadvantages of these might be.",
+          "audio": "audio/B2/b2-e46-powering-the-future/p2-a.mp3",
+          "audioMs": 11500
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which would you prefer to live near? Why?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p2-a-follow.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e46-b1",
+            "b2-e46-b2"
+          ],
+          "text": "Candidate B, your photographs show people dealing with energy. Compare the photographs, and say how the people might be feeling.",
+          "audio": "audio/B2/b2-e46-powering-the-future/p2-b.mp3",
+          "audioMs": 8600
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, how can people reduce the energy they use?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p2-b-follow.mp3",
+          "audioMs": 4400
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some ways for a city to use energy in a better way, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e46-powering-the-future/p3-intro.mp3",
+          "audioMs": 10700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e46-powering-the-future",
+          "text": "Talk to each other about this question: How might these ideas help a city to save energy?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p3-discuss.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e46-powering-the-future",
+          "text": "Now you have about a minute to decide together. Which would make the most difference?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p3-decide.mp3",
+          "audioMs": 5600
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about energy and the future of cities.",
+          "audio": "audio/B2/b2-e46-powering-the-future/p4-intro.mp3",
+          "audioMs": 5600
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that renewable energy is too expensive. What do you think?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p4-q1.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think people would accept living near wind farms?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p4-q2.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, should governments close factories that pollute a lot?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p4-q3.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "How can ordinary people be encouraged to use less energy?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p4-q4.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, would you buy an electric car?",
+          "audio": "audio/B2/b2-e46-powering-the-future/p4-q5.mp3",
+          "audioMs": 3600
+        }
+      ]
+    }
+  ]
+}

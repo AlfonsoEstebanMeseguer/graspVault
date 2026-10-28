@@ -48,12 +48,66 @@ class Segment {
   final int startMs;
   final int endMs;
   final Mic mic;
+
+  int get durationMs => endMs - startMs;
+
+  Segment withRange(int start, int end) => Segment(
+        index: index, part: part, stepId: stepId, kind: kind, phase: phase,
+        target: target, startMs: start, endMs: end, mic: mic,
+      );
+
+  Map<String, Object?> toJson() => {
+        'index': index,
+        'part': part,
+        'stepId': stepId,
+        'kind': kind.name,
+        'phase': phase.name,
+        'target': switch (target) { Target.a => 'A', Target.b => 'B', Target.both => 'both', null => null },
+        'startMs': startMs,
+        'endMs': endMs,
+        'mic': {'A': mic.a, 'B': mic.b},
+      };
+
+  factory Segment.fromJson(Map<String, Object?> j) {
+    final mic = j['mic']! as Map<String, Object?>;
+    return Segment(
+      index: j['index']! as int,
+      part: j['part']! as int,
+      stepId: j['stepId']! as String,
+      kind: StepKind.values.byName(j['kind']! as String),
+      phase: Phase.values.byName(j['phase']! as String),
+      target: switch (j['target']) { 'A' => Target.a, 'B' => Target.b, 'both' => Target.both, _ => null },
+      startMs: j['startMs']! as int,
+      endMs: j['endMs']! as int,
+      mic: Mic(mic['A']! as bool, mic['B']! as bool),
+    );
+  }
 }
 
 class Timeline {
   const Timeline(this.segments, this.totalMs);
   final List<Segment> segments;
   final int totalMs;
+
+  /// The shape of exam_catalog.timeline / exam_sessions.schedule. A live
+  /// session reads the server copy: the leader may have changed durations (D-039).
+  Map<String, Object?> toJson() => {'segments': [for (final s in segments) s.toJson()], 'totalMs': totalMs};
+
+  factory Timeline.fromJson(Map<String, Object?> j) => Timeline(
+        List.unmodifiable([for (final s in (j['segments']! as List<Object?>)) Segment.fromJson(s! as Map<String, Object?>)]),
+        j['totalMs']! as int,
+      );
+
+  /// Same segments with new durations, laid out back to back from 0.
+  Timeline withDurations(List<int> durations) {
+    var t = 0;
+    final out = <Segment>[];
+    for (var i = 0; i < segments.length; i++) {
+      out.add(segments[i].withRange(t, t + durations[i]));
+      t += durations[i];
+    }
+    return Timeline(List.unmodifiable(out), t);
+  }
 }
 
 Mic micFor(ExamStep step, Phase phase) {
@@ -110,11 +164,14 @@ class PhaseAt {
       };
 }
 
-PhaseAt phaseAt(Timeline timeline, int elapsedMs) {
+/// [feedbackEndMs] is the elapsed instant at which the feedback ends; by
+/// default 5 min after the parts, but the leader can stretch it (D-039).
+PhaseAt phaseAt(Timeline timeline, int elapsedMs, {int? feedbackEndMs}) {
   final e = elapsedMs < 0 ? 0 : elapsedMs;
-  if (e >= timeline.totalMs + feedbackMs) return const PhaseAt._(SessionState.ended, null, 0);
+  final fbEnd = feedbackEndMs ?? timeline.totalMs + feedbackMs;
+  if (e >= fbEnd) return const PhaseAt._(SessionState.ended, null, 0);
   if (e >= timeline.totalMs) {
-    return PhaseAt._(SessionState.feedback, null, timeline.totalMs + feedbackMs - e);
+    return PhaseAt._(SessionState.feedback, null, fbEnd - e);
   }
   var lo = 0, hi = timeline.segments.length - 1;
   while (lo < hi) {

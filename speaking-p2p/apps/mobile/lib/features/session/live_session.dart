@@ -12,9 +12,12 @@ import '../../core/voice/voice_service.dart';
 import '../../data/content/content_repository.dart';
 import '../../data/session/session_repository.dart';
 import '../../domain/account/account.dart';
+import '../../domain/exam/control.dart';
 import '../../domain/exam/engine.dart';
 import '../../domain/exam/models.dart';
 import '../../domain/exam/timeline.dart';
+import '../exam/control/exam_control.dart';
+import '../exam/reader_player.dart';
 
 class ServerClock {
   ServerClock([int Function()? localNow]) : _local = localNow ?? (() => DateTime.now().millisecondsSinceEpoch);
@@ -42,15 +45,18 @@ class BundleExamSource implements ExamSource {
   Future<Exam?> exam(Level level, String id) => _repo.exam(level, id);
 }
 
-class LiveSession extends ChangeNotifier {
+class LiveSession extends ChangeNotifier implements ExamControlHandle {
   LiveSession({
     required this.sessionId,
     required this.myUserId,
     required this._repo,
     required this._voice,
     required this._content,
+    this._readerAudio,
+    this._voices = const [],
     ServerClock? clock,
     this._tickEvery = const Duration(milliseconds: 500),
+    this._contentVersion,
   }) : clock = clock ?? ServerClock();
 
   final String sessionId;
@@ -58,8 +64,11 @@ class LiveSession extends ChangeNotifier {
   final SessionRepository _repo;
   final VoiceService _voice;
   final ExamSource _content;
+  final ReaderAudio? _readerAudio;
+  final List<String> _voices;
   final ServerClock clock;
   final Duration _tickEvery;
+  final int? _contentVersion;
 
   SessionRow? row;
   Role? myRole;
@@ -67,7 +76,15 @@ class LiveSession extends ChangeNotifier {
   Exam? exam;
   ExamEngine? engine;
   bool canSpeak = false;
+  bool selfMuted = false;
   bool preloaded = false;
+  bool _preparing = false;
+
+  /// Examiner audio of this exam on disk (stepId -> file, D-033).
+  Map<String, String> readerFiles = const {};
+
+  /// Part 2 photo id -> downloaded image (D-036).
+  Map<String, String> photoFiles = const {};
   Object? error;
   Set<String> speakers = const {};
 
@@ -78,6 +95,22 @@ class LiveSession extends ChangeNotifier {
   int _lastLobbyTickMs = 0;
   bool _disposed = false;
 
+  ControlNotice? _notice;
+  String? _lastControlSeen;
+  bool _seededControl = false;
+  String? _engineKey;
+
+  @override
+  bool get hasLeader => row?.leaderId != null;
+  @override
+  bool get iAmLeader => row?.leaderId == myUserId;
+  @override
+  String get partnerName => partner?.username ?? '…';
+  @override
+  bool get partnerIsPro => myRole != null && (row?.proOf(myRole!.other) ?? false);
+  @override
+  ControlNotice? get notice => _notice;
+
   bool get partnerLeft => row?.state == SessionState.aborted && row?.abortedBy != null && row?.abortedBy != myUserId;
   bool get closed => row?.state == SessionState.ended || row?.state == SessionState.aborted;
 
@@ -87,12 +120,12 @@ class LiveSession extends ChangeNotifier {
     _subs.add(_voice.activeSpeakers.listen((v) => _set(() => speakers = v)));
     try {
       final sent = clock.nowMs() - clock.offsetMs;
-      final join = await _repo.join(sessionId);
+      final join = await _repo.join(sessionId, contentVersion: _contentVersion);
       clock.sync(join.serverNow, sent, clock.nowMs() - clock.offsetMs);
       myRole = join.role;
       await _voice.join(url: join.url, token: join.token);
-    } catch (e) {
-      _fail(e);
+    } catch (e, st) {
+      _fail(e, st);
       return;
     }
     _ticker = Timer.periodic(_tickEvery, (_) => tickNow());
@@ -106,28 +139,96 @@ class LiveSession extends ChangeNotifier {
     if (partner == null && partnerId != null) {
       unawaited(_repo.publicProfile(partnerId).then((p) => _set(() => partner = p)).catchError((Object _) {}));
     }
-    if (exam == null) {
+    _noticeFrom(r);
+    if (exam == null || exam!.id != r.examId) {
+      // First load, or the leader switched exams (D-040): new content and material.
       final e = await _content.exam(r.level, r.examId);
       if (e == null) {
         // This build does not ship the exam the server picked (older app).
         await _repo.abort(sessionId, reason: 'content_missing').catchError((Object _) {});
         return _fail(const AppFailure('content_missing'));
       }
-      exam = e;
-      // Reader audio/photos are not on R2 yet (no TTS): the JSON is the material.
-      if (!preloaded && r.state == SessionState.lobby) {
-        preloaded = true;
-        unawaited(_repo.setFlag(sessionId, 'preloaded', true).catchError((Object _) {}));
+      if (exam != null) {
+        _preparing = false;
+        engine = null;
       }
+      exam = e;
     }
-    if (engine == null && r.examStartedAt != null && exam != null && myRole != null) {
-      engine = ExamEngine(exam: exam!, myRole: myRole!, examStartedAtMs: r.examStartedAt!.millisecondsSinceEpoch);
+    if (!_preparing) {
+      _preparing = true;
+      unawaited(_prepareReader(e: exam!, inLobby: r.state == SessionState.lobby || r.pauseReason == 'switching'));
+    }
+    // A control (or a debug skip) moved the clock, froze it or rewrote the
+    // timeline on the server: rebuild the engine from the row.
+    final key = '${r.examId}|${r.examStartedAt?.millisecondsSinceEpoch}|${r.pausedAt?.millisecondsSinceEpoch}|${r.controlVersion}';
+    if (engine != null && key != _engineKey) engine = null;
+    if (engine == null && r.examStartedAt != null && exam != null && myRole != null && exam!.id == r.examId) {
+      _engineKey = key;
+      engine = ExamEngine(
+        exam: exam!,
+        myRole: myRole!,
+        examStartedAtMs: r.examStartedAt!.millisecondsSinceEpoch,
+        timeline: r.schedule == null ? null : Timeline.fromJson(r.schedule!),
+        pausedAtMs: r.pausedAt?.millisecondsSinceEpoch,
+        pauseReason: r.pauseReason,
+        feedbackEndsAtMs: r.feedbackEndsAt?.millisecondsSinceEpoch,
+      );
     }
     if (closed) {
       _ticker?.cancel();
       unawaited(_voice.leave());
     }
     notifyListeners();
+  }
+
+  /// A toast per new last_control, never for the one already there on entry.
+  void _noticeFrom(SessionRow r) {
+    final c = r.lastControl;
+    final id = c == null ? null : '${c['op']}|${c['at']}|${c['by']}';
+    if (!_seededControl) {
+      _seededControl = true;
+      _lastControlSeen = id;
+      return;
+    }
+    if (c == null || id == _lastControlSeen) return;
+    _lastControlSeen = id;
+    final byMe = c['by'] == myUserId;
+    _notice = ControlNotice(id: (_notice?.id ?? 0) + 1, op: c['op'] as String? ?? '', actorName: byMe ? '' : partnerName, byMe: byMe);
+  }
+
+  @override
+  Future<void> control(ControlOp op) =>
+      _repo.control(sessionId, op: op.name, args: op.args, expectedVersion: row?.controlVersion ?? 0);
+
+  @override
+  Future<void> switchExam(String? examId) => _repo.control(sessionId,
+      op: 'switch_exam', args: {'examId': ?examId}, expectedVersion: row?.controlVersion ?? 0);
+
+  @override
+  Future<void> transfer() => _repo.control(sessionId, op: 'transfer', expectedVersion: row?.controlVersion ?? 0);
+
+  /// Lobby preload (CLAUDE.md §5): the reader audio in this session's voice
+  /// and the Part 2 photos.
+  /// "preloaded" is reported even when the download fails: a silent reader
+  /// with the text on screen beats a stuck lobby.
+  Future<void> _prepareReader({required Exam e, required bool inLobby}) async {
+    var media = const ExamMedia();
+    final audio = _readerAudio;
+    if (audio != null && _voices.isNotEmpty) {
+      try {
+        media = await audio.prepare(e, voiceForSession(sessionId, _voices));
+      } catch (err) {
+        debugPrint('reader audio unavailable: $err');
+      }
+    }
+    _set(() {
+      readerFiles = media.audio;
+      photoFiles = media.photos;
+      preloaded = true;
+    });
+    if (inLobby && !_disposed) {
+      unawaited(_repo.setFlag(sessionId, 'preloaded', true).catchError((Object _) {}));
+    }
   }
 
   @visibleForTesting
@@ -144,7 +245,8 @@ class LiveSession extends ChangeNotifier {
       return;
     }
     final snap = e.at(now);
-    final key = snap.segment?.index ?? snap.state;
+    // Every control changes the version: tick once so the server pushes the mics.
+    final key = '${row!.controlVersion}:${snap.paused}:${snap.segment?.index ?? snap.state}';
     if (key != _lastTicked) {
       _lastTicked = key;
       unawaited(_repo.tick(sessionId).then<void>((_) {}).catchError((Object _) {}));
@@ -155,8 +257,17 @@ class LiveSession extends ChangeNotifier {
   Future<void> setReady(bool v) => _repo.setFlag(sessionId, 'ready', v);
   Future<void> setRecording(bool v) => _repo.setFlag(sessionId, 'recording', v);
   Future<void> abort() => _repo.abort(sessionId);
+  Future<void> skip() => _repo.skip(sessionId);
 
-  void _fail(Object e) => _set(() => error = e);
+  Future<void> toggleMute() async {
+    _set(() => selfMuted = !selfMuted);
+    await _voice.setSelfMuted(selfMuted);
+  }
+
+  void _fail(Object e, [StackTrace? st]) {
+    debugPrint('LiveSession failed: $e${st == null ? '' : '\n$st'}');
+    _set(() => error = e);
+  }
 
   void _set(VoidCallback f) {
     if (_disposed) return;
