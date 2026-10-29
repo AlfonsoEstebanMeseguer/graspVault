@@ -1,0 +1,12 @@
+{
+  "id": "c1-e11-fame-and-public-attention",
+  "centralQuestion": "How might these effects change a famous person's life?",
+  "prompts": [
+    "loss of privacy",
+    "financial security",
+    "pressure to keep a perfect image",
+    "influence over public opinion",
+    "difficulty trusting other people"
+  ],
+  "decisionQuestion": "Which would be the hardest to deal with?"
+}

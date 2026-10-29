@@ -1,0 +1,193 @@
+{
+  "id": "b1-e25-school-uniforms",
+  "level": "B1",
+  "version": 1,
+  "topic": "School uniforms",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e25-school-uniforms/p1-intro.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what are you wearing today?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e25-school-uniforms/p1-q1.mp3",
+          "audioMs": 3100
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you like wearing a uniform?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e25-school-uniforms/p1-q2.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about your favourite piece of clothing.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e25-school-uniforms/p1-q3.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer comfortable clothes or fashionable clothes?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e25-school-uniforms/p1-q4.mp3",
+          "audioMs": 5200
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you choose what to wear every day?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e25-school-uniforms/p1-q5.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what are you going to wear to the next party?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e25-school-uniforms/p1-q6.mp3",
+          "audioMs": 3900
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e25-school-uniforms/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e25-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows children in school uniforms. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e25-school-uniforms/p2-a.mp3",
+          "audioMs": 7700
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e25-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows students in their own clothes at school. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e25-school-uniforms/p2-b.mp3",
+          "audioMs": 8200
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e25-school-uniforms/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e25-school-uniforms",
+          "text": "A school is thinking about changing its rules about clothes. Here are some ideas. Talk together about the different ideas, and say which would be the best for the school.",
+          "audio": "audio/B1/b1-e25-school-uniforms/p3-discuss.mp3",
+          "audioMs": 11000
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about clothes and school life.",
+          "audio": "audio/B1/b1-e25-school-uniforms/p4-intro.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think students should wear a uniform at school? Why or why not?",
+          "audio": "audio/B1/b1-e25-school-uniforms/p4-q1.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think clothes show who we are?",
+          "audio": "audio/B1/b1-e25-school-uniforms/p4-q2.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, do you spend a lot of time choosing your clothes?",
+          "audio": "audio/B1/b1-e25-school-uniforms/p4-q3.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is it important to dress well for a job interview?",
+          "audio": "audio/B1/b1-e25-school-uniforms/p4-q4.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, what clothes are typical of your country?",
+          "audio": "audio/B1/b1-e25-school-uniforms/p4-q5.mp3",
+          "audioMs": 4000
+        }
+      ]
+    }
+  ]
+}

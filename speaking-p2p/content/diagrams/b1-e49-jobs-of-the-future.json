@@ -1,0 +1,12 @@
+{
+  "id": "b1-e49-jobs-of-the-future",
+  "centralQuestion": "Which job would be the most interesting for students?",
+  "prompts": [
+    "a doctor",
+    "a pilot",
+    "a chef",
+    "a computer programmer",
+    "a journalist"
+  ],
+  "decisionQuestion": "Which person would be the most interesting to invite?"
+}

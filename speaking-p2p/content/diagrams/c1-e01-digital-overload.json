@@ -1,0 +1,12 @@
+{
+  "id": "c1-e01-digital-overload",
+  "centralQuestion": "How effective might these approaches be in helping people to concentrate?",
+  "prompts": [
+    "turning off notifications",
+    "screen-free evenings",
+    "apps that limit use",
+    "keeping phones out of the bedroom",
+    "taking regular digital detox weekends"
+  ],
+  "decisionQuestion": "Which would be the most realistic for most people?"
+}

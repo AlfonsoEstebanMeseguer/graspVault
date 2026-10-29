@@ -1,0 +1,1184 @@
+{
+  "@@locale": "es",
+  "appName": "Speaking P2P",
+  "tabExam": "Examen",
+  "tabAgenda": "Agenda",
+  "tabProfile": "Perfil",
+  "tabSettings": "Ajustes",
+  "homeHello": "Hola,",
+  "searchPartner": "Buscar pareja",
+  "examOfLevel": "Examen de Speaking {level}",
+  "@examOfLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "examSummary": "4 partes · ~{minutes} min + 5 min de feedback",
+  "@examSummary": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "offlineBanner": "Modo sin conexión: practica con un compañero simulado.",
+  "practiceSimulated": "Practicar con compañero simulado",
+  "levelB1": "B1 Preliminary",
+  "levelB2": "B2 First",
+  "levelC1": "C1 Advanced",
+  "partOf": "PARTE {n} DE 4",
+  "@partOf": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "examiner": "Examinador",
+  "examinerQuestion": "Pregunta del examinador",
+  "hideText": "Ocultar texto",
+  "showText": "Ver texto",
+  "hideTimer": "Ocultar cronómetro",
+  "showTimer": "Mostrar cronómetro",
+  "yourTurn": "Te toca responder a ti",
+  "partnerTurn": "Le toca a {name}",
+  "@partnerTurn": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "micOpen": "Tu micro está abierto",
+  "micMuted": "Tu micro está silenciado",
+  "examinerSpeaking": "El examinador está hablando",
+  "bothMuted": "Micros de los dos silenciados",
+  "addressedToBoth": "Para: los dos",
+  "addressedToYou": "Para: ti",
+  "addressedTo": "Para: {name}",
+  "@addressedTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "you": "Tú",
+  "roleLabel": "{name} · {role}",
+  "@roleLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "statusMuted": "Silenciado",
+  "statusSpeaking": "Hablando",
+  "statusMicOpen": "Micro abierto",
+  "choosesTwoPhotos": "{name} elige dos de estas fotos",
+  "@choosesTwoPhotos": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "describesPhoto": "{name} describe esta foto",
+  "@describesPhoto": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "comparesPhotos": "{name} compara estas fotos",
+  "@comparesPhotos": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "photoPlaceholder": "Foto · {id}",
+  "@photoPlaceholder": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "discussionPhase": "Discusión · {minutes} min",
+  "@discussionPhase": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "decisionPhase": "Decisión · {minutes} min",
+  "@decisionPhase": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "startingIn": "El examen empieza en {seconds}",
+  "@startingIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "abandon": "Abandonar",
+  "abandonTitle": "¿Seguro que quieres salir?",
+  "abandonBody": "El examen terminará para los dos y {name} volverá al inicio. Si estás usando tu test de prueba, se dará por consumido.",
+  "@abandonBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "keepGoing": "Seguir en el examen",
+  "leaveExam": "Salir del examen",
+  "leaveExamIn": "Salir del examen ({seconds})",
+  "@leaveExamIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "partnerLeft": "Tu compañero ha salido",
+  "backHome": "Volver al inicio",
+  "examFinished": "Examen terminado",
+  "feedbackSubtitle": "Ahora tenéis tiempo para daros feedback.",
+  "feedbackTime": "TIEMPO DE FEEDBACK",
+  "micsOpenBoth": "Micros abiertos para los dos",
+  "feedbackIdeas": "IDEAS PARA EMPEZAR",
+  "feedbackIdea1": "¿Qué expresión o palabra del otro te ha gustado?",
+  "feedbackIdea2": "¿Hay algún error que se haya repetido?",
+  "feedbackIdea3": "En la Parte 3, ¿habéis dejado hablar al otro y llegado a una decisión?",
+  "endCall": "Terminar llamada",
+  "simulatedPartner": "compañero_sim",
+  "simulatedPartnerHint": "Modo desarrollo: el compañero es simulado y no habla.",
+  "settingsTitle": "Ajustes",
+  "appearance": "APARIENCIA",
+  "themeLight": "Claro",
+  "themeDark": "Oscuro",
+  "themeSystem": "Sistema",
+  "appLanguage": "IDIOMA DE LA APP",
+  "languageSpanish": "Español",
+  "languageEnglish": "English",
+  "subscription": "SUSCRIPCIÓN",
+  "account": "CUENTA",
+  "termsOfUse": "Términos de uso",
+  "privacyPolicy": "Política de privacidad",
+  "signOut": "Cerrar sesión",
+  "deleteAccount": "Eliminar cuenta",
+  "needsBackend": "Disponible cuando la app esté conectada al servidor.",
+  "agendaTitle": "Agenda",
+  "profileTitle": "Perfil",
+  "loginHeadline": "Practica el Speaking en pareja, con un examinador virtual.",
+  "loginSubtitle": "Él marca los turnos y el tiempo. Vosotros solo habláis.",
+  "emailLabel": "Email",
+  "passwordLabel": "Contraseña",
+  "signIn": "Entrar",
+  "createAccount": "Crear cuenta",
+  "noAccountYet": "¿No tienes cuenta? Crear una",
+  "haveAccount": "Ya tengo cuenta",
+  "checkYourEmail": "Te hemos enviado un correo para confirmar la cuenta. Ábrelo y vuelve a entrar.",
+  "invalidEmail": "Escribe un email válido",
+  "passwordTooShort": "Mínimo 8 caracteres",
+  "errorInvalidCredentials": "Email o contraseña incorrectos",
+  "errorEmailNotConfirmed": "Confirma tu email antes de entrar",
+  "errorEmailExists": "Ya existe una cuenta con ese email",
+  "errorWeakPassword": "La contraseña es demasiado débil",
+  "errorRateLimited": "Demasiados intentos. Espera un poco",
+  "errorUsernameTaken": "Ese nombre de usuario ya está cogido",
+  "errorUnderage": "Debes tener al menos 14 años",
+  "errorGeneric": "Algo ha fallado. Inténtalo de nuevo",
+  "stepOf": "Paso {n} de 3",
+  "@stepOf": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "visibleToOthers": "Visible para otros usuarios",
+  "privateOnlyYou": "Privado, solo lo ves tú",
+  "canChangeLater": "Podrás cambiarlo cuando quieras",
+  "publicProfileTitle": "Tu perfil público",
+  "usernameLabel": "Nombre de usuario",
+  "usernameAvailable": "Disponible",
+  "usernameRules": "3–20 caracteres: minúsculas, números, _ y .",
+  "languagesYouSpeak": "Idiomas que hablas",
+  "otherLanguage": "+ Otro",
+  "accountDataTitle": "Datos de tu cuenta",
+  "birthDate": "Fecha de nacimiento",
+  "dayLabel": "Día",
+  "monthLabel": "Mes",
+  "yearLabel": "Año",
+  "minAgeHint": "Debes tener al menos 14 años.",
+  "invalidDate": "Fecha no válida",
+  "phoneOptional": "Teléfono (opcional)",
+  "invalidPhone": "Número no válido",
+  "linkedToAccount": "Vinculado a tu cuenta",
+  "whichExamTitle": "¿Qué examen preparas?",
+  "speakingMinutes": "Speaking de {minutes} min",
+  "@speakingMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "acceptTerms": "He leído y acepto los Términos de uso y la Política de privacidad.",
+  "continueLabel": "Continuar",
+  "backLabel": "Atrás",
+  "startLabel": "Empezar",
+  "langEs": "Español",
+  "langEn": "Inglés",
+  "langCa": "Catalán",
+  "langFr": "Francés",
+  "langIt": "Italiano",
+  "langDe": "Alemán",
+  "langPt": "Portugués",
+  "langEu": "Euskera",
+  "langGl": "Gallego",
+  "langZh": "Chino",
+  "langAr": "Árabe",
+  "langRu": "Ruso",
+  "langUk": "Ucraniano",
+  "langRo": "Rumano",
+  "roomTitle": "Sala de espera · {level}",
+  "@roomTitle": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "meetBeforeStart": "Conoceos antes de empezar",
+  "examStartsIn": "El examen empieza solo en",
+  "waitingPartner": "Esperando a tu compañero…",
+  "candidateLine": "Candidato {role} · {langs}",
+  "@candidateLine": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      },
+      "langs": {
+        "type": "String"
+      }
+    }
+  },
+  "notConfirmed": "Sin confirmar",
+  "readyBadge": "✓ Listo",
+  "recordSession": "Grabar la sesión",
+  "recordOnlyIfBoth": "Solo si los dos lo activáis · {name}: {state}",
+  "@recordOnlyIfBoth": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "state": {
+        "type": "String"
+      }
+    }
+  },
+  "switchedOn": "activado",
+  "switchedOff": "desactivado",
+  "materialDownloaded": "Material del examen descargado",
+  "materialDownloading": "Descargando el material del examen…",
+  "imReady": "Estoy listo",
+  "notReadyYet": "Aún no estoy listo",
+  "leaveRoom": "Salir de la sala",
+  "connecting": "Conectando…",
+  "sessionError": "No se ha podido entrar en la sala.",
+  "debugEnterNow": "Crear sala ahora (debug)",
+  "debugSkip": "Saltar al siguiente tramo (debug)",
+  "muteMe": "Silenciar mi micro",
+  "unmuteMe": "Activar mi micro",
+  "contentMissing": "Actualiza la app: este examen no está en tu versión.",
+  "sessionClosed": "La sesión ha terminado.",
+  "partnerNoShow": "Tu compañero no se ha conectado.",
+  "micOnShort": "Micro abierto",
+  "micOffShort": "Micro cerrado",
+  "searchingPartner": "Buscando compañero…",
+  "whileYouWait": "MIENTRAS ESPERAS",
+  "tip1": "En la Parte 2 no describas las fotos: compáralas y responde a la pregunta.",
+  "tip2": "En la Parte 3 pregunta la opinión del otro: «What do you think?».",
+  "tip3": "Si no sabes una palabra, explícala con otras. No te quedes callado.",
+  "tip4": "En la Parte 1 da respuestas cortas pero con un motivo o un ejemplo.",
+  "cancelSearch": "Cancelar búsqueda",
+  "nobodySearchingTitle": "Parece que no hay nadie buscando",
+  "nobodySearchingBody": "¿Quieres agendar una reunión con alguien? Seguiremos buscando mientras tanto.",
+  "noLabel": "No",
+  "yesSchedule": "Sí, agendar",
+  "errorNotEligible": "Necesitas una suscripción activa para buscar pareja.",
+  "searchingBanner": "Buscando compañero · {time}",
+  "@searchingBanner": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "createMeeting": "Proponer horario",
+  "agendaBoard": "Buscar horario",
+  "agendaMine": "Mis exámenes",
+  "noOffers": "Nadie ha propuesto horario con este filtro.",
+  "myOffersCount": "MIS PROPUESTAS · {n} DE 2",
+  "@myOffersCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "interestedCount": "{n, plural, =0{Nadie interesado aún} =1{1 interesado} other{{n} interesados}}",
+  "@interestedCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "todayLabel": "Hoy",
+  "tomorrowLabel": "Mañana",
+  "otherDay": "Otro",
+  "speaksLangs": "Habla {langs}",
+  "@speaksLangs": {
+    "placeholders": {
+      "langs": {
+        "type": "String"
+      }
+    }
+  },
+  "availableLabel": "Disponible",
+  "withdrawOffer": "Retirar",
+  "statusConfirmed": "Confirmada ✓✓",
+  "statusAwaitingYou": "Falta tu confirmación",
+  "statusAwaitingPartner": "Esperando a {name}",
+  "@statusAwaitingPartner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "statusClosed": "Cerrada",
+  "statusCancelled": "Cancelada",
+  "statusDone": "Hecha",
+  "statusNoShow": "Ausencia",
+  "meetingLength": "30 min",
+  "examWith": "Examen {level} con {name}",
+  "@examWith": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "startsInMinutes": "{n, plural, =0{Empieza ya} =1{Empieza en 1 min} other{Empieza en {n} min}}",
+  "@startsInMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "startedMinutesAgo": "Empezó hace {n} min",
+  "@startedMinutesAgo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "enterRoom": "Entrar a la sala",
+  "remindBefore": "Te avisaremos 10 min antes",
+  "dayField": "Día",
+  "windowField": "¿Cuándo estás libre?",
+  "fromField": "Desde",
+  "toField": "Hasta",
+  "windowHint": "Otros estudiantes reservarán un hueco de 30 min dentro de tu franja. Puede salir más de un examen.",
+  "examLevelField": "Nivel del examen",
+  "offersLeft": "{n, plural, =0{Puedes tener 2 propuestas abiertas · no te quedan} =1{Puedes tener 2 propuestas abiertas · te queda 1} other{Puedes tener 2 propuestas abiertas · te quedan {n}}}",
+  "@offersLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "publishOffer": "Publicar propuesta",
+  "busyLabel": "Ocupado",
+  "modifyLabel": "Cambiar hora",
+  "cancelLabel": "Cancelar",
+  "confirmLabel": "Confirmar",
+  "messageHint": "Mensaje",
+  "sendLabel": "Enviar",
+  "sysModified": "{name} propone cambiar a {when}",
+  "@sysModified": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sysConfirmedBy": "{name} ha confirmado ✓",
+  "@sysConfirmedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sysConfirmed": "Reunión confirmada.",
+  "sysPartnerOverlap": "{name} ya tiene otra reunión a esa hora. Proponed otra.",
+  "@sysPartnerOverlap": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sysUnavailable": "Esta reunión ya no está disponible",
+  "sysCancelled": "{name} ha cancelado la reunión",
+  "@sysCancelled": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sysExpired": "La hora pasó sin confirmar el cambio",
+  "sysPartnerDeleted": "Tu compañero ha eliminado su cuenta",
+  "sysUpdate": "La reunión ha cambiado",
+  "deletedUser": "Usuario eliminado",
+  "modifyTitle": "Proponer otra hora",
+  "saveLabel": "Guardar",
+  "cancelMeetingTitle": "¿Cancelar la reunión?",
+  "cancelMeetingBody": "Se avisará a {name} en el chat.",
+  "@cancelMeetingBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "keepMeeting": "No, mantener",
+  "roomOpensBefore": "La sala se abre 5 min antes",
+  "meetingWith": "Reunión con {name} · {level}",
+  "@meetingWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "viewLabel": "Ver",
+  "errorOverlap": "Ya tienes otra reunión confirmada a esa hora",
+  "errorTooManyOffers": "Ya tienes 2 ofertas activas",
+  "errorOfferUnavailable": "Esta propuesta ya no está disponible",
+  "errorBadTime": "Esa hora no es válida",
+  "errorAlreadyAccepted": "Ya tienes un hueco reservado en esta propuesta",
+  "errorWindow": "La franja debe durar al menos 30 min y estar dentro de los próximos 7 días",
+  "errorTooEarly": "La sala se abre 5 min antes",
+  "errorTooLate": "Ya pasó el tiempo de cortesía",
+  "errorNotPending": "La reunión ya no se puede cambiar",
+  "errorPartnerGone": "Tu compañero ya no está disponible",
+  "errorSendFailed": "No se ha podido enviar el mensaje",
+  "sysModifiedByMe": "Propusiste cambiar a {when} · falta que confirme",
+  "@sysModifiedByMe": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sysConfirmedByMe": "Has confirmado ✓",
+  "sysCancelledByMe": "Has cancelado la reunión",
+  "editProfile": "Editar perfil",
+  "preparing": "Preparando",
+  "examsDone": "Exámenes hechos",
+  "recordingsTitle": "GRABACIONES",
+  "recordingWith": "{level} con {name}",
+  "@recordingWith": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "recordingMeta": "{date} · {minutes} min",
+  "@recordingMeta": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "daysLeft": "{n, plural, =1{1 día} other{{n} días}}",
+  "@daysLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "recordingsDeleted": "Las grabaciones se borran a los 30 días.",
+  "noRecordings": "Aún no hay grabaciones. Se guardan si los dos activáis «Grabar la sesión».",
+  "playbackSoon": "La reproducción llegará en la próxima versión.",
+  "planMonthly": "Plan mensual",
+  "subActive": "Activo",
+  "subInactive": "Sin suscripción",
+  "trialAvailable": "Test de prueba disponible",
+  "nextPayment": "Próximo pago",
+  "storeLater": "La gestión en la tienda llegará con los pagos.",
+  "deleteAccountBody": "Se borrarán tu perfil, tus datos privados y las grabaciones en las que aparece tu voz. Tus mensajes de chat quedarán anónimos. No se puede deshacer.",
+  "deletePhrase": "ELIMINAR",
+  "deletePhraseHint": "Escribe {phrase} para confirmar",
+  "@deletePhraseHint": {
+    "placeholders": {
+      "phrase": {
+        "type": "String"
+      }
+    }
+  },
+  "yourPassword": "Tu contraseña",
+  "deleteForever": "Eliminar para siempre",
+  "errorBadConfirmation": "La frase no coincide",
+  "profileSaved": "Perfil guardado",
+  "targetLevelField": "Examen que preparas",
+  "avatarTitle": "Foto de perfil",
+  "avatarFromGallery": "Elegir de la galería",
+  "avatarFromCamera": "Hacer una foto",
+  "avatarRemove": "Quitar foto",
+  "avatarUpdated": "Foto actualizada",
+  "avatarRemoved": "Foto eliminada",
+  "avatarCropTitle": "Ajusta tu foto",
+  "avatarCropHelp": "Arrastra y pellizca para encuadrarla",
+  "avatarCropUse": "Usar esta foto",
+  "errorPhotoUpload": "No se pudo subir la foto. Prueba con otra imagen o inténtalo de nuevo",
+  "practiceVip": "Practicar con compañero VIP simulado",
+  "simulatedVipHint": "Modo desarrollo: compañero VIP simulado. Tú diriges el examen.",
+  "controlPanel": "Control del examen",
+  "controlTime": "Tiempo",
+  "controlNavigation": "Navegación",
+  "controlExam": "Examen",
+  "controlLeadership": "Quién dirige",
+  "controlPause": "Pausar",
+  "controlResume": "Reanudar",
+  "controlPauseReader": "No se puede pausar mientras habla el examinador",
+  "controlSkipReader": "Saltar al examinador",
+  "controlRepeat": "Repetir pregunta",
+  "controlNextStep": "Siguiente pregunta",
+  "controlNextPart": "Siguiente parte",
+  "controlGoToPart": "Ir a la parte",
+  "controlEndExam": "Terminar examen",
+  "controlEndExamConfirm": "¿Terminar el examen y pasar al feedback?",
+  "controlTurnLength": "Duración de los turnos de esta parte",
+  "controlFeedbackTime": "Tiempo de feedback",
+  "controlSwitchExam": "Cambiar de examen",
+  "controlSwitchConfirm": "El examen nuevo empieza desde la Parte 1.",
+  "controlRandom": "Aleatorio",
+  "controlCurrent": "Actual",
+  "controlSearch": "Buscar tema",
+  "controlTransfer": "Ceder el control a {name}",
+  "@controlTransfer": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "controlTransferNoPro": "{name} no tiene Pro",
+  "@controlTransferNoPro": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "leaderYou": "Diriges tú",
+  "leaderOther": "Dirige: {name}",
+  "@leaderOther": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "pausedTitle": "Examen en pausa",
+  "pausedBy": "Lo ha pausado {name} · micros abiertos",
+  "@pausedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "switchingExam": "Cambiando de examen… descargando material",
+  "noticePause": "{name} ha pausado el examen",
+  "@noticePause": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeResume": "{name} ha reanudado el examen",
+  "@noticeResume": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeSkipReader": "{name} ha saltado al examinador",
+  "@noticeSkipReader": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeNextStep": "{name} ha pasado a la siguiente pregunta",
+  "@noticeNextStep": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeNextPart": "{name} ha pasado a la siguiente parte",
+  "@noticeNextPart": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeEndExam": "{name} ha terminado el examen",
+  "@noticeEndExam": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeRepeat": "{name} ha repetido la pregunta",
+  "@noticeRepeat": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeGoToPart": "{name} ha ido a otra parte",
+  "@noticeGoToPart": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeTime": "{name} ha cambiado el tiempo",
+  "@noticeTime": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeSwitchExam": "{name} ha cambiado de examen",
+  "@noticeSwitchExam": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeLeader": "{name} dirige ahora el examen",
+  "@noticeLeader": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noticeLeaderYou": "Ahora diriges tú el examen",
+  "errorNotLeader": "Ahora mismo no diriges el examen",
+  "errorStaleControl": "El examen acaba de cambiar; inténtalo otra vez",
+  "errorPartnerNotPro": "Tu compañero no tiene Pro",
+  "errorContentMissingPartner": "Tu compañero no tiene ese examen en su versión de la app",
+  "errorControlRange": "Ese cambio se sale de los límites",
+  "planStandard": "Plan Estándar",
+  "planPro": "Plan Pro",
+  "upgradePro": "Mejorar a Pro",
+  "proTitle": "Pro: tú diriges el examen",
+  "proPrice": "10,00 € al mes · incluye todo lo del plan Estándar",
+  "proFeature1": "Pausar el examen y añadir o quitar minutos",
+  "proFeature2": "Saltar al examinador y pasar de pregunta o de parte",
+  "proFeature3": "Cambiar de examen cuando quieras, desde el catálogo o al azar",
+  "proFeature4": "Si los dos tenéis Pro, uno dirige y puede cederle el control al otro",
+  "proStoreSoon": "Disponible cuando se active la tienda",
+  "dockTitle": "Diriges el examen",
+  "dockPrev": "Anterior",
+  "dockNext": "Siguiente",
+  "dockNextPart": "Sig. parte",
+  "dockMore": "Más",
+  "dockLess": "Menos",
+  "dockSkip": "Saltar",
+  "dockPaused": "En pausa",
+  "controlPrevStep": "Pregunta anterior",
+  "controlTurnTime": "Tiempo de este turno",
+  "controlBackToExam": "Volver a la última pregunta",
+  "noticePrevStep": "{name} ha vuelto a la pregunta anterior",
+  "@noticePrevStep": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tabPractice": "Practicar",
+  "providerSoon": "Entrar con {provider} llegará pronto. De momento, usa tu email.",
+  "@providerSoon": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "continueWithApple": "Continuar con Apple",
+  "continueWithGoogle": "Continuar con Google",
+  "signUpWithEmail": "Crear cuenta con email",
+  "haveAccountQuestion": "¿Ya tienes cuenta?",
+  "notAffiliated": "App independiente, sin afiliación con Cambridge University Press & Assessment.",
+  "createAccountTitle": "Crea tu cuenta",
+  "createAccountSubtitle": "Con tu email y una contraseña. Después elegirás tu nombre y tu nivel.",
+  "welcomeBack": "Hola de nuevo",
+  "welcomeBackSubtitle": "Entra con tu email para seguir practicando.",
+  "showPassword": "Mostrar contraseña",
+  "hidePassword": "Ocultar contraseña",
+  "orContinueWith": "o continúa con",
+  "practiceSoloTitle": "Practicar solo",
+  "practiceSoloBody": "Con un compañero simulado, para cuando no hay nadie.",
+  "practiceVipBody": "Solo en desarrollo: diriges el examen con los controles Pro.",
+  "meetingWithName": "Reunión con {name}",
+  "@meetingWithName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "aPartner": "un compañero",
+  "fullExamOf": "{level} · examen completo",
+  "@fullExamOf": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "searchKeepsGoing": "Seguimos buscando aunque cambies de pestaña.",
+  "tipLabel": "Consejo",
+  "tipForPart": "Consejo · Parte {n}",
+  "@tipForPart": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeUp": "Tiempo",
+  "statusListening": "Escucha",
+  "micListening": "Escuchando",
+  "yourTurnNow": "Te toca a ti",
+  "listeningTo": "Escuchando a {name}",
+  "@listeningTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "textHidden": "Texto oculto",
+  "questionsLeft": "{n, plural, =0{Última pregunta} =1{Queda 1 pregunta} other{Quedan {n} preguntas}}",
+  "@questionsLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "examSummaryLine": "{level} · {topic} · {minutes} min",
+  "@examSummaryLine": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "topic": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "feedbackIdeasTitle": "Ideas para empezar",
+  "criterionGrammar": "Gramática y vocabulario",
+  "criterionDiscourse": "Gestión del discurso",
+  "criterionPronunciation": "Pronunciación",
+  "criterionInteraction": "Comunicación interactiva",
+  "ratePartner": "Valora a {name}",
+  "@ratePartner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "onlyTheySee": "Solo lo verá {name}",
+  "@onlyTheySee": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "endFeedback": "Terminar",
+  "partN": "Parte {n}",
+  "@partN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "leaderYouLong": "Diriges tú el examen",
+  "changeLabel": "Cambiar",
+  "candidateRole": "Candidato {role}",
+  "@candidateRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "readyLabel": "Listo",
+  "offerSlot": "Proponer",
+  "deletesIn": "{n, plural, =1{Se borra en 1 día} other{Se borra en {n} días}}",
+  "@deletesIn": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "feedbackReceived": "Lo que dicen de ti",
+  "feedbackReceivedEmpty": "Cuando tus compañeros te valoren al final de un examen, lo verás aquí. Solo lo ves tú.",
+  "ratingsCount": "{n, plural, =1{1 valoración} other{{n} valoraciones}}",
+  "@ratingsCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "perMonth": "{price} al mes",
+  "@perMonth": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "planStandardShort": "Estándar",
+  "planProShort": "Pro",
+  "planStdFeature1": "Exámenes sin límite",
+  "planStdFeature2": "Matchmaking y agenda",
+  "planProFeature1": "Todo lo de Estándar",
+  "planProFeature2": "Diriges el examen: pausa, tiempo y partes",
+  "readTerms": "Leer los Términos",
+  "readPrivacy": "Leer la Política de privacidad",
+  "signUpLegalNote": "Antes de empezar a usar la app te pediremos que aceptes los Términos de uso y la Política de privacidad.",
+  "legalSection": "LEGAL",
+  "legalSpanishOnly": "",
+  "blockedUsers": "Usuarios bloqueados",
+  "noBlockedUsers": "No has bloqueado a nadie.",
+  "unblockAction": "Desbloquear",
+  "reportOrBlock": "Reportar o bloquear",
+  "reportPartner": "Reportar a {name}",
+  "@reportPartner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reportTitle": "Reportar a {name}",
+  "@reportTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reportIntro": "Lo revisaremos lo antes posible. {name} no sabrá quién le ha reportado.",
+  "@reportIntro": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reportDetailsHint": "Cuéntanos qué ha pasado (opcional)",
+  "alsoBlock": "Bloquear también a {name}",
+  "@alsoBlock": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reportSend": "Enviar reporte",
+  "reportSent": "Reporte enviado. Gracias por avisarnos.",
+  "blockOnly": "Solo bloquear a {name}",
+  "@blockOnly": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "blockTitle": "¿Bloquear a {name}?",
+  "@blockTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "blockBody": "No volveréis a coincidir en el emparejamiento, no veréis vuestras ofertas, no podréis escribiros y se cancelarán vuestras reuniones pendientes. Puedes desbloquear en Ajustes.",
+  "blockAction": "Bloquear",
+  "blockedDone": "Has bloqueado a {name}.",
+  "@blockedDone": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonHarassment": "Acoso o insultos",
+  "reasonSexual": "Contenido sexual",
+  "reasonHate": "Odio o discriminación",
+  "reasonMinor": "Riesgo para un menor",
+  "reasonSpam": "Spam o publicidad",
+  "reasonNoShow": "No se presentó",
+  "reasonOther": "Otro motivo",
+  "reasonSilent": "No habla en sus turnos",
+  "reasonMocking": "Se burla o lo ridiculiza",
+  "reasonNoise": "Ruido, música o habla encima",
+  "reasonQuit": "Abandona a propósito",
+  "reasonControlAbuse": "Abusa de los controles del examen",
+  "errorNotInSession": "Solo puedes reportar a tu compañero de esta sesión",
+  "agendaMineCount": "Mis exámenes · {n}",
+  "@agendaMineCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "sectionNeedsYou": "TE TOCA",
+  "sectionUpcoming": "PRÓXIMOS",
+  "pastCount": "Anteriores ({n})",
+  "@pastCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "statusGone": "Ya no va",
+  "noBookingsYet": "Nadie ha reservado todavía",
+  "emptyMine": "Aún no tienes exámenes agendados.",
+  "proposeMine": "Proponer el mío",
+  "companionsTitle": "COMPAÑEROS",
+  "companionsEmpty": "Al terminar un examen podéis añadiros como compañeros y repetir con una invitación.",
+  "inviteLabel": "Invitar",
+  "companionAddedYou": "Te ha añadido",
+  "addBack": "Añadir también",
+  "companionPendingShort": "Falta que te añada",
+  "examsTogether": "{n, plural, =0{Sin exámenes juntos} =1{1 examen juntos} other{{n} exámenes juntos}}",
+  "@examsTogether": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "removeCompanion": "Quitar de compañeros",
+  "allDays": "Todos",
+  "seeAlsoLevel": "Ver también {level}",
+  "@seeAlsoLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "freeFromTo": "Libre de {from} a {to}",
+  "@freeFromTo": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "bookTitle": "Examen {level} con {name}",
+  "@bookTitle": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bookThisSlot": "Reservar este hueco",
+  "bookHint": "Quedará confirmado para los dos. Tendréis un chat para organizaros.",
+  "stepProposed": "Propuesta",
+  "chatClosed": "Este chat ya se cerró: solo sirve para organizar su reunión.",
+  "qrLate": "Llego 5 min tarde",
+  "qrOtherTime": "¿Cambiamos la hora?",
+  "qrSeeYou": "¡Nos vemos!",
+  "sysBookedByMe": "Reservaste {when}",
+  "@sysBookedByMe": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sysBooked": "{name} reservó {when}",
+  "@sysBooked": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sysInvitedByMe": "Invitaste para {when}",
+  "@sysInvitedByMe": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sysInvited": "{name} te invita: {when}",
+  "@sysInvited": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteTitle": "Invitar a {name}",
+  "@inviteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "timeField": "Hora",
+  "sendInvite": "Enviar invitación",
+  "inviteHint": "{name} lo confirmará con un toque.",
+  "@inviteHint": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noTimesLeft": "No quedan horas libres este día.",
+  "companionPrompt": "¿Repetiríais? Añade a {name} a tus compañeros para invitaros directamente.",
+  "@companionPrompt": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "addCompanion": "Añadir a compañeros",
+  "companionAdded": "Añadido. Cuando {name} también te añada, podréis invitaros.",
+  "@companionAdded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "companionMutual": "{name} y tú ya sois compañeros.",
+  "@companionMutual": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "repeatWith": "Repetir con {name}",
+  "@repeatWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSlotTaken": "Ese hueco ya está reservado",
+  "errorNotCompanion": "Solo puedes invitar a tus compañeros",
+  "errorTooManyInvites": "Ya tienes 3 invitaciones sin confirmar",
+  "errorTooManyCompanions": "Ya tienes 20 compañeros",
+  "errorSessionNotEnded": "Podrás añadirle al terminar el examen"
+}

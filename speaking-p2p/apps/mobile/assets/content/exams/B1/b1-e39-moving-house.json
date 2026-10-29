@@ -1,0 +1,193 @@
+{
+  "id": "b1-e39-moving-house",
+  "level": "B1",
+  "version": 1,
+  "topic": "Moving house",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e39-moving-house/p1-intro.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how long have you lived in your home?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e39-moving-house/p1-q1.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you like about your home?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e39-moving-house/p1-q2.mp3",
+          "audioMs": 3400
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about the last time you moved or visited a new place to live.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e39-moving-house/p1-q3.mp3",
+          "audioMs": 6100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, would you prefer a big house or a small flat?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e39-moving-house/p1-q4.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, who do you live with?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e39-moving-house/p1-q5.mp3",
+          "audioMs": 2700
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, where would you like to live in ten years?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e39-moving-house/p1-q6.mp3",
+          "audioMs": 4000
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e39-moving-house/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e39-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a family moving to a new house. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e39-moving-house/p2-a.mp3",
+          "audioMs": 7800
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e39-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a couple decorating their new home. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e39-moving-house/p2-b.mp3",
+          "audioMs": 8100
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e39-moving-house/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e39-moving-house",
+          "text": "A young couple has just bought a small flat and wants to make it comfortable. Here are some things they could buy first. Talk together about the different things, and say which are the most important.",
+          "audio": "audio/B1/b1-e39-moving-house/p3-discuss.mp3",
+          "audioMs": 12400
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about moving to a new home.",
+          "audio": "audio/B1/b1-e39-moving-house/p4-intro.mp3",
+          "audioMs": 5200
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think it is difficult to move to a new place? Why?",
+          "audio": "audio/B1/b1-e39-moving-house/p4-q1.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think young people should live with their parents for longer?",
+          "audio": "audio/B1/b1-e39-moving-house/p4-q2.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what things make a home feel comfortable?",
+          "audio": "audio/B1/b1-e39-moving-house/p4-q3.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is it better to rent a flat or to buy one?",
+          "audio": "audio/B1/b1-e39-moving-house/p4-q4.mp3",
+          "audioMs": 3400
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, how would you decorate your dream room?",
+          "audio": "audio/B1/b1-e39-moving-house/p4-q5.mp3",
+          "audioMs": 3800
+        }
+      ]
+    }
+  ]
+}

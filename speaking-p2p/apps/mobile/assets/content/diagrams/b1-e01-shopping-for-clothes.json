@@ -1,0 +1,12 @@
+{
+  "id": "b1-e01-shopping-for-clothes",
+  "centralQuestion": "Where is the best place to buy a birthday present?",
+  "prompts": [
+    "a big department store",
+    "a street market",
+    "an online shop",
+    "a small gift shop",
+    "a shopping centre"
+  ],
+  "decisionQuestion": "Which place would be the best for buying the present?"
+}

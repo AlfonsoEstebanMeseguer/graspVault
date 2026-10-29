@@ -1,0 +1,12 @@
+{
+  "id": "c1-e47-learning-from-failure",
+  "centralQuestion": "How might these things help someone to recover from failure?",
+  "prompts": [
+    "support from friends and family",
+    "a positive attitude",
+    "having a clear plan",
+    "learning from the mistakes",
+    "taking a break"
+  ],
+  "decisionQuestion": "Which is the most helpful?"
+}

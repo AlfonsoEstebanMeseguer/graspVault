@@ -1,0 +1,205 @@
+{
+  "id": "b2-e47-science-and-space",
+  "level": "B2",
+  "version": 1,
+  "topic": "Science and space",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e47-science-and-space/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, did you enjoy science at school?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e47-science-and-space/p1-q1.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you think is the most important invention of the last century?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e47-science-and-space/p1-q2.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you watch programmes about science?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e47-science-and-space/p1-q3.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, would you like to work in science?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e47-science-and-space/p1-q4.mp3",
+          "audioMs": 3500
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e47-science-and-space/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e47-a1",
+            "b2-e47-a2"
+          ],
+          "text": "Candidate A, your photographs show people doing scientific work. Compare the photographs, and say what the advantages and disadvantages of these jobs might be.",
+          "audio": "audio/B2/b2-e47-science-and-space/p2-a.mp3",
+          "audioMs": 11600
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which job would you prefer to do?",
+          "audio": "audio/B2/b2-e47-science-and-space/p2-a-follow.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e47-b1",
+            "b2-e47-b2"
+          ],
+          "text": "Candidate B, your photographs show people interested in science. Compare the photographs, and say what the people might be learning.",
+          "audio": "audio/B2/b2-e47-science-and-space/p2-b.mp3",
+          "audioMs": 8900
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, do you think science should be more fun at school?",
+          "audio": "audio/B2/b2-e47-science-and-space/p2-b-follow.mp3",
+          "audioMs": 4200
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some areas in which science can improve people's lives, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e47-science-and-space/p3-intro.mp3",
+          "audioMs": 11000
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e47-science-and-space",
+          "text": "Talk to each other about this question: How might science improve people's lives in these areas?",
+          "audio": "audio/B2/b2-e47-science-and-space/p3-discuss.mp3",
+          "audioMs": 6900
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e47-science-and-space",
+          "text": "Now you have about a minute to decide together. Which area should receive the most money for research?",
+          "audio": "audio/B2/b2-e47-science-and-space/p3-decide.mp3",
+          "audioMs": 7200
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about science and space.",
+          "audio": "audio/B2/b2-e47-science-and-space/p4-intro.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that money spent on space travel is wasted. What do you think?",
+          "audio": "audio/B2/b2-e47-science-and-space/p4-q1.mp3",
+          "audioMs": 5600
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think scientists should be free to study anything?",
+          "audio": "audio/B2/b2-e47-science-and-space/p4-q2.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, why do so few young people choose to study science?",
+          "audio": "audio/B2/b2-e47-science-and-space/p4-q3.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Would you like to travel into space if you had the chance?",
+          "audio": "audio/B2/b2-e47-science-and-space/p4-q4.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, can science solve all of the world's problems?",
+          "audio": "audio/B2/b2-e47-science-and-space/p4-q5.mp3",
+          "audioMs": 4300
+        }
+      ]
+    }
+  ]
+}

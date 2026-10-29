@@ -1,0 +1,12 @@
+{
+  "id": "b1-e22-festivals-in-town",
+  "centralQuestion": "What would make a good festival for a town?",
+  "prompts": [
+    "a food market",
+    "a music stage",
+    "a sports day",
+    "a parade with costumes",
+    "a fireworks show"
+  ],
+  "decisionQuestion": "Which idea would be the best for the festival?"
+}

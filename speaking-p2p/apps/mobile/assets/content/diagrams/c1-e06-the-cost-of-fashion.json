@@ -1,0 +1,12 @@
+{
+  "id": "c1-e06-the-cost-of-fashion",
+  "centralQuestion": "How might these measures help to reduce the impact of the fashion industry?",
+  "prompts": [
+    "labelling clothes with their environmental cost",
+    "taxing cheap, disposable clothes",
+    "encouraging repair and swapping",
+    "better pay for factory workers",
+    "limiting the number of new collections each year"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

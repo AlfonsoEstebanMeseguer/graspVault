@@ -1,0 +1,12 @@
+{
+  "id": "b2-e44-rules-and-laws",
+  "centralQuestion": "How might these things help people follow the law?",
+  "prompts": [
+    "heavy fines",
+    "education at school",
+    "more police on the streets",
+    "clear signs",
+    "good examples from leaders"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

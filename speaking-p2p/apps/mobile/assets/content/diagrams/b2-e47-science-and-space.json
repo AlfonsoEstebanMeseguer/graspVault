@@ -1,0 +1,12 @@
+{
+  "id": "b2-e47-science-and-space",
+  "centralQuestion": "How might science improve people's lives in these areas?",
+  "prompts": [
+    "health and medicine",
+    "food production",
+    "transport",
+    "communications",
+    "protecting the environment"
+  ],
+  "decisionQuestion": "Which area should receive the most money for research?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "c1-e50-deep-reading",
+  "centralQuestion": "How might these ideas help people to read more deeply?",
+  "prompts": [
+    "reading groups",
+    "quiet reading time at school or work",
+    "limiting time on social media",
+    "recommendations from friends",
+    "making books cheaper and easier to find"
+  ],
+  "decisionQuestion": "Which would be the most successful?"
+}

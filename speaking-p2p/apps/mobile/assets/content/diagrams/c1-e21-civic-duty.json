@@ -1,0 +1,12 @@
+{
+  "id": "c1-e21-civic-duty",
+  "centralQuestion": "How might these ideas encourage people to take part in public life?",
+  "prompts": [
+    "compulsory voting",
+    "community service for students",
+    "easy online consultation",
+    "recognition for volunteers",
+    "local decision-making by citizens' groups"
+  ],
+  "decisionQuestion": "Which would be the most successful?"
+}

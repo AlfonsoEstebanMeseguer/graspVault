@@ -1,0 +1,12 @@
+{
+  "id": "b2-e29-wildlife-and-nature",
+  "centralQuestion": "How might these things help protect wild animals?",
+  "prompts": [
+    "national parks",
+    "laws against hunting",
+    "education in schools",
+    "stopping pollution",
+    "support for local people"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b2-e13-technology-in-the-home",
+  "centralQuestion": "How might these changes affect family life?",
+  "prompts": [
+    "video calls with relatives",
+    "smart homes",
+    "online shopping",
+    "streaming services",
+    "children's tablets"
+  ],
+  "decisionQuestion": "Which has had the greatest effect on families?"
+}

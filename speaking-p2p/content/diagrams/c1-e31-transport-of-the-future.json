@@ -1,0 +1,12 @@
+{
+  "id": "c1-e31-transport-of-the-future",
+  "centralQuestion": "How might these innovations change the way people live?",
+  "prompts": [
+    "driverless vehicles",
+    "electric aircraft",
+    "high-speed trains",
+    "shared bikes and scooters",
+    "delivery by drone"
+  ],
+  "decisionQuestion": "Which would have the greatest effect on everyday life?"
+}

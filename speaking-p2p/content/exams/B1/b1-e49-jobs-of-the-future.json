@@ -1,0 +1,193 @@
+{
+  "id": "b1-e49-jobs-of-the-future",
+  "level": "B1",
+  "version": 1,
+  "topic": "Jobs of the future",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p1-intro.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what do you do during the week?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p1-q1.mp3",
+          "audioMs": 3300
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you know what job you would like to do?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p1-q2.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a job you would never want to do.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p1-q3.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer working with people or working alone?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p1-q4.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, who helps you decide what to do in your life?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p1-q5.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, where do you think you will be in ten years?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p1-q6.mp3",
+          "audioMs": 3900
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e49-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows an engineer on a building site. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p2-a.mp3",
+          "audioMs": 7800
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e49-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a nurse helping a patient. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p2-b.mp3",
+          "audioMs": 7600
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e49-jobs-of-the-future",
+          "text": "A school is organising a careers day and wants to invite people with different jobs to talk to students. Here are some jobs. Talk together about the different jobs, and say which would be the most interesting for students.",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p3-discuss.mp3",
+          "audioMs": 14300
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about jobs and the future.",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p4-intro.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think it is easy to choose a job? Why or why not?",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p4-q1.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think a job should be fun or well paid?",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p4-q2.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what jobs do you think will disappear in the future?",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p4-q3.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is it better to do the same job all your life or to change jobs?",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p4-q4.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what advice would you give to someone starting their first job?",
+          "audio": "audio/B1/b1-e49-jobs-of-the-future/p4-q5.mp3",
+          "audioMs": 5200
+        }
+      ]
+    }
+  ]
+}

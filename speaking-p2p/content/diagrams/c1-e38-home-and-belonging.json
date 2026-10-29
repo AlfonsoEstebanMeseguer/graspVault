@@ -1,0 +1,12 @@
+{
+  "id": "c1-e38-home-and-belonging",
+  "centralQuestion": "How might these things help someone feel they belong in a new place?",
+  "prompts": [
+    "speaking the language",
+    "friendly neighbours",
+    "having a job",
+    "familiar food and traditions",
+    "taking part in local life"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b1-e31-daily-routines",
+  "centralQuestion": "What would help a tired person have a better routine?",
+  "prompts": [
+    "go to bed earlier",
+    "do some sport every day",
+    "stop using the phone at night",
+    "eat breakfast",
+    "make a plan for each day"
+  ],
+  "decisionQuestion": "Which idea would be the most useful for your friend?"
+}

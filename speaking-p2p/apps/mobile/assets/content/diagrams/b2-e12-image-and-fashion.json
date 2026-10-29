@@ -1,0 +1,12 @@
+{
+  "id": "b2-e12-image-and-fashion",
+  "centralQuestion": "How might these things influence what young people wear?",
+  "prompts": [
+    "famous people",
+    "friends",
+    "the weather",
+    "the price",
+    "the rules at school or work"
+  ],
+  "decisionQuestion": "Which has the biggest influence on the way people dress?"
+}

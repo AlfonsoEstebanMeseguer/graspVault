@@ -1,0 +1,12 @@
+{
+  "id": "b2-e27-choosing-a-career",
+  "centralQuestion": "How might these things influence a young person choosing a career?",
+  "prompts": [
+    "the salary",
+    "job security",
+    "interest in the work",
+    "the chance to travel",
+    "free time"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

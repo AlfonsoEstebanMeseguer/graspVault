@@ -1,0 +1,193 @@
+{
+  "id": "b1-e31-daily-routines",
+  "level": "B1",
+  "version": 1,
+  "topic": "Daily routines",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e31-daily-routines/p1-intro.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what time do you usually get up?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e31-daily-routines/p1-q1.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is the best part of your day?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e31-daily-routines/p1-q2.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a very busy day you had.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e31-daily-routines/p1-q3.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, are you a morning person or a night person?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e31-daily-routines/p1-q4.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you relax in the evening?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e31-daily-routines/p1-q5.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what are you going to do tomorrow?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e31-daily-routines/p1-q6.mp3",
+          "audioMs": 3500
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e31-daily-routines/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e31-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a man waking up early in the morning. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e31-daily-routines/p2-a.mp3",
+          "audioMs": 8000
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e31-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows commuters in a hurry in the morning. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e31-daily-routines/p2-b.mp3",
+          "audioMs": 7900
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e31-daily-routines/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e31-daily-routines",
+          "text": "A friend of yours is always tired and wants to have a better daily routine. Here are some ideas to help him. Talk together about the different ideas, and say which would be the most useful.",
+          "audio": "audio/B1/b1-e31-daily-routines/p3-discuss.mp3",
+          "audioMs": 12400
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about daily routines and sleep.",
+          "audio": "audio/B1/b1-e31-daily-routines/p4-intro.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think sleep is important for young people? Why?",
+          "audio": "audio/B1/b1-e31-daily-routines/p4-q1.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think people are busier than in the past?",
+          "audio": "audio/B1/b1-e31-daily-routines/p4-q2.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what do you do to wake up in the morning?",
+          "audio": "audio/B1/b1-e31-daily-routines/p4-q3.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is it better to study in the morning or late at night?",
+          "audio": "audio/B1/b1-e31-daily-routines/p4-q4.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, would you like to have a different daily routine?",
+          "audio": "audio/B1/b1-e31-daily-routines/p4-q5.mp3",
+          "audioMs": 4300
+        }
+      ]
+    }
+  ]
+}

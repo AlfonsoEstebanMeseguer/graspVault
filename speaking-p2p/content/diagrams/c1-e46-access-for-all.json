@@ -1,0 +1,12 @@
+{
+  "id": "c1-e46-access-for-all",
+  "centralQuestion": "How might these measures help people with disabilities to take part fully in society?",
+  "prompts": [
+    "accessible public transport",
+    "adapted workplaces",
+    "inclusive education",
+    "websites designed for everyone",
+    "changing attitudes through the media"
+  ],
+  "decisionQuestion": "Which would make the biggest difference?"
+}

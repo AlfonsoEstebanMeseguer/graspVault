@@ -1,0 +1,12 @@
+{
+  "id": "b2-e03-the-impact-of-tourism",
+  "centralQuestion": "How might these ideas help a popular tourist town?",
+  "prompts": [
+    "limiting the number of visitors",
+    "building more cycle paths",
+    "teaching tourists about local customs",
+    "tours led by local people",
+    "opening less famous places"
+  ],
+  "decisionQuestion": "Which idea would be the most effective for the town?"
+}

@@ -1,0 +1,216 @@
+{
+  "id": "c1-e37-the-power-of-documentaries",
+  "level": "C1",
+  "version": 1,
+  "topic": "The power of documentaries",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know a little about you.",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p1-intro.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you prefer fiction or factual programmes?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p1-q1.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how much of what you learn comes from videos?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p1-q2.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what is the most interesting programme you have watched recently?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p1-q3.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you think stories are the best way to understand the world?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p1-q4.mp3",
+          "audioMs": 5300
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p2-intro.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "c1-e37-a1",
+            "c1-e37-a2",
+            "c1-e37-a3"
+          ],
+          "text": "Candidate A, your pictures show people involved in making or watching documentaries. Choose two of the pictures and say what the people might be trying to achieve, and what challenges they could face.",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p2-a.mp3",
+          "audioMs": 13300
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, would you like to work on a documentary?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p2-a-follow.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "c1-e37-b1",
+            "c1-e37-b2",
+            "c1-e37-b3"
+          ],
+          "text": "Candidate B, your pictures show people telling or listening to stories. Choose two of the pictures and say why the people might find stories powerful, and what effect they could have on the listeners.",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p2-b.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, why do stories matter so much to us?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p2-b-follow.mp3",
+          "audioMs": 4100
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some reasons why documentaries can influence audiences, and a question for you to discuss.",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p3-intro.mp3",
+          "audioMs": 11500
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "c1-e37-the-power-of-documentaries",
+          "text": "Talk to each other about this question: How might these factors make documentaries so powerful?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p3-discuss.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "c1-e37-the-power-of-documentaries",
+          "text": "Now you have about a minute to decide together. Which has the greatest effect on viewers?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p3-decide.mp3",
+          "audioMs": 6100
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about documentaries and storytelling.",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p4-intro.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "To what extent can a documentary ever be completely objective?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p4-q1.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, do you think documentaries can change public opinion?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p4-q2.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, is it acceptable for film-makers to arrange scenes to make a story more dramatic?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p4-q3.mp3",
+          "audioMs": 7100
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Why might young people prefer short videos to longer documentaries?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p4-q4.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, should documentaries receive more public funding?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p4-q5.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q6",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, can fictional stories teach us as much as factual ones?",
+          "audio": "audio/C1/c1-e37-the-power-of-documentaries/p4-q6.mp3",
+          "audioMs": 5300
+        }
+      ]
+    }
+  ]
+}

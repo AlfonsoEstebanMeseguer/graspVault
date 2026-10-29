@@ -1,0 +1,12 @@
+{
+  "id": "b2-e09-stress-and-well-being",
+  "centralQuestion": "How might these things help people to deal with stress?",
+  "prompts": [
+    "doing regular exercise",
+    "talking to friends",
+    "sleeping well",
+    "taking holidays",
+    "learning to say no"
+  ],
+  "decisionQuestion": "Which would be the most helpful for a busy student?"
+}

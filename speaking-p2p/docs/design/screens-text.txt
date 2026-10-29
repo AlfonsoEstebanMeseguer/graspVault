@@ -1,0 +1,469 @@
+=== FRAME 0
+Speaking P2P
+A
+B
+Practica el Speaking de Cambridge con otro estudiante.
+
+Un examinador virtual marca los turnos y el tiempo. Tú solo hablas.
+
+B1 Preliminary
+B2 First
+C1 Advanced
+Continuar con Google
+
+Al continuar aceptas los Términos de uso y la Política de privacidad.
+
+=== FRAME 1
+Paso 1 de 3 · Visible para otros usuarios
+Tu perfil público
+Foto de perfil
+Opcional · JPG o PNG
+Nombre de usuario
+@
+Disponible
+Idiomas que hablas
+Español ✓
+Inglés ✓
+Catalán
+Francés
+Italiano
++ Otro
+Continuar
+
+=== FRAME 2
+Paso 2 de 3 · Privado, solo lo ves tú
+Datos de tu cuenta
+Fecha de nacimiento
+Día
+Mes
+Año
+Debes tener al menos 14 años.
+Teléfono
++34 ▾
+Email
+Vinculado a tu cuenta de Google.
+Atrás
+Continuar
+
+=== FRAME 3
+Paso 3 de 3 · Podrás cambiarlo cuando quieras
+¿Qué examen preparas?
+B1
+B1 Preliminary
+Speaking de 12–17 min
+B2
+B2 First
+Speaking de 14 min
+C1
+C1 Advanced
+Speaking de 15 min
+He leído y acepto los Términos de uso y la Política de privacidad.
+Empezar
+
+=== FRAME 4
+1 test de prueba disponible
+Entrena el Speaking hasta el día del examen.
+Exámenes ilimitados de B1, B2 y C1 con las 4 partes y sus tiempos reales.
+Emparejamiento en vivo y agenda para quedar con otros estudiantes.
+Graba tus sesiones y escúchalas durante 30 días.
+Mensual
+Cancela cuando quieras
+8 €
+/mes
+Suscribirme
+Hacer mi test de prueba gratis
+Restaurar compras
+Términos
+Privacidad
+
+=== FRAME 5
+Hola,
+laura_m
+C1 Advanced
+Buscar pareja
+Examen de Speaking C1
+4 partes · ~15 min + 5 min de feedback
+HOY
+19:00
+Reunión con dani_r · C1
+La sala se abre 5 min antes
+Ver
+Examen
+Agenda
+Perfil
+Ajustes
+
+=== FRAME 6
+C1 Advanced
+L
+Buscando compañero…
+00:09
+MIENTRAS ESPERAS
+En la Parte 2 no describas las fotos: compáralas y responde a la pregunta.
+Cancelar búsqueda
+
+=== FRAME 7
+L
+Buscando compañero…
+00:15
+Cancelar búsqueda
+Parece que no hay nadie buscando
+¿Quieres agendar una reunión con alguien? Seguiremos buscando mientras tanto.
+No
+Sí, agendar
+
+=== FRAME 8
+SALA · C1 ADVANCED
+Conoceos antes de empezar
+El examen empieza solo en
+03:42
+L
+Tú · laura_m
+Candidato A · ES, EN
+Sin confirmar
+D
+dani_r
+Candidato B · ES, EN
+✓ Listo
+Grabar la sesión
+Solo si los dos lo activáis · dani_r: activado
+Material del examen descargado
+Estoy listo
+
+=== FRAME 9
+PARTE 1 DE 4
+Interview
+00:24
+L
+Tú · A
+D
+dani_r · B
+Silenciado
+Te toca responder a ti
+Examinador
+Ocultar texto
+
+Laura, what do you enjoy most about the place where you live?
+
+Tu micro está abierto
+Abandonar
+
+=== FRAME 10
+PARTE 2 DE 4
+Long turn
+00:48
+L
+Tú · A
+Silenciado
+D
+dani_r · B
+Hablando · 1 min
+dani_r elige dos de estas fotos
+[Foto 1 · rescate en montaña]
+[Foto 2 · cocina de restaurante]
+[Foto 3 · ensayo de orquesta]
+Pregunta del examinador
+Ocultar texto
+
+Why might these people need to work closely together? How difficult might it be?
+
+Después respondes tú · 30 s
+Abandonar
+
+=== FRAME 11
+PARTE 3 DE 4
+Collaborative task
+01:32
+Discusión · 2 min
+Decisión · 1 min
+L
+Tú · A
+Micro abierto
+D
+dani_r · B
+Micro abierto
+How might these things help people feel part of a community?
+local festivals
+volunteering
+sports clubs
+street markets
+online groups
+Ver enunciado
+Abandonar
+
+=== FRAME 12
+PARTE 4 DE 4 · PREGUNTA 2 DE 4
+Discussion
+03:10
+El examinador está hablando
+Micros de los dos silenciados
+L
+Tú · A
+Silenciado
+D
+dani_r · B
+Silenciado
+Para: los dos
+Ocultar texto
+
+Some people say neighbours were closer in the past than they are today. What do you think?
+
+Al terminar, los micros se abren para los dos
+Abandonar
+
+=== FRAME 13
+Interview
+¿Seguro que quieres salir?
+
+El examen terminará para los dos y dani_r volverá al inicio. Si estás usando tu test de prueba, se dará por consumido.
+
+Seguir en el examen
+Salir del examen
+
+=== FRAME 14
+Examen terminado
+
+Ahora tenéis tiempo para daros feedback.
+
+TIEMPO DE FEEDBACK
+Micros abiertos para los dos
+04:12
+L
+Tú
+D
+dani_r
+IDEAS PARA EMPEZAR
+1
+¿Qué expresión o palabra del otro te ha gustado?
+2
+¿Hay algún error que se haya repetido?
+3
+En la Parte 3, ¿habéis dejado hablar al otro y llegado a una decisión?
+Grabación guardada · podréis escucharla 30 días
+Terminar llamada
+
+=== FRAME 15
+Agenda
+Crear reunión
+Chats
+Reuniones
+Mi agenda
+D
+dani_r
+18:02
+Perfecto, nos vemos a las 19:00
+Hoy 19:00 · C1 · Confirmada ✓✓
+M
+marta.eng
+17:40 · 2
+¿Y si mejor a las 18:30?
+Mañana 18:30 · C1 · Falta tu confirmación
+P
+pablo_b2
+Lun
+Esta reunión ya no está disponible
+Cerrada
+Examen
+Agenda
+Perfil
+Ajustes
+
+=== FRAME 16
+Agenda
+Crear reunión
+Chats
+Reuniones
+Mi agenda
+MIS OFERTAS · 1 DE 2
+Jue 16 · 17:00–20:00 · C1
+2 interesados
+C1 Advanced
++ Incluir B2
+Hoy ▾
+S
+sergi_cae
+Habla ES, CA, EN
+C1
+Disponible
+Hoy · 18:00–21:00
+Elegir hora
+A
+ana.londres
+Habla ES, EN
+C1
+Disponible
+Mañana · 10:00–12:00
+Elegir hora
+Examen
+Agenda
+Perfil
+Ajustes
+
+=== FRAME 17
+Agenda
+Crear reunión
+Chats
+Reuniones
+Mi agenda
+LUN
+12
+MAR
+13
+MIÉ
+14
+JUE
+15
+VIE
+16
+SÁB
+17
+DOM
+18
+HOY
+19:00
+30 min
+Examen C1 con dani_r
+Empieza en 4 min
+Entrar a la sala
+VIERNES 16
+17:30
+30 min
+Examen C1 con sergi_cae
+Te avisaremos 10 min antes
+Examen
+Agenda
+Perfil
+Ajustes
+
+=== FRAME 18
+Agenda
+Crear reunión
+Día
+Hoy
+Mañana
+Vie 16
+Otro ▾
+Franja en la que puedes
+Desde
+17:00
+Hasta
+20:00
+Quien acepte elegirá una hora exacta dentro de esta franja.
+Nivel del examen
+B1
+B2
+C1
+Puedes tener 2 ofertas activas · te queda 1
+Publicar oferta
+
+=== FRAME 19
+Agenda
+S
+Examen con sergi_cae
+Hoy · 18:00–21:00 · C1 Advanced
+Elige a qué hora empezáis
+18:00
+18:30
+19:00
+Ocupado
+19:30
+20:00
+20:30
+Las horas que chocan con tus reuniones confirmadas aparecen bloqueadas.
+Proponer 19:30 y abrir chat
+
+=== FRAME 20
+M
+marta.eng
+Habla ES, EN
+JUE 15
+18:30
+Mañana · 18:30 · C1
+✓ marta.eng
+○ Tú
+Modificar
+Cancelar
+Confirmar
+Propusiste mañana a las 18:00
+¡Hola! ¿Te va bien un poco más tarde, a las 18:30?
+marta.eng cambió la hora a 18:30 · confirmaciones reiniciadas
+marta.eng ha confirmado ✓
+Perfecto, ahora confirmo
+Mensaje
+
+=== FRAME 21
+L
+laura_m
+Español
+Inglés
+Editar perfil
+Preparando
+C1 Advanced
+Exámenes hechos
+7
+GRABACIONES
+C1 con dani_r
+Lun 12 oct · 19 min
+28 días
+C1 con ana.londres
+Mar 22 sep · 20 min
+5 días
+Las grabaciones se borran a los 30 días.
+Examen
+Agenda
+Perfil
+Ajustes
+
+=== FRAME 22
+Ajustes
+APARIENCIA
+Claro
+Oscuro
+Sistema
+IDIOMA DE LA APP
+Español
+English
+SUSCRIPCIÓN
+Plan mensual
+Activa
+Próximo pago
+14 nov 2026 · 8,00 €
+Gestionar en la tienda →
+CUENTA
+Términos de uso
+›
+Política de privacidad
+›
+Cerrar sesión
+Eliminar cuenta
+Examen
+Agenda
+Perfil
+Ajustes
+
+=== FRAME 23
+Ajustes
+APARIENCIA
+Claro
+Oscuro
+Sistema
+IDIOMA DE LA APP
+Español
+English
+SUSCRIPCIÓN
+Plan mensual
+Activa
+Próximo pago
+14 nov 2026 · 8,00 €
+Gestionar en la tienda →
+CUENTA
+Términos de uso
+›
+Política de privacidad
+›
+Cerrar sesión
+Eliminar cuenta
+Examen
+Agenda
+Perfil
+Ajustes

@@ -1,0 +1,12 @@
+{
+  "id": "b1-e38-watching-sport",
+  "centralQuestion": "Which sports would be good for a town sports day?",
+  "prompts": [
+    "football",
+    "running races",
+    "basketball",
+    "swimming",
+    "a cycling race"
+  ],
+  "decisionQuestion": "Which sport would be the best for the sports day?"
+}

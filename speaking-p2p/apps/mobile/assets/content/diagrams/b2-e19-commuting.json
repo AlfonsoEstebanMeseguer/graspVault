@@ -1,0 +1,12 @@
+{
+  "id": "b2-e19-commuting",
+  "centralQuestion": "How might these ideas make travel in a city better?",
+  "prompts": [
+    "cheaper tickets",
+    "more frequent buses",
+    "safer cycle lanes",
+    "electric taxis",
+    "fewer cars in the centre"
+  ],
+  "decisionQuestion": "Which would be the most useful?"
+}

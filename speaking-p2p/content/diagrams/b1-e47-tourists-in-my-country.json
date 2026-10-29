@@ -1,0 +1,12 @@
+{
+  "id": "b1-e47-tourists-in-my-country",
+  "centralQuestion": "How can a town get tourists to visit in winter?",
+  "prompts": [
+    "a winter festival",
+    "cheaper hotels",
+    "special food menus",
+    "guided night tours",
+    "a Christmas market"
+  ],
+  "decisionQuestion": "Which idea would be the best to get more tourists?"
+}

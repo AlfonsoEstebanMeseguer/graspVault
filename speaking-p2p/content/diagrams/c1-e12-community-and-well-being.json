@@ -1,0 +1,12 @@
+{
+  "id": "c1-e12-community-and-well-being",
+  "centralQuestion": "How might these initiatives improve people's mental well-being?",
+  "prompts": [
+    "free counselling services",
+    "neighbourhood events",
+    "green spaces",
+    "sports clubs",
+    "awareness campaigns in schools"
+  ],
+  "decisionQuestion": "Which would have the most lasting effect?"
+}

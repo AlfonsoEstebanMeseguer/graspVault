@@ -1,0 +1,193 @@
+{
+  "id": "b1-e09-music-and-concerts",
+  "level": "B1",
+  "version": 1,
+  "topic": "Music and concerts",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p1-intro.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what kind of music do you like?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e09-music-and-concerts/p1-q1.mp3",
+          "audioMs": 3300
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how often do you listen to music?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e09-music-and-concerts/p1-q2.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a concert or a festival you went to.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e09-music-and-concerts/p1-q3.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you play a musical instrument?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e09-music-and-concerts/p1-q4.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, where do you usually listen to music?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e09-music-and-concerts/p1-q5.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, would you like to learn an instrument one day?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e09-music-and-concerts/p1-q6.mp3",
+          "audioMs": 4100
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e09-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a band playing at a concert. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p2-a.mp3",
+          "audioMs": 7700
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e09-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a boy playing the guitar at home. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p2-b.mp3",
+          "audioMs": 8000
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e09-music-and-concerts",
+          "text": "Your school wants to organise a music event to get money for a charity. Here are some ideas. Talk together about the different ideas, and say which would be the best.",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p3-discuss.mp3",
+          "audioMs": 10900
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about music.",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p4-intro.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think it is better to listen to live music or to recorded music? Why?",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p4-q1.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think everybody should learn to play an instrument?",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p4-q2.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what music do you think is popular with young people today?",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p4-q3.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Why do you think music is so important for many people?",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p4-q4.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, have you ever gone to a concert with a friend?",
+          "audio": "audio/B1/b1-e09-music-and-concerts/p4-q5.mp3",
+          "audioMs": 4200
+        }
+      ]
+    }
+  ]
+}

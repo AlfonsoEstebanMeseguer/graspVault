@@ -1,0 +1,12 @@
+{
+  "id": "b1-e29-museums-and-history",
+  "centralQuestion": "Which place would be the best for a school visit?",
+  "prompts": [
+    "a history museum",
+    "an old castle",
+    "a science centre",
+    "an art gallery",
+    "a farm"
+  ],
+  "decisionQuestion": "Which place would be the best for the class?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b1-e10-using-phones",
+  "centralQuestion": "What would help students use their phones in a better way?",
+  "prompts": [
+    "using phones in lessons",
+    "a phone-free lunch break",
+    "learning to stay safe online",
+    "an app for homework",
+    "a school phone club"
+  ],
+  "decisionQuestion": "Which idea would be the most useful for the students?"
+}

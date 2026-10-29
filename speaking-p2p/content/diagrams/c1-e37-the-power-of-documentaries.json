@@ -1,0 +1,12 @@
+{
+  "id": "c1-e37-the-power-of-documentaries",
+  "centralQuestion": "How might these factors make documentaries so powerful?",
+  "prompts": [
+    "real people and real events",
+    "striking images",
+    "emotional music",
+    "expert opinions",
+    "a clear message"
+  ],
+  "decisionQuestion": "Which has the greatest effect on viewers?"
+}

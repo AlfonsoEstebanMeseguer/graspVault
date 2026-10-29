@@ -1,0 +1,12 @@
+{
+  "id": "b1-e40-after-school-activities",
+  "centralQuestion": "Which club would be the best to start at school?",
+  "prompts": [
+    "a cooking club",
+    "a chess club",
+    "a film club",
+    "a gardening club",
+    "a computer club"
+  ],
+  "decisionQuestion": "Which club would be the best for the school?"
+}

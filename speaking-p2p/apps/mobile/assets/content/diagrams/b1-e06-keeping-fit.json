@@ -1,0 +1,12 @@
+{
+  "id": "b1-e06-keeping-fit",
+  "centralQuestion": "What is the best way to get fit?",
+  "prompts": [
+    "joining a gym",
+    "running in the park",
+    "swimming",
+    "playing in a football team",
+    "cycling to work"
+  ],
+  "decisionQuestion": "Which activity would be the best way to get fit?"
+}

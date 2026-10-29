@@ -1,0 +1,4 @@
+{
+  "lint": { "rules": { "exclude": ["require-await", "no-import-prefix"] } },
+  "fmt": { "lineWidth": 140 }
+}

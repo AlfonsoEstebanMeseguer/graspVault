@@ -1,0 +1,193 @@
+{
+  "id": "b1-e48-family-time",
+  "level": "B1",
+  "version": 1,
+  "topic": "Family time",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e48-family-time/p1-intro.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how many people are there in your family?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e48-family-time/p1-q1.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you like doing with your family?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e48-family-time/p1-q2.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a family holiday.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e48-family-time/p1-q3.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer big families or small families?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e48-family-time/p1-q4.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, who in your family do you talk to most?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e48-family-time/p1-q5.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what are you going to do with your family at the next holiday?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e48-family-time/p1-q6.mp3",
+          "audioMs": 4900
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e48-family-time/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e48-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a family eating together at home. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e48-family-time/p2-a.mp3",
+          "audioMs": 7900
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e48-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a family going for a walk. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e48-family-time/p2-b.mp3",
+          "audioMs": 7500
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e48-family-time/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e48-family-time",
+          "text": "A family wants to spend more time together on Sundays. Here are some ideas. Talk together about the different ideas, and say which would be the best.",
+          "audio": "audio/B1/b1-e48-family-time/p3-discuss.mp3",
+          "audioMs": 9800
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about family life.",
+          "audio": "audio/B1/b1-e48-family-time/p4-intro.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think families spend enough time together nowadays? Why or why not?",
+          "audio": "audio/B1/b1-e48-family-time/p4-q1.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, why is it sometimes difficult for families to find time to be together?",
+          "audio": "audio/B1/b1-e48-family-time/p4-q2.mp3",
+          "audioMs": 5900
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what is the best thing about having brothers or sisters?",
+          "audio": "audio/B1/b1-e48-family-time/p4-q3.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is it a good idea to have a rule that nobody uses their phone at dinner?",
+          "audio": "audio/B1/b1-e48-family-time/p4-q4.mp3",
+          "audioMs": 5200
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what family traditions do you have?",
+          "audio": "audio/B1/b1-e48-family-time/p4-q5.mp3",
+          "audioMs": 3900
+        }
+      ]
+    }
+  ]
+}

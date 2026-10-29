@@ -1,0 +1,216 @@
+{
+  "id": "c1-e01-digital-overload",
+  "level": "C1",
+  "version": 1,
+  "topic": "Digital overload",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. First of all, we'd like to know a little about you.",
+          "audio": "audio/C1/c1-e01-digital-overload/p1-intro.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what do you enjoy most about the place where you live?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e01-digital-overload/p1-q1.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how much of your day do you spend looking at a screen?",
+          "durationSec": 25,
+          "audio": "audio/C1/c1-e01-digital-overload/p1-q2.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you ever feel the need to disconnect from technology?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e01-digital-overload/p1-q3.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how do you think constant notifications affect people's ability to concentrate?",
+          "durationSec": 30,
+          "audio": "audio/C1/c1-e01-digital-overload/p1-q4.mp3",
+          "audioMs": 7100
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you three pictures. I'd like you to talk about two of them on your own for about a minute, and also to answer a question briefly about your partner's pictures.",
+          "audio": "audio/C1/c1-e01-digital-overload/p2-intro.mp3",
+          "audioMs": 13200
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "c1-e01-a1",
+            "c1-e01-a2",
+            "c1-e01-a3"
+          ],
+          "text": "Candidate A, your pictures show people focusing on different things. Choose two of the pictures and say what might be distracting these people, and how easy it might be for them to concentrate.",
+          "audio": "audio/C1/c1-e01-digital-overload/p2-a.mp3",
+          "audioMs": 12700
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, which of these situations do you think is the most relaxing? Why?",
+          "audio": "audio/C1/c1-e01-digital-overload/p2-a-follow.mp3",
+          "audioMs": 6300
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "c1-e01-b1",
+            "c1-e01-b2",
+            "c1-e01-b3"
+          ],
+          "text": "Candidate B, your pictures show people using technology in their free time. Choose two of the pictures and say why the people might find it hard to stop using their devices, and what the consequences could be.",
+          "audio": "audio/C1/c1-e01-digital-overload/p2-b.mp3",
+          "audioMs": 14200
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, do you think families should have rules about using devices at home?",
+          "audio": "audio/C1/c1-e01-digital-overload/p2-b-follow.mp3",
+          "audioMs": 5800
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some ways in which people try to manage their use of technology, and a question for you to discuss.",
+          "audio": "audio/C1/c1-e01-digital-overload/p3-intro.mp3",
+          "audioMs": 11700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "c1-e01-digital-overload",
+          "text": "Talk to each other about this question: How effective might these approaches be in helping people to concentrate?",
+          "audio": "audio/C1/c1-e01-digital-overload/p3-discuss.mp3",
+          "audioMs": 8000
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "c1-e01-digital-overload",
+          "text": "Now you have about a minute to decide together. Which would be the most realistic for most people?",
+          "audio": "audio/C1/c1-e01-digital-overload/p3-decide.mp3",
+          "audioMs": 6500
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about attention and digital technology.",
+          "audio": "audio/C1/c1-e01-digital-overload/p4-intro.mp3",
+          "audioMs": 6200
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "To what extent do you think we are addicted to our devices?",
+          "audio": "audio/C1/c1-e01-digital-overload/p4-q1.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, should schools ban phones completely during the school day?",
+          "audio": "audio/C1/c1-e01-digital-overload/p4-q2.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, do you think technology companies deliberately design products to hold our attention?",
+          "audio": "audio/C1/c1-e01-digital-overload/p4-q3.mp3",
+          "audioMs": 6900
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "How might the ability to concentrate be affected by growing up with constant digital stimulation?",
+          "audio": "audio/C1/c1-e01-digital-overload/p4-q4.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, is it reasonable for employers to expect staff to be available outside working hours?",
+          "audio": "audio/C1/c1-e01-digital-overload/p4-q5.mp3",
+          "audioMs": 7300
+        },
+        {
+          "id": "p4-q6",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, could the pressure to be always connected be damaging our relationships?",
+          "audio": "audio/C1/c1-e01-digital-overload/p4-q6.mp3",
+          "audioMs": 6200
+        }
+      ]
+    }
+  ]
+}

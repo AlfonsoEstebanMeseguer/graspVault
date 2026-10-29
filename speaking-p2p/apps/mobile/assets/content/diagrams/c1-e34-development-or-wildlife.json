@@ -1,0 +1,12 @@
+{
+  "id": "c1-e34-development-or-wildlife",
+  "centralQuestion": "How might these approaches help to balance development and nature?",
+  "prompts": [
+    "creating national parks",
+    "fining companies that damage nature",
+    "encouraging eco-tourism",
+    "paying local people to protect forests",
+    "requiring environmental studies before building"
+  ],
+  "decisionQuestion": "Which would be the most workable?"
+}

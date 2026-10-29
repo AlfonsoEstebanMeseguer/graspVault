@@ -1,0 +1,205 @@
+{
+  "id": "b2-community-life",
+  "level": "B2",
+  "version": 1,
+  "topic": "Community life",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-community-life/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, where are you from, and what do you like most about the place where you live?",
+          "audio": "audio/B2/b2-community-life/p1-q1.mp3",
+          "audioMs": 5800,
+          "durationSec": 25
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you enjoy doing in your free time?",
+          "audio": "audio/B2/b2-community-life/p1-q2.mp3",
+          "audioMs": 4300,
+          "durationSec": 25
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how important is it for you to know your neighbours?",
+          "audio": "audio/B2/b2-community-life/p1-q3.mp3",
+          "audioMs": 4500,
+          "durationSec": 30
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, if you could change one thing about your neighbourhood, what would it be?",
+          "audio": "audio/B2/b2-community-life/p1-q4.mp3",
+          "audioMs": 5500,
+          "durationSec": 30
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-community-life/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, your photographs show people helping in their community. Compare the photographs, and say why you think these people have decided to help.",
+          "audio": "audio/B2/b2-community-life/p2-a.mp3",
+          "audioMs": 10100,
+          "durationSec": 60,
+          "assets": [
+            "volunteers-park",
+            "food-bank"
+          ]
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, which of these activities would you prefer to do? Why?",
+          "audio": "audio/B2/b2-community-life/p2-a-follow.mp3",
+          "audioMs": 5200,
+          "durationSec": 30
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, your photographs show people celebrating together. Compare the photographs, and say what the people might enjoy about these celebrations.",
+          "audio": "audio/B2/b2-community-life/p2-b.mp3",
+          "audioMs": 10400,
+          "durationSec": 60,
+          "assets": [
+            "street-party",
+            "village-festival"
+          ]
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you enjoy big celebrations? Why or why not?",
+          "audio": "audio/B2/b2-community-life/p2-b-follow.mp3",
+          "audioMs": 4900,
+          "durationSec": 30
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some things that can help people feel part of a community, and a question for you to discuss.",
+          "audio": "audio/B2/b2-community-life/p3-intro.mp3",
+          "audioMs": 10900
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "text": "Talk to each other about how these things might help people feel part of a community.",
+          "audio": "audio/B2/b2-community-life/p3-discuss.mp3",
+          "audioMs": 5800,
+          "durationSec": 120,
+          "diagram": "b2-community"
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "text": "Now you have about a minute to decide which of these would be the most effective for a new neighbourhood.",
+          "audio": "audio/B2/b2-community-life/p3-decide.mp3",
+          "audioMs": 6600,
+          "durationSec": 60,
+          "diagram": "b2-community"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some questions related to the topic of community.",
+          "audio": "audio/B2/b2-community-life/p4-intro.mp3",
+          "audioMs": 5400
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "text": "Some people say neighbours were closer in the past than they are today. What do you think?",
+          "audio": "audio/B2/b2-community-life/p4-q1.mp3",
+          "audioMs": 5900,
+          "durationSec": 50
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "text": "Candidate A, do you think social media brings communities together or pushes them apart?",
+          "audio": "audio/B2/b2-community-life/p4-q2.mp3",
+          "audioMs": 6300,
+          "durationSec": 45
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "text": "Candidate B, should local governments spend more money on community events? Why?",
+          "audio": "audio/B2/b2-community-life/p4-q3.mp3",
+          "audioMs": 6000,
+          "durationSec": 45
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "text": "How can young people and older people learn from each other?",
+          "audio": "audio/B2/b2-community-life/p4-q4.mp3",
+          "audioMs": 4200,
+          "durationSec": 50
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "both",
+          "text": "Is it the responsibility of individuals or governments to look after a neighbourhood?",
+          "audio": "audio/B2/b2-community-life/p4-q5.mp3",
+          "audioMs": 6100,
+          "durationSec": 50
+        }
+      ]
+    }
+  ]
+}

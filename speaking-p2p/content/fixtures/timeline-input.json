@@ -1,0 +1,24 @@
+{
+  "id": "golden-exam",
+  "level": "B2",
+  "version": 1,
+  "topic": "Golden fixture (not shipped)",
+  "parts": [
+    { "index": 1, "title": "Interview", "steps": [
+      { "id": "p1-intro", "kind": "narration", "text": "Intro.", "audio": "audio/B2/golden-exam/p1-intro.mp3", "audioMs": 2000 },
+      { "id": "p1-q1", "kind": "turn", "target": "A", "text": "Q1?", "audio": "audio/B2/golden-exam/p1-q1.mp3", "audioMs": 1500, "durationSec": 20 },
+      { "id": "p1-q2", "kind": "turn", "target": "B", "text": "Q2?", "audio": "audio/B2/golden-exam/p1-q2.mp3", "audioMs": 1400, "durationSec": 20 }
+    ]},
+    { "index": 2, "title": "Long turn", "steps": [
+      { "id": "p2-a", "kind": "turn", "target": "A", "text": "Compare.", "audio": "audio/B2/golden-exam/p2-a.mp3", "audioMs": 4000, "durationSec": 60, "assets": ["photo-x", "photo-y"] },
+      { "id": "p2-a-follow", "kind": "turn", "target": "B", "text": "Which?", "audio": "audio/B2/golden-exam/p2-a-follow.mp3", "audioMs": 1000, "durationSec": 30 }
+    ]},
+    { "index": 3, "title": "Collaborative task", "steps": [
+      { "id": "p3-discuss", "kind": "open", "target": "both", "text": "Talk.", "audio": "audio/B2/golden-exam/p3-discuss.mp3", "audioMs": 3000, "durationSec": 120, "diagram": "b2-community" },
+      { "id": "p3-decide", "kind": "open", "target": "both", "text": "Decide.", "audio": "audio/B2/golden-exam/p3-decide.mp3", "audioMs": 2000, "durationSec": 60, "diagram": "b2-community" }
+    ]},
+    { "index": 4, "title": "Discussion", "steps": [
+      { "id": "p4-q1", "kind": "open", "target": "A", "text": "Opinion?", "audio": "audio/B2/golden-exam/p4-q1.mp3", "audioMs": 2500, "durationSec": 45 }
+    ]}
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "id": "b1-e38-watching-sport",
+  "level": "B1",
+  "version": 1,
+  "topic": "Watching sport",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e38-watching-sport/p1-intro.mp3",
+          "audioMs": 6600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you like watching sport on television?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e38-watching-sport/p1-q1.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is your favourite team?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e38-watching-sport/p1-q2.mp3",
+          "audioMs": 3300
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a match or race you watched.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e38-watching-sport/p1-q3.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer going to the stadium or watching at home?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e38-watching-sport/p1-q4.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, who do you usually watch sports with?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e38-watching-sport/p1-q5.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what sport would you like to go and see?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e38-watching-sport/p1-q6.mp3",
+          "audioMs": 3800
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e38-watching-sport/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e38-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows fans cheering at a football match. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e38-watching-sport/p2-a.mp3",
+          "audioMs": 8200
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e38-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows friends watching sport on television. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e38-watching-sport/p2-b.mp3",
+          "audioMs": 8300
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e38-watching-sport/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e38-watching-sport",
+          "text": "Your town is going to have a big sports day for everybody. Here are some sports it could include. Talk together about the different sports, and say which would be the best.",
+          "audio": "audio/B1/b1-e38-watching-sport/p3-discuss.mp3",
+          "audioMs": 10700
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about watching sport.",
+          "audio": "audio/B1/b1-e38-watching-sport/p4-intro.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think sport brings people together? Why?",
+          "audio": "audio/B1/b1-e38-watching-sport/p4-q1.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, is it better to take part in a sport or watch it?",
+          "audio": "audio/B1/b1-e38-watching-sport/p4-q2.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, do you think top sportspeople earn too much?",
+          "audio": "audio/B1/b1-e38-watching-sport/p4-q3.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Are team sports better than sports that you do alone?",
+          "audio": "audio/B1/b1-e38-watching-sport/p4-q4.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, have you ever been to a sports event?",
+          "audio": "audio/B1/b1-e38-watching-sport/p4-q5.mp3",
+          "audioMs": 3800
+        }
+      ]
+    }
+  ]
+}

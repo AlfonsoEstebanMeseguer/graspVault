@@ -1,0 +1,12 @@
+{
+  "id": "b1-e39-moving-house",
+  "centralQuestion": "What is the most important thing for a new home?",
+  "prompts": [
+    "a comfortable bed",
+    "a sofa",
+    "a big television",
+    "a kitchen table",
+    "a desk for working"
+  ],
+  "decisionQuestion": "Which thing is the most important to buy first?"
+}

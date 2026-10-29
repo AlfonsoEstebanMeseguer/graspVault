@@ -1,0 +1,12 @@
+{
+  "id": "c1-e45-tradition-for-sale",
+  "centralQuestion": "How might these factors affect the survival of traditions?",
+  "prompts": [
+    "interest from tourists",
+    "support from younger generations",
+    "commercial sponsorship",
+    "government protection",
+    "coverage in the media"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b2-e18-hobbies-and-free-time",
+  "centralQuestion": "How might these things help people keep up their hobbies?",
+  "prompts": [
+    "joining a club",
+    "finding free time",
+    "having enough money",
+    "sharing the hobby online",
+    "family support"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

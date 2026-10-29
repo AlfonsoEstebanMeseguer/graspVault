@@ -1,0 +1,205 @@
+{
+  "id": "b2-e48-young-and-old",
+  "level": "B2",
+  "version": 1,
+  "topic": "Young and old",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. First of all, we'd like to know something about you.",
+          "audio": "audio/B2/b2-e48-young-and-old/p1-intro.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you spend much time with people of different ages?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e48-young-and-old/p1-q1.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you enjoy doing with older family members?",
+          "durationSec": 25,
+          "audio": "audio/B2/b2-e48-young-and-old/p1-q2.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you think you have a lot in common with your grandparents?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e48-young-and-old/p1-q3.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is the most important thing you have learnt from an older person?",
+          "durationSec": 30,
+          "audio": "audio/B2/b2-e48-young-and-old/p1-q4.mp3",
+          "audioMs": 5500
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "In this part of the test, I'm going to give each of you two photographs. I'd like you to talk about them on your own for about a minute, and also to answer a question about your partner's photographs.",
+          "audio": "audio/B2/b2-e48-young-and-old/p2-intro.mp3",
+          "audioMs": 13000
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b2-e48-a1",
+            "b2-e48-a2"
+          ],
+          "text": "Candidate A, your photographs show people of different ages together. Compare the photographs, and say what the people might learn from each other.",
+          "audio": "audio/B2/b2-e48-young-and-old/p2-a.mp3",
+          "audioMs": 9600
+        },
+        {
+          "id": "p2-a-follow",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 30,
+          "text": "Candidate B, what can you learn from older people?",
+          "audio": "audio/B2/b2-e48-young-and-old/p2-a-follow.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b2-e48-b1",
+            "b2-e48-b2"
+          ],
+          "text": "Candidate B, your photographs show people of different generations sharing an activity. Compare the photographs, and say why the people might enjoy these activities.",
+          "audio": "audio/B2/b2-e48-young-and-old/p2-b.mp3",
+          "audioMs": 11600
+        },
+        {
+          "id": "p2-b-follow",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 30,
+          "text": "Candidate A, do you think young and old people spend enough time together?",
+          "audio": "audio/B2/b2-e48-young-and-old/p2-b-follow.mp3",
+          "audioMs": 4900
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now I'd like you to talk about something together for about two minutes. Here are some ways to bring young and old people together, and a question for you to discuss.",
+          "audio": "audio/B2/b2-e48-young-and-old/p3-intro.mp3",
+          "audioMs": 10300
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 120,
+          "diagram": "b2-e48-young-and-old",
+          "text": "Talk to each other about this question: How might these ideas bring different generations together?",
+          "audio": "audio/B2/b2-e48-young-and-old/p3-discuss.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-decide",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 60,
+          "diagram": "b2-e48-young-and-old",
+          "text": "Now you have about a minute to decide together. Which would be the most successful?",
+          "audio": "audio/B2/b2-e48-young-and-old/p3-decide.mp3",
+          "audioMs": 5600
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about generations.",
+          "audio": "audio/B2/b2-e48-young-and-old/p4-intro.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Some people say that the generation gap is getting wider. What do you think?",
+          "audio": "audio/B2/b2-e48-young-and-old/p4-q1.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, how can older people stay active and independent?",
+          "audio": "audio/B2/b2-e48-young-and-old/p4-q2.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 45,
+          "text": "Candidate B, should young people be responsible for looking after elderly relatives?",
+          "audio": "audio/B2/b2-e48-young-and-old/p4-q3.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 50,
+          "text": "Do you think retirement should come later because people live longer?",
+          "audio": "audio/B2/b2-e48-young-and-old/p4-q4.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 45,
+          "text": "Candidate A, in what ways is life better for young people today than for their grandparents?",
+          "audio": "audio/B2/b2-e48-young-and-old/p4-q5.mp3",
+          "audioMs": 6400
+        }
+      ]
+    }
+  ]
+}
