@@ -14,13 +14,13 @@ import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/tokens.dart';
 import '../../core/ui/kit.dart';
-import '../../core/ui/pico.dart';
 import '../../core/ui/placeholder_screen.dart';
 import '../../data/agenda/agenda_repository.dart';
 import '../../data/safety/safety_repository.dart';
 import '../../domain/agenda/agenda.dart';
 import '../../domain/exam/models.dart';
 import '../home/home_screen.dart' show levelName, targetLevelProvider;
+import '../home/search_pulse.dart';
 import '../profile/avatar/user_avatar.dart';
 import '../safety/safety_sheet.dart';
 import 'accept_offer_sheet.dart';
@@ -273,8 +273,18 @@ class _EmptyMine extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: Column(
         children: [
-          const Pico(size: 110, mood: PicoMood.sleep),
-          const SizedBox(height: 12),
+          // The Home button with its colours swapped (D-050): mandarin circle, cobalt rings.
+          SearchPulse(
+            key: const Key('agenda-pulse'),
+            label: l.createMeeting,
+            icon: AppIcons.agendaOn,
+            size: 170,
+            circle: p.roleB,
+            onCircle: p.onRole,
+            rings: p.brand,
+            onTap: onCreate,
+          ),
+          const SizedBox(height: 4),
           Text(
             l.emptyMine,
             textAlign: TextAlign.center,
@@ -290,8 +300,6 @@ class _EmptyMine extends StatelessWidget {
           ],
           const SizedBox(height: 18),
           FilledButton(onPressed: onFind, child: Text(l.agendaBoard)),
-          const SizedBox(height: 8),
-          OutlinedButton(onPressed: onCreate, child: Text(l.proposeMine)),
         ],
       ),
     );

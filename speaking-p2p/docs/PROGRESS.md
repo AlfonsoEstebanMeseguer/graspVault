@@ -1,13 +1,13 @@
 # Progreso
 
-> Actualizado: 2026-10-24. Créditos hasta el 2026-11-04.
+> Actualizado: 2026-10-29. Créditos hasta el 2026-11-04.
 
 ## Estado en el proyecto real (Supabase `SpeakingApp`, eu-central-1)
 
 | Pieza | Estado |
 |---|---|
 | Migraciones aplicadas | `baseline_schema`, `rules_helpers_onboarding`, `rules_sessions`, `dev_access_and_internal_token`, `security_advisor_fixes` |
-| **Pendientes: las aplica Alfonso en el SQL Editor** | `rules_matchmaking_agenda`, `rules_crons_accounts`, `crons` → pegar `apps/backend/supabase/manual/apply_pending_2026-10-15.sql` (D-026). Sin ellas fallan matchmaking, agenda, borrado de cuenta y crons |
+| Pendientes de 2026-10-15 | Ya aplicadas (el 2026-10-29 `list_migrations` muestra todo hasta `agenda_v2`) |
 | Catálogo de exámenes | Cargado (3 exámenes; md5 verificado contra el repo) |
 | Auditoría de permisos | `anon` sin ningún permiso; `authenticated` solo las columnas previstas |
 | Asesor de seguridad | Solo el aviso informativo "RLS sin políticas" de las tablas de servidor (intencionado) |
@@ -74,6 +74,14 @@ Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tes
 ## Fotos de la Parte 2 (2026-10-28, D-047)
 - 416 de 612 elegidas a mano en Pixabay (hojas de contacto por examen), comprimidas a WebP 4:3 (media 69 KB, ~28 MB en total) y subidas a R2. Autor y página de cada una en `content/LICENSES.md`.
 - 196 generadas con la API de OpenAI (`gpt-image-1-mini`, calidad media, 2,49 $) con los prompts de `content/photos/PROMPTS_IA.md`, revisadas una a una (3 rehechas: un emblema de la Cruz Roja y 2 bloqueadas por el filtro). **612 de 612 en R2: los 153 exámenes tienen todas sus fotos.**
+
+## Sesión 2026-10-29
+- **Tarea 1 · Examinador mudo hasta tocar el volumen (D-048):** arreglado en código (una sola dueña de la sesión de audio). `flutter analyze` limpio. **Falta probarlo en el iPhone y en el Xiaomi:** compilar el `.ipa` cuando lo apruebe Alfonso.
+- **Tarea 2 · Botón naranja en la Agenda (D-050):** hecho, en el estado vacío de «Mis exámenes». Test y capturas (`02-agenda-y-cuenta`).
+- **Tarea 3 · Diagrama de la Parte 3 (D-049):** hecho, con test de solapes y capturas en claro y oscuro (`05-diagrama-parte-3`).
+- **Tarea 4 · Preguntas de la Parte 2 (D-052):** hecho, formateando en la app. Test de los 153 exámenes (texto idéntico) y captura (`03-sesion-y-examen`).
+- **Tarea 5 · Reportes por sabotaje:** análisis aprobado. **Fase 1 implementada (D-051):** registro de eventos, tiempo de voz por tramo, motivos nuevos y reportes ligados a la sesión. SQL 01–11 ✅ (Docker, Postgres 16), 22 Deno ✅. **Sin desplegar:** el permiso automático de Claude Code bloqueó el despliegue a producción. Falta aplicar la migración y desplegar `session-actions` y `livekit-webhook`. En remoto hay 0 reportes duplicados, así que el índice único se puede crear.
+- Tests: **123 Flutter ✅**, `flutter analyze` limpio, `deno check` limpio, 22 Deno ✅ y SQL 01–11 ✅.
 
 ## Siguiente paso
 

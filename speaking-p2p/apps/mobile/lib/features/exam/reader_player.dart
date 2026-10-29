@@ -9,6 +9,7 @@
 import 'dart:io';
 import 'dart:math' as math;
 
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
@@ -35,16 +36,45 @@ class SilentReaderPlayer implements ReaderPlayer {
 }
 
 /// Plays the downloaded files (stepId -> local path).
+///
+/// D-048: one owner of the audio session. In a call ([inCall]) the voice
+/// engine owns it (speaker by default, headset/Bluetooth when connected, echo
+/// cancellation), so the reader never activates, reconfigures or takes audio
+/// focus: just_audio's default would switch iOS to a "music" playback session
+/// under the call and request Android focus against it. On Android it plays on
+/// the call stream, so it follows the same route and volume keys as the partner.
+/// Offline the reader owns a spoken-audio session (audible in silent mode).
 class FileReaderPlayer implements ReaderPlayer {
-  FileReaderPlayer(this.files);
+  FileReaderPlayer(this.files, {this.inCall = false})
+      : _player = AudioPlayer(
+          handleAudioSessionActivation: !inCall,
+          handleInterruptions: !inCall,
+          androidApplyAudioAttributes: !inCall,
+        ) {
+    _ready = (inCall ? _player.setAndroidAudioAttributes(callAttributes) : _configureOffline())
+        .catchError((Object _) {}); // never block the exam on the audio setup
+  }
+
   final Map<String, String> files;
-  final _player = AudioPlayer();
+  final bool inCall;
+  final AudioPlayer _player;
+  late final Future<void> _ready;
+
+  /// The partner's voice stream (LiveKit plays it as voice communication).
+  static const callAttributes = AndroidAudioAttributes(
+    contentType: AndroidAudioContentType.speech,
+    usage: AndroidAudioUsage.voiceCommunication,
+  );
+
+  static Future<void> _configureOffline() async =>
+      (await AudioSession.instance).configure(const AudioSessionConfiguration.speech());
 
   @override
   Future<void> play(ExamStep step, Duration offset) async {
     final path = files[step.id];
     if (path == null) return;
     try {
+      await _ready;
       await _player.setFilePath(path, initialPosition: offset);
       await _player.play();
     } catch (_) {
@@ -58,9 +88,11 @@ class FileReaderPlayer implements ReaderPlayer {
   Future<void> dispose() => _player.dispose();
 }
 
+typedef ReaderPlayerFactory = ReaderPlayer Function(Map<String, String> files, {bool inCall});
+
 /// Builds the player for an exam from its downloaded files. Overridden in tests.
-final readerPlayerFactoryProvider = Provider<ReaderPlayer Function(Map<String, String> files)>(
-  (ref) => (files) => files.isEmpty ? SilentReaderPlayer() : FileReaderPlayer(files),
+final readerPlayerFactoryProvider = Provider<ReaderPlayerFactory>(
+  (ref) => (files, {inCall = false}) => files.isEmpty ? SilentReaderPlayer() : FileReaderPlayer(files, inCall: inCall),
 );
 
 /// Same voice on both phones: a stable hash of the session id (not

@@ -54,4 +54,7 @@ class SilentVoiceService implements VoiceService {
 
   /// Test hook: simulate a permission change coming from the server.
   void emitCanSpeak(bool v) => _can.add(v);
+
+  /// Test hook: who LiveKit says is talking.
+  void emitSpeakers(Set<String> ids) => _speakers.add(ids);
 }

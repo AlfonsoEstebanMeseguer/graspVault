@@ -50,7 +50,7 @@ class _Harness {
     );
     addTearDown(c.dispose);
     await tester.pumpWidget(ProviderScope(
-      overrides: [readerPlayerFactoryProvider.overrideWithValue((_) => player)],
+      overrides: [readerPlayerFactoryProvider.overrideWithValue((_, {inCall = false}) => player)],
       child: MaterialApp(
         theme: buildTheme(Brightness.light),
         localizationsDelegates: AppLocalizations.localizationsDelegates,

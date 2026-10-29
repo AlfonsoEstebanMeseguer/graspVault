@@ -1005,6 +1005,12 @@
   "reasonSpam": "Spam o publicidad",
   "reasonNoShow": "No se presentó",
   "reasonOther": "Otro motivo",
+  "reasonSilent": "No habla en sus turnos",
+  "reasonMocking": "Se burla o lo ridiculiza",
+  "reasonNoise": "Ruido, música o habla encima",
+  "reasonQuit": "Abandona a propósito",
+  "reasonControlAbuse": "Abusa de los controles del examen",
+  "errorNotInSession": "Solo puedes reportar a tu compañero de esta sesión",
   "agendaMineCount": "Mis exámenes · {n}",
   "@agendaMineCount": {
     "placeholders": {

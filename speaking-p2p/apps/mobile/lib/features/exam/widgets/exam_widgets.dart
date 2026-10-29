@@ -16,6 +16,7 @@ import '../../../core/ui/kit.dart';
 import '../../../data/content/content_repository.dart';
 import '../../../data/profile/avatar_repository.dart' show AvatarSource;
 import '../../../domain/exam/models.dart';
+import '../../../domain/exam/prompt.dart';
 import '../../profile/avatar/user_avatar.dart';
 
 String formatMs(int ms) {
@@ -432,10 +433,15 @@ class QuestionCard extends StatelessWidget {
     required this.speaking,
     this.addressee,
     this.title,
+    this.booklet = false,
   });
 
   final String text;
   final bool visible;
+
+  /// Part 2 (D-052): the questions apart, as in the candidate booklet, when the
+  /// text has that shape. A screen reader still hears the original sentence.
+  final bool booklet;
   final VoidCallback onToggle;
 
   /// The reader is playing this step's audio (the orb moves).
@@ -478,7 +484,7 @@ class QuestionCard extends StatelessWidget {
           curve: AppMotion.curve,
           alignment: Alignment.topLeft,
           child: visible
-              ? Text(text, style: AppType.question.copyWith(color: p.onPaper))
+              ? _body(p)
               : Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Row(children: [
@@ -488,6 +494,28 @@ class QuestionCard extends StatelessWidget {
                   ]),
                 ),
         ),
+      ]),
+    );
+  }
+
+  Widget _body(Palette p) {
+    final style = AppType.question.copyWith(color: p.onPaper);
+    final parts = booklet ? PromptParts.parse(text) : null;
+    if (parts == null) return Text(text, style: style);
+    return Semantics(
+      label: text,
+      excludeSemantics: true,
+      child: Column(key: const Key('exam-text-booklet'), crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text('${parts.lead}:', style: style),
+        for (final q in parts.questions)
+          Padding(
+            padding: const EdgeInsets.only(left: 6, top: 8),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('•', style: style),
+              const SizedBox(width: 10),
+              Expanded(child: Text(q, style: style)),
+            ]),
+          ),
       ]),
     );
   }

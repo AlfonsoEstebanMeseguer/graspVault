@@ -17,6 +17,12 @@ class FakeRepo implements SessionRepository {
   final ratings = <PeerRating>[];
   @override
   Future<void> rate(String sessionId, PeerRating rating) async => ratings.add(rating);
+  final talk = <Map<String, Object?>>[];
+  final mutes = <bool>[];
+  @override
+  Future<void> talkStats(String sessionId, List<Map<String, Object?>> windows) async => talk.addAll(windows);
+  @override
+  Future<void> logSelfMute(String sessionId, bool muted) async => mutes.add(muted);
   final flags = <String>[];
   int ticks = 0;
   String? abortedWith;
@@ -149,6 +155,37 @@ void main() {
     s.tickNow();
     s.tickNow();
     expect(repo.ticks, 2);
+  });
+
+  test('pruebas de moderación: tiempo de voz por tramo y silencio propio (D-051)', () async {
+    await s.start();
+    final started = DateTime.utc(2026, 10, 15, 18);
+    repo.rows.add(row(SessionState.part1, started: started));
+    await settle();
+    final segs = s.engine!.timeline.segments;
+    final turn = segs.firstWhere((g) => g.phase == Phase.speak);
+    int local(int examMs) => started.millisecondsSinceEpoch - s.clock.offsetMs + examMs;
+    localNow = local(turn.startMs + 100);
+    s.tickNow();
+    voice.emitSpeakers({'partner'}); // A (the partner) answers for 5 s
+    await settle();
+    localNow = local(turn.startMs + 5100);
+    voice.emitSpeakers({});
+    await settle();
+    localNow = local(turn.endMs + 100);
+    s.tickNow();
+    await settle();
+    final w = repo.talk.single;
+    expect(w['seg'], turn.index);
+    expect(w['state'], 'part1');
+    expect(w['phase'], 'speak');
+    expect([w['micA'], w['micB']], [turn.mic.a, turn.mic.b]);
+    expect(w['speechAMs'], 5000);
+    expect(w['speechBMs'], 0);
+    expect(w['windowMs'], turn.endMs - turn.startMs);
+
+    await s.toggleMute();
+    expect(repo.mutes, [true]);
   });
 
   test('el compañero abandona: partnerLeft y se cuelga la voz', () async {

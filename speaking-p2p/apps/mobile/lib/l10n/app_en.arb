@@ -436,6 +436,12 @@
   "reasonSpam": "Spam or advertising",
   "reasonNoShow": "Didn't show up",
   "reasonOther": "Something else",
+  "reasonSilent": "Doesn't speak in their turns",
+  "reasonMocking": "Mocks or ridicules",
+  "reasonNoise": "Noise, music or talking over",
+  "reasonQuit": "Quits on purpose",
+  "reasonControlAbuse": "Misuses the exam controls",
+  "errorNotInSession": "You can only report your partner in this session",
   "@offersLeft": {
     "placeholders": {
       "n": {

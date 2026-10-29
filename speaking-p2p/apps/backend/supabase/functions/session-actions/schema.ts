@@ -15,7 +15,26 @@ export const ControlBody = z.discriminatedUnion("op", [
   }),
 ]);
 
+// Speaking time of one stretch, measured on the phone from LiveKit's active
+// speakers (D-051, moderation evidence). The database re-checks the consistency.
+const Ms = z.number().int().min(0).max(1_200_000);
+export const TalkWindow = z.object({
+  seg: z.number().int().min(-1).max(500),
+  startedAtMs: z.number().int().positive(),
+  state: z.enum(["lobby", "part1", "part2", "part3", "part4", "feedback"]),
+  phase: z.enum(["reader", "speak"]).nullable(),
+  paused: z.boolean(),
+  micA: z.boolean(),
+  micB: z.boolean(),
+  windowMs: Ms.min(1000),
+  speechAMs: Ms,
+  speechBMs: Ms,
+  overlapMs: Ms,
+}).refine((w) => w.speechAMs <= w.windowMs && w.speechBMs <= w.windowMs && w.overlapMs <= Math.min(w.speechAMs, w.speechBMs));
+
 export const Body = z.discriminatedUnion("action", [
+  z.object({ action: z.literal("talk_stats"), sessionId: Id, windows: z.array(TalkWindow).min(1).max(20) }),
+  z.object({ action: z.literal("self_mute"), sessionId: Id, muted: z.boolean() }),
   z.object({ action: z.literal("join"), sessionId: Id, contentVersion: z.number().int().min(0).optional() }),
   z.object({ action: z.literal("flag"), sessionId: Id, flag: z.enum(["ready", "preloaded", "recording"]), value: z.boolean() }),
   z.object({ action: z.literal("tick"), sessionId: Id }),

@@ -9,6 +9,9 @@ import 'package:speaking_p2p/app.dart';
 import 'package:speaking_p2p/core/theming/preferences.dart';
 import 'package:speaking_p2p/features/exam/reader_player.dart';
 
+/// The `inCall` of every reader the app built (D-048: practice owns its audio session).
+final _readerInCall = <bool>[];
+
 Future<SilentReaderPlayer> _pumpApp(WidgetTester tester, {Map<String, Object> prefs = const {}}) async {
   tester.view.physicalSize = const Size(1080, 2340); // Pixel 5
   tester.view.devicePixelRatio = 2.75;
@@ -19,7 +22,10 @@ Future<SilentReaderPlayer> _pumpApp(WidgetTester tester, {Map<String, Object> pr
   await tester.pumpWidget(ProviderScope(
     overrides: [
       sharedPreferencesProvider.overrideWithValue(sp),
-      readerPlayerFactoryProvider.overrideWithValue((_) => player),
+      readerPlayerFactoryProvider.overrideWithValue((_, {inCall = false}) {
+        _readerInCall.add(inCall);
+        return player;
+      }),
     ],
     child: const SpeakingApp(),
   ));
@@ -42,7 +48,10 @@ Future<void> pumpUntilFound(WidgetTester tester, Finder finder) async {
 void main() {
   // rootBundle caches loadString futures; one created inside a previous test's
   // fake-async zone never completes in the next test.
-  setUp(() => rootBundle.clear());
+  setUp(() {
+    rootBundle.clear();
+    _readerInCall.clear();
+  });
 
   testWidgets('inicio -> practica: cabecera, texto del examinador y conmutadores', (tester) async {
     await _pumpApp(tester, prefs: {'ui_locale': 'es', 'target_level': 'B2'});
@@ -54,6 +63,7 @@ void main() {
     expect(find.textContaining('First of all'), findsOneWidget);
     expect(tester.takeException(), isNull);
     expect(find.byKey(const Key('leader-dock')), findsNothing, reason: 'sin VIP no hay controles de líder');
+    expect(_readerInCall, [false], reason: 'sin llamada el lector configura su propia sesión de audio');
 
     await tester.tap(find.byTooltip('Ocultar texto'));
     await tester.pump();

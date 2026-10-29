@@ -44,6 +44,7 @@ class ExamScreen extends ConsumerStatefulWidget {
     this.onToggleMute,
     this.onDebugSkip,
     this.readerFiles = const {},
+    this.inCall = false,
     this.photoFiles = const {},
     this.myAvatar,
     this.partnerAvatar,
@@ -77,6 +78,9 @@ class ExamScreen extends ConsumerStatefulWidget {
 
   /// Examiner audio downloaded for this exam (stepId -> file, D-033).
   final Map<String, String> readerFiles;
+
+  /// A live call is running: its voice engine owns the audio session (D-048).
+  final bool inCall;
 
   /// Part 2 photo id -> downloaded image; missing ones show their caption.
   final Map<String, String> photoFiles;
@@ -128,7 +132,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
-    _player = ref.read(readerPlayerFactoryProvider)(widget.readerFiles);
+    _player = ref.read(readerPlayerFactoryProvider)(widget.readerFiles, inCall: widget.inCall);
     _snap = _engine.at(widget.nowMs());
     _ticker = createTicker((_) => _onTick())..start();
     _lastNotice = widget.control?.notice?.id ?? 0;
@@ -431,6 +435,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
       speaking: reader && !_snap.paused,
       onToggle: () => setState(() => _textVisible = !_textVisible),
       title: part.index == 2 ? l.examinerQuestion : null,
+      booklet: part.index == 2,
       addressee: part.index == 4 ? _addressee(step) : null,
     ));
     if (part.index == 4) {

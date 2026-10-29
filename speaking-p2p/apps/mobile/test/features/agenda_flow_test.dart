@@ -357,6 +357,26 @@ void main() {
     expect(find.text('sergi_cae'), findsOneWidget);
   });
 
+  testWidgets('«Mis exámenes» vacío: el círculo naranja abre «Proponer horario» (D-050)', (tester) async {
+    final fake = FakeAgenda()
+      ..mine = []
+      ..extraChats = []
+      ..card = meeting(status: MeetingStatus.closed);
+    await pump(tester, fake: fake);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('agenda-tab-mine')));
+    // The rings pulse forever: pumpAndSettle would never settle.
+    for (var i = 0; i < 6; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(find.byKey(const Key('agenda-pulse')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('agenda-pulse')));
+    for (var i = 0; i < 6; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(find.text('Publicar propuesta'), findsOneWidget, reason: 'se abre la hoja de proponer');
+  });
+
   test('canEnter respeta −5 min / +10 min y solo confirmadas', () {
     final m = meeting(status: MeetingStatus.confirmed, at: today(19));
     expect(AgendaRules.canEnter(m, today(18, 54)), isFalse);

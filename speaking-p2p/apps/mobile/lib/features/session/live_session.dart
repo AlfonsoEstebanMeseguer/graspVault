@@ -16,6 +16,7 @@ import '../../domain/exam/control.dart';
 import '../../domain/exam/engine.dart';
 import '../../domain/exam/models.dart';
 import '../../domain/exam/timeline.dart';
+import '../../domain/session/talk_meter.dart';
 import '../exam/control/exam_control.dart';
 import '../exam/reader_player.dart';
 
@@ -100,6 +101,9 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
   bool _seededControl = false;
   String? _engineKey;
 
+  /// Speaking time per stretch, sent as moderation evidence (D-051).
+  final _talk = TalkMeter();
+
   @override
   bool get hasLeader => row?.leaderId != null;
   @override
@@ -117,7 +121,10 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
   Future<void> start() async {
     _rowSub = _repo.watch(sessionId).listen(_onRow, onError: (Object e) => _fail(e));
     _subs.add(_voice.canSpeak.listen((v) => _set(() => canSpeak = v)));
-    _subs.add(_voice.activeSpeakers.listen((v) => _set(() => speakers = v)));
+    _subs.add(_voice.activeSpeakers.listen((v) {
+      _talk.speakers(v, clock.nowMs());
+      _set(() => speakers = v);
+    }));
     try {
       final sent = clock.nowMs() - clock.offsetMs;
       final join = await _repo.join(sessionId, contentVersion: _contentVersion);
@@ -135,6 +142,9 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
   Future<void> _onRow(SessionRow r) async {
     row = r;
     myRole ??= r.roleOf(myUserId);
+    _talk
+      ..userA = r.userA
+      ..userB = r.userB;
     final partnerId = myRole == null ? null : r.userOf(myRole!.other);
     if (partner == null && partnerId != null) {
       unawaited(_repo.publicProfile(partnerId).then((p) => _set(() => partner = p)).catchError((Object _) {}));
@@ -176,6 +186,7 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
     }
     if (closed) {
       _ticker?.cancel();
+      _measure(null);
       unawaited(_voice.leave());
     }
     notifyListeners();
@@ -236,6 +247,7 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
     if (closed || row == null) return;
     final now = clock.nowMs();
     final e = engine;
+    _measure(e == null ? (row!.state == SessionState.lobby ? _lobbyStretch : null) : _stretchOf(e.at(now)));
     if (e == null) {
       // Lobby: let the server start the exam at the deadline even if nobody ticks.
       if (now - _lastLobbyTickMs > 5000) {
@@ -254,6 +266,32 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
     notifyListeners();
   }
 
+  static const _lobbyStretch = TalkStretch(seg: -1, state: 'lobby', phase: null, paused: false, micA: true, micB: true);
+
+  /// Where the exam is and which mics the server opens (a pause opens both, D-039).
+  static TalkStretch? _stretchOf(ExamSnapshot snap) {
+    final state = snap.state;
+    if (state == SessionState.ended || state == SessionState.aborted || state == SessionState.lobby) return null;
+    final seg = snap.segment;
+    final open = snap.paused || seg == null;
+    return TalkStretch(
+      seg: seg?.index ?? -1,
+      state: state.name,
+      phase: seg?.phase.name,
+      paused: snap.paused,
+      micA: open || seg.mic.a,
+      micB: open || seg.mic.b,
+    );
+  }
+
+  /// Closes the stretch when it changes and sends it. Evidence, not exam state:
+  /// a failed upload is not retried and never disturbs the exam.
+  void _measure(TalkStretch? next) {
+    final done = _talk.enter(next, clock.nowMs());
+    if (done == null) return;
+    unawaited(_repo.talkStats(sessionId, [done.toJson()]).catchError((Object _) {}));
+  }
+
   Future<void> setReady(bool v) => _repo.setFlag(sessionId, 'ready', v);
   Future<void> setRecording(bool v) => _repo.setFlag(sessionId, 'recording', v);
   Future<void> abort() => _repo.abort(sessionId);
@@ -261,6 +299,7 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
 
   Future<void> toggleMute() async {
     _set(() => selfMuted = !selfMuted);
+    unawaited(_repo.logSelfMute(sessionId, selfMuted).catchError((Object _) {}));
     await _voice.setSelfMuted(selfMuted);
   }
 
@@ -279,6 +318,7 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
   void dispose() {
     _disposed = true;
     _ticker?.cancel();
+    _measure(null); // the stretch in progress when the screen closes
     unawaited(_rowSub?.cancel());
     for (final s in _subs) {
       unawaited(s.cancel());

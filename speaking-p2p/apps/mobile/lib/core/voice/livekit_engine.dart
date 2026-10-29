@@ -1,4 +1,9 @@
 // The ONLY file that imports livekit_client (vault rule 1 of Voz.md).
+//
+// The audio session API is marked experimental in livekit_client 2.13; it is
+// the only way to keep the iOS session fixed during a call (D-048). Re-check
+// _iosCallSession when upgrading livekit_client.
+// ignore_for_file: experimental_member_use
 import 'dart:async';
 
 import 'package:livekit_client/livekit_client.dart' as lk;
@@ -21,10 +26,40 @@ class LiveKitEngine implements VoiceService {
   @override
   Stream<Set<String>> get activeSpeakers => _speakers.stream;
 
+  /// iOS session for the whole room (D-048). In its automatic mode LiveKit
+  /// follows the WebRTC engine: playback-only when nobody may speak and
+  /// deactivated when the engine idles. That is exactly when the examiner
+  /// reads (the server closes both mics), so his audio was cut until a volume
+  /// key woke the session up. This fixed call session never changes under the
+  /// reader: speaker by default, a headset or Bluetooth device when one is
+  /// connected (no forced override), and the same voice processing as before
+  /// (echo cancellation). Android keeps LiveKit's automatic communication mode.
+  static const _iosCallSession = lk.AudioSessionOptions.communication(
+    apple: lk.AppleAudioSessionConfiguration(
+      category: lk.AppleAudioCategory.playAndRecord,
+      categoryOptions: {
+        lk.AppleAudioCategoryOption.defaultToSpeaker,
+        lk.AppleAudioCategoryOption.allowBluetooth,
+        lk.AppleAudioCategoryOption.allowBluetoothA2DP,
+        lk.AppleAudioCategoryOption.allowAirPlay,
+      },
+      mode: lk.AppleAudioMode.videoChat,
+    ),
+  );
+
+  static bool get _ios => lk.lkPlatformIs(lk.PlatformType.iOS);
+
   @override
   Future<void> join({required String url, required String token}) async {
     await leave();
     _conn.add(VoiceConnection.connecting);
+    if (_ios) {
+      try {
+        await lk.AudioManager.instance.setAudioSessionOptions(_iosCallSession);
+      } catch (_) {
+        // The call still connects with LiveKit's own session.
+      }
+    }
     final room = lk.Room(roomOptions: const lk.RoomOptions(adaptiveStream: false, dynacast: false));
     _room = room;
     _listener = room.createListener()
@@ -73,6 +108,13 @@ class LiveKitEngine implements VoiceService {
     if (room != null) {
       await room.disconnect();
       await room.dispose();
+      // Give the session back (other apps' audio resumes); offline practice
+      // configures its own playback session.
+      if (_ios) {
+        try {
+          await lk.AudioManager.instance.deactivateAudioSession();
+        } catch (_) {}
+      }
     }
   }
 }

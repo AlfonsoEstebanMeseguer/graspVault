@@ -140,6 +140,11 @@ abstract class SessionRepository {
 
   /// The private feedback rubric for the partner (D-042); upserts.
   Future<void> rate(String sessionId, PeerRating rating);
+
+  /// Moderation evidence (D-051): speaking time per stretch (1-20 windows,
+  /// `TalkWindow.toJson`) and the user's own mute. Stored, never acted on yet.
+  Future<void> talkStats(String sessionId, List<Map<String, Object?>> windows);
+  Future<void> logSelfMute(String sessionId, bool muted);
 }
 
 class SupabaseSessionRepository implements SessionRepository {
@@ -236,6 +241,14 @@ class SupabaseSessionRepository implements SessionRepository {
 
   @override
   Future<void> skip(String sessionId) => _call({'action': 'skip', 'sessionId': sessionId});
+
+  @override
+  Future<void> talkStats(String sessionId, List<Map<String, Object?>> windows) =>
+      _call({'action': 'talk_stats', 'sessionId': sessionId, 'windows': windows});
+
+  @override
+  Future<void> logSelfMute(String sessionId, bool muted) =>
+      _call({'action': 'self_mute', 'sessionId': sessionId, 'muted': muted});
 
   @override
   Future<void> control(String sessionId, {required String op, Map<String, Object?> args = const {}, required int expectedVersion}) =>

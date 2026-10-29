@@ -11,6 +11,7 @@ String errorText(AppLocalizations l, Object error) {
     'email_exists' => l.errorEmailExists,
     'weak_password' => l.errorWeakPassword,
     'rate_limited' => l.errorRateLimited,
+    'not_in_session' => l.errorNotInSession,
     'username_taken' || 'conflict' => l.errorUsernameTaken,
     'underage' => l.errorUnderage,
     'not_eligible' => l.errorNotEligible,

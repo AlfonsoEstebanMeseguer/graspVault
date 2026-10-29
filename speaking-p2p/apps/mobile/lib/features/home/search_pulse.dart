@@ -9,11 +9,27 @@ import '../../core/theming/tokens.dart';
 import '../../core/ui/kit.dart';
 
 class SearchPulse extends StatefulWidget {
-  const SearchPulse({super.key, required this.label, required this.onTap, this.size = 200, this.icon = AppIcons.search, this.child});
+  const SearchPulse({
+    super.key,
+    required this.label,
+    required this.onTap,
+    this.size = 200,
+    this.icon = AppIcons.search,
+    this.child,
+    this.circle,
+    this.onCircle,
+    this.rings,
+  });
   final String label;
   final VoidCallback onTap;
   final double size;
   final IconData icon;
+
+  /// Palette roles; null keeps Home's look: cobalt circle with mandarin rings
+  /// (D-043). [onCircle] is the icon and label colour on [circle].
+  final Color? circle;
+  final Color? onCircle;
+  final Color? rings;
 
   /// Replaces icon + label inside the circle (the search screen shows the avatar).
   final Widget? child;
@@ -36,6 +52,8 @@ class _SearchPulseState extends State<SearchPulse> with SingleTickerProviderStat
     final p = context.palette;
     final reduceMotion = MediaQuery.of(context).disableAnimations;
     final d = widget.size * 0.8;
+    final fill = widget.circle ?? p.brand;
+    final onFill = widget.onCircle ?? p.onBrand;
     return SizedBox.square(
       dimension: widget.size * 1.3,
       child: Stack(alignment: Alignment.center, children: [
@@ -43,8 +61,7 @@ class _SearchPulseState extends State<SearchPulse> with SingleTickerProviderStat
           RepaintBoundary(
             child: AnimatedBuilder(
               animation: _c,
-              // Rings in candidate B's mandarin (D-043): the button stays cobalt.
-              builder: (_, _) => CustomPaint(size: Size.square(widget.size * 1.3), painter: _Rings(_c.value, p.roleB)),
+              builder: (_, _) => CustomPaint(size: Size.square(widget.size * 1.3), painter: _Rings(_c.value, widget.rings ?? p.roleB)),
             ),
           ),
         Semantics(
@@ -55,7 +72,7 @@ class _SearchPulseState extends State<SearchPulse> with SingleTickerProviderStat
           child: DecoratedBox(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: p.brand.withValues(alpha: 0.35), blurRadius: 36, offset: const Offset(0, 14))],
+              boxShadow: [BoxShadow(color: fill.withValues(alpha: 0.35), blurRadius: 36, offset: const Offset(0, 14))],
             ),
             child: Material(
               shape: const CircleBorder(),
@@ -66,7 +83,7 @@ class _SearchPulseState extends State<SearchPulse> with SingleTickerProviderStat
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Color.lerp(p.brand, Colors.white, 0.18)!, p.brand, Color.lerp(p.brand, Colors.black, 0.18)!],
+                    colors: [Color.lerp(fill, Colors.white, 0.18)!, fill, Color.lerp(fill, Colors.black, 0.18)!],
                   ),
                 ),
                 child: InkWell(
@@ -83,9 +100,9 @@ class _SearchPulseState extends State<SearchPulse> with SingleTickerProviderStat
                             SizedBox(
                               width: widget.size * 0.6,
                               child: Column(mainAxisSize: MainAxisSize.min, children: [
-                                Icon(widget.icon, color: p.onBrand, size: 40),
+                                Icon(widget.icon, color: onFill, size: 40),
                                 const SizedBox(height: 10),
-                                Text(widget.label, textAlign: TextAlign.center, style: AppType.title2.copyWith(color: p.onBrand, fontWeight: FontWeight.w700)),
+                                Text(widget.label, textAlign: TextAlign.center, style: AppType.title2.copyWith(color: onFill, fontWeight: FontWeight.w700)),
                               ]),
                             ),
                       ),

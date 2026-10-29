@@ -95,6 +95,14 @@ class _SafetySheetState extends ConsumerState<_SafetySheet> {
     final p = context.palette;
     final l = context.l10n;
     final reasons = {
+      // Sabotage needs the session it happened in (D-051): first, when there is one.
+      if (widget.sessionId != null) ...{
+        ReportReason.silent: l.reasonSilent,
+        ReportReason.mocking: l.reasonMocking,
+        ReportReason.noise: l.reasonNoise,
+        ReportReason.quit: l.reasonQuit,
+        ReportReason.controlAbuse: l.reasonControlAbuse,
+      },
       ReportReason.harassment: l.reasonHarassment,
       ReportReason.sexual: l.reasonSexual,
       ReportReason.hate: l.reasonHate,

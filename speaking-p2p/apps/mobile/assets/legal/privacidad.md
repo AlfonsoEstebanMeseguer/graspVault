@@ -33,6 +33,7 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 
 - Datos de uso del servicio: búsquedas de pareja, sesiones (con quién, cuándo, qué examen, rol A o B, quién dirigió y qué controles usó), asistencia o ausencia a las reuniones, exámenes realizados, ofertas y reuniones de la Agenda, y bloqueos que realiza.
 - Voz en tiempo real: durante una sesión, su voz se transmite a la otra persona a través de nuestro proveedor de llamadas. No se guarda salvo que los dos hayan activado la grabación.
+- Registro de la sesión para la moderación: cuándo entra y sale cada participante, los cambios de parte, los controles del examen, si alguien se silencia o abandona, y cuánto tiempo habla cada uno en cada tramo del examen (solo la duración, medida por nuestro proveedor de llamadas: no se graba ni se transcribe lo que dice).
 - Datos de la suscripción: plan contratado, estado y fecha de renovación. No recibimos los datos de su tarjeta ni de su medio de pago, que gestionan Apple o Google.
 - Datos técnicos: identificadores de la sesión, dirección IP, tipo de dispositivo y versión del sistema y de la Aplicación, que nuestros proveedores registran para que el servicio funcione y sea seguro. Si activa las notificaciones, también el identificador de notificaciones del dispositivo.
 - Preferencias guardadas solo en su dispositivo: tema claro u oscuro, idioma y nivel elegido.
@@ -61,6 +62,7 @@ No usamos sus datos para tomar decisiones automatizadas que produzcan efectos ju
 - Mensajes del chat: mientras exista la reunión. Si elimina su cuenta, sus mensajes se conservan para la otra persona, pero sin ninguna referencia a usted.
 - Historial de sesiones, asistencia y valoraciones: mientras la cuenta esté activa.
 - Reportes: hasta un año después de resolverlos, o más si son necesarios en un procedimiento legal.
+- Registro de la sesión para la moderación: 30 días. Si hay un reporte abierto sobre la sesión, hasta que se resuelva.
 - Datos técnicos de los proveedores: según sus políticas, normalmente entre 7 y 90 días.
 
 Una vez vencidos estos plazos, los datos se suprimen o se bloquean durante el tiempo en que pudieran exigirse responsabilidades legales.

@@ -2714,6 +2714,42 @@ abstract class AppLocalizations {
   /// **'Otro motivo'**
   String get reasonOther;
 
+  /// No description provided for @reasonSilent.
+  ///
+  /// In es, this message translates to:
+  /// **'No habla en sus turnos'**
+  String get reasonSilent;
+
+  /// No description provided for @reasonMocking.
+  ///
+  /// In es, this message translates to:
+  /// **'Se burla o lo ridiculiza'**
+  String get reasonMocking;
+
+  /// No description provided for @reasonNoise.
+  ///
+  /// In es, this message translates to:
+  /// **'Ruido, música o habla encima'**
+  String get reasonNoise;
+
+  /// No description provided for @reasonQuit.
+  ///
+  /// In es, this message translates to:
+  /// **'Abandona a propósito'**
+  String get reasonQuit;
+
+  /// No description provided for @reasonControlAbuse.
+  ///
+  /// In es, this message translates to:
+  /// **'Abusa de los controles del examen'**
+  String get reasonControlAbuse;
+
+  /// No description provided for @errorNotInSession.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo puedes reportar a tu compañero de esta sesión'**
+  String get errorNotInSession;
+
   /// No description provided for @agendaMineCount.
   ///
   /// In es, this message translates to:

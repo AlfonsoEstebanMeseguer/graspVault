@@ -111,6 +111,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
           onToggleMute: s.toggleMute,
           onDebugSkip: kDebugMode ? () => s.skip().catchError((Object _) {}) : null,
           readerFiles: s.readerFiles,
+          inCall: true,
           photoFiles: s.photoFiles,
           onRate: (r) => ref.read(sessionRepositoryProvider)!.rate(s.sessionId, r),
           onReport: s.partner == null || ref.read(safetyRepositoryProvider) == null

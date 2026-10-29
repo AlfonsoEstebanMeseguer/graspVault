@@ -46,6 +46,15 @@ Deno.serve(handler(async (req) => {
       });
       return json({ version: r.version, tick: await tickAndApply(b.sessionId) });
     }
+    // Moderation evidence (D-051): stored, never acted on in phase 1.
+    case "talk_stats": {
+      const saved = await rpc<number>("svc_session_talk_stats", { p_session: b.sessionId, p_user: user.id, p_windows: b.windows });
+      return json({ saved });
+    }
+    case "self_mute": {
+      await rpc("svc_session_log", { p_session: b.sessionId, p_user: user.id, p_kind: "self_mute", p_data: { muted: b.muted } });
+      return json({ ok: true });
+    }
     case "skip": {
       await rpc("svc_session_debug_skip", { p_session: b.sessionId, p_user: user.id });
       return json({ tick: await tickAndApply(b.sessionId) });

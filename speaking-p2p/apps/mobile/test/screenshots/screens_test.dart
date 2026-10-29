@@ -35,12 +35,14 @@ import 'package:speaking_p2p/data/profile/profile_repository.dart';
 import 'package:speaking_p2p/data/safety/safety_repository.dart';
 import 'package:speaking_p2p/data/session/session_repository.dart';
 import 'package:speaking_p2p/domain/account/account.dart';
+import 'package:speaking_p2p/domain/agenda/agenda.dart' show MeetingStatus;
 import 'package:speaking_p2p/domain/exam/models.dart';
 import 'package:speaking_p2p/domain/exam/timeline.dart';
 import 'package:speaking_p2p/features/agenda/agenda_common.dart';
 import 'package:speaking_p2p/features/exam/control/local_exam_controller.dart';
 import 'package:speaking_p2p/features/exam/exam_screen.dart';
 import 'package:speaking_p2p/features/exam/reader_player.dart';
+import 'package:speaking_p2p/features/exam/widgets/bubble_diagram.dart';
 import 'package:speaking_p2p/features/matchmaking/matchmaking_controller.dart';
 import 'package:speaking_p2p/features/session/live_session.dart';
 import 'package:speaking_p2p/features/session/lobby_view.dart';
@@ -111,7 +113,7 @@ Future<void> _phone(WidgetTester tester) async {
 }
 
 /// The whole app (router, tabs, theme) with fakes behind every repository.
-Future<ProviderContainer> _app(WidgetTester tester, {AuthUser? user, MyProfile? profile}) async {
+Future<ProviderContainer> _app(WidgetTester tester, {AuthUser? user, MyProfile? profile, agenda.FakeAgenda? agendaFake}) async {
   SharedPreferences.setMockInitialValues({'ui_locale': 'es', 'target_level': 'C1', if (_dark) 'theme_mode': 'dark'});
   final prefs = await SharedPreferences.getInstance();
   final c = ProviderContainer(overrides: [
@@ -120,14 +122,14 @@ Future<ProviderContainer> _app(WidgetTester tester, {AuthUser? user, MyProfile? 
     authUserProvider.overrideWith((ref) => Stream.value(user)),
     myProfileProvider.overrideWith((ref) async => profile),
     accountRepositoryProvider.overrideWithValue(account.FakeAccount()),
-    agendaRepositoryProvider.overrideWithValue(agenda.FakeAgenda()),
+    agendaRepositoryProvider.overrideWithValue(agendaFake ?? agenda.FakeAgenda()),
     agendaClockProvider.overrideWithValue(() => agenda.now),
     matchmakingRepositoryProvider.overrideWithValue(mm.FakeQueue()),
     profileRepositoryProvider.overrideWithValue(onboarding.FakeProfiles()),
     avatarRepositoryProvider.overrideWithValue(avatars.FakeAvatars()),
     sessionRepositoryProvider.overrideWithValue(live.FakeRepo()),
     readerAudioProvider.overrideWithValue(null),
-    readerPlayerFactoryProvider.overrideWithValue((_) => SilentReaderPlayer()),
+    readerPlayerFactoryProvider.overrideWithValue((_, {inCall = false}) => SilentReaderPlayer()),
     safetyRepositoryProvider.overrideWithValue(_FakeSafety()),
   ]);
   addTearDown(c.dispose);
@@ -144,7 +146,7 @@ Future<ProviderContainer> _app(WidgetTester tester, {AuthUser? user, MyProfile? 
 Future<void> _alone(WidgetTester tester, Widget screen) async {
   await tester.pumpWidget(ProviderScope(
     key: UniqueKey(),
-    overrides: [readerPlayerFactoryProvider.overrideWithValue((_) => SilentReaderPlayer())],
+    overrides: [readerPlayerFactoryProvider.overrideWithValue((_, {inCall = false}) => SilentReaderPlayer())],
     child: RepaintBoundary(
       key: _root,
       child: MaterialApp(
@@ -232,6 +234,18 @@ void main() {
       await _shot(tester, title);
     }
 
+    // Agenda with nothing of mine: the mandarin button (D-050)
+    final empty = await _app(tester, user: _me, profile: _profile,
+        agendaFake: agenda.FakeAgenda()
+          ..mine = []
+          ..extraChats = []
+          ..card = agenda.meeting(status: MeetingStatus.closed));
+    empty.read(routerProvider).go('/agenda');
+    await _settle(tester);
+    await tester.tap(find.byKey(const Key('agenda-tab-mine')));
+    await _settle(tester);
+    await _shot(tester, 'Agenda · sin exámenes');
+
     // Session lobby
     final repo = live.FakeRepo();
     final session = LiveSession(sessionId: 's1', myUserId: 'me', repo: repo, voice: SilentVoiceService(), content: live.FixedExams(_exam('C1', 'c1-work-and-technology')));
@@ -287,6 +301,41 @@ void main() {
       await _shot(tester, title);
     }
 
+    // Part 3 diagram alone (D-049): the longest C1 texts, and the text at 200 % (top and bottom).
+    final diagram = Diagram.fromJson(
+        jsonDecode(File('assets/content/diagrams/c1-e06-the-cost-of-fashion.json').readAsStringSync()) as Map<String, Object?>);
+    for (final (scale, decision, bottom, title) in [
+      (1.0, false, false, 'Parte 3 · C1, discusión'),
+      (1.0, true, false, 'Parte 3 · C1, decisión'),
+      (2.0, false, false, 'Texto al 200 % · arriba'),
+      (2.0, false, true, 'Texto al 200 % · abajo'),
+    ]) {
+      final scroll = ScrollController();
+      addTearDown(scroll.dispose);
+      await _alone(
+        tester,
+        Builder(
+          builder: (context) => MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(scale)),
+            child: Scaffold(
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  controller: scroll,
+                  padding: const EdgeInsets.all(20),
+                  child: BubbleDiagram(diagram: diagram, showDecision: decision),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      if (bottom) {
+        scroll.jumpTo(scroll.position.maxScrollExtent);
+        await _settle(tester, rounds: 2);
+      }
+      await _shot(tester, title);
+    }
+
     // Contact sheets, several screens per image
     final byTitle = {for (final s in _shots) s.$1: s};
     List<(String, ui.Image)> pick(List<String> titles) => [for (final t in titles) byTitle[t]!];
@@ -294,10 +343,12 @@ void main() {
       final suffix = _dark ? ' · modo oscuro' : '';
       await _sheet('01-acceso-e-inicio.png', 'Acceso e inicio$suffix',
           pick(['Inicio de sesión', 'Registro (onboarding)', 'Inicio', 'Buscando pareja']));
-      await _sheet('02-agenda-y-cuenta.png', 'Agenda y cuenta$suffix', pick(['Agenda', 'Chat de una reunión', 'Perfil', 'Ajustes']));
+      await _sheet('02-agenda-y-cuenta.png', 'Agenda y cuenta$suffix', pick(['Agenda', 'Agenda · sin exámenes', 'Chat de una reunión', 'Perfil', 'Ajustes']));
       await _sheet('03-sesion-y-examen.png', 'Sala de espera y examen$suffix',
           pick(['Sala de espera (lobby)', 'Examen · Parte 1', 'Examen · Parte 2', 'Examen · Parte 3']));
       await _sheet('04-examen-final.png', 'Final del examen$suffix', pick(['Examen · Parte 4', 'Feedback']));
+      await _sheet('05-diagrama-parte-3.png', 'Diagrama de la Parte 3$suffix',
+          pick(['Parte 3 · C1, discusión', 'Parte 3 · C1, decisión', 'Texto al 200 % · arriba', 'Texto al 200 % · abajo']));
     });
     debugDisableShadows = true; // the binding checks it is restored
   }, skip: !Env.fromDefines.hasBackend);

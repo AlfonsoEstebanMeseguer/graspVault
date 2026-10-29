@@ -6,7 +6,11 @@ import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import '../../core/config/env.dart';
 import '../../domain/account/account.dart';
 
-enum ReportReason { harassment, sexual, hate, spam, minorSafety, noShow, other }
+enum ReportReason {
+  harassment, sexual, hate, spam, minorSafety, noShow, other,
+  // Sabotaging the exam (D-051): only with a session, which the server checks.
+  silent, mocking, noise, quit, controlAbuse,
+}
 
 enum ReportContext { chat, lobby, exam, feedback, offer, profile }
 
@@ -14,6 +18,7 @@ extension ReportReasonWire on ReportReason {
   String get wire => switch (this) {
         ReportReason.minorSafety => 'minor_safety',
         ReportReason.noShow => 'no_show',
+        ReportReason.controlAbuse => 'control_abuse',
         _ => name,
       };
 }

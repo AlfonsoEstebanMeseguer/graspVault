@@ -78,6 +78,9 @@ const STATUS_BY_CODE: Record<string, number> = {
   out_of_range: 422,
   bad_delta: 422,
   bad_op: 422,
+  // Moderation evidence (D-051)
+  bad_stats: 422,
+  bad_kind: 422,
 };
 
 /// Turns a PostgREST/RPC error into an HttpError, or rethrows an unknown one as 500.

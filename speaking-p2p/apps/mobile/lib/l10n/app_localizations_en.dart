@@ -1558,6 +1558,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reasonOther => 'Something else';
 
   @override
+  String get reasonSilent => 'Doesn\'t speak in their turns';
+
+  @override
+  String get reasonMocking => 'Mocks or ridicules';
+
+  @override
+  String get reasonNoise => 'Noise, music or talking over';
+
+  @override
+  String get reasonQuit => 'Quits on purpose';
+
+  @override
+  String get reasonControlAbuse => 'Misuses the exam controls';
+
+  @override
+  String get errorNotInSession =>
+      'You can only report your partner in this session';
+
+  @override
   String agendaMineCount(int n) {
     return 'My exams · $n';
   }
