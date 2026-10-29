@@ -6,7 +6,7 @@ Versión 2026-10-24 · Última actualización: 24 de octubre de 2026
 
 ## 1. Titular del servicio
 
-En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI), se informa de que la aplicación móvil Speaking P2P (en adelante, la «Aplicación») es titularidad de:
+En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI), se informa de que la aplicación móvil MirloTalk (en adelante, la «Aplicación») es titularidad de:
 
 - Titular: [●] (nombre y apellidos o razón social)
 - NIF/CIF: [●]
@@ -16,7 +16,7 @@ En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad 
 
 En estos Términos, «nosotros» se refiere al titular y «usted» o el «Usuario», a la persona que descarga o usa la Aplicación.
 
-> [REVISAR] Para publicar en App Store y Google Play hace falta un titular identificable (persona física dada de alta como autónomo o una sociedad). Apple muestra el nombre del vendedor en la ficha y Google exige una dirección de contacto pública para cuentas de organización. El nombre comercial («Speaking P2P» u otro) puede cambiarse sin tocar el resto del documento.
+> [REVISAR] Para publicar en App Store y Google Play hace falta un titular identificable (persona física dada de alta como autónomo o una sociedad). Apple muestra el nombre del vendedor en la ficha y Google exige una dirección de contacto pública para cuentas de organización. El nombre comercial («MirloTalk» u otro) puede cambiarse sin tocar el resto del documento.
 
 ## 2. Qué es la Aplicación
 

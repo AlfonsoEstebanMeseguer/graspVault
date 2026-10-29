@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @appName.
   ///
   /// In es, this message translates to:
-  /// **'Speaking P2P'**
+  /// **'MirloTalk'**
   String get appName;
 
   /// No description provided for @tabExam.

@@ -6,7 +6,7 @@
 //   flutter test test/screenshots --dart-define=SUPABASE_URL=https://example.supabase.co --dart-define=SUPABASE_ANON_KEY=screenshot
 //
 // (optionally with SCREENSHOT_FONT_DIR set, see _loadFonts; SCREENSHOT_THEME=dark
-// renders the dark theme into *-oscuro.png).
+// renders the dark theme into *-oscuro.png; SCREENSHOT_LOCALE=en, the English UI).
 //
 // Nothing talks to a server: every repository is a fake from the feature tests.
 import 'dart:async';
@@ -58,6 +58,10 @@ import '../features/profile_settings_test.dart' as account;
 const _root = Key('screenshot-root');
 const _pixelRatio = 2.0;
 final _dark = Platform.environment['SCREENSHOT_THEME'] == 'dark';
+
+/// SCREENSHOT_LOCALE=en renders the English UI into build/screenshots-en/
+/// (marketing material, not the design record in docs/screenshots).
+final _locale = Platform.environment['SCREENSHOT_LOCALE'] ?? 'es';
 final _shots = <(String, ui.Image)>[];
 
 /// Real fonts instead of the test font (which draws boxes): the app's bundled
@@ -114,7 +118,7 @@ Future<void> _phone(WidgetTester tester) async {
 
 /// The whole app (router, tabs, theme) with fakes behind every repository.
 Future<ProviderContainer> _app(WidgetTester tester, {AuthUser? user, MyProfile? profile, agenda.FakeAgenda? agendaFake}) async {
-  SharedPreferences.setMockInitialValues({'ui_locale': 'es', 'target_level': 'C1', if (_dark) 'theme_mode': 'dark'});
+  SharedPreferences.setMockInitialValues({'ui_locale': _locale, 'target_level': 'C1', if (_dark) 'theme_mode': 'dark'});
   final prefs = await SharedPreferences.getInstance();
   final c = ProviderContainer(overrides: [
     sharedPreferencesProvider.overrideWithValue(prefs),
@@ -154,7 +158,7 @@ Future<void> _alone(WidgetTester tester, Widget screen) async {
         theme: buildTheme(_dark ? Brightness.dark : Brightness.light),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        locale: const Locale('es'),
+        locale: Locale(_locale),
         home: screen,
       ),
     ),
@@ -196,7 +200,8 @@ Future<void> _sheet(String file, String heading, List<(String, ui.Image)> shots)
   final image = await rec.endRecording().toImage(size.width.ceil(), size.height.ceil());
   final png = await image.toByteData(format: ui.ImageByteFormat.png);
   final name = _dark ? file.replaceFirst('.png', '-oscuro.png') : file;
-  final out = File('../../docs/screenshots/$name')..createSync(recursive: true);
+  final dir = _locale == 'es' ? '../../docs/screenshots' : 'build/screenshots-$_locale';
+  final out = File('$dir/$name')..createSync(recursive: true);
   out.writeAsBytesSync(png!.buffer.asUint8List());
 }
 

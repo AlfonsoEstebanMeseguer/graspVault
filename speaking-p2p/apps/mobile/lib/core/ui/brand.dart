@@ -67,7 +67,7 @@ class _LogoPainter extends CustomPainter {
   bool shouldRepaint(_LogoPainter old) => old.a != a || old.b != b;
 }
 
-/// Logo + "Speaking P2P".
+/// Logo + "MirloTalk".
 class BrandRow extends StatelessWidget {
   const BrandRow({super.key});
   @override

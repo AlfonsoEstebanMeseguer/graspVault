@@ -161,6 +161,10 @@ class LiveSession extends ChangeNotifier implements ExamControlHandle {
       if (exam != null) {
         _preparing = false;
         engine = null;
+        // The step ids repeat across exams (p1-intro…): never play the old
+        // exam's audio in the new one while its own downloads (D-057).
+        readerFiles = const {};
+        photoFiles = const {};
       }
       exam = e;
     }

@@ -4,6 +4,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show mapEquals;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -126,7 +127,8 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
   ExamEngine get _engine => widget.engine;
   // Created up front: a lazy field first touched in dispose() would use ref
   // after unmount (screen opened and closed in the feedback, never playing).
-  late final ReaderPlayer _player;
+  // Rebuilt when the exam's audio arrives later (D-057).
+  late ReaderPlayer _player;
 
   int _lastNotice = 0;
 
@@ -155,6 +157,15 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
     if (old.engine != widget.engine) {
       _lastCue = null;
       _snap = _engine.at(widget.nowMs());
+    }
+    // D-057: when switching exam the screen is built before its audio is
+    // downloaded. A reader made from the empty (or the previous exam's) files
+    // stayed silent for the whole exam: rebuild it and re-cue the current step.
+    if (!mapEquals(old.readerFiles, widget.readerFiles) || old.inCall != widget.inCall) {
+      final stale = _player;
+      unawaited(stale.stop().then((_) => stale.dispose()));
+      _player = ref.read(readerPlayerFactoryProvider)(widget.readerFiles, inCall: widget.inCall);
+      _lastCue = null;
     }
   }
 

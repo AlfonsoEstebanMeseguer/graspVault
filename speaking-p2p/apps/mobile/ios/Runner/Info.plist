@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Speaking P2P needs the microphone for the speaking exam call with your partner.</string>
+	<string>MirloTalk needs the microphone for the speaking exam call with your partner.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Choose a photo from your library for your profile picture.</string>
 	<key>NSCameraUsageDescription</key>
@@ -18,7 +18,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Speaking P2P</string>
+	<string>MirloTalk</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

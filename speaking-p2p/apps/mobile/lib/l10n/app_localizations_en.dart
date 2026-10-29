@@ -10,7 +10,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Speaking P2P';
+  String get appName => 'MirloTalk';
 
   @override
   String get tabExam => 'Exam';

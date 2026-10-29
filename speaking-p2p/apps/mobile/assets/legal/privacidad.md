@@ -4,7 +4,7 @@ Versión 2026-10-24 · Última actualización: 24 de octubre de 2026
 
 > [REVISAR] Borrador de trabajo, no revisado por un abogado. Las líneas «[REVISAR]» son notas internas que la app no muestra. Completar los datos [●] y revisar sobre todo los apartados 5 (proveedores) y 8 (menores).
 
-En esta Política explicamos qué datos personales tratamos cuando usa la aplicación Speaking P2P (la «Aplicación»), para qué los usamos, con quién los compartimos, durante cuánto tiempo los guardamos y cómo puede ejercer sus derechos. La aplicamos conforme al Reglamento (UE) 2016/679, General de Protección de Datos (RGPD), y a la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
+En esta Política explicamos qué datos personales tratamos cuando usa la aplicación MirloTalk (la «Aplicación»), para qué los usamos, con quién los compartimos, durante cuánto tiempo los guardamos y cómo puede ejercer sus derechos. La aplicamos conforme al Reglamento (UE) 2016/679, General de Protección de Datos (RGPD), y a la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
 
 ## 1. Responsable del tratamiento
 
