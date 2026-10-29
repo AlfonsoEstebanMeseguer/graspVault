@@ -50,3 +50,14 @@ class Env {
     return Uri.parse('data:;base64,$t').data!.contentAsBytes();
   }
 }
+
+/// Which build this is (D-054), set by the iOS workflow: the run number and the
+/// commit. Shown at the bottom of Settings so a sideloaded .ipa can be told
+/// from an older one (they all share the same file name and version).
+abstract final class BuildInfo {
+  static const number = String.fromEnvironment('BUILD_NUMBER');
+  static const commit = String.fromEnvironment('GIT_COMMIT');
+
+  /// "#42 · 2998e0c", or "local" for a build from this computer.
+  static String get label => number.isEmpty && commit.isEmpty ? 'local' : ['#$number', commit].where((s) => s != '#' && s.isNotEmpty).join(' · ');
+}

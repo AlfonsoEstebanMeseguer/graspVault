@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/config/env.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/preferences.dart';
@@ -101,6 +102,11 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 18),
           Text(l.notAffiliated, textAlign: TextAlign.center, style: AppType.footnote.copyWith(color: p.textTertiary, fontWeight: FontWeight.w400)),
+          const SizedBox(height: 8),
+          Text(l.buildLine(BuildInfo.label),
+              key: const Key('settings-build'),
+              textAlign: TextAlign.center,
+              style: AppType.footnote.copyWith(color: p.textTertiary, fontWeight: FontWeight.w400)),
         ]),
       ),
     );

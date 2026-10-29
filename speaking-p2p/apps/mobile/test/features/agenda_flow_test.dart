@@ -377,6 +377,25 @@ void main() {
     expect(find.text('Publicar propuesta'), findsOneWidget, reason: 'se abre la hoja de proponer');
   });
 
+  testWidgets('«Buscar horario» sin propuestas: el mismo círculo naranja abre «Proponer horario»', (tester) async {
+    final fake = FakeAgenda()
+      ..mine = []
+      ..extraChats = []
+      ..boardOffers = []
+      ..card = meeting(status: MeetingStatus.closed);
+    await pump(tester, fake: fake);
+    for (var i = 0; i < 6; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(find.byKey(const Key('board-pulse')), findsOneWidget);
+    expect(find.widgetWithText(OutlinedButton, 'Proponer el mío'), findsNothing, reason: 'el botón antiguo ya no está');
+    await tester.tap(find.byKey(const Key('board-pulse')));
+    for (var i = 0; i < 6; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(find.text('Publicar propuesta'), findsOneWidget);
+  });
+
   test('canEnter respeta −5 min / +10 min y solo confirmadas', () {
     final m = meeting(status: MeetingStatus.confirmed, at: today(19));
     expect(AgendaRules.canEnter(m, today(18, 54)), isFalse);

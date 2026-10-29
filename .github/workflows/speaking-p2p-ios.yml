@@ -58,10 +58,12 @@ jobs:
           python3 -c "import json;d=json.load(open('env/dev.json'));print('keys:', sorted(d))"
       - name: Check the plists
         run: plutil -lint ios/Runner/Info.plist
+      # Run number + commit: shown at the bottom of Settings and as the iOS build number,
+      # so an installed .ipa can be told from an older one (D-054).
       - name: flutter build ios (unsigned)
         run: |
           flutter pub get
-          flutter build ios --release --no-codesign --dart-define-from-file=env/dev.json
+          flutter build ios --release --no-codesign --dart-define-from-file=env/dev.json --build-number=${{ github.run_number }} --dart-define=BUILD_NUMBER=${{ github.run_number }} --dart-define=GIT_COMMIT=${GITHUB_SHA::7}
       - name: Package the .ipa
         if: ${{ inputs.ipa }}
         working-directory: speaking-p2p/apps/mobile/build/ios/iphoneos

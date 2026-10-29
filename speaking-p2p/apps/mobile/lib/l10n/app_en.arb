@@ -436,6 +436,8 @@
   "reasonSpam": "Spam or advertising",
   "reasonNoShow": "Didn't show up",
   "reasonOther": "Something else",
+  "countdownLabel": "The exam starts in",
+  "buildLine": "Build {label}",
   "reasonSilent": "Doesn't speak in their turns",
   "reasonMocking": "Mocks or ridicules",
   "reasonNoise": "Noise, music or talking over",

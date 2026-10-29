@@ -727,8 +727,18 @@ class _BoardTabState extends ConsumerState<_BoardTab> {
                         textAlign: TextAlign.center,
                         style: AppType.body.copyWith(color: p.textSecondary),
                       ),
-                      const SizedBox(height: 14),
-                      OutlinedButton.icon(onPressed: widget.onCreate, icon: const Icon(AppIcons.plus, size: 18), label: Text(l.proposeMine)),
+                      const SizedBox(height: 6),
+                      // Same mandarin button as the empty "Mis exámenes" (D-050).
+                      SearchPulse(
+                        key: const Key('board-pulse'),
+                        label: l.proposeMine,
+                        icon: AppIcons.agendaOn,
+                        size: 170,
+                        circle: p.roleB,
+                        onCircle: p.onRole,
+                        rings: p.brand,
+                        onTap: widget.onCreate,
+                      ),
                     ],
                   ),
                 );

@@ -1558,6 +1558,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reasonOther => 'Something else';
 
   @override
+  String get countdownLabel => 'The exam starts in';
+
+  @override
+  String buildLine(String label) {
+    return 'Build $label';
+  }
+
+  @override
   String get reasonSilent => 'Doesn\'t speak in their turns';
 
   @override

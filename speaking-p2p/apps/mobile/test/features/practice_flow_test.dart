@@ -75,6 +75,24 @@ void main() {
     expect(find.byTooltip('Mostrar cronómetro'), findsOneWidget);
   });
 
+  testWidgets('cuenta atrás de 3 s y después suena el saludo del examinador (p1-intro)', (tester) async {
+    final player = await _pumpApp(tester, prefs: {'ui_locale': 'es', 'target_level': 'B2'});
+    await tester.tap(find.text('Practicar con compañero simulado'));
+    await pumpUntilFound(tester, find.byKey(const Key('exam-countdown')));
+    expect(find.text('EL EXAMEN EMPIEZA EN'), findsOneWidget);
+    // Frames during the lead, as on a phone (the screen ticks every frame).
+    for (var i = 0; i < 3; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(player.played, isEmpty, reason: 'durante la cuenta atrás el examinador calla');
+    // The practice clock is the real one: let the 3 s lead pass for real.
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 3300)));
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(find.byKey(const Key('exam-countdown')), findsNothing);
+    expect(player.played.first, 'p1-intro', reason: 'antes se saltaba el saludo y sonaba ya el siguiente paso');
+  });
+
   testWidgets('abandonar: el boton de confirmar esta bloqueado 5 s', (tester) async {
     await _pumpApp(tester, prefs: {'ui_locale': 'es'});
     await tester.tap(find.text('Practicar con compañero simulado'));

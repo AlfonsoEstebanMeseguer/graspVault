@@ -81,7 +81,8 @@ Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tes
 - **Tarea 3 · Diagrama de la Parte 3 (D-049):** hecho, con test de solapes y capturas en claro y oscuro (`05-diagrama-parte-3`).
 - **Tarea 4 · Preguntas de la Parte 2 (D-052):** hecho, formateando en la app. Test de los 153 exámenes (texto idéntico) y captura (`03-sesion-y-examen`).
 - **Tarea 5 · Reportes por sabotaje:** análisis aprobado. **Fase 1 implementada (D-051):** registro de eventos, tiempo de voz por tramo, motivos nuevos y reportes ligados a la sesión. SQL 01–11 ✅ (Docker, Postgres 16), 22 Deno ✅. **Sin desplegar:** el permiso automático de Claude Code bloqueó el despliegue a producción. Falta aplicar la migración y desplegar `session-actions` y `livekit-webhook`. En remoto hay 0 reportes duplicados, así que el índice único se puede crear.
-- Tests: **123 Flutter ✅**, `flutter analyze` limpio, `deno check` limpio, 22 Deno ✅ y SQL 01–11 ✅.
+- **Tras probar el `.ipa` (2026-10-29):** el saludo inicial del examinador no sonaba. Causa encontrada y arreglada (D-053), con cuenta atrás grande de 3 s. «Proponer el mío» del tablón vacío pasa a ser el círculo naranja.
+- Tests: **125 Flutter ✅**, `flutter analyze` limpio, `deno check` limpio, 22 Deno ✅ y SQL 01–11 ✅.
 
 ## Siguiente paso
 

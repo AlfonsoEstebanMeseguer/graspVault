@@ -114,7 +114,11 @@ class CompanionHandle {
 class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProviderStateMixin {
   late final Ticker _ticker;
   late ExamSnapshot _snap;
-  int? _lastSegment;
+  /// Segment + whether the start lead is still running. The first segment
+  /// (the examiner's greeting) already begins during the 3 s lead, when the
+  /// reader must stay silent: keying on the segment alone never cued it once
+  /// the lead ended, so the greeting was skipped.
+  String? _lastCue;
   bool _timerVisible = true;
   bool _textVisible = true;
   Diagram? _diagram;
@@ -149,7 +153,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
     // A control moved the clock or the timeline (or a debug skip): re-cue the
     // reader even if the segment index is the same (repeat question).
     if (old.engine != widget.engine) {
-      _lastSegment = null;
+      _lastCue = null;
       _snap = _engine.at(widget.nowMs());
     }
   }
@@ -182,7 +186,8 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
 
   void _onTick() {
     final next = _engine.at(widget.nowMs());
-    final changedSegment = next.segment?.index != _lastSegment;
+    final cueKey = '${next.segment?.index}|${next.startsInMs > 0}';
+    final changedSegment = cueKey != _lastCue;
     // Rebuild on segment change or when the visible second changes; not every frame.
     if (changedSegment ||
         (next.phase.remainingMs ~/ 1000) != (_snap.phase.remainingMs ~/ 1000) ||
@@ -197,7 +202,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
       _snapNotifier.value = next;
     }
     if (changedSegment) {
-      _lastSegment = next.segment?.index;
+      _lastCue = cueKey;
       final cue = _engine.readerCue(next);
       final player = _player;
       // A jump may land outside the reader while the previous file still plays.
@@ -311,12 +316,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
                 child: SingleChildScrollView(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                     if (_snap.paused) _pausedBanner(),
-                    if (lead)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: Text(l.startingIn((_snap.startsInMs / 1000).ceil()),
-                            textAlign: TextAlign.center, style: AppType.body.copyWith(color: p.textSecondary)),
-                      ),
+                    if (lead) _StartCountdown(seconds: (_snap.startsInMs / 1000).ceil()),
                     if (widget.simulatedPartner)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
@@ -934,6 +934,41 @@ class _CompanionCardState extends State<_CompanionCard> {
           ),
         ],
       ]),
+    );
+  }
+}
+
+/// "3, 2, 1" before Part 1 (the server's 3 s lead, also in practice): the
+/// examiner's greeting starts right after it, never under the user's tap.
+class _StartCountdown extends StatelessWidget {
+  const _StartCountdown({required this.seconds});
+  final int seconds;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    final l = context.l10n;
+    final still = MediaQuery.of(context).disableAnimations;
+    final number = Text('$seconds', key: ValueKey(seconds), style: AppType.timerXl.copyWith(color: p.link));
+    return Semantics(
+      liveRegion: true,
+      label: l.startingIn(seconds),
+      excludeSemantics: true,
+      child: Padding(
+        key: const Key('exam-countdown'),
+        padding: const EdgeInsets.only(bottom: 16),
+        child: Column(children: [
+          Overline(l.countdownLabel, color: p.textSecondary),
+          const SizedBox(height: 4),
+          still
+              ? number
+              : AnimatedSwitcher(
+                  duration: AppMotion.smooth,
+                  transitionBuilder: (child, a) => ScaleTransition(scale: Tween(begin: 1.25, end: 1.0).animate(a), child: FadeTransition(opacity: a, child: child)),
+                  child: number,
+                ),
+        ]),
+      ),
     );
   }
 }

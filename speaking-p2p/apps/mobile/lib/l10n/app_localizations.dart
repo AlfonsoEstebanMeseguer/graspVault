@@ -2714,6 +2714,18 @@ abstract class AppLocalizations {
   /// **'Otro motivo'**
   String get reasonOther;
 
+  /// No description provided for @countdownLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'El examen empieza en'**
+  String get countdownLabel;
+
+  /// No description provided for @buildLine.
+  ///
+  /// In es, this message translates to:
+  /// **'Compilación {label}'**
+  String buildLine(String label);
+
   /// No description provided for @reasonSilent.
   ///
   /// In es, this message translates to:
