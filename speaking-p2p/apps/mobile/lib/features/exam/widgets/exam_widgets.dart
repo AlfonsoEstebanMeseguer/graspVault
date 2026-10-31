@@ -71,7 +71,16 @@ enum ClockState { normal, warn, over, paused }
 /// The ring clock (§4.3): empties as time runs; amber in the last 10 s, red
 /// "Tiempo" at 0, dashed with a pause icon while paused. Never blinks.
 class RingTimer extends StatelessWidget {
-  const RingTimer({super.key, required this.remainingMs, required this.totalMs, this.paused = false, this.size = 56, this.hidden = false});
+  const RingTimer({
+    super.key,
+    required this.remainingMs,
+    required this.totalMs,
+    this.paused = false,
+    this.size = 56,
+    this.hidden = false,
+    this.standby = false,
+    this.idle = false,
+  });
   final int remainingMs;
   final int totalMs;
   final bool paused;
@@ -80,20 +89,28 @@ class RingTimer extends StatelessWidget {
   /// The user hid the clock: an empty ring with a timer icon (tap shows it again).
   final bool hidden;
 
+  /// The examiner is reading: the window to come, full and grey, not running (D-058).
+  final bool standby;
+
+  /// Nothing to time (a narration): an empty ring with a timer icon.
+  final bool idle;
+
   ClockState get state => paused
       ? ClockState.paused
-      : remainingMs <= 0
-          ? ClockState.over
-          : remainingMs <= 10000
-              ? ClockState.warn
-              : ClockState.normal;
+      : standby
+          ? ClockState.normal
+          : remainingMs <= 0
+              ? ClockState.over
+              : remainingMs <= 10000
+                  ? ClockState.warn
+                  : ClockState.normal;
 
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
     final st = state;
     final color = switch (st) {
-      ClockState.normal => p.link,
+      ClockState.normal => standby ? p.textTertiary : p.link,
       ClockState.warn => p.warn,
       ClockState.over => p.danger,
       ClockState.paused => p.textSecondary,
@@ -101,16 +118,20 @@ class RingTimer extends StatelessWidget {
     final frac = totalMs <= 0 ? 0.0 : (remainingMs / totalMs).clamp(0.0, 1.0);
     final Widget inside = hidden
         ? Icon(AppIcons.eyeOff, size: size * 0.36, color: p.textSecondary)
-        : switch (st) {
+        : idle && st != ClockState.paused
+            ? Icon(AppIcons.timer, size: size * 0.36, color: p.textTertiary)
+            : switch (st) {
             ClockState.paused => Icon(AppIcons.pause, size: size * 0.34, color: p.textPrimary),
             ClockState.over => Text(context.l10n.timeUp, style: AppType.timer.copyWith(fontSize: size * 0.22, color: p.danger)),
-            _ => Text(formatShort(remainingMs), style: AppType.timer.copyWith(fontSize: size * 0.3, height: 1, color: st == ClockState.warn ? p.warn : p.textPrimary)),
+            _ => Text(formatShort(remainingMs),
+                style: AppType.timer.copyWith(
+                    fontSize: size * 0.3, height: 1, color: st == ClockState.warn ? p.warn : (standby ? p.textSecondary : p.textPrimary))),
           };
     return SizedBox.square(
       dimension: size,
       child: CustomPaint(
         painter: _Ring(
-          fraction: hidden ? 0 : (st == ClockState.over ? 1 : frac),
+          fraction: hidden || idle ? 0 : (st == ClockState.over || standby ? 1 : frac),
           color: color,
           track: p.surfaceMuted,
           dashed: st == ClockState.paused,
@@ -163,6 +184,10 @@ class ExamHeader extends StatelessWidget {
     required this.timerVisible,
     required this.onToggleTimer,
     this.paused = false,
+    this.standby = false,
+    this.idle = false,
+    this.cuesMuted = false,
+    this.onToggleCues,
   });
 
   final int partIndex;
@@ -173,6 +198,14 @@ class ExamHeader extends StatelessWidget {
   final bool timerVisible;
   final VoidCallback onToggleTimer;
   final bool paused;
+
+  /// See [RingTimer.standby] / [RingTimer.idle].
+  final bool standby;
+  final bool idle;
+
+  /// The bell: start/end beeps on or off (D-058). Null = no button.
+  final bool cuesMuted;
+  final VoidCallback? onToggleCues;
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +223,17 @@ class ExamHeader extends StatelessWidget {
           ]),
         ),
         const SizedBox(width: 12),
+        if (onToggleCues != null) ...[
+          RoundIconButton(
+            key: const Key('exam-cues'),
+            size: 44,
+            tooltip: cuesMuted ? l.cuesUnmute : l.cuesMute,
+            icon: cuesMuted ? AppIcons.bellOff : AppIcons.bell,
+            color: cuesMuted ? p.textTertiary : p.textPrimary,
+            onPressed: onToggleCues,
+          ),
+          const SizedBox(width: 10),
+        ],
         Semantics(
           button: true,
           label: timerVisible ? '${l.hideTimer}, ${formatShort(remainingMs)}' : l.showTimer,
@@ -199,7 +243,8 @@ class ExamHeader extends StatelessWidget {
             child: GestureDetector(
               key: const Key('exam-timer'),
               onTap: onToggleTimer,
-              child: RingTimer(remainingMs: remainingMs, totalMs: totalMs, paused: paused, size: 64, hidden: !timerVisible),
+              child: RingTimer(
+                  remainingMs: remainingMs, totalMs: totalMs, paused: paused, size: 64, hidden: !timerVisible, standby: standby, idle: idle),
             ),
           ),
         ),

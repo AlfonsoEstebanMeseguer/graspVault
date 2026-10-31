@@ -42,6 +42,8 @@
   "showText": "Ver texto",
   "hideTimer": "Ocultar cronómetro",
   "showTimer": "Mostrar cronómetro",
+  "cuesMute": "Silenciar pitidos",
+  "cuesUnmute": "Activar pitidos",
   "yourTurn": "Te toca responder a ti",
   "partnerTurn": "Le toca a {name}",
   "@partnerTurn": {

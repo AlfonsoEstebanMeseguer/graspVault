@@ -12,8 +12,10 @@ import 'package:speaking_p2p/data/content/content_repository.dart';
 import 'package:speaking_p2p/domain/exam/models.dart';
 import 'package:speaking_p2p/domain/exam/timeline.dart';
 import 'package:speaking_p2p/features/exam/control/local_exam_controller.dart';
+import 'package:speaking_p2p/features/exam/cue_player.dart';
 import 'package:speaking_p2p/features/exam/exam_screen.dart';
 import 'package:speaking_p2p/features/exam/reader_player.dart';
+import 'package:speaking_p2p/features/exam/widgets/exam_widgets.dart' show formatShort;
 import 'package:speaking_p2p/l10n/app_localizations.dart';
 
 Exam _exam(String level, String id) =>
@@ -21,12 +23,25 @@ Exam _exam(String level, String id) =>
 
 const t0 = 1000000;
 
+/// Records what the examiner was asked to play, and from where.
+class _Reader implements ReaderPlayer {
+  final plays = <(String, Duration)>[];
+  int stops = 0;
+  @override
+  Future<void> play(ExamStep step, Duration offset) async => plays.add((step.id, offset));
+  @override
+  Future<void> stop() async => stops++;
+  @override
+  Future<void> dispose() async {}
+}
+
 class _Harness {
   _Harness(this.exam) : now = t0;
   final Exam exam;
   int now;
   late final LocalExamController c;
-  final player = SilentReaderPlayer();
+  final player = _Reader();
+  final cues = SilentCuePlayer();
 
   Future<void> pump(WidgetTester tester, {required int at}) async {
     now = t0 + at;
@@ -50,7 +65,10 @@ class _Harness {
     );
     addTearDown(c.dispose);
     await tester.pumpWidget(ProviderScope(
-      overrides: [readerPlayerFactoryProvider.overrideWithValue((_, {inCall = false}) => player)],
+      overrides: [
+        readerPlayerFactoryProvider.overrideWithValue((_, {inCall = false}) => player),
+        cuePlayerFactoryProvider.overrideWithValue(({inCall = false}) => cues),
+      ],
       child: MaterialApp(
         theme: buildTheme(Brightness.light),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -116,20 +134,89 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('mientras habla el examinador, el botón principal es "Saltar"', (tester) async {
+  testWidgets('pausar mientras lee el examinador lo calla; reanudar sigue donde se quedó', (tester) async {
+    final h = _Harness(b2);
+    final speak = _firstSpeak(b2, 1);
+    final reader = buildTimeline(b2).segments[speak.index - 1];
+    await h.pump(tester, at: reader.startMs + 1500);
+    await _settle(tester);
+    expect(h.player.plays.last.$1, reader.stepId);
+    final stops = h.player.stops;
+    await _tap(tester, const Key('dock-pause'));
+    expect(find.byKey(const Key('exam-paused')), findsOneWidget);
+    expect(h.player.stops, greaterThan(stops), reason: 'el examinador se calla');
+    final at = h.c.engine.at(h.now).elapsedMs - reader.startMs;
+    h.now += 30000;
+    await tester.pump(const Duration(milliseconds: 100));
+    await _tap(tester, const Key('dock-pause')); // resume
+    expect(h.player.plays.last, (reader.stepId, Duration(milliseconds: at)), reason: 'sigue por donde iba');
+  });
+
+  testWidgets('el dock es el mismo con el examinador y en la tarea; "Saltar" salta lo que suena', (tester) async {
     final h = _Harness(b2);
     final speak = _firstSpeak(b2, 1);
     await h.pump(tester, at: speak.startMs - 500); // reader of p1-q1
-    expect(find.byKey(const Key('dock-pause')), findsNothing, reason: 'no se pausa mientras habla el examinador');
-    await _tap(tester, const Key('dock-skip-reader'));
-    expect(h.segment().index, speak.index);
+    const keys = ['dock-prev', 'dock-pause', 'dock-skip', 'dock-repeat', 'dock-more'];
+    for (final k in keys) {
+      expect(find.byKey(Key(k)), findsOneWidget, reason: k);
+    }
+    await _tap(tester, const Key('dock-skip'));
+    expect(h.segment().index, speak.index, reason: 'del examinador a la tarea');
+    for (final k in keys) {
+      expect(find.byKey(Key(k)), findsOneWidget, reason: k);
+    }
+    await _tap(tester, const Key('dock-skip'));
+    expect(h.segment().stepId, isNot(speak.stepId), reason: 'de la tarea a la siguiente pregunta');
+  });
+
+  testWidgets('repetir vuelve a leer la pregunta actual', (tester) async {
+    final h = _Harness(b2);
+    final speak = _firstSpeak(b2, 1);
+    await h.pump(tester, at: speak.startMs + 5000);
+    await _tap(tester, const Key('dock-repeat'));
+    expect(h.segment().stepId, speak.stepId);
+    expect(h.segment().phase, Phase.reader);
+  });
+
+  testWidgets('el cronómetro no corre mientras lee el examinador; pitidos al empezar y al acabar', (tester) async {
+    final h = _Harness(b2);
+    final speak = _firstSpeak(b2, 1);
+    await h.pump(tester, at: speak.startMs - 1500);
+    final window = formatShort(speak.durationMs);
+    expect(find.text(window), findsOneWidget, reason: 'el turno entero, quieto');
+    h.now += 1000;
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(find.text(window), findsOneWidget);
+    expect(h.cues.played, isEmpty);
+    h.now += 1000; // the window opens
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(h.cues.played, [Cue.start]);
+    h.now += 3000;
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(find.text(formatShort(speak.durationMs - 3500)), findsOneWidget, reason: 'ahora sí corre');
+    h.now = t0 + speak.endMs + 200; // time is up
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(h.cues.played, [Cue.start, Cue.end]);
+  });
+
+  testWidgets('la campana silencia los pitidos; saltar no pita "fin"', (tester) async {
+    final h = _Harness(b2);
+    final speak = _firstSpeak(b2, 1);
+    await h.pump(tester, at: speak.startMs + 2000);
+    await _settle(tester);
+    expect(h.cues.played, [Cue.start]);
+    await _tap(tester, const Key('dock-skip'));
+    expect(h.cues.played, [Cue.start], reason: 'saltar no es "se acabó el tiempo"');
+    await _tap(tester, const Key('exam-cues'));
+    await _tap(tester, const Key('dock-skip')); // reader -> task: would beep
+    expect(h.cues.played, [Cue.start]);
   });
 
   testWidgets('siguiente y anterior: ida y vuelta a la misma pregunta', (tester) async {
     final h = _Harness(b2);
     await h.pump(tester, at: _firstSpeak(b2, 1).startMs + 2000);
     final step = h.segment().stepId;
-    await _tap(tester, const Key('dock-next'));
+    await _tap(tester, const Key('dock-skip'));
     expect(h.segment().stepId, isNot(step));
     h.now += 1000;
     await _tap(tester, const Key('dock-prev'));
@@ -137,7 +224,7 @@ void main() {
     expect(h.segment().phase, Phase.reader, reason: 'el examinador la vuelve a leer');
   });
 
-  testWidgets('"Más": +1:00 alarga el turno; "Sig. parte" pasa a la Parte 2', (tester) async {
+  testWidgets('"Más": +1:00 alarga el turno; sin "Sig. parte" ni "Repetir"; "Parte 2" salta', (tester) async {
     final h = _Harness(b2);
     await h.pump(tester, at: _firstSpeak(b2, 1).startMs + 2000);
     final before = h.remaining();
@@ -145,7 +232,9 @@ void main() {
     await _tap(tester, const Key('control-extend-60000'));
     expect(h.remaining(), before + 60000);
     expect(tester.takeException(), isNull, reason: 'el dock desplegado cabe en un móvil');
-    await _tap(tester, const Key('dock-next-part'));
+    expect(find.byKey(const Key('dock-next-part')), findsNothing);
+    expect(find.byKey(const Key('control-repeat')), findsNothing);
+    await _tap(tester, const Key('control-part-2'));
     await tester.pump(const Duration(milliseconds: 100));
     expect(find.text('PARTE 2 DE 4'), findsOneWidget);
   });

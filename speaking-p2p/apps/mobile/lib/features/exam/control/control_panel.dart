@@ -1,7 +1,8 @@
 // The leader's controls (Pro, D-039), Design 2.0: a floating glass dock like
-// a podcast player — ⏮ previous · ⏯ pause (or "skip" while the examiner
-// speaks) · ⏭ next · More. "More" is a sheet with next part, time, turn
-// length, repeat, switch exam, hand over and end. Plus the exam catalog.
+// a podcast player — VIP · ⏮ previous · ⏯ pause · ⏭ skip · ↺ repeat · More,
+// the same while the examiner reads and while the candidates speak (D-058).
+// "More" is a sheet with go to part, time, turn length, switch exam, hand
+// over and end. Plus the exam catalog.
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -54,15 +55,14 @@ class LeaderDock extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
-    final reader = snap.readerSpeaking && !snap.paused;
+    final reader = snap.readerSpeaking;
     void send(ControlOp op) => runControl(context, () => control.control(op));
 
-    // The main button does what makes sense right now.
-    final (IconData mainIcon, String mainLabel, Key mainKey, ControlOp mainOp) = snap.paused
-        ? (AppIcons.play, l.controlResume, const Key('dock-pause'), const Resume())
-        : reader
-            ? (AppIcons.fastForward, l.dockSkip, const Key('dock-skip-reader'), const SkipReader())
-            : (AppIcons.pause, l.controlPause, const Key('dock-pause'), const Pause());
+    // Pause also silences the examiner; resume carries on where it stopped.
+    final (IconData mainIcon, String mainLabel, ControlOp mainOp) =
+        snap.paused ? (AppIcons.play, l.controlResume, const Resume()) : (AppIcons.pause, l.controlPause, const Pause());
+    // Skip what is running: the examiner's reading (straight to the task), or the task (next question).
+    final ControlOp skipOp = reader ? const SkipReader() : const NextStep();
 
     return Glass(
       key: const Key('leader-dock'),
@@ -80,7 +80,7 @@ class LeaderDock extends StatelessWidget {
         ),
         Expanded(child: _DockIcon(key: const Key('dock-prev'), icon: AppIcons.prev, label: l.dockPrev, onPressed: () => send(const PrevStep()))),
         _MainButton(
-          key: mainKey,
+          key: const Key('dock-pause'),
           icon: mainIcon,
           label: mainLabel,
           onPressed: () {
@@ -88,7 +88,10 @@ class LeaderDock extends StatelessWidget {
             send(mainOp);
           },
         ),
-        Expanded(child: _DockIcon(key: const Key('dock-next'), icon: AppIcons.next, label: l.dockNext, onPressed: () => send(const NextStep()))),
+        Expanded(child: _DockIcon(key: const Key('dock-skip'), icon: AppIcons.next, label: l.dockSkip, onPressed: () => send(skipOp))),
+        Expanded(
+          child: _DockIcon(key: const Key('dock-repeat'), icon: AppIcons.repeat, label: l.controlRepeat, onPressed: () => send(const RepeatStep())),
+        ),
         Semantics(
           button: true,
           label: l.dockMore,
@@ -101,7 +104,7 @@ class LeaderDock extends StatelessWidget {
               customBorder: const StadiumBorder(),
               onTap: onMore,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                 child: Text(l.dockMore, style: AppType.headline.copyWith(color: p.textPrimary)),
               ),
             ),
@@ -235,10 +238,8 @@ class _More extends StatelessWidget {
         Expanded(child: Text(l.dockTitle, style: AppType.title2.copyWith(color: p.textPrimary))),
       ]),
       label(l.controlNavigation),
-      action(const Key('dock-next-part'), AppIcons.skipPart, l.controlNextPart, () => send(const NextPart(), close: true)),
-      action(const Key('control-repeat'), AppIcons.repeat, l.controlRepeat, () => send(const RepeatStep(), close: true)),
       Padding(
-        padding: const EdgeInsets.only(top: 4, bottom: 8),
+        padding: const EdgeInsets.only(bottom: 8),
         child: Text(l.controlGoToPart, style: AppType.body.copyWith(color: p.textSecondary)),
       ),
       Wrap(spacing: 8, runSpacing: 8, children: [

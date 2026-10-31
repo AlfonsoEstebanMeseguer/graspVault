@@ -4,11 +4,11 @@
  "startedAtMs": 1000000,
  "cases": [
   {
-   "nowMs": 1003000,
+   "nowMs": 999000,
    "op": "pause",
    "args": {},
    "expect": {
-    "error": "reader_speaking"
+    "error": "not_started"
    }
   },
   {

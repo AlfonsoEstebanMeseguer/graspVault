@@ -209,7 +209,6 @@ ControlState applyControl(ControlState s, ControlOp op, int nowMs) {
       requirePart();
       if (s.pausedAtMs != null) throw const ControlError('already_paused');
       if (e < 0) throw const ControlError('not_started');
-      if (seg!.phase != Phase.speak) throw const ControlError('reader_speaking');
       return s._next(pausedAtMs: nowMs, pauseReason: 'leader');
     case Resume():
       if (s.pauseReason != 'leader') throw const ControlError('not_paused');

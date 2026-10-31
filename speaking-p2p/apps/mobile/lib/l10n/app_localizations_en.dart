@@ -80,6 +80,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get showTimer => 'Show timer';
 
   @override
+  String get cuesMute => 'Mute beeps';
+
+  @override
+  String get cuesUnmute => 'Turn beeps on';
+
+  @override
   String get yourTurn => 'Your turn to answer';
 
   @override

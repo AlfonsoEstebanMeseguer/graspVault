@@ -1,6 +1,6 @@
 # Progreso
 
-> Actualizado: 2026-10-29. Créditos hasta el 2026-11-04.
+> Actualizado: 2026-10-31. Créditos hasta el 2026-11-04.
 
 ## Estado en el proyecto real (Supabase `SpeakingApp`, eu-central-1)
 
@@ -27,7 +27,7 @@
 | 5. Agenda | ✅ código | Chats, tablón (filtro de nivel adyacente y día), mis ofertas con interesados, crear (máx. 2), elegir hora con "Ocupado", chat en tiempo real con tarjeta (Modificar/Cancelar/Confirmar, ✓/○, mensajes de sistema traducidos), Mi agenda con "Entrar a la sala" de −5 a +10 min, tarjeta de próxima reunión en Inicio. Push ⏸️ (Firebase) |
 | 6. Acceso y monetización | 🟡 | Elegibilidad en servidor; "todos pagan" (D-020). **Plan Pro (10 €) con control del examen y líder (D-037…D-040)**: migraciones aplicadas en Supabase y `session-actions`, `livekit-webhook` y `cron-worker` desplegadas (`revenuecat-webhook` sigue sin desplegar: RevenueCat aplazado). Falta: prueba con dos móviles. Paywall/RevenueCat/App Open Ad ⏸️ |
 | 7. Contenido completo, grabación, cuenta | 🟡 | Perfil (exámenes hechos, grabaciones con días restantes, editar), Ajustes (estado de suscripción, eliminar cuenta con contraseña + frase, D-027). Falta: reproductor de grabaciones, 4 exámenes más por nivel, Términos/Privacidad (textos) |
-| 8. Pulido | ⬜ | |
+| 8. Pulido | 🟡 | 2026-10-31 (D-058): el cronómetro solo cuenta la respuesta, pitidos de inicio y fin con campana para silenciarlos, la Parte 2 muestra la pregunta antes que las fotos y el dock es fijo con pausa del examinador. **Pendiente:** aplicar `20261031120000_pause_during_reader.sql` en Supabase (hasta entonces, en vivo no se puede pausar durante la lectura) |
 
 ## Cómo se verifica hoy
 

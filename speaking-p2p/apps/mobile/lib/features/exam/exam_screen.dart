@@ -26,6 +26,7 @@ import '../../data/safety/safety_repository.dart' show ReportContext;
 import '../../domain/agenda/agenda.dart' show CompanionLink;
 import 'control/control_panel.dart';
 import 'control/exam_control.dart';
+import 'cue_player.dart';
 import 'reader_player.dart';
 import 'widgets/bubble_diagram.dart';
 import 'widgets/exam_widgets.dart';
@@ -130,6 +131,13 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
   // Rebuilt when the exam's audio arrives later (D-057).
   late ReaderPlayer _player;
 
+  /// Start / time-up beeps (D-058), and the speaking window they belong to:
+  /// the index of the one running (null outside one). A resume or a time
+  /// change keeps it, so only a new window beeps "start"; a control that
+  /// moves the exam out of it clears it, so only time running out beeps "end".
+  late CuePlayer _cues;
+  int? _speakIn;
+
   int _lastNotice = 0;
 
   /// The live snapshot for the "More" sheet, which outlives a single build.
@@ -139,6 +147,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
   void initState() {
     super.initState();
     _player = ref.read(readerPlayerFactoryProvider)(widget.readerFiles, inCall: widget.inCall);
+    _cues = ref.read(cuePlayerFactoryProvider)(inCall: widget.inCall);
     _snap = _engine.at(widget.nowMs());
     _ticker = createTicker((_) => _onTick())..start();
     _lastNotice = widget.control?.notice?.id ?? 0;
@@ -157,6 +166,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
     if (old.engine != widget.engine) {
       _lastCue = null;
       _snap = _engine.at(widget.nowMs());
+      if (_snap.segment?.index != _speakIn) _speakIn = null;
     }
     // D-057: when switching exam the screen is built before its audio is
     // downloaded. A reader made from the empty (or the previous exam's) files
@@ -166,6 +176,10 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
       unawaited(stale.stop().then((_) => stale.dispose()));
       _player = ref.read(readerPlayerFactoryProvider)(widget.readerFiles, inCall: widget.inCall);
       _lastCue = null;
+    }
+    if (old.inCall != widget.inCall) {
+      unawaited(_cues.dispose());
+      _cues = ref.read(cuePlayerFactoryProvider)(inCall: widget.inCall);
     }
   }
 
@@ -206,12 +220,16 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
         (next.startsInMs ~/ 1000) != (_snap.startsInMs ~/ 1000) ||
         next.paused != _snap.paused) {
       if (next.paused && !_snap.paused) unawaited(_player.stop());
-      if (next.phase.remainingMs <= 10000 && _snap.phase.remainingMs > 10000 && next.phase.remainingMs > 0) {
+      if (next.segment?.phase == Phase.speak &&
+          next.phase.remainingMs <= 10000 &&
+          _snap.phase.remainingMs > 10000 &&
+          next.phase.remainingMs > 0) {
         HapticFeedback.lightImpact(); // 10 s left: one soft tap, never a blinking alarm
       }
       setState(() => _snap = next);
       _snapNotifier.value = next;
     }
+    _cue(next);
     if (changedSegment) {
       _lastCue = cueKey;
       final cue = _engine.readerCue(next);
@@ -232,12 +250,40 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
     }
   }
 
+  /// Beeps when a speaking window opens (its clock starts) and when its time
+  /// runs out. Nothing while paused or in the start lead.
+  void _cue(ExamSnapshot next) {
+    if (next.paused || next.startsInMs > 0) return;
+    final seg = next.segment;
+    final muted = ref.read(examCuesMutedProvider);
+    if (_speakIn != null && seg?.index != _speakIn) {
+      _speakIn = null;
+      if (!muted) unawaited(_cues.play(Cue.end));
+    }
+    if (seg != null && seg.phase == Phase.speak && _speakIn != seg.index) {
+      _speakIn = seg.index;
+      if (!muted) unawaited(_cues.play(Cue.start));
+    }
+  }
+
+  /// The clock counts the speaking window only (D-058): while the examiner
+  /// reads it stands full at the window to come; a narration has none.
+  ({int remaining, int total, bool standby})? _clock() {
+    final seg = _snap.segment!;
+    if (seg.phase == Phase.speak) return (remaining: seg.endMs - _snap.elapsedMs, total: seg.durationMs, standby: false);
+    final segs = _engine.timeline.segments;
+    final next = seg.index + 1 < segs.length ? segs[seg.index + 1] : null;
+    if (next == null || next.stepId != seg.stepId || next.phase != Phase.speak) return null;
+    return (remaining: next.durationMs, total: next.durationMs, standby: true);
+  }
+
   @override
   void dispose() {
     widget.control?.removeListener(_onControl);
     _ticker.dispose();
     _snapNotifier.dispose();
     unawaited(_player.dispose());
+    unawaited(_cues.dispose());
     super.dispose();
   }
 
@@ -275,6 +321,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
+    final cuesMuted = ref.watch(examCuesMutedProvider);
     if (widget.partnerLeft) return _Message(text: l.partnerLeft, action: l.backHome, onAction: widget.onExit, mood: PicoMood.listen);
     if (_snap.state == SessionState.ended) {
       return _Message(
@@ -303,8 +350,8 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
 
     final part = _snap.part!;
     final step = _snap.step!;
-    final seg = _snap.segment!;
     final lead = _snap.startsInMs > 0;
+    final clock = lead ? null : _clock();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -315,12 +362,16 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
               ExamHeader(
                 partIndex: part.index,
                 title: part.title,
-                remainingMs: lead ? _snap.startsInMs : _snap.phase.remainingMs,
-                totalMs: lead ? 3000 : seg.durationMs,
+                remainingMs: lead ? _snap.startsInMs : (clock?.remaining ?? 0),
+                totalMs: lead ? 3000 : (clock?.total ?? 0),
                 partFraction: _partFraction(),
                 paused: _snap.paused,
+                standby: clock?.standby ?? false,
+                idle: !lead && clock == null,
                 timerVisible: _timerVisible,
                 onToggleTimer: () => setState(() => _timerVisible = !_timerVisible),
+                cuesMuted: cuesMuted,
+                onToggleCues: () => ref.read(examCuesMutedProvider.notifier).toggle(),
               ),
               const SizedBox(height: 16),
               Expanded(
@@ -397,7 +448,19 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
       }
     }
 
+    final question = QuestionCard(
+      text: step.text,
+      visible: _textVisible,
+      speaking: reader && !_snap.paused,
+      onToggle: () => setState(() => _textVisible = !_textVisible),
+      title: part.index == 2 ? l.examinerQuestion : null,
+      booklet: part.index == 2,
+      addressee: part.index == 4 ? _addressee(step) : null,
+    );
+
     if (part.index == 2) {
+      // The question first, then the photos it is about.
+      children.addAll([const SizedBox(height: 14), question]);
       final assets = _engine.visibleAssets(_snap);
       if (assets.isNotEmpty) {
         final ownerName = _photoOwner(part, step) == me ? l.you : widget.partnerName;
@@ -439,16 +502,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
       children.add(CandidateStrip(a: _info(Role.a), b: _info(Role.b), activeA: !reader, activeB: !reader, micA: micA, micB: micB));
     }
 
-    children.add(const SizedBox(height: 14));
-    children.add(QuestionCard(
-      text: step.text,
-      visible: _textVisible,
-      speaking: reader && !_snap.paused,
-      onToggle: () => setState(() => _textVisible = !_textVisible),
-      title: part.index == 2 ? l.examinerQuestion : null,
-      booklet: part.index == 2,
-      addressee: part.index == 4 ? _addressee(step) : null,
-    ));
+    if (part.index != 2) children.addAll([const SizedBox(height: 14), question]);
     if (part.index == 4) {
       final idx = part.steps.indexWhere((s) => s.id == step.id);
       final left = part.steps.skip(idx + 1).where((s) => s.kind == StepKind.open).length;

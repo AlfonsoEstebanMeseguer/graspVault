@@ -80,6 +80,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get showTimer => 'Mostrar cronómetro';
 
   @override
+  String get cuesMute => 'Silenciar pitidos';
+
+  @override
+  String get cuesUnmute => 'Activar pitidos';
+
+  @override
   String get yourTurn => 'Te toca responder a ti';
 
   @override

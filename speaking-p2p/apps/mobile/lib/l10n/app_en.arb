@@ -21,6 +21,8 @@
   "showText": "Show text",
   "hideTimer": "Hide timer",
   "showTimer": "Show timer",
+  "cuesMute": "Mute beeps",
+  "cuesUnmute": "Turn beeps on",
   "yourTurn": "Your turn to answer",
   "partnerTurn": "{name}'s turn",
   "micOpen": "Your microphone is on",

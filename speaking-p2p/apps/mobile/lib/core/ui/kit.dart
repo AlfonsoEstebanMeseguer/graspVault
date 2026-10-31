@@ -395,4 +395,6 @@ abstract final class AppIcons {
   static const block = IconData(0xe3de, fontFamily: 'PhosphorRegular') /* prohibit */;
   static const menu = IconData(0xe208, fontFamily: 'PhosphorRegular') /* dotsThreeVertical */;
   static const more = IconData(0xe1fe, fontFamily: 'PhosphorBold') /* dotsThree */;
+  static const bell = IconData(0xe0ce, fontFamily: 'PhosphorRegular') /* bell */;
+  static const bellOff = IconData(0xe0d4, fontFamily: 'PhosphorRegular') /* bellSlash */;
 }

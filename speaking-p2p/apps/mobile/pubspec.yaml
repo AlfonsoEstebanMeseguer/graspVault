@@ -82,6 +82,7 @@ flutter:
     - assets/content/exams/C1/
     - assets/content/diagrams/
     - assets/legal/
+    - assets/sounds/
     - assets/fonts/OFL-instrumentsans.txt
     - assets/fonts/OFL-newsreader.txt
     - assets/fonts/OFL-ibmplexmono.txt

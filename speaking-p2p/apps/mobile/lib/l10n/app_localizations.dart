@@ -224,6 +224,18 @@ abstract class AppLocalizations {
   /// **'Mostrar cronómetro'**
   String get showTimer;
 
+  /// No description provided for @cuesMute.
+  ///
+  /// In es, this message translates to:
+  /// **'Silenciar pitidos'**
+  String get cuesMute;
+
+  /// No description provided for @cuesUnmute.
+  ///
+  /// In es, this message translates to:
+  /// **'Activar pitidos'**
+  String get cuesUnmute;
+
   /// No description provided for @yourTurn.
   ///
   /// In es, this message translates to:
