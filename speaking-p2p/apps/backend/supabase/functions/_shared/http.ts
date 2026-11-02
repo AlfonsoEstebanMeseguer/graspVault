@@ -1,5 +1,6 @@
 // HTTP plumbing shared by every function.
 import { z } from "npm:zod@3.23.8";
+import { captureException } from "./sentry.ts";
 
 export const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -116,7 +117,9 @@ export function handler(fn: (req: Request) => Promise<Response>): (req: Request)
       return await fn(req);
     } catch (e) {
       if (e instanceof HttpError) return json({ error: e.code }, e.status);
-      console.error(e); // Sentry picks this up (see _shared/sentry.ts)
+      console.error(e);
+      // Prepared, no-op until SENTRY_DSN_FUNCTIONS is set (_shared/sentry.ts).
+      void captureException(e);
       return json({ error: "internal" }, 500);
     }
   };

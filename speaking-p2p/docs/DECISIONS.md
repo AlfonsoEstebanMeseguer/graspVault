@@ -307,3 +307,9 @@
 - **Notas trasladadas:** todo lo pendiente va a `docs/legal/ASPECTOS_A_COMPLETAR.md` (titular, edad mínima 14 vs 18, dominio y buzones, marcas Cambridge, teléfono, pagos/RevenueCat, AdMob, DSA, Sentry/PostHog, proveedores y regiones, re-aceptación por cambio de versión, transferencias, licencias, usuarios expulsados).
 - **Edad mínima:** sigue en 14 (CLAUDE.md §13). Señalado como la decisión más delicada para las tiendas; recomendación de subir a 18 (como ADR 0044 del vault) pendiente de que lo decida Alfonso. No se reabre sin su visto bueno.
 - **Test:** `legal_test.dart` pasa a exigir que los documentos publicados no lleven notas internas (antes exigía lo contrario).
+
+### D-061 · 2026-11-02 · Sentry y PostHog preparados en código (encender al final)
+- **Pedido de Alfonso:** dejar la observabilidad (errores con Sentry, producto/retención con PostHog) lista en código, para encenderla como último paso.
+- **Decisión:** andamiaje *no-op* hasta que lleguen las claves. Backend: `_shared/sentry.ts` (`captureException`, sin dependencias, `fetch` al Store API, enganchado al `catch` del `handler`) y `_shared/analytics.ts` (`track` → PostHog `/capture`). App: `lib/core/telemetry/telemetry.dart` (`Telemetry` con `captureError`/`track`/`identify`, lee `--dart-define`). Las variables ya estaban reservadas en `.env.example`.
+- **Principio:** la analítica de negocio (suscripción, emparejamientos, sesiones) se emite desde el servidor, no desde el cliente falsificable; la app solo emite interacción pura y sus propios errores.
+- **Pendiente:** crear cuentas, poner secretos, implementar los `TODO(observability)` (3 líneas por SDK), sembrar los `track(...)`, y añadir ambos proveedores a la Política de Privacidad. Todo en `docs/OBSERVABILITY.md`.
