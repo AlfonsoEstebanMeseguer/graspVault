@@ -200,6 +200,12 @@ abstract class AppLocalizations {
   /// **'Pregunta del examinador'**
   String get examinerQuestion;
 
+  /// No description provided for @thinkingTime.
+  ///
+  /// In es, this message translates to:
+  /// **'Tiempo para pensar'**
+  String get thinkingTime;
+
   /// No description provided for @hideText.
   ///
   /// In es, this message translates to:

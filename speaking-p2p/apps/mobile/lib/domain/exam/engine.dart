@@ -30,7 +30,14 @@ class ExamSnapshot {
 
   SessionState get state => phase.state;
   Segment? get segment => phase.segment;
-  bool get readerSpeaking => segment?.phase == Phase.reader;
+  bool get readerSpeaking => segment?.phase == Phase.reader && !thinking;
+
+  /// Silent thinking time at the end of a reader window (e.g. 15 s in Part 3).
+  bool get thinking {
+    final s = segment, st = step;
+    if (s == null || st == null || s.phase != Phase.reader || st.prepSec <= 0) return false;
+    return s.endMs - elapsedMs <= st.prepSec * 1000;
+  }
   /// While paused both mics are open: a pause is free conversation (D-039).
   bool get myMicOn => paused || phase.mic.forRole(myRole);
   bool get partnerMicOn => paused || phase.mic.forRole(myRole.other);

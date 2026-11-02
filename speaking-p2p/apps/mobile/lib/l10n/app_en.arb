@@ -17,6 +17,7 @@
   "partOf": "PART {n} OF 4",
   "examiner": "Examiner",
   "examinerQuestion": "Examiner's question",
+  "thinkingTime": "Thinking time",
   "hideText": "Hide text",
   "showText": "Show text",
   "hideTimer": "Hide timer",

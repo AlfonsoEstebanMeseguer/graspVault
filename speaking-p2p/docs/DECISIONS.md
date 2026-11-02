@@ -291,3 +291,11 @@
 - **Pausa con el examinador:** `Pause` deja de rechazar el segmento del lector (`reader_speaking`), en `control.dart` y en la migración `20261031120000_pause_during_reader.sql`. Al reanudar, el reloj se desplaza lo que duró la pausa y el lector vuelve a sonar con el desfase exacto, así que sigue por donde iba. El primer caso de `control-golden.json` pasa a ser "pausa antes de empezar → `not_started`".
 - **Dock:** "Saltar" salta lo que está sonando: durante la lectura va a la respuesta (`skip_reader`) y durante la respuesta, a la pregunta siguiente (`next_step`). "Repetir" vuelve a leer la pregunta. "Más" conserva "Ir a parte", tiempo, duración del turno, cambiar examen, ceder y terminar.
 - **Descartado:** "Saltar" siempre a la pregunta siguiente (obligaría a perder la tarea en curso para no oír la lectura); un pitido del sistema (`SystemSound`), que en iOS es casi inaudible y no respeta la sesión de la llamada.
+
+### D-059 · 2026-11-02 · Tiempo para pensar en la Parte 3 y fotos de la Parte 2 en vertical
+- **Pedido de Alfonso:** incorporar los segundos de espera del examen real y ver las fotos de la Parte 2 en vertical.
+- **Investigación:** en B2 First y C1 Advanced, tras leer la tarea de la Parte 3 el examinador da **15 s** para mirarla (fuente consultada: kseacademy, C1 Parte 3). Las Partes 1, 2 y 4 no tienen preparación en B1/B2/C1; en B1 tampoco hay en la Parte 3. Alfonso recordaba 1 min: eso es del nivel C2 Proficiency, que no está en el MVP. Las fuentes de terceros no publican la tabla completa; conviene confirmarlo con el handbook oficial.
+- **Decisión:** campo opcional `prepSec` en los steps `open` (`p3-discuss` de B2 y C1 = 15). El tiempo se suma al final del segmento del lector: micros cerrados, y «Saltar» lo salta. Así no cambia el contrato SQL (`phase` sigue siendo `reader`/`speak`). La UI muestra «Tiempo para pensar» y el reloj cuenta esos 15 s (`ExamSnapshot.thinking`).
+- **Descartado:** una fase `prep` nueva (obligaba a tocar migraciones y controles).
+- **Fotos:** `PhotoGrid` apila las dos fotos una sobre otra (16:10) en vez del carrusel horizontal; tocar abre el zoom.
+- **Pendiente:** aplicar `seed/exam_catalog.sql` regenerado en Supabase para que las sesiones en vivo tengan los 15 s.

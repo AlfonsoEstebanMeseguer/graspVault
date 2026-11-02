@@ -128,6 +128,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "c1-e10-taking-entrepreneurial-risks",
           "text": "Talk to each other about this question: How might these factors contribute to the success of a start-up?",
           "audio": "audio/C1/c1-e10-taking-entrepreneurial-risks/p3-discuss.mp3",

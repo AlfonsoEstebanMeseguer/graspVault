@@ -38,6 +38,7 @@
   },
   "examiner": "Examinador",
   "examinerQuestion": "Pregunta del examinador",
+  "thinkingTime": "Tiempo para pensar",
   "hideText": "Ocultar texto",
   "showText": "Ver texto",
   "hideTimer": "Ocultar cronómetro",

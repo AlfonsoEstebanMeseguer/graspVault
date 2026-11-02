@@ -39,6 +39,8 @@ export const OpenStep = z.object({
   target: z.enum(["A", "B", "both"]),
   durationSec: z.number().int().min(5).max(360),
   diagram: slug.optional(),
+  // Silent thinking time after the examiner reads the task (mics closed).
+  prepSec: z.number().int().min(0).max(120).optional(),
 }).strict();
 
 export const Step = z.discriminatedUnion("kind", [NarrationStep, TurnStep, OpenStep]);

@@ -126,6 +126,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "b2-e35-cooking-and-restaurants",
           "text": "Talk to each other about this question: How might these things help a new restaurant to succeed?",
           "audio": "audio/B2/b2-e35-cooking-and-restaurants/p3-discuss.mp3",

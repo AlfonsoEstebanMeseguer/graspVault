@@ -128,6 +128,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "c1-e28-influencers-and-authenticity",
           "text": "Talk to each other about this question: How might these effects influence young people?",
           "audio": "audio/C1/c1-e28-influencers-and-authenticity/p3-discuss.mp3",

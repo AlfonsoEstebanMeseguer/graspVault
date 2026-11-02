@@ -126,6 +126,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "b2-e13-technology-in-the-home",
           "text": "Talk to each other about this question: How might these changes affect family life?",
           "audio": "audio/B2/b2-e13-technology-in-the-home/p3-discuss.mp3",

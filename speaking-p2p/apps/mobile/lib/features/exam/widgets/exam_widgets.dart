@@ -566,7 +566,7 @@ class QuestionCard extends StatelessWidget {
   }
 }
 
-/// Part 2 photos: a carousel with "1/2" and a frame; a tap opens them full
+/// Part 2 photos: stacked vertically with "1/2" badges; a tap opens them full
 /// screen with pinch-to-zoom. A photo with no file shows the caption instead.
 class PhotoGrid extends ConsumerStatefulWidget {
   const PhotoGrid({super.key, required this.assets, this.files = const {}});
@@ -578,15 +578,6 @@ class PhotoGrid extends ConsumerStatefulWidget {
 }
 
 class _PhotoGridState extends ConsumerState<PhotoGrid> {
-  late final _page = PageController(viewportFraction: 0.86);
-  int _index = 0;
-
-  @override
-  void dispose() {
-    _page.dispose();
-    super.dispose();
-  }
-
   Widget _photo(String id, PhotoCatalog catalog, {BoxFit fit = BoxFit.cover}) {
     final p = context.palette;
     final file = widget.files[id];
@@ -626,12 +617,9 @@ class _PhotoGridState extends ConsumerState<PhotoGrid> {
 
   @override
   Widget build(BuildContext context) {
-    final p = context.palette;
     final catalog = ref.watch(photoCatalogProvider).value ?? const PhotoCatalog();
     final n = widget.assets.length;
-    Widget framed(int i) => Padding(
-          padding: EdgeInsets.only(right: n > 1 ? 10 : 0),
-          child: GestureDetector(
+    Widget framed(int i) => GestureDetector(
             onTap: () => _zoom(widget.assets[i], catalog),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(AppRadii.card),
@@ -649,34 +637,14 @@ class _PhotoGridState extends ConsumerState<PhotoGrid> {
                   ),
               ]),
             ),
-          ),
-        );
+          );
+    // Stacked top to bottom: both photos are visible at once, no swiping.
     return Column(children: [
-      AspectRatio(
-        aspectRatio: n == 1 ? 4 / 3 : 1.5,
-        child: n == 1
-            ? framed(0)
-            : PageView.builder(
-                controller: _page,
-                padEnds: false,
-                itemCount: n,
-                onPageChanged: (i) => setState(() => _index = i),
-                itemBuilder: (_, i) => framed(i),
-              ),
-      ),
-      if (n > 1) ...[
-        const SizedBox(height: 10),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          for (var i = 0; i < n; i++)
-            AnimatedContainer(
-              duration: AppMotion.smooth,
-              margin: const EdgeInsets.symmetric(horizontal: 3),
-              width: i == _index ? 18 : 6,
-              height: 6,
-              decoration: BoxDecoration(color: i == _index ? p.link : p.overlay, borderRadius: BorderRadius.circular(3)),
-            ),
-        ]),
-      ],
+      for (var i = 0; i < n; i++)
+        Padding(
+          padding: EdgeInsets.only(bottom: i < n - 1 ? 10 : 0),
+          child: AspectRatio(aspectRatio: n == 1 ? 4 / 3 : 16 / 10, child: framed(i)),
+        ),
     ]);
   }
 }

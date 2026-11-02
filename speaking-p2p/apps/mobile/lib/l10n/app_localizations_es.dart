@@ -68,6 +68,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get examinerQuestion => 'Pregunta del examinador';
 
   @override
+  String get thinkingTime => 'Tiempo para pensar';
+
+  @override
   String get hideText => 'Ocultar texto';
 
   @override

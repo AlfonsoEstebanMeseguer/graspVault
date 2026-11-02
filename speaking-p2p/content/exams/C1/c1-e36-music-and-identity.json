@@ -128,6 +128,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "c1-e36-music-and-identity",
           "text": "Talk to each other about this question: How might music influence the way people see themselves and others?",
           "audio": "audio/C1/c1-e36-music-and-identity/p3-discuss.mp3",

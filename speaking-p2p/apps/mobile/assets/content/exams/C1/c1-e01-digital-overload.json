@@ -128,6 +128,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "c1-e01-digital-overload",
           "text": "Talk to each other about this question: How effective might these approaches be in helping people to concentrate?",
           "audio": "audio/C1/c1-e01-digital-overload/p3-discuss.mp3",

@@ -128,6 +128,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "c1-e26-young-people-and-politics",
           "text": "Talk to each other about this question: How might these ideas encourage more young people to take an interest in politics?",
           "audio": "audio/C1/c1-e26-young-people-and-politics/p3-discuss.mp3",

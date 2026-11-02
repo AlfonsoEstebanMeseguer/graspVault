@@ -59,9 +59,25 @@ void main() {
     final s = e.at(t0 + seg.startMs + 1);
     expect(e.diagramId(s), 'b2-community');
     expect(s.myMicOn && s.partnerMicOn, isTrue);
-    final reader = e.at(t0 + seg.startMs - 1);
+    final readerSeg = e.timeline.segments[seg.index - 1];
+    final reader = e.at(t0 + readerSeg.startMs + 1);
     expect(reader.readerSpeaking, isTrue);
     expect(reader.myMicOn || reader.partnerMicOn, isFalse, reason: 'mientras lee el lector, los dos mudos');
+  });
+
+  test('parte 3 (B2): 15 s para pensar tras el enunciado, con los micros cerrados', () {
+    final e = ExamEngine(exam: b2, myRole: Role.b, examStartedAtMs: t0);
+    final seg = firstSpeak(e, part: 3);
+    final readerSeg = e.timeline.segments[seg.index - 1];
+    final step = e.exam.step(seg.stepId);
+    expect(step.prepSec, 15);
+    expect(readerSeg.durationMs, step.audioMs + readerGapMs + 15000);
+    final think = e.at(t0 + seg.startMs - 1);
+    expect(think.thinking, isTrue);
+    expect(think.readerSpeaking, isFalse);
+    expect(think.myMicOn || think.partnerMicOn, isFalse);
+    expect(e.at(t0 + seg.startMs - 15001).thinking, isFalse, reason: 'aún lee el examinador');
+    expect(e.at(t0 + seg.startMs).thinking, isFalse);
   });
 
   test('feedback de 5 min y fin', () {

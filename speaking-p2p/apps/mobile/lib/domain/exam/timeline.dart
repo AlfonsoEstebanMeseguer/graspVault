@@ -137,7 +137,8 @@ Timeline buildTimeline(Exam exam) {
 
   for (final part in exam.parts) {
     for (final step in part.steps) {
-      push(part.index, step, Phase.reader, step.audioMs + readerGapMs);
+      // Thinking time is silence at the end of the reader window (mics closed).
+      push(part.index, step, Phase.reader, step.audioMs + readerGapMs + step.prepSec * 1000);
       if (step.kind != StepKind.narration) push(part.index, step, Phase.speak, step.durationSec * 1000);
     }
   }

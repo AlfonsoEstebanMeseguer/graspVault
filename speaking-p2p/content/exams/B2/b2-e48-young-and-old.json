@@ -126,6 +126,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "b2-e48-young-and-old",
           "text": "Talk to each other about this question: How might these ideas bring different generations together?",
           "audio": "audio/B2/b2-e48-young-and-old/p3-discuss.mp3",

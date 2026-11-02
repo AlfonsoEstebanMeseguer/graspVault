@@ -160,7 +160,7 @@ function build(s: Spec): { exam: unknown; diagram: unknown; photos: Record<strin
     ]
     : [
       step({ id: "p3-intro", kind: "narration", text: `Now I'd like you to talk about something together for about two minutes. ${s.p3.text}` }),
-      step({ id: "p3-discuss", kind: "open", target: "both", durationSec: 120, diagram: diagramId, text: `Talk to each other about this question: ${s.p3.central}` }),
+      step({ id: "p3-discuss", kind: "open", target: "both", durationSec: 120, prepSec: 15, diagram: diagramId, text: `Talk to each other about this question: ${s.p3.central}` }),
       step({ id: "p3-decide", kind: "open", target: "both", durationSec: 60, diagram: diagramId, text: `Now you have about a minute to decide together. ${s.p3.decision}` }),
     ];
 

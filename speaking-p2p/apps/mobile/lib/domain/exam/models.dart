@@ -38,6 +38,7 @@ class ExamStep {
     required this.audioMs,
     this.target,
     this.durationSec = 0,
+    this.prepSec = 0,
     this.assets = const [],
     this.diagram,
   });
@@ -49,6 +50,9 @@ class ExamStep {
   final int audioMs;
   final Target? target;
   final int durationSec;
+
+  /// Silent thinking time after the reader finishes (mics closed).
+  final int prepSec;
   final List<String> assets;
   final String? diagram;
 
@@ -62,6 +66,7 @@ class ExamStep {
       audioMs: j['audioMs']! as int,
       target: kind == StepKind.narration ? null : _target(j['target']),
       durationSec: (j['durationSec'] as int?) ?? 0,
+      prepSec: (j['prepSec'] as int?) ?? 0,
       assets: ((j['assets'] as List<Object?>?) ?? const []).cast<String>(),
       diagram: j['diagram'] as String?,
     );

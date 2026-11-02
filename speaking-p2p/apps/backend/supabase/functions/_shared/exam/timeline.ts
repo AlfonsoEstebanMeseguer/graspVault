@@ -64,7 +64,10 @@ export function buildTimeline(exam: Exam): Timeline {
   };
   for (const part of exam.parts) {
     for (const step of part.steps) {
-      push(part.index, step, "reader", step.audioMs + READER_GAP_MS);
+      // Thinking time (e.g. 15 s to read the Part 3 task) is silence at the end
+      // of the reader window: mics stay closed and "skip" jumps past it.
+      const prepMs = step.kind === "open" ? (step.prepSec ?? 0) * 1000 : 0;
+      push(part.index, step, "reader", step.audioMs + READER_GAP_MS + prepMs);
       if (step.kind !== "narration") push(part.index, step, "speak", step.durationSec * 1000);
     }
   }

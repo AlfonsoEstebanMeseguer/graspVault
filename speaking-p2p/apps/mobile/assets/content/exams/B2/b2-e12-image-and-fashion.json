@@ -126,6 +126,7 @@
           "kind": "open",
           "target": "both",
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "b2-e12-image-and-fashion",
           "text": "Talk to each other about this question: How might these things influence what young people wear?",
           "audio": "audio/B2/b2-e12-image-and-fashion/p3-discuss.mp3",

@@ -270,6 +270,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
   /// reads it stands full at the window to come; a narration has none.
   ({int remaining, int total, bool standby})? _clock() {
     final seg = _snap.segment!;
+    if (_snap.thinking) return (remaining: seg.endMs - _snap.elapsedMs, total: _snap.step!.prepSec * 1000, standby: false);
     if (seg.phase == Phase.speak) return (remaining: seg.endMs - _snap.elapsedMs, total: seg.durationMs, standby: false);
     final segs = _engine.timeline.segments;
     final next = seg.index + 1 < segs.length ? segs[seg.index + 1] : null;
@@ -416,6 +417,12 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
     final owner = _snap.turnOwner;
     final reader = _snap.readerSpeaking;
     final children = <Widget>[];
+    if (_snap.thinking) {
+      children.add(Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Center(child: Overline(l.thinkingTime, color: p.link)),
+      ));
+    }
     final micA = _snap.paused || _snap.phase.mic.forRole(Role.a);
     final micB = _snap.paused || _snap.phase.mic.forRole(Role.b);
 

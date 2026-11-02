@@ -131,6 +131,7 @@
           "audio": "audio/C1/c1-work-and-technology/p3-discuss.mp3",
           "audioMs": 5500,
           "durationSec": 120,
+          "prepSec": 15,
           "diagram": "c1-work-tech"
         },
         {
