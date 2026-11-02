@@ -299,3 +299,11 @@
 - **Descartado:** una fase `prep` nueva (obligaba a tocar migraciones y controles).
 - **Fotos:** `PhotoGrid` apila las dos fotos una sobre otra (16:10) en vez del carrusel horizontal; tocar abre el zoom.
 - **Pendiente:** aplicar `seed/exam_catalog.sql` regenerado en Supabase para que las sesiones en vivo tengan los 15 s.
+
+### D-060 · 2026-11-02 · Términos y Privacidad finalizados para publicar
+- **Pedido de Alfonso:** cerrada la fase de funcionalidades, dejar los Términos y la Política de Privacidad listos y legales para App Store y Google Play, con aceptación obligatoria en el registro y un `.md` aparte con lo que falte por decidir.
+- **Decisión:** se limpian `assets/legal/terminos.md` y `privacidad.md` de notas internas (`> [REVISAR]`), se resuelven los correos de contacto (`soporte@mirlotalk.app`, `privacidad@mirlotalk.app`) y se sube la versión a `2026-11-02` (`termsVersion` en `account.dart`, que `legalVersion` deriva). Los datos del titular (nombre, NIF, domicilio) quedan como `[por completar antes de publicar]`: no se inventan porque un NIF falso es en sí un defecto legal.
+- **Aceptación:** ya estaba implementada (casilla del onboarding que bloquea el alta + `profiles_private.terms_version`/`terms_accepted_at` `not null`). No se toca.
+- **Notas trasladadas:** todo lo pendiente va a `docs/legal/ASPECTOS_A_COMPLETAR.md` (titular, edad mínima 14 vs 18, dominio y buzones, marcas Cambridge, teléfono, pagos/RevenueCat, AdMob, DSA, Sentry/PostHog, proveedores y regiones, re-aceptación por cambio de versión, transferencias, licencias, usuarios expulsados).
+- **Edad mínima:** sigue en 14 (CLAUDE.md §13). Señalado como la decisión más delicada para las tiendas; recomendación de subir a 18 (como ADR 0044 del vault) pendiente de que lo decida Alfonso. No se reabre sin su visto bueno.
+- **Test:** `legal_test.dart` pasa a exigir que los documentos publicados no lleven notas internas (antes exigía lo contrario).

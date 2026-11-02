@@ -1,19 +1,15 @@
 # Política de Privacidad
 
-Versión 2026-10-24 · Última actualización: 24 de octubre de 2026
-
-> [REVISAR] Borrador de trabajo, no revisado por un abogado. Las líneas «[REVISAR]» son notas internas que la app no muestra. Completar los datos [●] y revisar sobre todo los apartados 5 (proveedores) y 8 (menores).
+Versión 2026-11-02 · Última actualización: 2 de noviembre de 2026
 
 En esta Política explicamos qué datos personales tratamos cuando usa la aplicación MirloTalk (la «Aplicación»), para qué los usamos, con quién los compartimos, durante cuánto tiempo los guardamos y cómo puede ejercer sus derechos. La aplicamos conforme al Reglamento (UE) 2016/679, General de Protección de Datos (RGPD), y a la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
 
 ## 1. Responsable del tratamiento
 
-- Responsable: [●] (nombre y apellidos o razón social)
-- NIF/CIF: [●]
-- Domicilio: [●]
-- Contacto para asuntos de privacidad: [●]
-
-> [REVISAR] Por el volumen y el tipo de tratamiento, en principio no es obligatorio nombrar un Delegado de Protección de Datos (art. 37 RGPD y art. 34 LOPDGDD). Sí es obligatorio llevar el registro de actividades de tratamiento y firmar un contrato de encargo (DPA) con cada proveedor del apartado 5; la mayoría lo ofrecen en sus condiciones.
+- Responsable: [por completar antes de publicar] (nombre y apellidos o razón social)
+- NIF/CIF: [por completar antes de publicar]
+- Domicilio: [por completar antes de publicar]
+- Contacto para asuntos de privacidad: privacidad@mirlotalk.app
 
 ## 2. Qué datos tratamos
 
@@ -26,8 +22,6 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 - Mensajes que escribe en los chats de las reuniones.
 - Valoraciones con rúbrica que hace a otros usuarios, y reportes que envía.
 - Grabaciones de audio de una sesión, solo si usted y la otra persona activan la grabación.
-
-> [REVISAR] Teléfono: hoy se pide y se guarda, pero la app no lo usa para nada. Por el principio de minimización (art. 5.1.c RGPD) habría que eliminarlo del registro o explicar para qué sirve (por ejemplo, avisos por SMS). Es una pregunta habitual en una inspección.
 
 2.2. Datos que se generan al usar la Aplicación:
 
@@ -51,8 +45,6 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 - Avisos del servicio: recordatorios de una reunión 10 minutos antes y avisos sobre cambios en ella. Base legal: ejecución del contrato. Las notificaciones push solo se envían si las permite en su dispositivo.
 - Mejorar la Aplicación con estadísticas de uso agregadas. Base legal: interés legítimo.
 
-> [REVISAR] Analítica (PostHog) y registro de errores (Sentry) todavía no están integrados. Si se integran: para Sentry basta el interés legítimo si no se envían datos identificativos. Para PostHog, si se usa con identificadores de usuario o con fines de perfilado, hay que pedir el consentimiento o configurarlo de forma anónima (sin IP, sin identificador persistente). Añadir los dos al apartado 5.
-
 No usamos sus datos para tomar decisiones automatizadas que produzcan efectos jurídicos sobre usted ni le afecten de forma significativa. El emparejamiento automático solo une a dos personas que buscan el mismo nivel a la vez.
 
 ## 4. Cuánto tiempo los guardamos
@@ -67,8 +59,6 @@ No usamos sus datos para tomar decisiones automatizadas que produzcan efectos ju
 
 Una vez vencidos estos plazos, los datos se suprimen o se bloquean durante el tiempo en que pudieran exigirse responsabilidades legales.
 
-> [REVISAR] Hoy la eliminación de la cuenta borra los reportes en los que el usuario es el reportado (se ponen a null). Si se quiere conservar la información de un usuario expulsado (por ejemplo, para impedir que vuelva a registrarse), hay que decidirlo y reflejarlo aquí.
-
 ## 5. Con quién compartimos sus datos
 
 No vendemos sus datos ni los cedemos a terceros para fines publicitarios. Los compartimos solo en estos casos:
@@ -81,8 +71,6 @@ No vendemos sus datos ni los cedemos a terceros para fines publicitarios. Los co
 - LiveKit Inc. (LiveKit Cloud): transmisión del audio de las llamadas en tiempo real y, si se activa, grabación. Empresa estadounidense.
 - Cloudflare Inc. (R2): almacenamiento de fotos de perfil, grabaciones y material de los exámenes. Empresa estadounidense.
 - Apple Inc. y Google LLC: distribución de la Aplicación, pagos de suscripciones y notificaciones push, como responsables independientes según sus propias políticas.
-
-> [REVISAR] Comprobar en el panel de LiveKit Cloud y de Cloudflare R2 la región en la que se procesan y guardan los datos. Si es posible, elegir la UE (R2 permite una jurisdicción UE). Completar con RevenueCat (gestión de suscripciones), AdMob, Sentry o PostHog si se integran, y con el proveedor de correo que envía los emails de confirmación si no es el de Supabase.
 
 5.3. Con autoridades y tribunales, cuando la ley nos obligue o para defendernos de reclamaciones.
 
@@ -104,18 +92,16 @@ Ningún sistema es infalible. Si se produjera una brecha de seguridad que supong
 
 ## 8. Menores de edad
 
-La Aplicación está dirigida a personas de 14 años o más. En España, a partir de los 14 años una persona puede consentir por sí misma el tratamiento de sus datos (art. 7 LOPDGDD). No permitimos el registro de menores de 14 años. Si sabemos que una cuenta pertenece a un menor de esa edad, la eliminaremos. Si es madre, padre o tutor y cree que su hijo o hija menor de 14 años se ha registrado, escríbanos a [●].
+La Aplicación está dirigida a personas de 14 años o más. En España, a partir de los 14 años una persona puede consentir por sí misma el tratamiento de sus datos (art. 7 LOPDGDD). No permitimos el registro de menores de 14 años. Si sabemos que una cuenta pertenece a un menor de esa edad, la eliminaremos. Si es madre, padre o tutor y cree que su hijo o hija menor de 14 años se ha registrado, escríbanos a privacidad@mirlotalk.app.
 
 Los pagos de los menores de 18 años deben hacerse con autorización de sus padres o tutores, a través de la cuenta de la tienda.
-
-> [REVISAR] Ver la nota del apartado 4 de los Términos. Este apartado debe coincidir con la edad mínima que se decida.
 
 ## 9. Sus derechos
 
 Puede ejercer en cualquier momento los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, así como retirar su consentimiento (por ejemplo, el de la grabación) sin que ello afecte a la licitud del tratamiento anterior.
 
 - Puede modificar gran parte de sus datos directamente en la Aplicación (Perfil > Editar perfil) y eliminar su cuenta desde Ajustes > Eliminar cuenta.
-- Para el resto, escriba a [●] indicando qué derecho quiere ejercer. Si tenemos dudas razonables sobre su identidad, le pediremos que nos escriba desde el correo de su cuenta. Le responderemos en el plazo de un mes.
+- Para el resto, escriba a privacidad@mirlotalk.app indicando qué derecho quiere ejercer. Si tenemos dudas razonables sobre su identidad, le pediremos que nos escriba desde el correo de su cuenta. Le responderemos en el plazo de un mes.
 
 Si considera que no hemos atendido bien su solicitud, puede presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).
 
@@ -133,4 +119,4 @@ Si cambiamos esta Política de forma relevante, se lo comunicaremos en la Aplica
 
 ## 12. Contacto
 
-Para cualquier cuestión sobre privacidad, escriba a [●].
+Para cualquier cuestión sobre privacidad, escriba a privacidad@mirlotalk.app.

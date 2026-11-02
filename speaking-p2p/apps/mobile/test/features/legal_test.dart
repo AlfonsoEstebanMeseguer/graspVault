@@ -1,6 +1,6 @@
-// Terms and Privacy Policy (D-045): the review notes never reach the user, the
-// version the user signs is the one written in both documents, and both can be
-// read without an account.
+// Terms and Privacy Policy (D-045, finalised in D-060): the published documents
+// carry no internal review notes, the version the user signs is the one written
+// in both documents, and both can be read without an account.
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,8 +13,9 @@ void main() {
   for (final doc in LegalDoc.values) {
     final md = File(doc.asset).readAsStringSync();
 
-    test('${doc.name}: las notas [REVISAR] no se muestran', () {
-      expect(md, contains('[REVISAR]'), reason: 'el borrador lleva notas para Alfonso');
+    test('${doc.name}: el documento publicado no lleva notas internas', () {
+      expect(md, isNot(contains('[REVISAR]')), reason: 'las notas se movieron a docs/legal/ASPECTOS_A_COMPLETAR.md');
+      expect(md.split('\n').where((l) => l.trimLeft().startsWith('>')), isEmpty);
       final text = parseLegal(md).map((b) => switch (b) {
             LegalTitle(:final text) || LegalHeading(:final text) || LegalParagraph(:final text) || LegalBullet(:final text) => text,
           });
