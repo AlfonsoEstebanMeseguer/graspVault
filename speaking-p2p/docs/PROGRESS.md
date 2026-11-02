@@ -89,3 +89,12 @@ Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tes
 1. **Alfonso:** pegar `apps/backend/supabase/manual/apply_pending_2026-10-15.sql` en Supabase › SQL Editor › Run, y borrar el usuario de prueba sin confirmar.
 2. Yo: comprobar migraciones/advisors, prueba E2E por HTTP (crear oferta, aceptar, confirmar, entrar, borrar cuenta) y vaciar `config-check`.
 3. Probar la app en dos móviles (llamada, lobby, examen sincronizado).
+
+## Sesión 2026-11-02
+- **Parte 3 · tiempo para pensar (D-059):** `prepSec` (15 s) en B2 y C1; silencio al final del segmento del lector, micros cerrados, «Saltar» lo salta. UI «Tiempo para pensar». Catálogo regenerado y **aplicado en Supabase** (102 exámenes). Fotos de la Parte 2 **en vertical** (apiladas) en vez del carrusel.
+- **Términos y Privacidad finalizados (D-060):** documentos limpios de notas internas, correos de contacto puestos, versión `2026-11-02`. Lo pendiente de decidir (titular, edad, proveedores, DSA, ads, analítica) en `docs/legal/ASPECTOS_A_COMPLETAR.md`. La aceptación en el registro ya existía.
+- **Auditoría de seguridad (`docs/SECURITY_AUDIT_2026-11-02.md`):** revisión estática + introspección de privilegios en producción + skill de seguridad. **Sin vulnerabilidades explotables.** Dos endurecimientos menores (protección de contraseñas filtradas; rate limiting).
+- **Observabilidad preparada (D-061):** Sentry y PostHog andamiados *no-op* hasta tener claves (backend `_shared/sentry.ts` + `analytics.ts`, app `core/telemetry/telemetry.dart`). Guía en `docs/OBSERVABILITY.md`.
+- **Decisiones de infraestructura:** `docs/EVAL_REDIS_REVENUECAT.md` — RevenueCat sí (ya andamiado, encender al monetizar); Redis todavía no (Postgres + LiveKit cubren el volumen actual).
+- **Marketing:** `docs/MARKETING.md` — posicionamiento, viralidad P2P, arranque en frío, canales, embudo y lanzamiento.
+- Tests: Flutter ✅ (incl. legal y onboarding), `flutter analyze` limpio, `deno check` limpio, golden/golden-SQL ✅. Nuevo `.ipa` compilado (run 41422181082).
