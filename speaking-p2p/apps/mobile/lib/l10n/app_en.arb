@@ -1,6 +1,11 @@
 {
   "@@locale": "en",
   "appName": "MirloTalk",
+  "errorSignInFailed": "Couldn't sign you in. Please try again",
+  "errorReauthMismatch": "You signed in with a different account. Sign in with the account you want to delete",
+  "errorReauthUnavailable": "To delete this account, open the app on the phone where you signed in with Apple",
+  "errorReauthRequired": "For your security, sign in again and repeat the deletion",
+  "deleteReauthWith": "When you confirm, we'll ask you to sign in with {provider} again.",
   "tabExam": "Exam",
   "tabAgenda": "Agenda",
   "tabProfile": "Profile",

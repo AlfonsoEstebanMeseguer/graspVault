@@ -1,7 +1,9 @@
 // Welcome / login (Design 2.0 "Bienvenida"): brand, A–B hero with Pico, the
-// promise, the level as a segmented control, then the ways in. Email +
-// password is what works today (DECISIONS D-022); Apple and Google are drawn
-// but not wired yet, so they say so instead of failing.
+// promise, the level as a segmented control, then the ways in. Google and
+// Apple sign in natively (D-062) and double as sign-up: a new account lands
+// in the onboarding. Email + password stays (D-022). A provider the build is
+// not configured for says "coming soon" instead of failing; Apple is iOS-only.
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +16,7 @@ import '../../core/ui/brand.dart';
 import '../../core/ui/kit.dart';
 import '../../core/ui/pico.dart';
 import '../../data/auth/auth_repository.dart';
+import '../../domain/account/account.dart';
 import '../../domain/exam/models.dart';
 import '../home/home_screen.dart' show targetLevelProvider;
 import '../legal/legal_screen.dart' show LegalDoc, LegalDocAsset;
@@ -47,11 +50,31 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         _message = null;
       });
 
-  /// Apple and Google: the buttons exist, the providers are not connected yet.
-  void _soon(String provider) {
+  void _snack(String text) {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(context.l10n.providerSoon(provider))));
+      ..showSnackBar(SnackBar(content: Text(text)));
+  }
+
+  /// Google / Apple. Navigation happens in the router redirect when the
+  /// session changes; closing the provider's sheet is silent.
+  Future<void> _withProvider(String name, bool available, Future<void> Function() signIn) async {
+    if (!available) return _snack(context.l10n.providerSoon(name));
+    if (_busy) return;
+    setState(() {
+      _busy = true;
+      _message = null;
+    });
+    final l = context.l10n;
+    try {
+      await signIn();
+    } on AppFailure catch (e) {
+      if (e.code != 'sign_in_cancelled' && mounted) _snack(errorText(l, e));
+    } catch (e) {
+      if (mounted) _snack(errorText(l, e));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   Future<void> _submit() async {
@@ -99,19 +122,24 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Widget _providers() {
     final l = context.l10n;
     final p = context.palette;
+    final repo = ref.watch(authRepositoryProvider);
+    // Apple is offered on iOS only (D-062); Google everywhere.
+    final ios = defaultTargetPlatform == TargetPlatform.iOS;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      FilledButton.icon(
-        key: const Key('login-apple'),
-        style: FilledButton.styleFrom(backgroundColor: p.inverse, foregroundColor: p.onInverse),
-        onPressed: () => _soon('Apple'),
-        icon: const Icon(AppIcons.apple, size: 22),
-        label: Text(l.continueWithApple),
-      ),
-      const SizedBox(height: 10),
+      if (ios) ...[
+        FilledButton.icon(
+          key: const Key('login-apple'),
+          style: FilledButton.styleFrom(backgroundColor: p.inverse, foregroundColor: p.onInverse),
+          onPressed: _busy ? null : () => _withProvider('Apple', repo.appleAvailable, repo.signInWithApple),
+          icon: const Icon(AppIcons.apple, size: 22),
+          label: Text(l.continueWithApple),
+        ),
+        const SizedBox(height: 10),
+      ],
       FilledButton.icon(
         key: const Key('login-google'),
         style: FilledButton.styleFrom(backgroundColor: p.surfaceMuted, foregroundColor: p.textPrimary),
-        onPressed: () => _soon('Google'),
+        onPressed: _busy ? null : () => _withProvider('Google', repo.googleAvailable, repo.signInWithGoogle),
         icon: const Icon(AppIcons.google, size: 20),
         label: Text(l.continueWithGoogle),
       ),

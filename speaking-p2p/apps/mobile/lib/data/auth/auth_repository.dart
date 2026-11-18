@@ -1,5 +1,6 @@
-// Authentication. Email + password for now (DECISIONS D-022); the rest of the
-// app only sees AuthRepository, so switching to Google later touches this file.
+// Authentication: Google and Apple (native, D-062) plus email + password
+// (D-022, kept for App Review's demo account). The rest of the app only sees
+// AuthRepository.
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
 import '../../core/config/env.dart';
 import '../../domain/account/account.dart';
+import 'oauth_sign_in.dart';
 
 enum SignUpOutcome { signedIn, confirmEmail }
 
@@ -15,20 +17,31 @@ abstract class AuthRepository {
   Stream<AuthUser?> changes();
   Future<void> signIn(String email, String password);
   Future<SignUpOutcome> signUp(String email, String password);
+
+  /// Whether the build has the provider configured (client IDs / capability).
+  bool get googleAvailable;
+  bool get appleAvailable;
+
+  /// Sign in or sign up in one step: a new user lands in the onboarding.
+  Future<void> signInWithGoogle();
+  Future<void> signInWithApple();
   Future<void> signOut();
 }
 
 class SupabaseAuthRepository implements AuthRepository {
-  SupabaseAuthRepository(this._client);
+  SupabaseAuthRepository(this._client, this._oauth);
   final sb.SupabaseClient _client;
+  final OAuthSignIn _oauth;
 
-  AuthUser? _map(sb.User? u) => u == null ? null : AuthUser(id: u.id, email: u.email);
+  static AuthUser? map(sb.User? u) => u == null
+      ? null
+      : AuthUser(id: u.id, email: u.email, method: SignInMethod.fromProvider(u.appMetadata['provider'] as String?));
 
   @override
-  AuthUser? get currentUser => _map(_client.auth.currentUser);
+  AuthUser? get currentUser => map(_client.auth.currentUser);
 
   @override
-  Stream<AuthUser?> changes() => _client.auth.onAuthStateChange.map((s) => _map(s.session?.user));
+  Stream<AuthUser?> changes() => _client.auth.onAuthStateChange.map((s) => map(s.session?.user));
 
   @override
   Future<void> signIn(String email, String password) async {
@@ -50,7 +63,21 @@ class SupabaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> signOut() => _client.auth.signOut();
+  bool get googleAvailable => _oauth.googleAvailable;
+  @override
+  bool get appleAvailable => _oauth.appleAvailable;
+
+  @override
+  Future<void> signInWithGoogle() => _oauth.google();
+
+  @override
+  Future<void> signInWithApple() => _oauth.apple();
+
+  @override
+  Future<void> signOut() async {
+    await _oauth.signOutProviders();
+    await _client.auth.signOut();
+  }
 
   static String _authCode(sb.AuthException e) => switch (e.code) {
         'invalid_credentials' => 'invalid_credentials',
@@ -73,11 +100,24 @@ class OfflineAuthRepository implements AuthRepository {
   @override
   Future<SignUpOutcome> signUp(String email, String password) async => throw const AppFailure('offline');
   @override
+  bool get googleAvailable => false;
+  @override
+  bool get appleAvailable => false;
+  @override
+  Future<void> signInWithGoogle() async => throw const AppFailure('offline');
+  @override
+  Future<void> signInWithApple() async => throw const AppFailure('offline');
+  @override
   Future<void> signOut() async {}
 }
 
+final oauthSignInProvider = Provider<OAuthSignIn?>((ref) {
+  return Env.fromDefines.hasBackend ? OAuthSignIn(sb.Supabase.instance.client) : null;
+});
+
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  return Env.fromDefines.hasBackend ? SupabaseAuthRepository(sb.Supabase.instance.client) : OfflineAuthRepository();
+  final oauth = ref.watch(oauthSignInProvider);
+  return oauth != null ? SupabaseAuthRepository(sb.Supabase.instance.client, oauth) : OfflineAuthRepository();
 });
 
 /// Current user, live. Watched (not read once) so it never freezes on the

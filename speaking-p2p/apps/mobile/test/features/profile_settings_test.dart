@@ -8,6 +8,7 @@ import 'package:speaking_p2p/core/l10n/l10n.dart';
 import 'package:speaking_p2p/core/theming/app_theme.dart';
 import 'package:speaking_p2p/core/theming/preferences.dart';
 import 'package:speaking_p2p/data/account/account_repository.dart';
+import 'package:speaking_p2p/data/auth/auth_repository.dart';
 import 'package:speaking_p2p/data/profile/profile_repository.dart';
 import 'package:speaking_p2p/domain/account/account.dart';
 import 'package:speaking_p2p/domain/exam/models.dart';
@@ -18,7 +19,7 @@ import 'package:speaking_p2p/features/settings/settings_screen.dart';
 final now = DateTime(2026, 10, 15, 16);
 
 class FakeAccount implements AccountRepository {
-  final deletes = <(String, String)>[];
+  final deletes = <(String?, String)>[];
   String? failWith;
   ({String username, List<String> languages, Level level})? saved;
 
@@ -48,13 +49,13 @@ class FakeAccount implements AccountRepository {
   @override
   Future<String> recordingUrl(String sessionId) async => 'https://example.invalid';
   @override
-  Future<void> deleteAccount({required String password, required String phrase}) async {
+  Future<void> deleteAccount({String? password, required String phrase}) async {
     if (failWith != null) throw AppFailure(failWith!);
     deletes.add((password, phrase));
   }
 }
 
-Future<FakeAccount> pump(WidgetTester tester, Widget home) async {
+Future<FakeAccount> pump(WidgetTester tester, Widget home, {SignInMethod method = SignInMethod.email}) async {
   tester.view.physicalSize = const Size(1080, 2340);
   tester.view.devicePixelRatio = 2.75;
   addTearDown(tester.view.reset);
@@ -64,6 +65,7 @@ Future<FakeAccount> pump(WidgetTester tester, Widget home) async {
   await tester.pumpWidget(ProviderScope(
     overrides: [
       accountRepositoryProvider.overrideWithValue(fake),
+      authUserProvider.overrideWith((ref) => Stream.value(AuthUser(id: 'me', email: 'laura@example.com', method: method))),
       sharedPreferencesProvider.overrideWithValue(prefs),
       agendaClockProvider.overrideWithValue(() => now),
       myProfileProvider.overrideWith((ref) async => const MyProfile(id: 'me', username: 'laura_m', languages: ['es', 'en'], targetLevel: Level.c1)),
@@ -143,5 +145,37 @@ void main() {
     await tester.tap(find.text('Eliminar para siempre'));
     await tester.pump();
     expect(fake.deletes.single, ('secreto123', 'eliminar'));
+  });
+
+  testWidgets('eliminar cuenta de Google: sin contraseña, se reautentica con Google', (tester) async {
+    final fake = await pump(tester, const Scaffold(body: DeleteAccountDialog()), method: SignInMethod.google);
+    FilledButton button() => tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Eliminar para siempre'));
+    expect(find.byType(TextField), findsOneWidget); // only the phrase
+    expect(find.text('Al confirmar te pediremos que vuelvas a entrar con Google.'), findsOneWidget);
+    expect(button().onPressed, isNull);
+    await tester.enterText(find.byType(TextField), 'ELIMINAR');
+    await tester.pump();
+    expect(button().onPressed, isNotNull);
+
+    // Closing Google's sheet is not an error.
+    fake.failWith = 'sign_in_cancelled';
+    await tester.tap(find.text('Eliminar para siempre'));
+    await tester.pump();
+    expect(find.textContaining('fallado'), findsNothing);
+    fake.failWith = 'reauth_mismatch';
+    await tester.tap(find.text('Eliminar para siempre'));
+    await tester.pump();
+    expect(find.textContaining('otra cuenta'), findsOneWidget);
+    fake.failWith = null;
+    await tester.tap(find.text('Eliminar para siempre'));
+    await tester.pump();
+    expect(fake.deletes.single, (null, 'ELIMINAR'));
+  });
+
+  test('método de acceso: el proveedor de Supabase decide la reautenticación', () {
+    expect(SignInMethod.fromProvider('google'), SignInMethod.google);
+    expect(SignInMethod.fromProvider('apple'), SignInMethod.apple);
+    expect(SignInMethod.fromProvider('email'), SignInMethod.email);
+    expect(SignInMethod.fromProvider(null), SignInMethod.email);
   });
 }

@@ -3055,6 +3055,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Podrás añadirle al terminar el examen'**
   String get errorSessionNotEnded;
+
+  /// No description provided for @errorSignInFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido iniciar sesión. Inténtalo de nuevo'**
+  String get errorSignInFailed;
+
+  /// No description provided for @errorReauthMismatch.
+  ///
+  /// In es, this message translates to:
+  /// **'Has entrado con otra cuenta. Vuelve a entrar con la cuenta que quieres eliminar'**
+  String get errorReauthMismatch;
+
+  /// No description provided for @errorReauthUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Para eliminar esta cuenta, abre la app en el móvil donde iniciaste sesión con Apple'**
+  String get errorReauthUnavailable;
+
+  /// No description provided for @errorReauthRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Por seguridad, vuelve a iniciar sesión y repite el borrado'**
+  String get errorReauthRequired;
+
+  /// No description provided for @deleteReauthWith.
+  ///
+  /// In es, this message translates to:
+  /// **'Al confirmar te pediremos que vuelvas a entrar con {provider}.'**
+  String deleteReauthWith(String provider);
 }
 
 class _AppLocalizationsDelegate

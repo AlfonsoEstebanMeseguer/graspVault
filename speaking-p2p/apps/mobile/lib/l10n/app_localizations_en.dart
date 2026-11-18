@@ -1773,4 +1773,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorSessionNotEnded => 'You can add them when the exam is over';
+
+  @override
+  String get errorSignInFailed => 'Couldn\'t sign you in. Please try again';
+
+  @override
+  String get errorReauthMismatch =>
+      'You signed in with a different account. Sign in with the account you want to delete';
+
+  @override
+  String get errorReauthUnavailable =>
+      'To delete this account, open the app on the phone where you signed in with Apple';
+
+  @override
+  String get errorReauthRequired =>
+      'For your security, sign in again and repeat the deletion';
+
+  @override
+  String deleteReauthWith(String provider) {
+    return 'When you confirm, we\'ll ask you to sign in with $provider again.';
+  }
 }

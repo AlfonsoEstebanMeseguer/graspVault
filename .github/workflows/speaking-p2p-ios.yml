@@ -57,7 +57,12 @@ jobs:
           if [ -n "$MOBILE_DEFINES" ]; then printf '%s\n' "$MOBILE_DEFINES" > env/dev.json; fi
           python3 -c "import json;d=json.load(open('env/dev.json'));print('keys:', sorted(d))"
       - name: Check the plists
-        run: plutil -lint ios/Runner/Info.plist
+        run: plutil -lint ios/Runner/Info.plist ios/Runner/Runner.entitlements
+      # Google Sign-In URL scheme from GOOGLE_IOS_CLIENT_ID in env/dev.json (D-062).
+      - name: Google Sign-In URL scheme
+        run: |
+          flutter pub get
+          dart run tool/ios_auth_config.dart env/dev.json
       # Run number + commit: shown at the bottom of Settings and as the iOS build number,
       # so an installed .ipa can be told from an older one (D-054).
       - name: flutter build ios (unsigned)

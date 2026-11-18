@@ -13,6 +13,7 @@ import '../../core/ui/kit.dart';
 import '../../core/l10n/errors.dart';
 import '../../data/account/account_repository.dart';
 import '../../data/auth/auth_repository.dart';
+import '../../domain/account/account.dart';
 import '../legal/legal_screen.dart' show LegalDoc, LegalDocAsset;
 
 class SettingsScreen extends ConsumerWidget {
@@ -237,8 +238,10 @@ class _SubscriptionCard extends ConsumerWidget {
   }
 }
 
-/// Irreversible: password again (fresh session, the server checks < 5 min)
-/// plus the phrase ELIMINAR / DELETE, which the server checks as well.
+/// Irreversible: sign in again (fresh session, the server checks < 5 min) plus
+/// the phrase ELIMINAR / DELETE, which the server checks as well. Email accounts
+/// type the password here; Google / Apple accounts get the provider's sheet
+/// when they confirm (D-062).
 class DeleteAccountDialog extends ConsumerStatefulWidget {
   const DeleteAccountDialog({super.key});
   @override
@@ -258,19 +261,23 @@ class _DeleteAccountDialogState extends ConsumerState<DeleteAccountDialog> {
     super.dispose();
   }
 
+  SignInMethod get _method => ref.read(authUserProvider).value?.method ?? SignInMethod.email;
+
   Future<void> _delete() async {
     setState(() {
       _busy = true;
       _error = null;
     });
     try {
-      await ref.read(accountRepositoryProvider)!.deleteAccount(password: _password.text, phrase: _phrase.text.trim());
+      final usesPassword = _method == SignInMethod.email;
+      await ref.read(accountRepositoryProvider)!.deleteAccount(password: usesPassword ? _password.text : null, phrase: _phrase.text.trim());
       if (mounted) Navigator.of(context).pop();
     } catch (e) {
       if (mounted) {
         setState(() {
           _busy = false;
-          _error = errorText(context.l10n, e);
+          // Closing the provider's sheet is not an error worth a red line.
+          _error = e is AppFailure && e.code == 'sign_in_cancelled' ? null : errorText(context.l10n, e);
         });
       }
     }
@@ -281,18 +288,23 @@ class _DeleteAccountDialogState extends ConsumerState<DeleteAccountDialog> {
     final l = context.l10n;
     final p = context.palette;
     final phraseOk = _phrase.text.trim().toUpperCase() == l.deletePhrase;
+    final method = ref.watch(authUserProvider).value?.method ?? SignInMethod.email;
+    final usesPassword = method == SignInMethod.email;
     return AlertDialog(
       title: Text(l.deleteAccount),
       content: SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Text(l.deleteAccountBody),
           const SizedBox(height: 12),
-          TextField(
-            controller: _password,
-            obscureText: true,
-            onChanged: (_) => setState(() {}),
-            decoration: InputDecoration(labelText: l.yourPassword),
-          ),
+          if (usesPassword)
+            TextField(
+              controller: _password,
+              obscureText: true,
+              onChanged: (_) => setState(() {}),
+              decoration: InputDecoration(labelText: l.yourPassword),
+            )
+          else
+            Text(l.deleteReauthWith(method.label), key: const Key('delete-reauth-note'), style: AppType.footnote.copyWith(color: p.textSecondary, fontWeight: FontWeight.w400)),
           const SizedBox(height: 10),
           TextField(
             controller: _phrase,
@@ -307,7 +319,7 @@ class _DeleteAccountDialogState extends ConsumerState<DeleteAccountDialog> {
         TextButton(onPressed: _busy ? null : () => Navigator.pop(context), child: Text(l.cancelLabel)),
         FilledButton(
           style: FilledButton.styleFrom(backgroundColor: p.danger, foregroundColor: p.onDanger, minimumSize: const Size(0, 40)),
-          onPressed: _busy || !phraseOk || _password.text.isEmpty ? null : _delete,
+          onPressed: _busy || !phraseOk || (usesPassword && _password.text.isEmpty) ? null : _delete,
           child: Text(l.deleteForever),
         ),
       ],

@@ -13,6 +13,19 @@
 		<string>audio</string>
 		<string>voip</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<!-- Google Sign-In callback (D-062): the iOS client ID reversed. Filled from
+		     env/dev.json into Flutter/Auth.xcconfig by tool/ios_auth_config.dart. -->
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(GOOGLE_REVERSED_CLIENT_ID)</string>
+			</array>
+		</dict>
+	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

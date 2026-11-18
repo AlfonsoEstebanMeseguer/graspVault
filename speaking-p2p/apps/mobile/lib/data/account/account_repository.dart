@@ -4,8 +4,9 @@ import '../../domain/feedback/peer_rating.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
-import '../../core/config/env.dart';
 import '../../domain/account/account.dart';
+import '../auth/auth_repository.dart';
+import '../auth/oauth_sign_in.dart';
 import '../../domain/exam/models.dart';
 
 class RecordingItem {
@@ -43,13 +44,16 @@ abstract class AccountRepository {
   /// What partners said about me in the rubric (D-042), averaged.
   Future<FeedbackSummary> feedbackReceived();
 
-  /// Re-authenticates (fresh session, the server wants < 5 min) and deletes.
-  Future<void> deleteAccount({required String password, required String phrase});
+  /// Re-authenticates with the account's own method (fresh session, the server
+  /// wants < 5 min): the password for email accounts, the provider's sheet for
+  /// Google and Apple (D-062). Then deletes.
+  Future<void> deleteAccount({String? password, required String phrase});
 }
 
 class SupabaseAccountRepository implements AccountRepository {
-  SupabaseAccountRepository(this._c);
+  SupabaseAccountRepository(this._c, this._oauth);
   final sb.SupabaseClient _c;
+  final OAuthSignIn _oauth;
   String get _me => _c.auth.currentUser!.id;
 
   Future<Map<String, dynamic>> _invoke(String fn, Map<String, Object?> body) async {
@@ -129,15 +133,29 @@ class SupabaseAccountRepository implements AccountRepository {
       (await _invoke('media-view-url', {'kind': 'recording', 'sessionId': sessionId}))['url'] as String;
 
   @override
-  Future<void> deleteAccount({required String password, required String phrase}) async {
-    final email = _c.auth.currentUser?.email;
-    if (email == null) throw const AppFailure('server_error');
-    try {
-      await _c.auth.signInWithPassword(email: email, password: password);
-    } on sb.AuthException {
-      throw const AppFailure('invalid_credentials');
+  Future<void> deleteAccount({String? password, required String phrase}) async {
+    final me = SupabaseAuthRepository.map(_c.auth.currentUser);
+    if (me == null) throw const AppFailure('server_error');
+    String? appleCode;
+    switch (me.method) {
+      case SignInMethod.email:
+        if (me.email == null || password == null || password.isEmpty) throw const AppFailure('invalid_credentials');
+        try {
+          await _c.auth.signInWithPassword(email: me.email!, password: password);
+        } on sb.AuthException {
+          throw const AppFailure('invalid_credentials');
+        }
+      case SignInMethod.google:
+        if (!_oauth.googleAvailable) throw const AppFailure('reauth_unavailable');
+        await _oauth.google();
+      case SignInMethod.apple:
+        if (!_oauth.appleAvailable) throw const AppFailure('reauth_unavailable');
+        appleCode = await _oauth.apple();
     }
-    await _invoke('account-delete', {'confirmation': phrase});
+    // The provider sheet may sign in ANOTHER account (a second Google account
+    // on the phone): never delete whoever happens to be signed in now.
+    if (_c.auth.currentUser?.id != me.id) throw const AppFailure('reauth_mismatch');
+    await _invoke('account-delete', {'confirmation': phrase, 'appleAuthorizationCode': ?appleCode});
     // The user no longer exists: a failing remote sign-out still clears the local session.
     try {
       await _c.auth.signOut();
@@ -146,5 +164,6 @@ class SupabaseAccountRepository implements AccountRepository {
 }
 
 final accountRepositoryProvider = Provider<AccountRepository?>((ref) {
-  return Env.fromDefines.hasBackend ? SupabaseAccountRepository(sb.Supabase.instance.client) : null;
+  final oauth = ref.watch(oauthSignInProvider);
+  return oauth != null ? SupabaseAccountRepository(sb.Supabase.instance.client, oauth) : null;
 });

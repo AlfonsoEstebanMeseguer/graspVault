@@ -320,8 +320,10 @@ max_frequency = "5s"
 # Use an external OAuth provider. The full list of providers are: `apple`, `azure`, `bitbucket`,
 # `discord`, `facebook`, `github`, `gitlab`, `google`, `keycloak`, `linkedin_oidc`, `notion`, `twitch`,
 # `twitter`, `x`, `slack`, `spotify`, `workos`, `zoom`.
-# Google is the target provider (CLAUDE.md §3) but is POSTPONED (D-022): for now
-# login is email + password. Re-enable this block when the OAuth clients exist.
+# Google and Apple sign in natively with signInWithIdToken (D-062). The REAL project is
+# configured in the dashboard (docs/AUTH_OAUTH_SETUP.md); these blocks are only for a
+# local stack. Google: client_id = web,ios client IDs. Apple (native iOS): client_id = the
+# bundle ID, no secret needed.
 [auth.external.google]
 enabled = false
 client_id = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID)"

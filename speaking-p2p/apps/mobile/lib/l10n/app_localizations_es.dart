@@ -1771,4 +1771,25 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorSessionNotEnded => 'Podrás añadirle al terminar el examen';
+
+  @override
+  String get errorSignInFailed =>
+      'No se ha podido iniciar sesión. Inténtalo de nuevo';
+
+  @override
+  String get errorReauthMismatch =>
+      'Has entrado con otra cuenta. Vuelve a entrar con la cuenta que quieres eliminar';
+
+  @override
+  String get errorReauthUnavailable =>
+      'Para eliminar esta cuenta, abre la app en el móvil donde iniciaste sesión con Apple';
+
+  @override
+  String get errorReauthRequired =>
+      'Por seguridad, vuelve a iniciar sesión y repite el borrado';
+
+  @override
+  String deleteReauthWith(String provider) {
+    return 'Al confirmar te pediremos que vuelvas a entrar con $provider.';
+  }
 }

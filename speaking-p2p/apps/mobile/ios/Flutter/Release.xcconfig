@@ -1,1 +1,3 @@
 #include "Generated.xcconfig"
+// Google Sign-In URL scheme (D-062); generated, optional.
+#include? "Auth.xcconfig"

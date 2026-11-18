@@ -313,3 +313,20 @@
 - **Decisión:** andamiaje *no-op* hasta que lleguen las claves. Backend: `_shared/sentry.ts` (`captureException`, sin dependencias, `fetch` al Store API, enganchado al `catch` del `handler`) y `_shared/analytics.ts` (`track` → PostHog `/capture`). App: `lib/core/telemetry/telemetry.dart` (`Telemetry` con `captureError`/`track`/`identify`, lee `--dart-define`). Las variables ya estaban reservadas en `.env.example`.
 - **Principio:** la analítica de negocio (suscripción, emparejamientos, sesiones) se emite desde el servidor, no desde el cliente falsificable; la app solo emite interacción pura y sus propios errores.
 - **Pendiente:** crear cuentas, poner secretos, implementar los `TODO(observability)` (3 líneas por SDK), sembrar los `track(...)`, y añadir ambos proveedores a la Política de Privacidad. Todo en `docs/OBSERVABILITY.md`.
+
+### D-062 · 2026-11-18 · Login con Google y Apple (nativo, sustituye a D-022 como vía principal)
+- **Pedido de Alfonso:** registro y login con Apple ID y cuenta de Google. Aún no tiene cuentas de Google Cloud ni de Apple Developer; las crea hoy.
+- **Decisión:** login **nativo** con `signInWithIdToken` (sin navegador ni deep links). Google con `google_sign_in` 7 en las dos plataformas y Apple con `sign_in_with_apple` 8, este **solo en iOS**. El email y la contraseña se quedan (cuenta demo para App Review y pruebas). Registro y login son el mismo botón: la cuenta nueva cae en el onboarding.
+- **Encendido por configuración:** `GOOGLE_WEB_CLIENT_ID` y `GOOGLE_IOS_CLIENT_ID` (públicos) y `APPLE_SIGN_IN=true` en `env/dev.json`. Sin ellos, el botón sigue diciendo «llegará pronto». `Env.assertSafe` rechaza un client secret pegado por error. El URL scheme de Google en iOS se genera desde `env/dev.json` (`tool/ios_auth_config.dart` → `ios/Flutter/Auth.xcconfig`, ignorado por git) en el workflow.
+- **Nonce:** el valor crudo va a Supabase y su SHA-256 al proveedor. En Google se fija una vez por proceso (`initialize` solo se puede llamar una vez); en Apple es nuevo en cada intento.
+- **Borrado de cuenta:** reautentica según `app_metadata.provider`:
+  - email: la contraseña (D-027);
+  - Google o Apple: la hoja del proveedor.
+  - Si la hoja deja dentro a **otra** cuenta, no se borra (`reauth_mismatch`).
+  - Las cuentas de Apple mandan el `authorizationCode` y `account-delete` revoca el token (guía 5.1.1(v)): JWT ES256 con WebCrypto, sin dependencias, en `_shared/apple.ts`. Un fallo de Apple se reporta pero no bloquea el borrado.
+  - El servidor sigue exigiendo una sesión de menos de 5 min.
+- **Descartado:**
+  - Apple en Android por el flujo web: exige un Services ID, deep link y un client secret que caduca cada 6 meses. Riesgo aceptado: una cuenta creada con Apple no entra desde Android.
+  - `signInWithOAuth` en navegador también para Google: peor experiencia y más piezas.
+- **Requisito externo:** Apple solo funciona en un build firmado con un perfil que tenga la capability (cuenta de pago). El `.ipa` sin firmar con Sideloadly gratuito no sirve. Google sí funciona ahí.
+- Guía paso a paso: `docs/AUTH_OAUTH_SETUP.md`.

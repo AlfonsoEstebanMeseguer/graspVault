@@ -1,10 +1,29 @@
 // Account-level domain types. No Flutter, no Supabase.
 import '../exam/models.dart';
 
+/// How the account was created (Supabase `app_metadata.provider`, D-062).
+/// Decides how an irreversible action re-authenticates.
+enum SignInMethod {
+  email,
+  google,
+  apple;
+
+  /// Unknown or missing providers fall back to email (the password path).
+  static SignInMethod fromProvider(String? provider) => switch (provider) {
+        'google' => SignInMethod.google,
+        'apple' => SignInMethod.apple,
+        _ => SignInMethod.email,
+      };
+
+  /// Brand name shown in the UI (not translated).
+  String get label => switch (this) { email => 'email', google => 'Google', apple => 'Apple' };
+}
+
 class AuthUser {
-  const AuthUser({required this.id, required this.email});
+  const AuthUser({required this.id, required this.email, this.method = SignInMethod.email});
   final String id;
   final String? email;
+  final SignInMethod method;
 }
 
 class MyProfile {

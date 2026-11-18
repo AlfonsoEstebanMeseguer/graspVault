@@ -1186,5 +1186,17 @@
   "errorNotCompanion": "Solo puedes invitar a tus compañeros",
   "errorTooManyInvites": "Ya tienes 3 invitaciones sin confirmar",
   "errorTooManyCompanions": "Ya tienes 20 compañeros",
-  "errorSessionNotEnded": "Podrás añadirle al terminar el examen"
+  "errorSessionNotEnded": "Podrás añadirle al terminar el examen",
+  "errorSignInFailed": "No se ha podido iniciar sesión. Inténtalo de nuevo",
+  "errorReauthMismatch": "Has entrado con otra cuenta. Vuelve a entrar con la cuenta que quieres eliminar",
+  "errorReauthUnavailable": "Para eliminar esta cuenta, abre la app en el móvil donde iniciaste sesión con Apple",
+  "errorReauthRequired": "Por seguridad, vuelve a iniciar sesión y repite el borrado",
+  "deleteReauthWith": "Al confirmar te pediremos que vuelvas a entrar con {provider}.",
+  "@deleteReauthWith": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  }
 }

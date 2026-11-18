@@ -98,3 +98,17 @@ Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tes
 - **Decisiones de infraestructura:** `docs/EVAL_REDIS_REVENUECAT.md` — RevenueCat sí (ya andamiado, encender al monetizar); Redis todavía no (Postgres + LiveKit cubren el volumen actual).
 - **Marketing:** `docs/MARKETING.md` — posicionamiento, viralidad P2P, arranque en frío, canales, embudo y lanzamiento.
 - Tests: Flutter ✅ (incl. legal y onboarding), `flutter analyze` limpio, `deno check` limpio, golden/golden-SQL ✅. Nuevo `.ipa` compilado (run 41422181082).
+
+## Sesión 2026-11-18 · Login con Google y Apple (D-062)
+- **Hecho en código:**
+  - `data/auth/oauth_sign_in.dart` (Google y Apple → `signInWithIdToken` con nonce);
+  - botones de la bienvenida conectados (Apple solo en iOS);
+  - borrado de cuenta que reautentica con el proveedor, con protección contra borrar otra cuenta;
+  - `account-delete` revoca el token de Apple (`_shared/apple.ts`, con tests);
+  - `Runner.entitlements` y el URL scheme de iOS generado desde `env/dev.json`.
+- **Verificado:** `flutter analyze` sin avisos, `flutter test` 137/137 y `deno test _shared/apple_test.ts` 3/3. **Sin probar en un dispositivo real:** faltan los client IDs.
+- **Bloqueado por credenciales:** cuentas de Google Cloud y Apple Developer (Alfonso las crea el 2026-11-18). Pasos exactos en `docs/AUTH_OAUTH_SETUP.md`.
+- **Siguiente:**
+  1. Poner los client IDs en `env/dev.json`, activar Google en Supabase y probar en Android e iOS.
+  2. Redesplegar `account-delete`.
+  3. Con la cuenta de Apple: secretos `APPLE_*`, `APPLE_SIGN_IN=true` y firma en CI para TestFlight.
