@@ -116,4 +116,5 @@ Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tes
   - Clientes OAuth creados en el proyecto de Google Cloud «MirloTalk». Los IDs web e iOS están en `env/dev.json` y Google está activado en Supabase con los dos IDs.
   - Primer intento: `Unacceptable audience in id_token`, porque faltaba el ID web en Supabase. Corregido.
   - La cuenta de Google se unió a la cuenta de email existente con el mismo Gmail (`providers: [email, google]`). Por eso sigue reautenticándose con contraseña al borrar (`provider` = `email`).
-  - **Pendiente:** probar Google en el iPhone (build de iOS + Sideloadly), redesplegar `account-delete` y todo lo de Apple (cuenta de pago).
+- **2026-11-19 · `account-delete` v2 desplegada** (bundle con `scripts/deploy/bundle-functions.mjs` + MCP, `verify_jwt` igual que antes). Sin sesión → 401; OPTIONS → 200. La revocación de Apple queda en `skipped` hasta poner los secretos `APPLE_*`.
+  - **Pendiente:** probar Google en el iPhone (build de iOS + Sideloadly) y todo lo de Apple (cuenta de pago).
