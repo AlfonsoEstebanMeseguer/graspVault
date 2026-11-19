@@ -1,5 +1,7 @@
 // Steps 2-8 of the onboarding in one atomic call (CLAUDE.md §3).
 import { z } from "npm:zod@3.23.8";
+import { track } from "../_shared/analytics.ts";
+import { inBackground } from "../_shared/background.ts";
 import { handler, json, parseBody } from "../_shared/http.ts";
 import { requireAuthUser, rpc } from "../_shared/supabase.ts";
 
@@ -25,5 +27,7 @@ Deno.serve(handler(async (req) => {
     p_phone: b.phone,
     p_terms_version: b.termsVersion,
   });
+  // Exactly once: a second call fails with already_onboarded before reaching here.
+  inBackground(track("signup_completed", user.id, { level: b.targetLevel }));
   return json(result);
 }));

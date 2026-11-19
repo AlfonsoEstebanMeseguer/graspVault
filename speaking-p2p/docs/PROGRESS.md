@@ -118,3 +118,7 @@ Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tes
   - La cuenta de Google se unió a la cuenta de email existente con el mismo Gmail (`providers: [email, google]`). Por eso sigue reautenticándose con contraseña al borrar (`provider` = `email`).
 - **2026-11-19 · `account-delete` v2 desplegada** (bundle con `scripts/deploy/bundle-functions.mjs` + MCP, `verify_jwt` igual que antes). Sin sesión → 401; OPTIONS → 200. La revocación de Apple queda en `skipped` hasta poner los secretos `APPLE_*`.
   - **Pendiente:** probar Google en el iPhone (build de iOS + Sideloadly) y todo lo de Apple (cuenta de pago).
+## Sesión 2026-11-19
+- **Sentry y PostHog implementados (D-063):** SDKs en la app (`sentry_flutter`, `posthog_flutter`), `identify` por uuid, eventos de interacción; en el servidor, `signup`/`subscription` directos y el resto por `analytics_outbox` (triggers) + `cron-worker` `analytics`. Todo sigue siendo no-op sin claves.
+- Tests: Flutter ✅ (139, incl. `telemetry_test`), `flutter analyze` limpio, `deno check`/`lint`/`test` ✅ (16), suite SQL ✅ (12, incl. `12_analytics.sql`).
+- **Pendiente:** claves en `env/dev.json` y secretos de Supabase; aplicar la migración y desplegar funciones.

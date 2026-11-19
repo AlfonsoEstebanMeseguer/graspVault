@@ -9,6 +9,7 @@ import '../../data/content/content_repository.dart';
 import '../../data/matchmaking/matchmaking_repository.dart';
 import '../../domain/account/account.dart';
 import '../../domain/exam/models.dart';
+import '../../core/telemetry/telemetry.dart';
 
 class MatchState {
   const MatchState({
@@ -72,6 +73,7 @@ class MatchmakingController extends Notifier<MatchState> {
   Future<void> start(Level level) async {
     if (state.searching) return;
     state = MatchState(searching: true, level: level, startedAt: now());
+    Telemetry.instance.track(AppEvent.matchmakingStarted, properties: {'level': level.code});
     _beat = Timer.periodic(heartbeat, (_) => _enqueue());
     _prompt = Timer(promptAfter, _maybePrompt);
     await _enqueue();
@@ -102,6 +104,7 @@ class MatchmakingController extends Notifier<MatchState> {
   void _maybePrompt() {
     if (state.searching && !state.hasOpenMeeting && !state.promptDismissed) {
       state = state.copyWith(showPrompt: true);
+      Telemetry.instance.track(AppEvent.matchmakingPromptShown);
     }
   }
 

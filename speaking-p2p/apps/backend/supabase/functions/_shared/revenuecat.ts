@@ -43,3 +43,11 @@ export function mapRcEvent(e: RcEvent): Entitlement | null {
       return null;
   }
 }
+
+/// The PostHog event for a RevenueCat event, if any (CLAUDE.md §11). Renewals
+/// are not "started": the funnel counts the first purchase only.
+export function rcAnalyticsEvent(type: string): "subscription_started" | "subscription_cancelled" | null {
+  if (type === "INITIAL_PURCHASE") return "subscription_started";
+  if (type === "CANCELLATION") return "subscription_cancelled";
+  return null;
+}

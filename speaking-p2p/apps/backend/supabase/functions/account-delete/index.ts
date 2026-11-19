@@ -7,6 +7,7 @@
 // blocks the deletion: the user's right to erasure comes first.
 import { z } from "npm:zod@3.23.8";
 import { revokeAppleAuthorization } from "../_shared/apple.ts";
+import { inBackground } from "../_shared/background.ts";
 import { handler, HttpError, json, parseBody } from "../_shared/http.ts";
 import { captureException } from "../_shared/sentry.ts";
 import { adminClient, requireAuthUser, rpc } from "../_shared/supabase.ts";
@@ -26,7 +27,7 @@ Deno.serve(handler(async (req) => {
       if (r === "skipped") console.warn("apple revocation skipped: APPLE_* secrets not set");
     } catch (e) {
       console.error("apple revocation failed", e);
-      void captureException(e, { fn: "account-delete", step: "apple_revoke" });
+      inBackground(captureException(e, { fn: "account-delete", step: "apple_revoke" }));
     }
   }
   await rpc("svc_account_prepare_delete", { p_user: user.id });

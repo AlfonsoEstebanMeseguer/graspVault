@@ -30,6 +30,7 @@ import 'cue_player.dart';
 import 'reader_player.dart';
 import 'widgets/bubble_diagram.dart';
 import 'widgets/exam_widgets.dart';
+import '../../core/telemetry/telemetry.dart';
 
 class ExamScreen extends ConsumerStatefulWidget {
   const ExamScreen({
@@ -370,7 +371,10 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
                 standby: clock?.standby ?? false,
                 idle: !lead && clock == null,
                 timerVisible: _timerVisible,
-                onToggleTimer: () => setState(() => _timerVisible = !_timerVisible),
+                onToggleTimer: () {
+                  setState(() => _timerVisible = !_timerVisible);
+                  Telemetry.instance.track(AppEvent.timerToggleUsed, properties: {'visible': _timerVisible});
+                },
                 cuesMuted: cuesMuted,
                 onToggleCues: () => ref.read(examCuesMutedProvider.notifier).toggle(),
               ),
@@ -459,7 +463,10 @@ class _ExamScreenState extends ConsumerState<ExamScreen> with SingleTickerProvid
       text: step.text,
       visible: _textVisible,
       speaking: reader && !_snap.paused,
-      onToggle: () => setState(() => _textVisible = !_textVisible),
+      onToggle: () {
+        setState(() => _textVisible = !_textVisible);
+        Telemetry.instance.track(AppEvent.textToggleUsed, properties: {'visible': _textVisible});
+      },
       title: part.index == 2 ? l.examinerQuestion : null,
       booklet: part.index == 2,
       addressee: part.index == 4 ? _addressee(step) : null,

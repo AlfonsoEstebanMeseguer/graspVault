@@ -1,5 +1,6 @@
 // HTTP plumbing shared by every function.
 import { z } from "npm:zod@3.23.8";
+import { inBackground } from "./background.ts";
 import { captureException } from "./sentry.ts";
 
 export const corsHeaders = {
@@ -118,8 +119,8 @@ export function handler(fn: (req: Request) => Promise<Response>): (req: Request)
     } catch (e) {
       if (e instanceof HttpError) return json({ error: e.code }, e.status);
       console.error(e);
-      // Prepared, no-op until SENTRY_DSN_FUNCTIONS is set (_shared/sentry.ts).
-      void captureException(e);
+      // No-op until SENTRY_DSN_FUNCTIONS is set (_shared/sentry.ts).
+      inBackground(captureException(e));
       return json({ error: "internal" }, 500);
     }
   };

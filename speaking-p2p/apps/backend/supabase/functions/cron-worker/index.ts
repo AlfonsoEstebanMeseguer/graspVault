@@ -7,6 +7,7 @@ import { adminClient, rpc } from "../_shared/supabase.ts";
 import { tickAndApply } from "../_shared/session.ts";
 import { deleteObject, kindForKey } from "../_shared/r2.ts";
 import { sendPush } from "../_shared/push.ts";
+import { analyticsEnabled, type AnalyticsEvent, captureBatch } from "../_shared/analytics.ts";
 
 async function sessions() {
   const ids = await rpc<string[]>("svc_active_sessions", {});
@@ -51,6 +52,32 @@ async function storageGc() {
   return { done };
 }
 
+// analytics_outbox -> PostHog (D-063). One batch request per run; a failed batch
+// is retried on the next minute, up to 5 times. Rows older than 7 days are
+// dropped either way, so the table never grows while PostHog is not configured.
+async function analytics() {
+  const db = adminClient();
+  const weekAgo = new Date(Date.now() - 7 * 86400_000).toISOString();
+  await db.from("analytics_outbox").delete().lt("created_at", weekAgo);
+  if (!analyticsEnabled()) return { skipped: "not_configured" };
+  const { data: rows } = await db.from("analytics_outbox").select("id,user_id,event,properties,created_at,attempts")
+    .lt("attempts", 5).order("id").limit(500);
+  if (!rows?.length) return { sent: 0 };
+  const ok = await captureBatch(rows.map((r) => ({
+    event: r.event as AnalyticsEvent,
+    distinctId: r.user_id,
+    properties: r.properties,
+    timestamp: r.created_at,
+  })));
+  const ids = rows.map((r) => r.id);
+  if (ok) {
+    await db.from("analytics_outbox").delete().in("id", ids);
+    return { sent: ids.length };
+  }
+  for (const r of rows) await db.from("analytics_outbox").update({ attempts: r.attempts + 1 }).eq("id", r.id);
+  return { sent: 0, failed: ids.length };
+}
+
 Deno.serve(handler(async (req) => {
   const token = req.headers.get("X-Internal-Token");
   if (!token || !(await rpc<boolean>("svc_verify_internal_token", { p_token: token }))) {
@@ -61,6 +88,7 @@ Deno.serve(handler(async (req) => {
     case "sessions": return json(await sessions());
     case "outbox": return json(await outbox());
     case "storage_gc": return json(await storageGc());
+    case "analytics": return json(await analytics());
     default: throw new HttpError(422, "unknown_task");
   }
 }));

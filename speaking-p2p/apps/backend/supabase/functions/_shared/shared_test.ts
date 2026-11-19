@@ -2,7 +2,8 @@ import { assert, assertEquals, assertRejects } from "jsr:@std/assert@1";
 import { fromDbError, handler, HttpError } from "./http.ts";
 import { requireSecretHash, sha256Hex } from "./internal.ts";
 import { permissionBody, signJwt, verifyWebhook } from "./livekit.ts";
-import { mapRcEvent } from "./revenuecat.ts";
+import { mapRcEvent, rcAnalyticsEvent } from "./revenuecat.ts";
+import { captureBatch, toBatchBody } from "./analytics.ts";
 import { sniffImage } from "./r2.ts";
 
 Deno.test("el preflight CORS se corta antes de mirar la sesion (punto 15 del vault)", async () => {
@@ -87,4 +88,29 @@ Deno.test("R2: el bucket sale del endpoint y los valores se recortan", async () 
   assertEquals(kindForKey("recordings/x.ogg"), "recordings");
   assertEquals(kindForKey("audio/B2/e/s.mp3"), "content");
   assertEquals(kindForKey("avatars/u/x.webp"), "media");
+});
+
+Deno.test("analitica: el lote lleva el uuid, la hora del hecho y nunca geolocaliza el servidor", () => {
+  const body = toBatchBody("phc_x", [
+    { event: "exam_part_started", distinctId: "u1", properties: { part: 2 }, timestamp: "2026-11-19T10:00:00.000Z" },
+    { event: "signup_completed", distinctId: "u2" },
+  ], new Date("2026-11-19T11:00:00.000Z"));
+  assertEquals(body.api_key, "phc_x");
+  assertEquals(body.batch[0], {
+    event: "exam_part_started", distinct_id: "u1", timestamp: "2026-11-19T10:00:00.000Z",
+    properties: { part: 2, $lib: "mirlotalk-edge", $geoip_disable: true },
+  });
+  assertEquals(body.batch[1].timestamp, "2026-11-19T11:00:00.000Z");
+});
+
+Deno.test("analitica: sin POSTHOG_API_KEY no se envia nada", async () => {
+  Deno.env.delete("POSTHOG_API_KEY");
+  assertEquals(await captureBatch([{ event: "signup_completed", distinctId: "u" }]), false);
+});
+
+Deno.test("RevenueCat -> PostHog: solo la primera compra y la cancelacion", () => {
+  assertEquals(rcAnalyticsEvent("INITIAL_PURCHASE"), "subscription_started");
+  assertEquals(rcAnalyticsEvent("CANCELLATION"), "subscription_cancelled");
+  assertEquals(rcAnalyticsEvent("RENEWAL"), null);
+  assertEquals(rcAnalyticsEvent("TEST"), null);
 });

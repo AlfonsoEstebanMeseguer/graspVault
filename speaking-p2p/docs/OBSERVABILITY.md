@@ -1,4 +1,4 @@
-# Observabilidad: Sentry y PostHog (preparado, pendiente de encender)
+# Observabilidad: Sentry y PostHog (código listo, D-063: se enciende al poner las claves)
 
 Decisión de Alfonso (2026-11-02): dejar Sentry (errores) y PostHog (producto/retención)
 **preparados en código**, para encenderlos al final. Hoy todo es *no-op* mientras no haya claves,
@@ -48,3 +48,24 @@ así que no cambia el comportamiento ni rompe la compilación.
 La analítica que importa (suscripción, emparejamientos, sesiones) se emite **desde el servidor**,
 donde el cliente no puede falsearla. La app solo emite eventos de interacción pura (toques de
 «ver texto», «ocultar reloj», anuncio mostrado) y los errores de la propia app.
+
+## Estado tras D-063 (2026-11-19)
+
+Código completo. Qué evento sale de dónde: `docs/DECISIONS.md` D-063.
+
+- Backend: `track()` directo en `onboarding-complete` y `revenuecat-webhook`; el resto por
+  `public.analytics_outbox` (triggers) → `cron-worker` tarea `analytics` (cron `analytics`, cada minuto).
+- App: `sentry_flutter` + `posthog_flutter`; `Telemetry.instance.init()` en `main()`, `identify()`
+  enganchado a `onAuthStateChange`. Auto-init nativo de PostHog desactivado (manifest e Info.plist).
+
+### Encender
+1. `env/dev.json` (y el JSON de CI para los builds de iOS): `SENTRY_DSN_APP`, `POSTHOG_API_KEY`, `POSTHOG_HOST`.
+2. Secretos de Supabase: `SENTRY_DSN_FUNCTIONS`, `POSTHOG_API_KEY` (opcional `SENTRY_ENVIRONMENT`).
+3. Aplicar la migración `20261119120000_analytics_outbox.sql` y desplegar `cron-worker`,
+   `onboarding-complete`, `revenuecat-webhook`, `account-delete` y las que usan `_shared/http.ts`.
+
+### Comprobar
+- PostHog → Activity: abrir la app, buscar pareja → `matchmaking_started`; a la vuelta del minuto
+  llegan los del servidor. Cola: `select event, attempts from analytics_outbox order by id desc limit 20;`.
+- Sentry: un 500 de cualquier función aparece en el proyecto `functions`; en la app,
+  cualquier excepción no capturada en el proyecto `app`.

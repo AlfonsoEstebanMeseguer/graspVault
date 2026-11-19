@@ -1,9 +1,11 @@
 // RevenueCat -> entitlements. Idempotent per event id; out-of-order events ignored.
 // The app identifies with Purchases.logIn(supabaseUserId), so app_user_id is our uuid.
+import { track } from "../_shared/analytics.ts";
+import { inBackground } from "../_shared/background.ts";
 import { handler, HttpError, json } from "../_shared/http.ts";
 import { rpc } from "../_shared/supabase.ts";
 import { requireSecretHash } from "../_shared/internal.ts";
-import { mapRcEvent, type RcEvent } from "../_shared/revenuecat.ts";
+import { mapRcEvent, rcAnalyticsEvent, type RcEvent } from "../_shared/revenuecat.ts";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
@@ -22,5 +24,8 @@ Deno.serve(handler(async (req) => {
     p_event_at: new Date(e.event_timestamp_ms).toISOString(),
     p_plan: mapped.plan,
   });
+  // `applied` is false for a replayed or out-of-order event: counted once.
+  const event = applied ? rcAnalyticsEvent(e.type) : null;
+  if (event) inBackground(track(event, e.app_user_id, { plan: mapped.plan }));
   return json({ applied });
 }));

@@ -1,32 +1,32 @@
-// App-side observability, prepared but not yet turned on (it will be the last
-// thing wired — see docs/OBSERVABILITY.md). Everything here is a no-op until the
-// keys arrive through --dart-define, so call sites can be added now without
-// pulling in the SDKs or changing behaviour.
+// App-side observability (D-061, D-063, docs/OBSERVABILITY.md): Sentry for
+// errors, PostHog for the few events only the phone sees. Each half is off
+// until its key arrives through --dart-define (env/dev.json), so a build without
+// keys behaves exactly as before.
 //
-// Plug the real backends later:
-//   - errors:    sentry_flutter, initialised in main() with [sentryDsn]
-//   - analytics: posthog_flutter, initialised with [posthogApiKey]/[posthogHost]
-// Keep the same two entry points (captureError / track) so call sites do not change.
+// What the server already emits (signup, subscription, matches, exam states,
+// meetings) is NOT in [AppEvent]: sending it from here too would count it twice
+// and let a modified client fake it.
 
 library;
 
 import 'package:flutter/foundation.dart';
+import 'package:posthog_flutter/posthog_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
-/// Minimum events to emit once analytics is on (CLAUDE.md §11).
+import '../config/env.dart';
+
+/// Client-only events (CLAUDE.md §11). The wire name is snake_case, the same
+/// convention as the server's events, so PostHog sees one name per event.
 enum AppEvent {
-  signupCompleted,
   paywallViewed,
-  subscriptionStarted,
-  subscriptionCancelled,
   matchmakingStarted,
-  matchmakingMatched,
-  examLobbyEntered,
-  examPartStarted,
-  examCompleted,
-  examAborted,
+  matchmakingPromptShown,
+  matchmakingPromptAccepted,
   textToggleUsed,
   timerToggleUsed,
-  appOpenAdShown,
+  appOpenAdShown;
+
+  String get wireName => name.replaceAllMapped(RegExp('[A-Z]'), (m) => '_${m[0]!.toLowerCase()}');
 }
 
 class Telemetry {
@@ -42,30 +42,74 @@ class Telemetry {
   bool get errorsEnabled => sentryDsn.isNotEmpty;
   bool get analyticsEnabled => posthogApiKey.isNotEmpty;
 
-  /// Call once from main() when the SDKs are added. No-op for now.
+  String? _userId;
+
+  /// Once, from main(), before runApp. Never throws: telemetry must not stop
+  /// the app from starting.
   Future<void> init() async {
-    // TODO(observability): initialise sentry_flutter + posthog_flutter here.
+    if (errorsEnabled) {
+      try {
+        // Installs the Flutter / platform / isolate error handlers itself.
+        await SentryFlutter.init((o) {
+          o.dsn = sentryDsn;
+          o.environment = kReleaseMode ? 'production' : 'debug';
+          if (BuildInfo.number.isNotEmpty) o.dist = BuildInfo.number;
+          o.sendDefaultPii = false; // no IP, no device name
+          o.attachScreenshot = false; // the screen may show names and chat
+          o.attachViewHierarchy = false;
+        });
+      } catch (e) {
+        debugPrint('[telemetry] sentry init failed: $e');
+      }
+    }
+    if (analyticsEnabled) {
+      try {
+        final c = PostHogConfig(posthogApiKey)
+          ..host = posthogHost
+          ..debug = kDebugMode
+          ..captureApplicationLifecycleEvents = true // app opened/backgrounded: retention D1/D7/D30
+          ..personProfiles = PostHogPersonProfiles.identifiedOnly
+          ..sessionReplay = false
+          ..surveys = false
+          ..preloadFeatureFlags = false;
+        await Posthog().setup(c);
+      } catch (e) {
+        debugPrint('[telemetry] posthog init failed: $e');
+      }
+    }
   }
 
-  /// Report a caught error. No-op until Sentry is configured.
+  /// Report a caught error. Uncaught ones reach Sentry on their own.
   void captureError(Object error, StackTrace? stack, {String? hint}) {
     if (!errorsEnabled) {
       if (kDebugMode) debugPrint('[telemetry] error: $error${hint == null ? '' : ' ($hint)'}');
       return;
     }
-    // TODO(observability): Sentry.captureException(error, stackTrace: stack).
+    Sentry.captureException(error, stackTrace: stack, hint: hint == null ? null : Hint.withMap({'hint': hint}))
+        .ignore();
   }
 
-  /// Track a product event. No-op until PostHog is configured. Never pass PII in
-  /// [properties]; the distinct id is the user's uuid, set by identify().
-  void track(AppEvent event, {Map<String, Object?> properties = const {}}) {
+  /// Track a client event. Never pass PII in [properties]; the distinct id is
+  /// the user's uuid, set by identify().
+  void track(AppEvent event, {Map<String, Object> properties = const {}}) {
     if (!analyticsEnabled) return;
-    // TODO(observability): Posthog().capture(eventName: event.name, properties: properties).
+    Posthog().capture(eventName: event.wireName, properties: properties).ignore();
   }
 
-  /// Bind the current user (uuid) and clear it on sign-out. No-op until on.
+  /// Bind the current user (uuid only) and clear it on sign-out. Called on
+  /// every auth change, including token refreshes: only a real change acts.
   void identify(String? userId) {
+    if (userId == _userId) return;
+    final had = _userId != null;
+    _userId = userId;
+    if (errorsEnabled) {
+      Sentry.configureScope((s) => s.setUser(userId == null ? null : SentryUser(id: userId)));
+    }
     if (!analyticsEnabled) return;
-    // TODO(observability): Posthog().identify(userId) / reset() when null.
+    if (userId != null) {
+      Posthog().identify(userId: userId).ignore();
+    } else if (had) {
+      Posthog().reset().ignore();
+    }
   }
 }

@@ -18,6 +18,7 @@ import '../../domain/exam/models.dart';
 import '../exam/widgets/exam_widgets.dart' show formatMs;
 import '../home/home_screen.dart' show levelName;
 import 'matchmaking_controller.dart';
+import '../../core/telemetry/telemetry.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -155,6 +156,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         style: FilledButton.styleFrom(minimumSize: const Size(0, 48)),
                         onPressed: () {
                           ctrl.dismissPrompt();
+                          Telemetry.instance.track(AppEvent.matchmakingPromptAccepted);
                           context.go('/agenda?create=1');
                         },
                         child: Text(l.yesSchedule),

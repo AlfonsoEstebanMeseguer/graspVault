@@ -330,3 +330,16 @@
   - `signInWithOAuth` en navegador también para Google: peor experiencia y más piezas.
 - **Requisito externo:** Apple solo funciona en un build firmado con un perfil que tenga la capability (cuenta de pago). El `.ipa` sin firmar con Sideloadly gratuito no sirve. Google sí funciona ahí.
 - Guía paso a paso: `docs/AUTH_OAUTH_SETUP.md`.
+
+### D-063 · 2026-11-19 · Sentry y PostHog encendidos en código: qué evento sale de dónde
+- **Pedido de Alfonso:** implementar la parte de código ahora que tiene las cuentas (completa D-061).
+- **Decisión:**
+  - **Servidor, directo** desde la Edge Function dueña del hecho: `signup_completed` (`onboarding-complete`), `subscription_started` / `subscription_cancelled` (`revenuecat-webhook`, solo si `applied`; las renovaciones no cuentan).
+  - **Servidor, por cola** (`public.analytics_outbox`, migración `20261119120000_analytics_outbox.sql`): triggers sobre `exam_sessions`, `meeting_offers`, `meetings` y `attendance` escriben una fila por usuario y hecho **en la misma transacción**; `cron-worker` (tarea `analytics`, cada minuto) la vacía con un solo `POST /batch/`. Cubre `matchmaking_matched`, `exam_lobby_entered`, `exam_part_started` (parte), `exam_completed`, `exam_aborted` (parte, motivo, `by_me`), `meeting_offer_created`, `meeting_accepted`, `meeting_confirmed`, `meeting_no_show`.
+  - **App** (`core/telemetry/telemetry.dart`): solo lo que no ve el servidor: `matchmaking_started`, `matchmaking_prompt_shown/accepted`, `text_toggle_used`, `timer_toggle_used`, y (cuando existan paywall y anuncio) `paywall_viewed`, `app_open_ad_shown`. Nombres en snake_case (`AppEvent.wireName`), igual que el servidor.
+  - El tiempo de espera del matchmaking no va como propiedad: lo da el embudo `matchmaking_started → matchmaking_matched` («time to convert»).
+  - `EdgeRuntime.waitUntil` (`_shared/background.ts`) para que el envío a Sentry/PostHog no se corte al devolver la respuesta.
+  - Privacidad: Sentry sin PII, capturas ni jerarquía de vistas; PostHog sin replay, encuestas ni GeoIP en el servidor; `distinct_id` = uuid; la cola cae en cascada al borrar la cuenta y se purga a los 7 días.
+- **Descartado:**
+  - Llamar a PostHog desde `tickAndApply`: se ejecuta muchas veces por transición (dos móviles + cron), así que duplicaría eventos.
+  - Emitir el examen desde la app: falsificable y contaría doble.
