@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app.dart';
 import 'core/config/env.dart';
+import 'core/telemetry/analytics_consent.dart';
 import 'core/telemetry/telemetry.dart';
 import 'core/theming/preferences.dart';
 
@@ -14,14 +15,24 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   const env = Env.fromDefines;
   env.assertSafe();
-  await Telemetry.instance.init();
+  final prefs = await SharedPreferences.getInstance();
+  await Telemetry.instance.init(analyticsAllowed: analyticsAllowedOnDevice(prefs));
   if (env.hasBackend) {
     await Supabase.initialize(url: env.supabaseUrl, publishableKey: env.supabaseAnonKey);
-    final auth = Supabase.instance.client.auth;
-    Telemetry.instance.identify(auth.currentUser?.id);
-    auth.onAuthStateChange.listen((s) => Telemetry.instance.identify(s.session?.user.id), onError: (Object _) {});
+    final client = Supabase.instance.client;
+    // The server copy of the opt-out wins (D-064), and is applied BEFORE identify.
+    Future<void> onUser(String? id) async {
+      if (id != null) {
+        await applyServerAnalyticsChoice(prefs, () async {
+          final r = await client.from('profiles_private').select('analytics_opt_out').eq('id', id).maybeSingle();
+          return r?['analytics_opt_out'] as bool?;
+        });
+      }
+      Telemetry.instance.identify(id);
+    }
+    onUser(client.auth.currentUser?.id).ignore();
+    client.auth.onAuthStateChange.listen((s) => onUser(s.session?.user.id).ignore(), onError: (Object _) {});
   }
-  final prefs = await SharedPreferences.getInstance();
   runApp(ProviderScope(
     overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
     child: const SpeakingApp(),

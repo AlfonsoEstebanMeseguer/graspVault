@@ -185,6 +185,8 @@
   "termsOfUse": "Términos de uso",
   "privacyPolicy": "Política de privacidad",
   "signOut": "Cerrar sesión",
+  "shareUsageStats": "Compartir estadísticas de uso",
+  "shareUsageStatsHint": "Qué pantallas usas y cómo van tus exámenes, para mejorar la app. Nunca tus mensajes ni tu voz.",
   "deleteAccount": "Eliminar cuenta",
   "needsBackend": "Disponible cuando la app esté conectada al servidor.",
   "agendaTitle": "Agenda",

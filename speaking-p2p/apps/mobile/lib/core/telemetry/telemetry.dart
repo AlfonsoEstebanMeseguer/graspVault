@@ -40,13 +40,22 @@ class Telemetry {
       String.fromEnvironment('POSTHOG_HOST', defaultValue: 'https://eu.i.posthog.com');
 
   bool get errorsEnabled => sentryDsn.isNotEmpty;
-  bool get analyticsEnabled => posthogApiKey.isNotEmpty;
+
+  /// Configured AND allowed by the user (Settings > Share usage statistics, D-064).
+  bool get analyticsEnabled => posthogApiKey.isNotEmpty && _analyticsAllowed;
+
+  /// SharedPreferences key of the device copy of the choice. The server keeps
+  /// the real one (profiles_private.analytics_opt_out), synced at sign-in.
+  static const optOutPrefKey = 'analytics_opt_out';
 
   String? _userId;
+  bool _analyticsAllowed = true;
+  bool _posthogReady = false;
 
   /// Once, from main(), before runApp. Never throws: telemetry must not stop
-  /// the app from starting.
-  Future<void> init() async {
+  /// the app from starting. [analyticsAllowed]: the device copy of the opt-out.
+  Future<void> init({bool analyticsAllowed = true}) async {
+    _analyticsAllowed = analyticsAllowed;
     if (errorsEnabled) {
       try {
         // Installs the Flutter / platform / isolate error handlers itself.
@@ -62,17 +71,20 @@ class Telemetry {
         debugPrint('[telemetry] sentry init failed: $e');
       }
     }
-    if (analyticsEnabled) {
+    if (posthogApiKey.isNotEmpty) {
       try {
         final c = PostHogConfig(posthogApiKey)
+          ..optOut = !_analyticsAllowed // opted out: nothing is captured, not even app opens
           ..host = posthogHost
           ..debug = kDebugMode
           ..captureApplicationLifecycleEvents = true // app opened/backgrounded: retention D1/D7/D30
           ..personProfiles = PostHogPersonProfiles.identifiedOnly
+          ..disableGeoIp = true // no city/country from the IP: the Privacy Policy promises no location
           ..sessionReplay = false
           ..surveys = false
           ..preloadFeatureFlags = false;
         await Posthog().setup(c);
+        _posthogReady = true;
       } catch (e) {
         debugPrint('[telemetry] posthog init failed: $e');
       }
@@ -94,6 +106,26 @@ class Telemetry {
   void track(AppEvent event, {Map<String, Object> properties = const {}}) {
     if (!analyticsEnabled) return;
     Posthog().capture(eventName: event.wireName, properties: properties).ignore();
+  }
+
+  /// The Settings switch. Opting out stops PostHog on the phone at once and
+  /// forgets the identity it holds; Sentry (errors, no profiling) is unaffected.
+  Future<void> setAnalyticsAllowed(bool allowed) async {
+    if (allowed == _analyticsAllowed) return;
+    _analyticsAllowed = allowed;
+    if (!_posthogReady) return;
+    try {
+      if (allowed) {
+        await Posthog().optIn();
+        final id = _userId;
+        if (id != null) await Posthog().identify(userId: id);
+      } else {
+        await Posthog().reset();
+        await Posthog().optOut();
+      }
+    } catch (e) {
+      debugPrint('[telemetry] posthog opt-in/out failed: $e');
+    }
   }
 
   /// Bind the current user (uuid only) and clear it on sign-out. Called on

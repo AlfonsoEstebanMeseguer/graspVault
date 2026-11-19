@@ -560,6 +560,18 @@ abstract class AppLocalizations {
   /// **'Cerrar sesión'**
   String get signOut;
 
+  /// No description provided for @shareUsageStats.
+  ///
+  /// In es, this message translates to:
+  /// **'Compartir estadísticas de uso'**
+  String get shareUsageStats;
+
+  /// No description provided for @shareUsageStatsHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué pantallas usas y cómo van tus exámenes, para mejorar la app. Nunca tus mensajes ni tu voz.'**
+  String get shareUsageStatsHint;
+
   /// No description provided for @deleteAccount.
   ///
   /// In es, this message translates to:

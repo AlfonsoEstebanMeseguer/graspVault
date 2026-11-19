@@ -82,6 +82,8 @@
   "termsOfUse": "Terms of use",
   "privacyPolicy": "Privacy policy",
   "signOut": "Sign out",
+  "shareUsageStats": "Share usage statistics",
+  "shareUsageStatsHint": "Which screens you use and how your exams go, to improve the app. Never your messages or your voice.",
   "deleteAccount": "Delete account",
   "needsBackend": "Available once the app is connected to the server.",
   "agendaTitle": "Agenda",

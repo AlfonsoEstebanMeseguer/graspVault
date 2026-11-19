@@ -276,6 +276,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signOut => 'Sign out';
 
   @override
+  String get shareUsageStats => 'Share usage statistics';
+
+  @override
+  String get shareUsageStatsHint =>
+      'Which screens you use and how your exams go, to improve the app. Never your messages or your voice.';
+
+  @override
   String get deleteAccount => 'Delete account';
 
   @override

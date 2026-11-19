@@ -44,6 +44,10 @@ abstract class AccountRepository {
   /// What partners said about me in the rubric (D-042), averaged.
   Future<FeedbackSummary> feedbackReceived();
 
+  /// «Compartir estadísticas de uso» off (D-064). Stored on the server so it also
+  /// silences the server-side analytics.
+  Future<void> setAnalyticsOptOut(bool optOut);
+
   /// Re-authenticates with the account's own method (fresh session, the server
   /// wants < 5 min): the password for email accounts, the provider's sheet for
   /// Google and Apple (D-062). Then deletes.
@@ -126,6 +130,11 @@ class SupabaseAccountRepository implements AccountRepository {
     } on sb.PostgrestException catch (e) {
       throw AppFailure(e.code == '23505' ? 'username_taken' : 'server_error');
     }
+  }
+
+  @override
+  Future<void> setAnalyticsOptOut(bool optOut) async {
+    await _c.from('profiles_private').update({'analytics_opt_out': optOut}).eq('id', _me);
   }
 
   @override

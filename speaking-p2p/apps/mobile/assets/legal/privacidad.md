@@ -1,6 +1,6 @@
 # Política de Privacidad
 
-Versión 2026-11-02 · Última actualización: 2 de noviembre de 2026
+Versión 2026-11-19 · Última actualización: 19 de noviembre de 2026
 
 En esta Política explicamos qué datos personales tratamos cuando usa la aplicación MirloTalk (la «Aplicación»), para qué los usamos, con quién los compartimos, durante cuánto tiempo los guardamos y cómo puede ejercer sus derechos. La aplicamos conforme al Reglamento (UE) 2016/679, General de Protección de Datos (RGPD), y a la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
 
@@ -30,6 +30,8 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 - Registro de la sesión para la moderación: cuándo entra y sale cada participante, los cambios de parte, los controles del examen, si alguien se silencia o abandona, y cuánto tiempo habla cada uno en cada tramo del examen (solo la duración, medida por nuestro proveedor de llamadas: no se graba ni se transcribe lo que dice).
 - Datos de la suscripción: plan contratado, estado y fecha de renovación. No recibimos los datos de su tarjeta ni de su medio de pago, que gestionan Apple o Google.
 - Datos técnicos: identificadores de la sesión, dirección IP, tipo de dispositivo y versión del sistema y de la Aplicación, que nuestros proveedores registran para que el servicio funcione y sea seguro. Si activa las notificaciones, también el identificador de notificaciones del dispositivo.
+- Informes de errores: cuando la Aplicación o nuestro servidor fallan, se genera un informe técnico con el tipo de error, el punto del código donde ocurrió, el modelo de dispositivo, la versión del sistema y de la Aplicación y un identificador interno de su cuenta (un código aleatorio, no su nombre ni su correo). No incluye capturas de pantalla, mensajes del chat ni audio.
+- Estadísticas de uso: qué funciones usa y cuándo (por ejemplo, que empezó a buscar pareja, que una sesión llegó a la Parte 2 o que mostró el texto del examinador), asociadas al mismo identificador interno, junto con el modelo de dispositivo y la versión de la Aplicación. No incluyen el contenido de sus mensajes ni su voz, ni su ubicación. Puede desactivarlas en cualquier momento (ver el apartado 3).
 - Preferencias guardadas solo en su dispositivo: tema claro u oscuro, idioma y nivel elegido.
 
 2.3. Datos de otros usuarios sobre usted: el otro participante puede valorarle con la rúbrica o reportarle. Solo usted ve las valoraciones que recibe; los reportes solo los ve el equipo que los revisa.
@@ -43,7 +45,8 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 - Valoraciones entre usuarios: guardar la rúbrica que hace y mostrarle las que recibe. Base legal: ejecución del contrato (es una función del servicio que usted decide usar).
 - Seguridad y moderación: atender reportes, aplicar bloqueos, prevenir abusos y el fraude, y colaborar con las autoridades cuando la ley lo exija. Base legal: nuestro interés legítimo, y el de los demás usuarios, en un entorno seguro (art. 6.1.f RGPD) y, en su caso, el cumplimiento de obligaciones legales.
 - Avisos del servicio: recordatorios de una reunión 10 minutos antes y avisos sobre cambios en ella. Base legal: ejecución del contrato. Las notificaciones push solo se envían si las permite en su dispositivo.
-- Mejorar la Aplicación con estadísticas de uso agregadas. Base legal: interés legítimo.
+- Detectar y corregir errores: recibir y analizar los informes de errores para que la Aplicación funcione. Base legal: nuestro interés legítimo en ofrecer un servicio que funcione y sea seguro (art. 6.1.f RGPD). Los informes no se usan para conocer su comportamiento ni para elaborar perfiles.
+- Mejorar la Aplicación con estadísticas de uso: saber qué funciones se usan, dónde se abandonan los exámenes o cuánto se tarda en encontrar pareja, y analizarlo de forma agregada. Base legal: nuestro interés legítimo en mejorar el servicio (art. 6.1.f RGPD). Puede oponerse en cualquier momento, sin dar explicaciones, desactivando «Compartir estadísticas de uso» en Ajustes: desde ese momento dejamos de registrar sus estadísticas, tanto en su dispositivo como en nuestro servidor, y se eliminan las que estuvieran pendientes de envío. No usamos estas estadísticas para publicidad ni para decisiones sobre usted.
 
 No usamos sus datos para tomar decisiones automatizadas que produzcan efectos jurídicos sobre usted ni le afecten de forma significativa. El emparejamiento automático solo une a dos personas que buscan el mismo nivel a la vez.
 
@@ -56,6 +59,8 @@ No usamos sus datos para tomar decisiones automatizadas que produzcan efectos ju
 - Reportes: hasta un año después de resolverlos, o más si son necesarios en un procedimiento legal.
 - Registro de la sesión para la moderación: 30 días. Si hay un reporte abierto sobre la sesión, hasta que se resuelva.
 - Datos técnicos de los proveedores: según sus políticas, normalmente entre 7 y 90 días.
+- Informes de errores: hasta 90 días.
+- Estadísticas de uso: hasta 12 meses. Si elimina su cuenta, dejan de estar vinculadas a ella.
 
 Una vez vencidos estos plazos, los datos se suprimen o se bloquean durante el tiempo en que pudieran exigirse responsabilidades legales.
 
@@ -70,6 +75,8 @@ No vendemos sus datos ni los cedemos a terceros para fines publicitarios. Los co
 - Supabase Inc.: base de datos, autenticación y funciones del servidor. Los datos se alojan en la Unión Europea (Fráncfort, Alemania).
 - LiveKit Inc. (LiveKit Cloud): transmisión del audio de las llamadas en tiempo real y, si se activa, grabación. Empresa estadounidense.
 - Cloudflare Inc. (R2): almacenamiento de fotos de perfil, grabaciones y material de los exámenes. Empresa estadounidense.
+- Functional Software, Inc. (Sentry): recepción y análisis de los informes de errores de la Aplicación y del servidor. Empresa estadounidense; los datos se alojan en la Unión Europea (Fráncfort, Alemania).
+- PostHog Inc.: estadísticas de uso de la Aplicación, solo si no las ha desactivado. Empresa estadounidense; los datos se alojan en la Unión Europea (Fráncfort, Alemania).
 - Apple Inc. y Google LLC: distribución de la Aplicación, pagos de suscripciones y notificaciones push, como responsables independientes según sus propias políticas.
 
 5.3. Con autoridades y tribunales, cuando la ley nos obligue o para defendernos de reclamaciones.

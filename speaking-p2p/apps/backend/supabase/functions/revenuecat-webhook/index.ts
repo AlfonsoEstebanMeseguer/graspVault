@@ -1,6 +1,6 @@
 // RevenueCat -> entitlements. Idempotent per event id; out-of-order events ignored.
 // The app identifies with Purchases.logIn(supabaseUserId), so app_user_id is our uuid.
-import { track } from "../_shared/analytics.ts";
+import { trackUnlessOptedOut } from "../_shared/analytics_consent.ts";
 import { inBackground } from "../_shared/background.ts";
 import { handler, HttpError, json } from "../_shared/http.ts";
 import { rpc } from "../_shared/supabase.ts";
@@ -26,6 +26,6 @@ Deno.serve(handler(async (req) => {
   });
   // `applied` is false for a replayed or out-of-order event: counted once.
   const event = applied ? rcAnalyticsEvent(e.type) : null;
-  if (event) inBackground(track(event, e.app_user_id, { plan: mapped.plan }));
+  if (event) inBackground(trackUnlessOptedOut(event, e.app_user_id, { plan: mapped.plan }));
   return json({ applied });
 }));

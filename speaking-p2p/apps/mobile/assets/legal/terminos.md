@@ -1,6 +1,6 @@
 # Términos y Condiciones de Uso
 
-Versión 2026-11-02 · Última actualización: 2 de noviembre de 2026
+Versión 2026-11-19 · Última actualización: 19 de noviembre de 2026
 
 ## 1. Titular del servicio
 

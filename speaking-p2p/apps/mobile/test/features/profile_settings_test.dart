@@ -48,6 +48,13 @@ class FakeAccount implements AccountRepository {
       saved = (username: username, languages: languages, level: targetLevel);
   @override
   Future<String> recordingUrl(String sessionId) async => 'https://example.invalid';
+  final optOuts = <bool>[];
+  @override
+  Future<void> setAnalyticsOptOut(bool optOut) async {
+    if (failWith != null) throw AppFailure(failWith!);
+    optOuts.add(optOut);
+  }
+
   @override
   Future<void> deleteAccount({String? password, required String phrase}) async {
     if (failWith != null) throw AppFailure(failWith!);

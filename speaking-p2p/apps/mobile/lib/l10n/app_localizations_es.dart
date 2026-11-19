@@ -275,6 +275,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get signOut => 'Cerrar sesión';
 
   @override
+  String get shareUsageStats => 'Compartir estadísticas de uso';
+
+  @override
+  String get shareUsageStatsHint =>
+      'Qué pantallas usas y cómo van tus exámenes, para mejorar la app. Nunca tus mensajes ni tu voz.';
+
+  @override
   String get deleteAccount => 'Eliminar cuenta';
 
   @override

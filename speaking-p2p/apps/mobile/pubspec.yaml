@@ -32,6 +32,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   fake_async: ^1.3.3
+  sentry_dart_plugin: ^3.6.0
 
 flutter:
   uses-material-design: true
@@ -91,3 +92,16 @@ flutter:
     - assets/fonts/OFL-newsreader.txt
     - assets/fonts/OFL-ibmplexmono.txt
     - assets/fonts/OFL-caveat.txt
+
+# Readable stack traces in Sentry for release builds (D-064, docs/OBSERVABILITY.md).
+# `dart run sentry_dart_plugin` after a release build uploads the native debug files
+# (dSYM / .so) and the Dart symbols. org, project and token come from SENTRY_ORG,
+# SENTRY_PROJECT and SENTRY_AUTH_TOKEN (CI secrets), never from this file.
+sentry:
+  upload_debug_symbols: true
+  upload_sources: false # never ship our source code to Sentry
+  upload_source_maps: false # web only
+  symbols_path: build/debug-info
+  dart_symbol_map_path: build/debug-info/obfuscation.map.json
+  commits: false # no repository integration in Sentry
+  ignore_missing: true

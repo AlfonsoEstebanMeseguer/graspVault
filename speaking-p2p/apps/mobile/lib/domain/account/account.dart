@@ -69,7 +69,7 @@ class OnboardingData {
 /// Current version of the Terms + Privacy Policy. Bump it when they change:
 /// the accepted version and date are stored with the profile.
 /// The version of the Terms and Privacy Policy (assets/legal) the user accepts.
-const termsVersion = '2026-11-02';
+const termsVersion = '2026-11-19';
 
 /// Business error coming back from the server (stable code -> i18n key).
 class AppFailure implements Exception {

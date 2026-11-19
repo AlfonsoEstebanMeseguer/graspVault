@@ -69,3 +69,36 @@ Código completo. Qué evento sale de dónde: `docs/DECISIONS.md` D-063.
   llegan los del servidor. Cola: `select event, attempts from analytics_outbox order by id desc limit 20;`.
 - Sentry: un 500 de cualquier función aparece en el proyecto `functions`; en la app,
   cualquier excepción no capturada en el proyecto `app`.
+
+## Stack traces legibles (D-064)
+
+Solo afecta a los builds de **release**; los de debug ya salen legibles.
+
+- **iOS (CI, `speaking-p2p-ios.yml`):** compila ofuscado y con los símbolos aparte, y luego
+  `dart run sentry_dart_plugin` los sube. Hace falta, una vez, en GitHub → Settings → Secrets and
+  variables → Actions:
+  - secreto `SENTRY_AUTH_TOKEN`: token de organización de Sentry (Settings → Auth Tokens →
+    *Create New Token*; el scope por defecto `org:ci` basta);
+  - variables `SENTRY_ORG` (slug de la organización) y `SENTRY_PROJECT` (slug del proyecto de la app).
+- **Android (cuando haya release):**
+  ```
+  flutter build appbundle --release --dart-define-from-file=env/dev.json \
+    --obfuscate --split-debug-info=build/debug-info \
+    --extra-gen-snapshot-options=--save-obfuscation-map=build/debug-info/obfuscation.map.json
+  SENTRY_AUTH_TOKEN=… SENTRY_ORG=… SENTRY_PROJECT=… dart run sentry_dart_plugin
+  ```
+- Comprobar: Sentry → Settings → Projects → app → *Debug Files* debe listar los ficheros de ese build.
+
+## Alertas recomendadas
+
+Pocas y accionables (con poco tráfico, más alertas = ruido que se acaba ignorando):
+
+| Proyecto | Tipo | Regla |
+|---|---|---|
+| app y functions | Issue | Issue **nuevo** (primera vez visto) → email |
+| app y functions | Issue | Issue **resuelto que vuelve** (regresión) → email |
+| app y functions | Issue | Un issue con **más de 10 eventos en 1 h** (pico) → email |
+| app | Métrica | **Crash-free sessions** < 99 % en 1 día → email |
+| functions | Métrica | **Más de 20 errores en 5 min** (caída del backend) → email |
+
+Más adelante, opcional: Sentry *Crons* para avisar si `cron-worker` deja de ejecutarse, y *Uptime*.

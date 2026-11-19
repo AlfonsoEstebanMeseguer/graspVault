@@ -343,3 +343,11 @@
 - **Descartado:**
   - Llamar a PostHog desde `tickAndApply`: se ejecuta muchas veces por transición (dos móviles + cron), así que duplicaría eventos.
   - Emitir el examen desde la app: falsificable y contaría doble.
+
+### D-064 · 2026-11-19 · Stack traces legibles, alertas de Sentry y analítica con opt-out
+- **Pedido de Alfonso:** trazas legibles en Sentry, alertas, y Sentry/PostHog en la Política de Privacidad.
+- **Trazas:** los builds de release de iOS (CI) se compilan con `--obfuscate --split-debug-info=build/debug-info` y guardan el mapa de ofuscación; `sentry_dart_plugin` sube dSYM, símbolos de Dart y mapa (config en `pubspec.yaml`, sección `sentry`). Credenciales solo por entorno: secreto `SENTRY_AUTH_TOKEN` y variables `SENTRY_ORG` / `SENTRY_PROJECT` del repositorio. Sin ellas, el paso avisa y no falla. No se sube código fuente (`upload_sources: false`). Comprobado que nada depende de nombres de clase (`runtimeType`), así que la ofuscación es segura.
+- **Analítica (decisión de Alfonso):** interés legítimo con **opt-out**. «Compartir estadísticas de uso» en Ajustes, activado por defecto. La elección se guarda en `profiles_private.analytics_opt_out` (migración `20261119140000_analytics_opt_out.sql`): `analytics_emit` deja de encolar a ese usuario y un trigger borra lo pendiente. `revenuecat-webhook` lo comprueba con `trackUnlessOptedOut`. En el móvil, `PostHogConfig.optOut` y una copia en SharedPreferences que se sincroniza con la del servidor al iniciar sesión, antes de `identify`. Sentry no se ve afectado.
+- **Minimización:** PostHog sin GeoIP también en la app (`disableGeoIp`), para que la Política pueda decir «sin ubicación».
+- **Política:** versión `2026-11-19` (Términos y Privacidad comparten constante). Nuevos 2.2 (errores y estadísticas), 3 (bases y forma de oponerse), 4 (plazos) y 5.2 (Sentry y PostHog, ambos con datos en Fráncfort). Pendientes de verificar en `docs/legal/ASPECTOS_A_COMPLETAR.md` §9.
+- **Descartado:** opt-in en el onboarding (más seguro, pero pierde datos); sin interruptor (más riesgo ante la AEPD).

@@ -8,6 +8,7 @@ import '../../core/config/env.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/preferences.dart';
+import '../../core/telemetry/analytics_consent.dart';
 import '../../core/theming/tokens.dart';
 import '../../core/ui/kit.dart';
 import '../../core/l10n/errors.dart';
@@ -89,6 +90,8 @@ class SettingsScreen extends ConsumerWidget {
                 trailing: Icon(AppIcons.caretRight, size: 16, color: p.textTertiary),
                 onTap: () => context.push(LegalDoc.privacy.path),
               ),
+              Divider(height: 1, indent: 56, color: p.border),
+              const _UsageStatsSwitch(),
               if (ref.watch(authUserProvider).value != null) ...[
                 Divider(height: 1, indent: 56, color: p.border),
                 ListTile(
@@ -110,6 +113,27 @@ class SettingsScreen extends ConsumerWidget {
               style: AppType.footnote.copyWith(color: p.textTertiary, fontWeight: FontWeight.w400)),
         ]),
       ),
+    );
+  }
+}
+
+/// Opt-out of product analytics (D-064). Errors from the server keep the old value.
+class _UsageStatsSwitch extends ConsumerWidget {
+  const _UsageStatsSwitch();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final p = context.palette;
+    return SwitchListTile(
+      key: const Key('settings-usage-stats'),
+      secondary: Icon(AppIcons.signal, color: p.textSecondary),
+      title: Text(l.shareUsageStats),
+      subtitle: Text(l.shareUsageStatsHint, style: AppType.footnote.copyWith(color: p.textTertiary, fontWeight: FontWeight.w400)),
+      value: ref.watch(analyticsConsentProvider),
+      onChanged: (v) => ref.read(analyticsConsentProvider.notifier).set(v).catchError((Object e) {
+        if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorText(l, e))));
+      }),
     );
   }
 }

@@ -79,3 +79,28 @@ begin
   perform tests.assert_eq(pg_temp.n(a, 'meeting_confirmed'), 1, 'el no_show no repite confirmed');
 end $$;
 rollback;
+
+-- Opt-out (D-064): nothing is queued, pending rows are dropped, only the owner flips it.
+begin;
+do $$
+declare a uuid; b uuid; o uuid; n int;
+begin
+  a := tests.user('oo_a'); b := tests.user('oo_b');
+  o := public.svc_offer_create(a, 'B2', now() + interval '1 hour', now() + interval '3 hours');
+  perform tests.assert_eq((select count(*)::int from public.analytics_outbox where user_id = a), 1, 'antes del opt-out: encolado');
+
+  perform tests.as_user(a);
+  update public.profiles_private set analytics_opt_out = true where id = a;
+  update public.profiles_private set analytics_opt_out = true where id = b;   -- RLS: 0 rows
+  select analytics_opt_out::int into n from public.profiles_private where id = a;
+  perform tests.assert_eq(n, 1, 'el usuario lee su propia preferencia');
+  reset role;
+
+  perform tests.assert_eq((select count(*)::int from public.analytics_outbox where user_id = a), 0, 'el opt-out borra lo pendiente');
+  perform tests.assert_eq((select analytics_opt_out from public.profiles_private where id = b), false, 'nadie cambia la preferencia de otro');
+  o := public.svc_offer_create(a, 'B2', now() + interval '4 hours', now() + interval '6 hours');
+  perform tests.assert_eq((select count(*)::int from public.analytics_outbox where user_id = a), 0, 'tras el opt-out: nada se encola');
+  perform public.svc_offer_create(b, 'B2', now() + interval '1 hour', now() + interval '3 hours');
+  perform tests.assert_eq((select count(*)::int from public.analytics_outbox where user_id = b), 1, 'los demas siguen contando');
+end $$;
+rollback;

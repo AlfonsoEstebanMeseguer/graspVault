@@ -8,7 +8,7 @@ Las notas internas `[REVISAR]` que antes vivían dentro de los dos `.md` se han 
 la app ya no las muestra y los documentos quedan limpios. Los huecos que siguen en los textos
 aparecen como `[por completar antes de publicar]`.
 
-Versión de los documentos: **2026-11-02** (constante `termsVersion` en
+Versión de los documentos: **2026-11-19** (constante `termsVersion` en
 `apps/mobile/lib/domain/account/account.dart`). Si cambias algo relevante, sube también esa fecha.
 
 ---
@@ -120,14 +120,25 @@ El DSA obliga a toda plataforma a tener un mecanismo de notificación (art. 16) 
 decisiones de moderación (art. 17). Las microempresas están exentas de parte de las obligaciones
 (art. 19) pero **no de estas dos**. El texto actual ya las cubre; conviene un plazo y un proceso.
 
-## 9. Analítica y errores (Sentry / PostHog)
+## 9. Analítica y errores (Sentry / PostHog) — redactado el 2026-11-19 (D-064)
 
-Cuando se integren (pendiente, va al final):
+Ya están en la Política (apartados 2.2, 3, 4 y 5.2). Decisión de Alfonso: **interés legítimo con
+opt-out** («Compartir estadísticas de uso» en Ajustes, activado por defecto), no consentimiento.
+Riesgo aceptado: la AEPD suele pedir consentimiento para analítica que guarda un identificador en
+el dispositivo; si se quiere el mínimo riesgo, cambiar a opt-in en el onboarding.
 
-- **Sentry**: basta el interés legítimo si no se envían datos identificativos.
-- **PostHog**: si se usa con identificadores de usuario o para perfilado, hay que pedir
-  consentimiento o configurarlo de forma anónima (sin IP, sin identificador persistente).
-- Añadir ambos al apartado 5 de Privacidad.
+Queda por verificar o hacer:
+- **Plazos** escritos: errores hasta 90 días, estadísticas hasta 12 meses. Comprobar la retención
+  real del plan de Sentry y de PostHog y ajustarla en sus paneles si es mayor.
+- En **Sentry**: activar *Prevent Storing of IP Addresses* y *Data Scrubber* en los dos proyectos.
+- En **PostHog**: activar *Discard client IP data*. Session replay y encuestas ya van apagados en la app.
+- **DPA**: aceptar el contrato de encargo en los paneles de Sentry y PostHog.
+- **Borrado de cuenta**: los eventos de PostHog quedan con el uuid de una cuenta que ya no existe
+  (sin forma de reidentificarla). Si se quiere el borrado completo, llamar a la API de PostHog
+  (`DELETE /persons`) desde `account-delete` con una clave personal de API.
+- **Re-aceptación**: la versión subió a 2026-11-19 y la app aún no vuelve a pedir la aceptación
+  (punto 11). Como el cambio solo añade proveedores y una opción de oposición, basta con el aviso
+  del apartado 11 de la Política.
 
 ## 10. Proveedores: regiones y contratos (DPA)
 
