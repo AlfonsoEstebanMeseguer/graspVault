@@ -27,7 +27,14 @@ class AuthUser {
 }
 
 class MyProfile {
-  const MyProfile({required this.id, required this.username, required this.languages, required this.targetLevel, this.avatarKey});
+  const MyProfile({
+    required this.id,
+    required this.username,
+    required this.languages,
+    required this.targetLevel,
+    this.avatarKey,
+    this.acceptedTermsVersion,
+  });
   final String id;
   final String username;
   final List<String> languages;
@@ -35,7 +42,21 @@ class MyProfile {
 
   /// R2 key of the profile photo (never a URL); null = initial letter.
   final String? avatarKey;
+
+  /// Version of the Terms + Privacy Policy last accepted (profiles_private);
+  /// null = unknown, which never blocks.
+  final String? acceptedTermsVersion;
+
+  /// The app ships newer documents than the ones accepted (§11 of
+  /// docs/legal/ASPECTOS_A_COMPLETAR.md). Versions are ISO dates, so a plain
+  /// string comparison orders them; an OLDER app never asks to go back.
+  bool get needsTermsUpdate {
+    final v = acceptedTermsVersion;
+    return v != null && isIsoVersion(v) && v.compareTo(termsVersion) < 0;
+  }
 }
+
+bool isIsoVersion(String v) => RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(v);
 
 /// Everything the onboarding collects (CLAUDE.md §3, steps 2-8).
 class OnboardingData {
@@ -78,7 +99,7 @@ class AppFailure implements Exception {
 /// Validation shared by the form and the tests. Mirrors the DB constraints.
 abstract final class Validators {
   static final username = RegExp(r'^[a-z0-9_.]{3,20}$');
-  static const minAge = 14;
+  static const minAge = 16; // D-066
 
   static bool isOldEnough(DateTime birth, DateTime today) {
     final limit = DateTime(today.year - minAge, today.month, today.day);

@@ -91,6 +91,14 @@ class SettingsScreen extends ConsumerWidget {
                 onTap: () => context.push(LegalDoc.privacy.path),
               ),
               Divider(height: 1, indent: 56, color: p.border),
+              ListTile(
+                key: const Key('settings-licenses'),
+                leading: Icon(AppIcons.books, color: p.textSecondary),
+                title: Text(l.openSourceLicenses),
+                trailing: Icon(AppIcons.caretRight, size: 16, color: p.textTertiary),
+                onTap: () => showLicensePage(context: context, applicationName: 'MirloTalk', applicationVersion: BuildInfo.label),
+              ),
+              Divider(height: 1, indent: 56, color: p.border),
               const _UsageStatsSwitch(),
               if (ref.watch(authUserProvider).value != null) ...[
                 Divider(height: 1, indent: 56, color: p.border),

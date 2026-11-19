@@ -701,7 +701,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorUnderage.
   ///
   /// In es, this message translates to:
-  /// **'Debes tener al menos 14 años'**
+  /// **'Debes tener al menos 16 años'**
   String get errorUnderage;
 
   /// No description provided for @errorBanned.
@@ -809,7 +809,7 @@ abstract class AppLocalizations {
   /// No description provided for @minAgeHint.
   ///
   /// In es, this message translates to:
-  /// **'Debes tener al menos 14 años.'**
+  /// **'Debes tener al menos 16 años.'**
   String get minAgeHint;
 
   /// No description provided for @invalidDate.
@@ -2581,6 +2581,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Leer la Política de privacidad'**
   String get readPrivacy;
+
+  /// No description provided for @openSourceLicenses.
+  ///
+  /// In es, this message translates to:
+  /// **'Licencias de código abierto'**
+  String get openSourceLicenses;
+
+  /// No description provided for @termsUpdateTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Hemos actualizado los Términos y la Política de privacidad'**
+  String get termsUpdateTitle;
+
+  /// No description provided for @termsUpdateBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Para seguir usando MirloTalk, léelos y acepta la nueva versión. Si no estás de acuerdo, puedes cerrar sesión; la Política explica cómo pedir que borremos tu cuenta.'**
+  String get termsUpdateBody;
+
+  /// No description provided for @termsUpdateAccept.
+  ///
+  /// In es, this message translates to:
+  /// **'Aceptar y continuar'**
+  String get termsUpdateAccept;
 
   /// No description provided for @signUpLegalNote.
   ///

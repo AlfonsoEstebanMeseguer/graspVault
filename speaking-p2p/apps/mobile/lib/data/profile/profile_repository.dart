@@ -11,6 +11,9 @@ abstract class ProfileRepository {
   Future<MyProfile?> loadMine(String userId);
   Future<bool> isUsernameAvailable(String username);
   Future<void> completeOnboarding(OnboardingData data);
+
+  /// Re-acceptance of newer Terms + Privacy Policy; the server dates it.
+  Future<void> acceptTerms(String version);
 }
 
 class SupabaseProfileRepository implements ProfileRepository {
@@ -21,12 +24,14 @@ class SupabaseProfileRepository implements ProfileRepository {
   Future<MyProfile?> loadMine(String userId) async {
     final row = await _client.from('profiles').select('id, username, languages, target_level, avatar_key').eq('id', userId).maybeSingle();
     if (row == null) return null;
+    final private = await _client.from('profiles_private').select('terms_version').eq('id', userId).maybeSingle();
     return MyProfile(
       id: row['id'] as String,
       username: row['username'] as String,
       languages: (row['languages'] as List<dynamic>).cast<String>(),
       targetLevel: LevelCode.parse(row['target_level'] as String),
       avatarKey: row['avatar_key'] as String?,
+      acceptedTermsVersion: private?['terms_version'] as String?,
     );
   }
 
@@ -44,6 +49,15 @@ class SupabaseProfileRepository implements ProfileRepository {
       final details = e.details;
       final code = details is Map && details['error'] is String ? details['error'] as String : 'server_error';
       throw AppFailure(code);
+    }
+  }
+
+  @override
+  Future<void> acceptTerms(String version) async {
+    try {
+      await _client.rpc('accept_terms', params: {'p_version': version});
+    } on sb.PostgrestException catch (e) {
+      throw AppFailure(e.message.isEmpty ? 'server_error' : e.message);
     }
   }
 }

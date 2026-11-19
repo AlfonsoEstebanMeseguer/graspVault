@@ -4,14 +4,14 @@ declare u uuid; v uuid; r jsonb;
 begin
   insert into auth.users (email) values ('kid@example.com') returning id into u;
   perform tests.assert_fails(format($q$select public.svc_onboarding_complete(%L, 'kid@example.com', 'kid', array['es'], 'B1',
-      (current_date - interval '13 years')::date, 'v1')$q$, u), 'underage', 'menor de 14 bloqueado');
+      (current_date - interval '16 years' + interval '1 day')::date, 'v1')$q$, u), 'underage', 'menor de 16 bloqueado (D-066)');
   perform tests.assert_fails(format($q$select public.svc_onboarding_complete(%L, 'kid@example.com', 'Bad Name!', array['es'], 'B1',
       date '2000-01-01', 'v1')$q$, u), 'profiles_username_format', 'username con formato invalido');
   perform tests.assert_fails(format($q$select public.svc_onboarding_complete(%L, 'kid@example.com', 'kiddo', array['español'], 'B1',
       date '2000-01-01', 'v1')$q$, u), 'profiles_languages_valid', 'idiomas en ISO 639-1');
 
-  r := public.svc_onboarding_complete(u, 'Kid@Example.com', 'kiddo', array['es'], 'B1', (current_date - interval '14 years')::date, 'v1');
-  perform tests.assert_eq(r ->> 'trial_available', 'true', '14 justos: alta con trial');
+  r := public.svc_onboarding_complete(u, 'Kid@Example.com', 'kiddo', array['es'], 'B1', (current_date - interval '16 years')::date, 'v1');
+  perform tests.assert_eq(r ->> 'trial_available', 'true', '16 justos: alta con trial');
   perform tests.assert(public.svc_is_eligible(u), 'trial sin usar = elegible');
   perform tests.assert_eq((select terms_version from public.profiles_private where id = u), 'v1', 'version de terminos guardada');
   perform tests.assert((select terms_accepted_at from public.profiles_private where id = u) is not null, 'fecha de aceptacion guardada');

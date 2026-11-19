@@ -61,7 +61,7 @@ Una app móvil (iOS + Android) para **simular el examen oral (Speaking) de Cambr
 
 ### Autenticación
 - **Solo Google Sign-In** a través de Supabase Auth.
-- Edad mínima: **14 años**. Se pide la fecha de nacimiento y se bloquea el registro si es menor de 14.
+- Edad mínima: **16 años** (D-066; antes 14). Se pide la fecha de nacimiento y se bloquea el registro si es menor de 16.
 - Teléfono: **no se pide** (D-065, minimización RGPD).
 
 ### Datos públicos y privados
@@ -354,7 +354,7 @@ Prepara cohortes de retención D1/D7/D30.
 - **Formato:** solo llamadas de audio, sin vídeo. No hay moderación más allá de los Términos y la opción de abandonar.
 - **Contenido:** propio, no oficial; basta con una simulación cercana.
 - **Monetización:** sin plan gratuito. 1 test de prueba, luego 8 €/mes. Un App Open Ad por arranque, para todos.
-- **Acceso:** solo Google. Sin teléfono (D-065). Edad mínima 14.
+- **Acceso:** solo Google. Sin teléfono (D-065). Edad mínima 16 (D-066).
 - **Lector:** TTS pregenerado en R2, con texto mostrable u ocultable.
 - **Grabación:** opcional, con consentimiento de los dos y 30 días de retención. Sin transcripción en el MVP.
 - **Emparejamiento:** en vivo, solo nivel exacto. En la agenda, filtro de niveles adyacentes.

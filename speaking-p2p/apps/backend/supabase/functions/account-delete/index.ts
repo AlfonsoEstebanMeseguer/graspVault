@@ -8,6 +8,7 @@
 import { z } from "npm:zod@3.23.8";
 import { revokeAppleAuthorization } from "../_shared/apple.ts";
 import { inBackground } from "../_shared/background.ts";
+import { deletePosthogPerson } from "../_shared/posthog_admin.ts";
 import { handler, HttpError, json, parseBody } from "../_shared/http.ts";
 import { captureException } from "../_shared/sentry.ts";
 import { adminClient, requireAuthUser, rpc } from "../_shared/supabase.ts";
@@ -35,5 +36,11 @@ Deno.serve(handler(async (req) => {
   // entitlements; set-null anonymises chat messages; triggers queue R2 objects.
   const { error } = await adminClient().auth.admin.deleteUser(user.id);
   if (error) throw new HttpError(500, "internal");
+  // Analytics live outside our database: erase them there too. Never blocks the
+  // deletion, which already happened; a failure goes to Sentry to be retried by hand.
+  inBackground(deletePosthogPerson(user.id).catch((e) => {
+    console.error("posthog person delete failed", e);
+    return captureException(e, { fn: "account-delete", step: "posthog_delete" });
+  }));
   return json({ deleted: true });
 }));

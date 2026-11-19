@@ -92,6 +92,7 @@ flutter:
     - assets/fonts/OFL-newsreader.txt
     - assets/fonts/OFL-ibmplexmono.txt
     - assets/fonts/OFL-caveat.txt
+    - assets/fonts/LICENSE-phosphor.txt
 
 # Readable stack traces in Sentry for release builds (D-064, docs/OBSERVABILITY.md).
 # `dart run sentry_dart_plugin` after a release build uploads the native debug files

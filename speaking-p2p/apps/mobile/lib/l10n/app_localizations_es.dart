@@ -349,7 +349,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get errorUsernameTaken => 'Ese nombre de usuario ya está cogido';
 
   @override
-  String get errorUnderage => 'Debes tener al menos 14 años';
+  String get errorUnderage => 'Debes tener al menos 16 años';
 
   @override
   String get errorBanned =>
@@ -406,7 +406,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get yearLabel => 'Año';
 
   @override
-  String get minAgeHint => 'Debes tener al menos 14 años.';
+  String get minAgeHint => 'Debes tener al menos 16 años.';
 
   @override
   String get invalidDate => 'Fecha no válida';
@@ -1475,6 +1475,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get readPrivacy => 'Leer la Política de privacidad';
+
+  @override
+  String get openSourceLicenses => 'Licencias de código abierto';
+
+  @override
+  String get termsUpdateTitle =>
+      'Hemos actualizado los Términos y la Política de privacidad';
+
+  @override
+  String get termsUpdateBody =>
+      'Para seguir usando MirloTalk, léelos y acepta la nueva versión. Si no estás de acuerdo, puedes cerrar sesión; la Política explica cómo pedir que borremos tu cuenta.';
+
+  @override
+  String get termsUpdateAccept => 'Aceptar y continuar';
 
   @override
   String get signUpLegalNote =>

@@ -8,6 +8,7 @@ import 'package:speaking_p2p/data/auth/auth_repository.dart';
 import 'package:speaking_p2p/data/profile/profile_repository.dart';
 import 'package:speaking_p2p/domain/account/account.dart';
 import 'package:speaking_p2p/domain/exam/models.dart';
+import 'package:speaking_p2p/features/legal/terms_update_screen.dart';
 import 'package:speaking_p2p/features/onboarding/onboarding_screen.dart';
 
 class FakeProfiles implements ProfileRepository {
@@ -23,6 +24,10 @@ class FakeProfiles implements ProfileRepository {
     if (failWith != null) throw AppFailure(failWith!);
     submitted = data;
   }
+
+  final accepted = <String>[];
+  @override
+  Future<void> acceptTerms(String version) async => accepted.add(version);
 }
 
 Future<FakeProfiles> pump(WidgetTester tester) async {
@@ -79,7 +84,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('onboarding-month')), '10');
     await tester.enterText(find.byKey(const Key('onboarding-year')), '2012');
     await tester.pump();
-    expect(find.text('Debes tener al menos 14 años'), findsOneWidget);
+    expect(find.text('Debes tener al menos 16 años'), findsOneWidget);
     expect(nextEnabled(tester), isFalse);
     await tester.enterText(find.byKey(const Key('onboarding-day')), '31');
     await tester.enterText(find.byKey(const Key('onboarding-month')), '02');
@@ -134,5 +139,27 @@ void main() {
     await tester.pump();
     expect(find.byKey(const Key('onboarding-username')), findsOneWidget, reason: 'de vuelta al paso 1');
     expect(find.byKey(const Key('onboarding-error')), findsOneWidget);
+  });
+
+  testWidgets('re-aceptacion: hay que marcar la casilla y se envia la version actual', (tester) async {
+    final fake = FakeProfiles();
+    await tester.pumpWidget(ProviderScope(
+      overrides: [profileRepositoryProvider.overrideWithValue(fake)],
+      child: MaterialApp(
+        theme: buildTheme(Brightness.light),
+        locale: const Locale('es'),
+        supportedLocales: const [Locale('es'), Locale('en')],
+        localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+        home: const TermsUpdateScreen(),
+      ),
+    ));
+    bool enabled() => tester.widget<FilledButton>(find.byKey(const Key('terms-update-accept'))).onPressed != null;
+    expect(enabled(), isFalse);
+    await tester.tap(find.byKey(const Key('terms-update-check')));
+    await tester.pump();
+    expect(enabled(), isTrue);
+    await tester.tap(find.byKey(const Key('terms-update-accept')));
+    await tester.pump();
+    expect(fake.accepted, [termsVersion]);
   });
 }

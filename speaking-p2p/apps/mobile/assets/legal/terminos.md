@@ -6,11 +6,11 @@ Versión 2026-11-19 · Última actualización: 19 de noviembre de 2026
 
 En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI), se informa de que la aplicación móvil MirloTalk (en adelante, la «Aplicación») es titularidad de:
 
-- Titular: [por completar antes de publicar] (nombre y apellidos o razón social)
-- NIF/CIF: [por completar antes de publicar]
-- Domicilio: [por completar antes de publicar]
+- Titular: Alfonso Esteban Meseguer García
+- NIF: 54633962S
+- Domicilio: Calle Júcar, 10, La Alcayna, 30507 Molina de Segura (Murcia), España
 - Correo electrónico de contacto: soporte@mirlotalk.app
-- Datos registrales, en su caso: [por completar antes de publicar]
+- Datos registrales: no aplica (persona física, no inscrita en el Registro Mercantil)
 
 En estos Términos, «nosotros» se refiere al titular y «usted» o el «Usuario», a la persona que descarga o usa la Aplicación.
 
@@ -34,7 +34,7 @@ En estos Términos, «nosotros» se refiere al titular y «usted» o el «Usuari
 
 ## 4. Quién puede usar la Aplicación
 
-4.1. Para registrarse debe tener al menos 14 años. Si es menor de 18 años, declara que su madre, padre o tutor legal conoce y autoriza el uso de la Aplicación y, en particular, cualquier pago.
+4.1. Para registrarse debe tener al menos 16 años. Si es menor de 18 años, declara que su madre, padre o tutor legal conoce y autoriza el uso de la Aplicación y, en particular, cualquier pago.
 
 4.2. La Aplicación pone en contacto, mediante llamadas de voz y mensajes, a personas que no se conocen, que pueden ser mayores o menores de edad. Si es menor de 18 años, le recomendamos usarla con conocimiento de su familia y no compartir datos de contacto ni quedar fuera de la Aplicación con otros usuarios.
 

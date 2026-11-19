@@ -5,6 +5,7 @@ import { permissionBody, signJwt, verifyWebhook } from "./livekit.ts";
 import { mapRcEvent, rcAnalyticsEvent } from "./revenuecat.ts";
 import { captureBatch, toBatchBody } from "./analytics.ts";
 import { sniffImage } from "./r2.ts";
+import { deletePosthogPerson, personDeleteRequest } from "./posthog_admin.ts";
 
 Deno.test("el preflight CORS se corta antes de mirar la sesion (punto 15 del vault)", async () => {
   let called = false;
@@ -113,4 +114,17 @@ Deno.test("RevenueCat -> PostHog: solo la primera compra y la cancelacion", () =
   assertEquals(rcAnalyticsEvent("CANCELLATION"), "subscription_cancelled");
   assertEquals(rcAnalyticsEvent("RENEWAL"), null);
   assertEquals(rcAnalyticsEvent("TEST"), null);
+});
+
+Deno.test("PostHog: el borrado de cuenta pide borrar persona y eventos por el uuid, en la API privada de la UE", () => {
+  const r = personDeleteRequest("phx_k", "123", "uuid-1");
+  assertEquals(r.url, "https://eu.posthog.com/api/projects/123/persons/bulk_delete/");
+  assertEquals(r.init.method, "POST");
+  assertEquals((r.init.headers as Record<string, string>).Authorization, "Bearer phx_k");
+  assertEquals(JSON.parse(r.init.body as string), { distinct_ids: ["uuid-1"], delete_events: true });
+});
+
+Deno.test("PostHog: sin clave personal no se llama a nadie", async () => {
+  Deno.env.delete("POSTHOG_PERSONAL_API_KEY");
+  assertEquals(await deletePosthogPerson("uuid-1"), "skipped");
 });

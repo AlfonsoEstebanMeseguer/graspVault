@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../data/auth/auth_repository.dart';
 import '../../data/profile/profile_repository.dart';
+import '../../domain/account/account.dart' show MyProfile;
 import '../../domain/exam/models.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/onboarding/onboarding_screen.dart';
@@ -22,6 +23,7 @@ import '../../features/home/home_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/settings/settings_screen.dart';
 import '../../features/legal/legal_screen.dart';
+import '../../features/legal/terms_update_screen.dart';
 import '../../features/safety/safety_sheet.dart';
 import '../l10n/l10n.dart';
 
@@ -36,12 +38,15 @@ String? gateRedirect({
   if (!hasBackend) return null;
   // The Terms and the Privacy Policy are readable by anyone, signed in or not.
   if (location.startsWith('/legal/')) return null;
-  const gateRoutes = {'/login', '/onboarding', '/loading'};
+  const gateRoutes = {'/login', '/onboarding', '/loading', '/terms-update'};
   if (user.isLoading && !user.hasValue) return location == '/loading' ? null : '/loading';
   if (user.value == null) return location == '/login' ? null : '/login';
   if (profile.isLoading && !profile.hasValue) return location == '/loading' ? null : '/loading';
   if (profile.hasError) return null; // keep the user where they are; the screen shows the error
   if (profile.value == null) return location == '/onboarding' ? null : '/onboarding';
+  // Newer Terms / Privacy Policy than the ones accepted: nothing else until accepted.
+  final p = profile.value;
+  if (p is MyProfile && p.needsTermsUpdate) return location == '/terms-update' ? null : '/terms-update';
   return gateRoutes.contains(location) ? '/' : null;
 }
 
@@ -62,6 +67,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
+      GoRoute(path: '/terms-update', builder: (_, _) => const TermsUpdateScreen()),
       GoRoute(path: '/loading', builder: (_, _) => const Scaffold(body: Center(child: CircularProgressIndicator()))),
       // Tabs keep their state (StatefulShellRoute, as in the vault).
       StatefulShellRoute.indexedStack(

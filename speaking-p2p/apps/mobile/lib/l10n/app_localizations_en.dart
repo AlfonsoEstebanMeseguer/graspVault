@@ -350,7 +350,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorUsernameTaken => 'That username is already taken';
 
   @override
-  String get errorUnderage => 'You must be at least 14';
+  String get errorUnderage => 'You must be at least 16';
 
   @override
   String get errorBanned =>
@@ -408,7 +408,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yearLabel => 'Year';
 
   @override
-  String get minAgeHint => 'You must be at least 14.';
+  String get minAgeHint => 'You must be at least 16.';
 
   @override
   String get invalidDate => 'Invalid date';
@@ -1475,6 +1475,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get readPrivacy => 'Read the Privacy Policy';
+
+  @override
+  String get openSourceLicenses => 'Open-source licences';
+
+  @override
+  String get termsUpdateTitle =>
+      'We have updated the Terms and the Privacy Policy';
+
+  @override
+  String get termsUpdateBody =>
+      'To keep using MirloTalk, please read them and accept the new version. If you do not agree, you can sign out; the Policy explains how to ask us to delete your account.';
+
+  @override
+  String get termsUpdateAccept => 'Accept and continue';
 
   @override
   String get signUpLegalNote =>

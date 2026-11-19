@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app.dart';
 import 'core/config/env.dart';
+import 'core/legal/bundled_licenses.dart';
 import 'core/telemetry/analytics_consent.dart';
 import 'core/telemetry/telemetry.dart';
 import 'core/theming/preferences.dart';
@@ -15,6 +16,7 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   const env = Env.fromDefines;
   env.assertSafe();
+  registerBundledLicenses();
   final prefs = await SharedPreferences.getInstance();
   await Telemetry.instance.init(analyticsAllowed: analyticsAllowedOnDevice(prefs));
   if (env.hasBackend) {

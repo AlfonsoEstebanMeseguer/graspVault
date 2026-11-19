@@ -5,10 +5,10 @@ import 'package:speaking_p2p/domain/account/account.dart';
 import 'package:speaking_p2p/domain/exam/models.dart';
 
 void main() {
-  group('edad minima 14 (mismo criterio que el trigger de la base)', () {
+  group('edad minima 16 (mismo criterio que el trigger de la base)', () {
     final today = DateTime(2026, 10, 15);
-    test('cumple 14 hoy: entra', () => expect(Validators.isOldEnough(DateTime(2012, 10, 15), today), isTrue));
-    test('cumple 14 manana: no entra', () => expect(Validators.isOldEnough(DateTime(2012, 10, 16), today), isFalse));
+    test('cumple 16 hoy: entra', () => expect(Validators.isOldEnough(DateTime(2010, 10, 15), today), isTrue));
+    test('cumple 16 manana: no entra', () => expect(Validators.isOldEnough(DateTime(2010, 10, 16), today), isFalse));
   });
 
   test('fechas imposibles no se convierten en otra fecha', () {
@@ -45,6 +45,19 @@ void main() {
       expect(gate(someone, someone, '/login'), '/');
       expect(gate(someone, someone, '/onboarding'), '/');
       expect(gate(someone, someone, '/agenda'), isNull);
+    });
+    test('documentos nuevos sin aceptar -> re-aceptacion, y nada mas se abre', () {
+      MyProfile me(String? v) => MyProfile(id: 'u', username: 'u_x', languages: const ['es'], targetLevel: Level.b2, acceptedTermsVersion: v);
+      final old = AsyncData<Object?>(me('2026-10-01'));
+      expect(gate(someone, old, '/'), '/terms-update');
+      expect(gate(someone, old, '/agenda'), '/terms-update');
+      expect(gate(someone, old, '/terms-update'), isNull);
+      expect(gate(someone, old, '/legal/terms'), isNull, reason: 'puede leerlos antes de aceptar');
+      final current = AsyncData<Object?>(me(termsVersion));
+      expect(gate(someone, current, '/terms-update'), '/');
+      expect(gate(someone, AsyncData<Object?>(me('2099-01-01')), '/'), isNull, reason: 'una app vieja no pide volver atras');
+      expect(gate(someone, AsyncData<Object?>(me(null)), '/'), isNull, reason: 'sin dato, no bloquea');
+      expect(gate(someone, AsyncData<Object?>(me('v1')), '/'), isNull, reason: 'version no ISO, no bloquea');
     });
     test('mientras carga, pantalla de carga', () {
       expect(gate(const AsyncLoading<Object?>(), nobody, '/'), '/loading');

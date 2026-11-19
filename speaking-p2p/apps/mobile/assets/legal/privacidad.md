@@ -6,9 +6,9 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 
 ## 1. Responsable del tratamiento
 
-- Responsable: [por completar antes de publicar] (nombre y apellidos o razón social)
-- NIF/CIF: [por completar antes de publicar]
-- Domicilio: [por completar antes de publicar]
+- Responsable: Alfonso Esteban Meseguer García
+- NIF: 54633962S
+- Domicilio: Calle Júcar, 10, La Alcayna, 30507 Molina de Segura (Murcia), España
 - Contacto para asuntos de privacidad: privacidad@mirlotalk.app
 
 ## 2. Qué datos tratamos
@@ -39,7 +39,7 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 ## 3. Para qué usamos sus datos y con qué base legal
 
 - Prestar el servicio: crear y mantener su cuenta, emparejarle con otro estudiante, gestionar la Agenda y el chat, conectar las llamadas, controlar los turnos y el tiempo del examen, y mostrar su historial. Base legal: ejecución del contrato que acepta con los Términos (art. 6.1.b RGPD).
-- Comprobar la edad mínima: fecha de nacimiento. Base legal: cumplimiento de una obligación legal (art. 6.1.c RGPD, en relación con el art. 7 LOPDGDD) y ejecución del contrato.
+- Comprobar la edad mínima: fecha de nacimiento. Base legal: cumplimiento de una obligación legal (art. 6.1.c RGPD, en relación con el art. 8 RGPD y el art. 7 LOPDGDD) y ejecución del contrato.
 - Gestionar la suscripción y el examen de prueba: comprobar si tiene acceso a las funciones de pago. Base legal: ejecución del contrato.
 - Grabar una sesión: solo cuando los dos participantes lo activan. Base legal: su consentimiento (art. 6.1.a RGPD), que puede retirar desactivando la opción antes de empezar o eliminando su cuenta.
 - Valoraciones entre usuarios: guardar la rúbrica que hace y mostrarle las que recibe. Base legal: ejecución del contrato (es una función del servicio que usted decide usar).
@@ -84,7 +84,7 @@ No vendemos sus datos ni los cedemos a terceros para fines publicitarios. Los co
 
 ## 6. Transferencias internacionales
 
-Algunos proveedores son empresas de Estados Unidos o pueden tratar datos fuera del Espacio Económico Europeo. En esos casos, la transferencia se ampara en el Marco de Privacidad de Datos UE-EE. UU., cuando el proveedor está adherido, o en las cláusulas contractuales tipo aprobadas por la Comisión Europea, con las medidas adicionales que procedan.
+Algunos proveedores son empresas de Estados Unidos o pueden tratar datos fuera del Espacio Económico Europeo. LiveKit, Cloudflare, Functional Software (Sentry) y PostHog están adheridos al Marco de Privacidad de Datos UE-EE. UU., que la Comisión Europea reconoce como garantía adecuada (art. 45 RGPD); con Supabase, la transferencia se ampara en las cláusulas contractuales tipo aprobadas por la Comisión Europea (art. 46 RGPD), incluidas en su contrato de encargo. Aun así, Supabase, Sentry y PostHog guardan sus datos en la Unión Europea.
 
 ## 7. Cómo protegemos sus datos
 
@@ -100,7 +100,7 @@ Ningún sistema es infalible. Si se produjera una brecha de seguridad que supong
 
 ## 8. Menores de edad
 
-La Aplicación está dirigida a personas de 14 años o más. En España, a partir de los 14 años una persona puede consentir por sí misma el tratamiento de sus datos (art. 7 LOPDGDD). No permitimos el registro de menores de 14 años. Si sabemos que una cuenta pertenece a un menor de esa edad, la eliminaremos. Si es madre, padre o tutor y cree que su hijo o hija menor de 14 años se ha registrado, escríbanos a privacidad@mirlotalk.app.
+La Aplicación está dirigida a personas de 16 años o más. A partir de esa edad una persona puede consentir por sí misma el tratamiento de sus datos en cualquier país de la Unión Europea (art. 8 RGPD; en España, desde los 14, art. 7 LOPDGDD). No permitimos el registro de menores de 16 años. Si sabemos que una cuenta pertenece a un menor de esa edad, la eliminaremos. Si es madre, padre o tutor y cree que su hijo o hija menor de 16 años se ha registrado, escríbanos a privacidad@mirlotalk.app.
 
 Los pagos de los menores de 18 años deben hacerse con autorización de sus padres o tutores, a través de la cuenta de la tienda.
 
