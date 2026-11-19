@@ -121,4 +121,6 @@ Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tes
 ## Sesión 2026-11-19
 - **Sentry y PostHog implementados (D-063):** SDKs en la app (`sentry_flutter`, `posthog_flutter`), `identify` por uuid, eventos de interacción; en el servidor, `signup`/`subscription` directos y el resto por `analytics_outbox` (triggers) + `cron-worker` `analytics`. Todo sigue siendo no-op sin claves.
 - Tests: Flutter ✅ (139, incl. `telemetry_test`), `flutter analyze` limpio, `deno check`/`lint`/`test` ✅ (16), suite SQL ✅ (12, incl. `12_analytics.sql`).
-- **Pendiente:** claves en `env/dev.json` y secretos de Supabase; aplicar la migración y desplegar funciones.
+- **Desplegado en producción (2026-11-19):** migración `analytics_outbox` (MCP), `cron-worker` v5 y `onboarding-complete` v4. Cron `analytics` activo y respondiendo `{"sent":0}` (= `POSTHOG_API_KEY` presente). Secretos comprobados por nombre con `config-check`: `SENTRY_DSN_FUNCTIONS` y `POSTHOG_API_KEY` presentes.
+- **No redesplegadas a propósito:** `session-actions`, `livekit-webhook` y demás. Producción **no tiene** `20261029120000_moderation_evidence` ni `20261031120000_pause_during_reader`, y el código actual de esas funciones las necesita. Aplicar primero esas migraciones y luego redesplegar todo. `account-delete` sin redesplegar (cambio menor).
+- **Pendiente:** `SENTRY_DSN_APP` y `POSTHOG_API_KEY` en `apps/mobile/env/dev.json`.
