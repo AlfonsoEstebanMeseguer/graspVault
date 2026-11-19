@@ -2,5 +2,10 @@
   "SUPABASE_URL": "https://hlkiplxfegzboupimczu.supabase.co",
   "SUPABASE_ANON_KEY": "sb_publishable_GTi9ygZZ-Y-IauXXy_6ITw_oGcOR_rA",
   "GOOGLE_WEB_CLIENT_ID": "720120438114-lt6g4m0td3j64ad08lbehbpcilor3sc4.apps.googleusercontent.com",
-  "GOOGLE_IOS_CLIENT_ID": "720120438114-j0ser0b3vsso28kuplrhmonsjnli1787.apps.googleusercontent.com"
+  "GOOGLE_IOS_CLIENT_ID": "720120438114-j0ser0b3vsso28kuplrhmonsjnli1787.apps.googleusercontent.com",
+  "SENTRY_DSN_APP": "https://b7d6ba89007930767f73aad1f8ba7465@o4512249146376192.ingest.de.sentry.io/4512458041851984",
+  "POSTHOG_HOST": "https://eu.i.posthog.com",
+  "SENTRY_DSN_FUNCTIONS": "https://bd9e7fd7033a37948a4242f5a91475a8@o4512249146376192.ingest.de.sentry.io/4512458045194320",
+  "POSTHOG_API_KEY": "phc_z9ngkQQha4cs6R38ohQ7EeTYjETSFwCrEbt7sJWh3oUk"
 }
+
