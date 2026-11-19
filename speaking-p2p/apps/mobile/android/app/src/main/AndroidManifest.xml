@@ -14,7 +14,7 @@
         android:label="MirloTalk"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <!-- PostHog is set up from Dart with the key from --dart-define (core/telemetry). -->
+        <!-- PostHog is set up from Dart with the build-time key (core/telemetry). -->
         <meta-data android:name="com.posthog.posthog.AUTO_INIT" android:value="false" />
         <activity
             android:name=".MainActivity"
