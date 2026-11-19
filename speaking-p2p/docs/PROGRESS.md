@@ -112,3 +112,8 @@ Resultado anterior (2026-10-15): 17 tests Deno ✅, 5 ficheros SQL ✅, **50 tes
   1. Poner los client IDs en `env/dev.json`, activar Google en Supabase y probar en Android e iOS.
   2. Redesplegar `account-delete`.
   3. Con la cuenta de Apple: secretos `APPLE_*`, `APPLE_SIGN_IN=true` y firma en CI para TestFlight.
+- **2026-11-19 · Google funciona en Android (Redmi 12C):**
+  - Clientes OAuth creados en el proyecto de Google Cloud «MirloTalk». Los IDs web e iOS están en `env/dev.json` y Google está activado en Supabase con los dos IDs.
+  - Primer intento: `Unacceptable audience in id_token`, porque faltaba el ID web en Supabase. Corregido.
+  - La cuenta de Google se unió a la cuenta de email existente con el mismo Gmail (`providers: [email, google]`). Por eso sigue reautenticándose con contraseña al borrar (`provider` = `email`).
+  - **Pendiente:** probar Google en el iPhone (build de iOS + Sideloadly), redesplegar `account-delete` y todo lo de Apple (cuenta de pago).

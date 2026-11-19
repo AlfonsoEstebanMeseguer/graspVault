@@ -45,6 +45,7 @@ Dashboard → **Authentication → Sign In / Providers → Google**:
 - **Client IDs:** `<GOOGLE_WEB_CLIENT_ID>,<GOOGLE_IOS_CLIENT_ID>` (los dos, separados por coma).
 - **Client Secret:** el del cliente web.
 - **Skip nonce check:** **off**. La app manda el nonce. Si en iOS fallara con «nonce mismatch», actívalo y avísame.
+- Si el login falla con *«No se ha podido iniciar sesión»* y el log de Auth dice Unacceptable audience in id_token, falta el ID web en **Client IDs** (pasó el 2026-11-19). Van los dos IDs separados por una coma, sin espacios.
 
 ### 1.4 App
 En `apps/mobile/env/dev.json` añade:
