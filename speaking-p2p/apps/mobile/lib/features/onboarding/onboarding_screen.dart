@@ -1,6 +1,6 @@
 // Onboarding in three screens, as in the sketches (the eight steps of
 // CLAUDE.md §3 in order): 1 public profile (username, languages),
-// 2 private data (birth date, phone, email), 3 target level + terms.
+// 2 private data (birth date, email), 3 target level + terms. No phone (D-065).
 // Avatar is optional and comes later from the profile (needs the photo picker).
 import 'dart:async';
 
@@ -25,7 +25,6 @@ import '../home/home_screen.dart' show levelName;
 
 const _mainLanguages = ['es', 'en', 'ca', 'fr', 'it'];
 const _moreLanguages = ['de', 'pt', 'eu', 'gl', 'zh', 'ar', 'ru', 'uk', 'ro'];
-const _phonePrefixes = ['+34', '+44', '+33', '+39', '+49', '+351', '+1', '+52', '+54', '+57'];
 
 String languageName(AppLocalizations l, String code) => switch (code) {
       'es' => l.langEs,
@@ -73,8 +72,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final _day = TextEditingController();
   final _month = TextEditingController();
   final _year = TextEditingController();
-  final _phone = TextEditingController();
-  String _prefix = '+34';
 
   // step 3
   Level? _level;
@@ -85,7 +82,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   @override
   void dispose() {
     _debounce?.cancel();
-    for (final c in [_username, _day, _month, _year, _phone]) {
+    for (final c in [_username, _day, _month, _year]) {
       c.dispose();
     }
     super.dispose();
@@ -107,17 +104,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   DateTime? get _birth => Validators.date(int.tryParse(_day.text), int.tryParse(_month.text), int.tryParse(_year.text));
 
-  String? get _phoneE164 {
-    final digits = _phone.text.replaceAll(RegExp(r'[\s-]'), '');
-    if (digits.isEmpty) return null;
-    return '$_prefix$digits';
-  }
-
-  bool get _phoneValid => _phoneE164 == null || Validators.phone.hasMatch(_phoneE164!);
-
   bool get _canContinue => switch (_step) {
         0 => _usernameState == _UsernameState.available && _languages.isNotEmpty,
-        1 => _birth != null && Validators.isOldEnough(_birth!, _today) && _phoneValid,
+        1 => _birth != null && Validators.isOldEnough(_birth!, _today),
         _ => _level != null && _terms,
       };
 
@@ -135,7 +124,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         languages: _languages.toList(),
         targetLevel: _level!,
         birthDate: _birth!,
-        phone: _phoneE164,
         termsVersion: termsVersion,
       ));
       ref.invalidate(myProfileProvider); // the router moves on when the profile exists
@@ -299,26 +287,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         padding: const EdgeInsets.only(top: 6, bottom: 18),
         child: Text(dateError ?? l.minAgeHint, style: AppType.footnote.copyWith(color: dateError == null ? p.textSecondary : p.danger)),
       ),
-      _label(l.phoneOptional),
-      Row(children: [
-        DropdownButton<String>(
-          value: _prefix,
-          items: [for (final x in _phonePrefixes) DropdownMenuItem(value: x, child: Text(x))],
-          onChanged: (v) => setState(() => _prefix = v ?? _prefix),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: TextField(
-            key: const Key('onboarding-phone'),
-            controller: _phone,
-            keyboardType: TextInputType.phone,
-            inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9 -]'))],
-            onChanged: (_) => setState(() {}),
-            decoration: InputDecoration(errorText: _phoneValid ? null : l.invalidPhone),
-          ),
-        ),
-      ]),
-      const SizedBox(height: 18),
       _label(l.emailLabel),
       TextField(
         controller: TextEditingController(text: email),

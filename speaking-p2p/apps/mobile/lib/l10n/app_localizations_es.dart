@@ -352,6 +352,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get errorUnderage => 'Debes tener al menos 14 años';
 
   @override
+  String get errorBanned =>
+      'Esta cuenta se dio de baja de forma definitiva por incumplir los Términos. Si crees que es un error, escribe a soporte@mirlotalk.app';
+
+  @override
   String get errorGeneric => 'Algo ha fallado. Inténtalo de nuevo';
 
   @override
@@ -406,12 +410,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get invalidDate => 'Fecha no válida';
-
-  @override
-  String get phoneOptional => 'Teléfono (opcional)';
-
-  @override
-  String get invalidPhone => 'Número no válido';
 
   @override
   String get linkedToAccount => 'Vinculado a tu cuenta';

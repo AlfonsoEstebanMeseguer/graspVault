@@ -88,7 +88,6 @@ void main() {
     await tester.enterText(find.byKey(const Key('onboarding-day')), '12');
     await tester.enterText(find.byKey(const Key('onboarding-month')), '03');
     await tester.enterText(find.byKey(const Key('onboarding-year')), '2004');
-    await tester.enterText(find.byKey(const Key('onboarding-phone')), '612 345 678');
     await tester.pump();
     expect(find.text('laura@example.com'), findsOneWidget, reason: 'email de la sesion, solo lectura');
     expect(nextEnabled(tester), isTrue);
@@ -110,7 +109,7 @@ void main() {
     expect(d.languages.toSet(), {'es', 'en'});
     expect(d.targetLevel, Level.c1);
     expect(d.birthDate, DateTime(2004, 3, 12));
-    expect(d.phone, '+34612345678');
+    expect(find.byKey(const Key('onboarding-phone')), findsNothing, reason: 'sin telefono (D-065)');
     expect(d.termsVersion, termsVersion);
   });
 

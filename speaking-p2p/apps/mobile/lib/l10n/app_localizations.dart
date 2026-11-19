@@ -704,6 +704,12 @@ abstract class AppLocalizations {
   /// **'Debes tener al menos 14 años'**
   String get errorUnderage;
 
+  /// No description provided for @errorBanned.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta cuenta se dio de baja de forma definitiva por incumplir los Términos. Si crees que es un error, escribe a soporte@mirlotalk.app'**
+  String get errorBanned;
+
   /// No description provided for @errorGeneric.
   ///
   /// In es, this message translates to:
@@ -811,18 +817,6 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Fecha no válida'**
   String get invalidDate;
-
-  /// No description provided for @phoneOptional.
-  ///
-  /// In es, this message translates to:
-  /// **'Teléfono (opcional)'**
-  String get phoneOptional;
-
-  /// No description provided for @invalidPhone.
-  ///
-  /// In es, this message translates to:
-  /// **'Número no válido'**
-  String get invalidPhone;
 
   /// No description provided for @linkedToAccount.
   ///

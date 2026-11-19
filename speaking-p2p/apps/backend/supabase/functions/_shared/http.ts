@@ -33,6 +33,7 @@ export class HttpError extends Error {
 const STATUS_BY_CODE: Record<string, number> = {
   not_eligible: 402,
   already_onboarded: 409,
+  banned: 403, // D-065: a permanently expelled email
   username_taken: 409,
   already_accepted: 409,
   too_many_offers: 409,

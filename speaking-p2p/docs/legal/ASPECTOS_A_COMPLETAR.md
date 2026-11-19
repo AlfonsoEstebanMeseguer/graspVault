@@ -79,12 +79,11 @@ uso de «B1 Preliminary», «B2 First» y «C1 Advanced» en la ficha de las tie
 práctica segura: usarlos solo descriptivamente («para preparar el B2 First»), sin logotipos ni la
 tipografía de Cambridge.
 
-## 5. Teléfono: minimizar o justificar
+## 5. Teléfono — ✅ resuelto el 2026-11-19 (D-065)
 
-Hoy se pide y se guarda el teléfono, pero la app no lo usa para nada. Por el principio de
-minimización (art. 5.1.c RGPD) hay que **eliminarlo del registro** o **explicar para qué sirve**
-(por ejemplo, avisos por SMS). Es una pregunta típica en una inspección. Recomendación: quitarlo
-mientras no tenga uso.
+Eliminado: la app ya no lo pide, el servidor ya no lo acepta y los números guardados se borraron
+con la columna (migración `20261119160000_drop_phone_bans.sql`). La Política dice «No le pedimos el
+número de teléfono».
 
 ## 6. Pagos y suscripción (RevenueCat aún no integrado)
 
@@ -110,15 +109,18 @@ Si integras el App Open Ad:
 Si decides no poner publicidad, hay que **borrar el apartado 14 de los Términos** y la mención
 correspondiente en Privacidad.
 
-## 8. Moderación y Reglamento de Servicios Digitales (DSA)
+## 8. Moderación y Reglamento de Servicios Digitales (DSA) — plazo fijado el 2026-11-19 (D-065)
 
-Los Términos prometen revisar los reportes «en un plazo razonable». Falta decidir y, si quieres,
-reflejar un plazo concreto (p. ej. 48 h) y **quién** los revisa. Hoy no hay panel de administración:
-se revisan en la tabla `user_reports` directamente en la base de datos.
+Los Términos (10.2) prometen ahora revisar los reportes **en 72 horas como máximo**. Cubre el
+mecanismo de notificación (art. 16 DSA) y la motivación de las decisiones (art. 17), de las que las
+microempresas no están exentas.
 
-El DSA obliga a toda plataforma a tener un mecanismo de notificación (art. 16) y a motivar las
-decisiones de moderación (art. 17). Las microempresas están exentas de parte de las obligaciones
-(art. 19) pero **no de estas dos**. El texto actual ya las cubre; conviene un plazo y un proceso.
+Queda por tu parte, como proceso:
+- Revisar `user_reports` (estado `open`) al menos cada 72 h, también en vacaciones.
+- Comunicar cada medida al usuario con los motivos **antes** de aplicarla, por correo desde
+  `soporte@mirlotalk.app`.
+- Para una baja definitiva: `select private.ban_user('<uuid>', '<motivo>');` en el editor SQL
+  (ver §14).
 
 ## 9. Analítica y errores (Sentry / PostHog) — redactado el 2026-11-19 (D-064)
 
@@ -168,11 +170,16 @@ Comprobar que todas las licencias de `content/LICENSES.md` y de `assets/fonts` *
 comercial** en una app de pago. Ya hay una regla del proyecto (D-047) de usar solo fotos con licencia
 comercial (Pixabay), pero conviene revisar el inventario completo.
 
-## 14. Conservación de usuarios expulsados
+## 14. Conservación de usuarios expulsados — ✅ resuelto el 2026-11-19 (D-065)
 
-Hoy, al eliminar la cuenta, los reportes en los que el usuario es el reportado se ponen a `null`. Si
-quieres conservar información de un usuario expulsado (por ejemplo, para impedir que vuelva a
-registrarse), hay que decidirlo y reflejarlo en el apartado 4 de Privacidad.
+Se guarda solo el **hash del correo** (`public.banned_identities`), como ya se hacía con el examen de
+prueba (`trial_claims`). Con él, el mismo correo no puede volver a registrarse (error `banned`, con
+mensaje propio en la app). Lo explican la Política (§3 y §4, «Huella del correo electrónico») y los
+Términos (10.2).
+
+Uso: `select private.ban_user('<uuid>', '<motivo>');` guarda el hash, cierra los reportes abiertos
+contra el usuario y borra la cuenta igual que un borrado voluntario. Para levantar una expulsión:
+`delete from public.banned_identities where email_hash = private.email_hash('<correo>');`.
 
 ---
 

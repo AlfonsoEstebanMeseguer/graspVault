@@ -18,20 +18,18 @@ void main() {
     expect(Validators.date(1, 1, 1899), isNull);
   });
 
-  test('username y telefono con las mismas reglas que los CHECK', () {
+  test('username con las mismas reglas que el CHECK', () {
     expect(Validators.username.hasMatch('laura_m'), isTrue);
     expect(Validators.username.hasMatch('Laura'), isFalse);
     expect(Validators.username.hasMatch('ab'), isFalse);
-    expect(Validators.phone.hasMatch('+34612345678'), isTrue);
-    expect(Validators.phone.hasMatch('612345678'), isFalse);
   });
 
   test('el JSON del onboarding es el que espera la Edge Function', () {
     final j = OnboardingData(
       username: 'laura_m', languages: ['es', 'en'], targetLevel: Level.c1,
-      birthDate: DateTime(2004, 3, 12), phone: null, termsVersion: 'v1',
+      birthDate: DateTime(2004, 3, 12), termsVersion: 'v1',
     ).toJson();
-    expect(j, {'username': 'laura_m', 'languages': ['es', 'en'], 'targetLevel': 'C1', 'birthDate': '2004-03-12', 'phone': null, 'termsVersion': 'v1'});
+    expect(j, {'username': 'laura_m', 'languages': ['es', 'en'], 'targetLevel': 'C1', 'birthDate': '2004-03-12', 'termsVersion': 'v1'});
   });
 
   group('puerta de sesion', () {

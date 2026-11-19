@@ -353,6 +353,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorUnderage => 'You must be at least 14';
 
   @override
+  String get errorBanned =>
+      'This account was permanently removed for breaking the Terms. If you think it is a mistake, write to soporte@mirlotalk.app';
+
+  @override
   String get errorGeneric => 'Something went wrong. Please try again';
 
   @override
@@ -408,12 +412,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get invalidDate => 'Invalid date';
-
-  @override
-  String get phoneOptional => 'Phone (optional)';
-
-  @override
-  String get invalidPhone => 'Invalid number';
 
   @override
   String get linkedToAccount => 'Linked to your account';

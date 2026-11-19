@@ -40,7 +40,7 @@ declare v uuid;
 begin
   insert into auth.users (email) values (p_name || '@example.com') returning id into v;
   perform public.svc_onboarding_complete(v, p_name || '@example.com', 'u_' || p_name, array['es', 'en'], p_level,
-                                         date '2000-01-01', '+34612345678', 'v1');
+                                         date '2000-01-01', 'v1');
   if p_sub then
     update public.entitlements set subscription_status = 'active', current_period_end = now() + interval '30 days' where user_id = v;
   end if;

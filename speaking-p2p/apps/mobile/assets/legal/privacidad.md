@@ -17,7 +17,7 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 
 - Datos de la cuenta: correo electrónico y contraseña (la contraseña se guarda cifrada y nunca la conocemos).
 - Perfil público: nombre de usuario, foto de perfil (opcional), idiomas que habla y nivel de examen que prepara.
-- Datos privados del registro: fecha de nacimiento, para comprobar la edad mínima, y número de teléfono, que es opcional y no se verifica.
+- Datos privados del registro: fecha de nacimiento, para comprobar la edad mínima. No le pedimos el número de teléfono.
 - Constancia de la aceptación: versión de los Términos y de esta Política que aceptó y fecha.
 - Mensajes que escribe en los chats de las reuniones.
 - Valoraciones con rúbrica que hace a otros usuarios, y reportes que envía.
@@ -43,7 +43,7 @@ En esta Política explicamos qué datos personales tratamos cuando usa la aplica
 - Gestionar la suscripción y el examen de prueba: comprobar si tiene acceso a las funciones de pago. Base legal: ejecución del contrato.
 - Grabar una sesión: solo cuando los dos participantes lo activan. Base legal: su consentimiento (art. 6.1.a RGPD), que puede retirar desactivando la opción antes de empezar o eliminando su cuenta.
 - Valoraciones entre usuarios: guardar la rúbrica que hace y mostrarle las que recibe. Base legal: ejecución del contrato (es una función del servicio que usted decide usar).
-- Seguridad y moderación: atender reportes, aplicar bloqueos, prevenir abusos y el fraude, y colaborar con las autoridades cuando la ley lo exija. Base legal: nuestro interés legítimo, y el de los demás usuarios, en un entorno seguro (art. 6.1.f RGPD) y, en su caso, el cumplimiento de obligaciones legales.
+- Seguridad y moderación: atender reportes, aplicar bloqueos, impedir que una cuenta dada de baja de forma definitiva vuelva a registrarse, prevenir abusos y el fraude, y colaborar con las autoridades cuando la ley lo exija. Base legal: nuestro interés legítimo, y el de los demás usuarios, en un entorno seguro (art. 6.1.f RGPD) y, en su caso, el cumplimiento de obligaciones legales.
 - Avisos del servicio: recordatorios de una reunión 10 minutos antes y avisos sobre cambios en ella. Base legal: ejecución del contrato. Las notificaciones push solo se envían si las permite en su dispositivo.
 - Detectar y corregir errores: recibir y analizar los informes de errores para que la Aplicación funcione. Base legal: nuestro interés legítimo en ofrecer un servicio que funcione y sea seguro (art. 6.1.f RGPD). Los informes no se usan para conocer su comportamiento ni para elaborar perfiles.
 - Mejorar la Aplicación con estadísticas de uso: saber qué funciones se usan, dónde se abandonan los exámenes o cuánto se tarda en encontrar pareja, y analizarlo de forma agregada. Base legal: nuestro interés legítimo en mejorar el servicio (art. 6.1.f RGPD). Puede oponerse en cualquier momento, sin dar explicaciones, desactivando «Compartir estadísticas de uso» en Ajustes: desde ese momento dejamos de registrar sus estadísticas, tanto en su dispositivo como en nuestro servidor, y se eliminan las que estuvieran pendientes de envío. No usamos estas estadísticas para publicidad ni para decisiones sobre usted.
@@ -61,6 +61,7 @@ No usamos sus datos para tomar decisiones automatizadas que produzcan efectos ju
 - Datos técnicos de los proveedores: según sus políticas, normalmente entre 7 y 90 días.
 - Informes de errores: hasta 90 días.
 - Estadísticas de uso: hasta 12 meses. Si elimina su cuenta, dejan de estar vinculadas a ella.
+- Huella del correo electrónico: en dos casos guardamos un resumen cifrado e irreversible (hash) de su correo, que se conserva aunque se elimine la cuenta: si ya usó el examen de prueba, para que no se pueda obtener otro creando una cuenta nueva con el mismo correo; y si la cuenta se dio de baja de forma definitiva por incumplir los Términos, para impedir que vuelva a registrarse. El hash no permite conocer su correo ni contactarle; solo sirve para reconocerlo si se vuelve a usar. Se conserva mientras exista el servicio. Base legal: nuestro interés legítimo en evitar el fraude y en proteger a los demás usuarios (art. 6.1.f RGPD).
 
 Una vez vencidos estos plazos, los datos se suprimen o se bloquean durante el tiempo en que pudieran exigirse responsabilidades legales.
 

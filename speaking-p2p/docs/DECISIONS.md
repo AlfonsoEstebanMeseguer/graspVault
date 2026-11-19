@@ -351,3 +351,11 @@
 - **Minimización:** PostHog sin GeoIP también en la app (`disableGeoIp`), para que la Política pueda decir «sin ubicación».
 - **Política:** versión `2026-11-19` (Términos y Privacidad comparten constante). Nuevos 2.2 (errores y estadísticas), 3 (bases y forma de oponerse), 4 (plazos) y 5.2 (Sentry y PostHog, ambos con datos en Fráncfort). Pendientes de verificar en `docs/legal/ASPECTOS_A_COMPLETAR.md` §9.
 - **Descartado:** opt-in en el onboarding (más seguro, pero pierde datos); sin interruptor (más riesgo ante la AEPD).
+
+### D-065 · 2026-11-19 · Sin teléfono, reportes en 72 h y bloqueo de cuentas expulsadas
+- **Decisión de Alfonso** (repaso de `docs/legal/ASPECTOS_A_COMPLETAR.md`), que cambia CLAUDE.md §3:
+  - **Teléfono fuera.** Se pedía (opcional) y no se usaba: choca con la minimización (art. 5.1.c RGPD). Migración `20261119160000_drop_phone_bans.sql`: borra los números guardados y la columna; `svc_onboarding_complete` pierde `p_phone` y el onboarding pierde el campo.
+  - **Reportes en 72 h** (Términos 10.2): un plazo concreto para el art. 16-17 del DSA que una persona sola puede cumplir.
+  - **Expulsión definitiva con huella:** tabla `public.banned_identities` (solo `sha256(lower(email))`, motivo y fecha; sin FK, como `trial_claims`). `svc_onboarding_complete` falla con `banned` (403) si el correo está en ella; la app lo traduce (`errorBanned`). La herramienta del moderador es `select private.ban_user('<uuid>', '<motivo>')` desde el editor SQL: guarda el hash, marca `actioned` los reportes abiertos contra él y borra la cuenta por el mismo camino que el borrado voluntario. Política §3 y §4 y Términos 10.2 lo explican.
+- **Descartado:** guardar el correo en claro (más de lo necesario); bloquear en un trigger de `auth.users` (el usuario no vería un mensaje propio, solo «Database error»).
+- **Sin decidir:** la edad mínima (sigue en 14; ver `ASPECTOS_A_COMPLETAR.md` §3).

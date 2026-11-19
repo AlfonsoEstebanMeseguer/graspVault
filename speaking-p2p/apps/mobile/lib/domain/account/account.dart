@@ -44,7 +44,6 @@ class OnboardingData {
     required this.languages,
     required this.targetLevel,
     required this.birthDate,
-    required this.phone,
     required this.termsVersion,
   });
 
@@ -52,7 +51,6 @@ class OnboardingData {
   final List<String> languages;
   final Level targetLevel;
   final DateTime birthDate;
-  final String? phone;
   final String termsVersion;
 
   Map<String, Object?> toJson() => {
@@ -61,14 +59,12 @@ class OnboardingData {
         'targetLevel': targetLevel.code,
         'birthDate': '${birthDate.year.toString().padLeft(4, '0')}-'
             '${birthDate.month.toString().padLeft(2, '0')}-${birthDate.day.toString().padLeft(2, '0')}',
-        'phone': phone,
         'termsVersion': termsVersion,
       };
 }
 
-/// Current version of the Terms + Privacy Policy. Bump it when they change:
-/// the accepted version and date are stored with the profile.
-/// The version of the Terms and Privacy Policy (assets/legal) the user accepts.
+/// Version of the Terms + Privacy Policy (assets/legal) the user accepts. Bump it
+/// when they change: the accepted version and date are stored with the profile.
 const termsVersion = '2026-11-19';
 
 /// Business error coming back from the server (stable code -> i18n key).
@@ -82,7 +78,6 @@ class AppFailure implements Exception {
 /// Validation shared by the form and the tests. Mirrors the DB constraints.
 abstract final class Validators {
   static final username = RegExp(r'^[a-z0-9_.]{3,20}$');
-  static final phone = RegExp(r'^\+[0-9]{7,15}$');
   static const minAge = 14;
 
   static bool isOldEnough(DateTime birth, DateTime today) {

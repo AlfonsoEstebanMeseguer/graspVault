@@ -18,6 +18,7 @@ String errorText(AppLocalizations l, Object error) {
     'not_in_session' => l.errorNotInSession,
     'username_taken' || 'conflict' => l.errorUsernameTaken,
     'underage' => l.errorUnderage,
+    'banned' => l.errorBanned,
     'not_eligible' => l.errorNotEligible,
     'overlap' => l.errorOverlap,
     'too_many_offers' => l.errorTooManyOffers,

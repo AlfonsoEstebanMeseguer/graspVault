@@ -209,6 +209,7 @@
   "errorRateLimited": "Demasiados intentos. Espera un poco",
   "errorUsernameTaken": "Ese nombre de usuario ya está cogido",
   "errorUnderage": "Debes tener al menos 14 años",
+  "errorBanned": "Esta cuenta se dio de baja de forma definitiva por incumplir los Términos. Si crees que es un error, escribe a soporte@mirlotalk.app",
   "errorGeneric": "Algo ha fallado. Inténtalo de nuevo",
   "stepOf": "Paso {n} de 3",
   "@stepOf": {
@@ -234,8 +235,6 @@
   "yearLabel": "Año",
   "minAgeHint": "Debes tener al menos 14 años.",
   "invalidDate": "Fecha no válida",
-  "phoneOptional": "Teléfono (opcional)",
-  "invalidPhone": "Número no válido",
   "linkedToAccount": "Vinculado a tu cuenta",
   "whichExamTitle": "¿Qué examen preparas?",
   "speakingMinutes": "Speaking de {minutes} min",

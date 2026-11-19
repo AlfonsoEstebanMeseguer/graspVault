@@ -10,7 +10,6 @@ const Body = z.object({
   languages: z.array(z.string().regex(/^[a-z]{2}$/)).min(1).max(10),
   targetLevel: z.enum(["B1", "B2", "C1"]),
   birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  phone: z.string().regex(/^\+[0-9]{7,15}$/).nullable(),
   termsVersion: z.string().min(1).max(20),
 });
 
@@ -24,7 +23,6 @@ Deno.serve(handler(async (req) => {
     p_languages: [...new Set(b.languages)],
     p_level: b.targetLevel,
     p_birth_date: b.birthDate,
-    p_phone: b.phone,
     p_terms_version: b.termsVersion,
   });
   // Exactly once: a second call fails with already_onboarded before reaching here.

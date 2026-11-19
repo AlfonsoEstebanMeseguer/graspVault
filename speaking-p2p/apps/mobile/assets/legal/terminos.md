@@ -44,7 +44,7 @@ En estos Términos, «nosotros» se refiere al titular y «usted» o el «Usuari
 
 5.1. Usted es responsable de mantener la confidencialidad de su contraseña y de toda la actividad que se realice desde su cuenta. Si sospecha que alguien la está usando sin permiso, escríbanos a soporte@mirlotalk.app.
 
-5.2. Su nombre de usuario, su foto de perfil (si la sube), los idiomas que habla y su nivel son visibles para los demás usuarios. Su fecha de nacimiento, su teléfono y su correo electrónico no se muestran a nadie.
+5.2. Su nombre de usuario, su foto de perfil (si la sube), los idiomas que habla y su nivel son visibles para los demás usuarios. Su fecha de nacimiento y su correo electrónico no se muestran a nadie.
 
 ## 6. Prueba gratuita, planes y pagos
 
@@ -103,7 +103,7 @@ Los precios incluyen los impuestos aplicables. El precio definitivo es el que mu
 
 10.1. Puede reportar a otro usuario desde el chat, la sala de espera, el examen o la pantalla de comentarios, e indicar el motivo. También puede bloquearlo. Cuando bloquea a alguien, no volverán a coincidir en el emparejamiento, no verá sus ofertas en la Agenda ni él las suyas, no podrán escribirse en el chat y se cancelan las reuniones pendientes entre ustedes.
 
-10.2. Revisamos los reportes en un plazo razonable. Según la gravedad, podemos avisar al usuario, limitar funciones de su cuenta, suspenderla temporalmente o darla de baja de forma definitiva. Cuando tomemos una de estas medidas se lo comunicaremos al usuario afectado, con los motivos, y podrá presentar alegaciones escribiendo a soporte@mirlotalk.app.
+10.2. Revisamos los reportes en un plazo máximo de 72 horas desde que los recibimos. Según la gravedad, podemos avisar al usuario, limitar funciones de su cuenta, suspenderla temporalmente o darla de baja de forma definitiva. Cuando tomemos una de estas medidas se lo comunicaremos al usuario afectado, con los motivos, y podrá presentar alegaciones escribiendo a soporte@mirlotalk.app. Si la baja es definitiva, guardamos solo un resumen cifrado (hash) de su correo electrónico para impedir que vuelva a registrarse con él, como explica la Política de Privacidad.
 
 10.3. Si un reporte indica un posible delito, en especial contra menores, podremos conservar la información necesaria y comunicarla a las autoridades competentes.
 

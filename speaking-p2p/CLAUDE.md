@@ -62,11 +62,11 @@ Una app móvil (iOS + Android) para **simular el examen oral (Speaking) de Cambr
 ### Autenticación
 - **Solo Google Sign-In** a través de Supabase Auth.
 - Edad mínima: **14 años**. Se pide la fecha de nacimiento y se bloquea el registro si es menor de 14.
-- Teléfono: se pide y se guarda **sin verificar**.
+- Teléfono: **no se pide** (D-065, minimización RGPD).
 
 ### Datos públicos y privados
 - **Públicos:** `username` (único), avatar (R2), idiomas que habla (multiselección).
-- **Privados:** fecha de nacimiento/edad, teléfono, email.
+- **Privados:** fecha de nacimiento/edad, email.
   - Ningún otro usuario puede leerlos.
   - Usa una vista `public_profiles` y una RLS estricta sobre `profiles_private`.
 
@@ -77,7 +77,7 @@ Los pasos son, en orden:
 3. Avatar (opcional).
 4. Idiomas.
 5. Fecha de nacimiento.
-6. Teléfono.
+6. ~~Teléfono~~ (eliminado, D-065).
 7. Nivel objetivo (B1/B2/C1, modificable después en el perfil).
 8. Aceptación de los Términos de uso y la Política de privacidad. **Guarda la versión aceptada y la fecha.**
 
@@ -285,7 +285,7 @@ Tiene tres acciones: **Modificar** (hora o nivel), **Cancelar** y **Confirmar**.
 Adáptalo a las convenciones del vault. **Activa RLS en todas las tablas.**
 
 - `profiles` — id (= auth.uid), username, avatar_url, languages[], target_level, created_at
-- `profiles_private` — id, birth_date, phone, email, terms_version, terms_accepted_at
+- `profiles_private` — id, birth_date, email, terms_version, terms_accepted_at
 - `entitlements` — user_id, trial_used_at, subscription_status, current_period_end (lo actualiza el webhook de RevenueCat)
 - `match_queue` — user_id, level, enqueued_at
 - `exam_sessions` — id, level, exam_id, user_a, user_b, state, step_index, step_started_at, recording_consent_a/b, recording_url, origin ('live'|'meeting'), meeting_id, created_at, ended_at
@@ -354,7 +354,7 @@ Prepara cohortes de retención D1/D7/D30.
 - **Formato:** solo llamadas de audio, sin vídeo. No hay moderación más allá de los Términos y la opción de abandonar.
 - **Contenido:** propio, no oficial; basta con una simulación cercana.
 - **Monetización:** sin plan gratuito. 1 test de prueba, luego 8 €/mes. Un App Open Ad por arranque, para todos.
-- **Acceso:** solo Google. Teléfono sin verificar. Edad mínima 14.
+- **Acceso:** solo Google. Sin teléfono (D-065). Edad mínima 14.
 - **Lector:** TTS pregenerado en R2, con texto mostrable u ocultable.
 - **Grabación:** opcional, con consentimiento de los dos y 30 días de retención. Sin transcripción en el MVP.
 - **Emparejamiento:** en vivo, solo nivel exacto. En la agenda, filtro de niveles adyacentes.
