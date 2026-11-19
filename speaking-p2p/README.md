@@ -1,6 +1,6 @@
 # Speaking P2P
 
-App móvil para simular por parejas el examen oral tipo Cambridge (B1, B2, C1): un examinador pregrabado marca turnos y tiempos, los micrófonos los abre y cierra el servidor, y al final los dos se dan feedback.
+App móvil para simular por parejas un examen oral de inglés (niveles B1, B2 y C1 del MCER): un examinador pregrabado marca turnos y tiempos, los micrófonos los abre y cierra el servidor, y al final los dos se dan feedback.
 
 | | |
 |---|---|

@@ -2,6 +2,8 @@
 // test the whole exam on one device, without backend or LiveKit.
 // `vip`: the simulated partner has Pro and you lead the exam (D-039), so the
 // Pro controls can be tried with one phone (debug builds only).
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -26,11 +28,17 @@ Future<ExamMedia> _media(WidgetRef ref, Exam exam, List<String> voices) async {
   }
 }
 
+/// Which exam of the level a practice opens: a random one every time (D-067),
+/// not always the first. Overridden in tests.
+final practiceRandomProvider = Provider<Random>((_) => Random());
+
 final _practiceExamProvider =
     FutureProvider.autoDispose.family<({Exam exam, ExamMedia media, ContentIndex index})?, Level>((ref, level) async {
   final repo = ref.watch(contentRepositoryProvider);
   final index = await repo.index();
-  final entry = index.exams.firstWhere((e) => e.level == level);
+  final ofLevel = index.exams.where((e) => e.level == level).toList();
+  if (ofLevel.isEmpty) return null;
+  final entry = ofLevel[ref.read(practiceRandomProvider).nextInt(ofLevel.length)];
   final exam = await repo.exam(level, entry.id);
   if (exam == null) return null;
   var media = const ExamMedia();

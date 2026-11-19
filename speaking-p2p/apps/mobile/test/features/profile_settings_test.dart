@@ -95,7 +95,7 @@ void main() {
   testWidgets('perfil: nivel, exámenes hechos y días que le quedan a la grabación', (tester) async {
     await pump(tester, const ProfileScreen());
     expect(find.text('laura_m'), findsOneWidget);
-    expect(find.text('C1 Advanced'), findsOneWidget);
+    expect(find.text('C1 Avanzado'), findsOneWidget);
     expect(find.text('7'), findsOneWidget);
     expect(find.text('C1 con un compañero'), findsOneWidget);
     expect(find.text('Se borra en 28 días'), findsOneWidget);
@@ -118,17 +118,14 @@ void main() {
     expect(fake.saved?.languages.toSet(), {'es', 'en'});
   });
 
-  testWidgets('ajustes: el modo "todos pagan" no inventa una fecha de pago', (tester) async {
+  // The subscription card (D-037) is hidden at launch (D-067); it comes back
+  // with --dart-define=FEATURE_SUBSCRIPTIONS=true.
+  testWidgets('ajustes: lanzamiento gratis, sin nada de suscripciones (D-067)', (tester) async {
     await pump(tester, const SettingsScreen());
-    expect(find.text('Activo'), findsOneWidget);
+    expect(find.text('SUSCRIPCIÓN'), findsNothing);
+    expect(find.text('Plan Estándar'), findsNothing);
+    expect(find.byKey(const Key('upgrade-pro')), findsNothing);
     expect(find.textContaining('Próximo pago'), findsNothing);
-    // D-037: standard plan, with the Pro comparison (purchase waits for the store)
-    expect(find.text('Plan Estándar'), findsOneWidget);
-    await tester.ensureVisible(find.byKey(const Key('upgrade-pro')));
-    await tester.tap(find.byKey(const Key('upgrade-pro')));
-    await tester.pumpAndSettle();
-    expect(find.text('Pro: tú diriges el examen'), findsOneWidget);
-    expect(tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Disponible cuando se active la tienda')).onPressed, isNull);
   });
 
   testWidgets('eliminar cuenta: exige contraseña y la frase ELIMINAR', (tester) async {

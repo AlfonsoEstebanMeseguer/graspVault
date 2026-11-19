@@ -25,9 +25,9 @@
   },
   "offlineBanner": "Modo sin conexión: practica con un compañero simulado.",
   "practiceSimulated": "Practicar con compañero simulado",
-  "levelB1": "B1 Preliminary",
-  "levelB2": "B2 First",
-  "levelC1": "C1 Advanced",
+  "levelB1": "B1 Intermedio",
+  "levelB2": "B2 Intermedio alto",
+  "levelC1": "C1 Avanzado",
   "partOf": "PARTE {n} DE 4",
   "@partOf": {
     "placeholders": {
@@ -785,7 +785,7 @@
   "continueWithGoogle": "Continuar con Google",
   "signUpWithEmail": "Crear cuenta con email",
   "haveAccountQuestion": "¿Ya tienes cuenta?",
-  "notAffiliated": "App independiente, sin afiliación con Cambridge University Press & Assessment.",
+  "notAffiliated": "App independiente. Todo el contenido es original y no está vinculado a ningún organismo examinador.",
   "createAccountTitle": "Crea tu cuenta",
   "createAccountSubtitle": "Con tu email y una contraseña. Después elegirás tu nombre y tu nivel.",
   "welcomeBack": "Hola de nuevo",

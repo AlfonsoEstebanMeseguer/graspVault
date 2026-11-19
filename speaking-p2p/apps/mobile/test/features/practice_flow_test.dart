@@ -1,5 +1,7 @@
 // Widget tests at a REAL phone size (vault: the default 800x600 surface hides
 // overflows; and an overflow is only caught with tester.takeException()).
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,10 +9,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speaking_p2p/app.dart';
 import 'package:speaking_p2p/core/theming/preferences.dart';
+import 'package:speaking_p2p/features/exam/practice_screen.dart' show practiceRandomProvider;
 import 'package:speaking_p2p/features/exam/reader_player.dart';
 
 /// The `inCall` of every reader the app built (D-048: practice owns its audio session).
 final _readerInCall = <bool>[];
+
+/// Practice picks a random exam (D-067); the flow tests pin the first one.
+class _First implements Random {
+  @override
+  int nextInt(int max) => 0;
+  @override
+  double nextDouble() => 0;
+  @override
+  bool nextBool() => false;
+}
 
 Future<SilentReaderPlayer> _pumpApp(WidgetTester tester, {Map<String, Object> prefs = const {}}) async {
   tester.view.physicalSize = const Size(1080, 2340); // Pixel 5
@@ -22,6 +35,7 @@ Future<SilentReaderPlayer> _pumpApp(WidgetTester tester, {Map<String, Object> pr
   await tester.pumpWidget(ProviderScope(
     overrides: [
       sharedPreferencesProvider.overrideWithValue(sp),
+      practiceRandomProvider.overrideWithValue(_First()),
       readerPlayerFactoryProvider.overrideWithValue((_, {inCall = false}) {
         _readerInCall.add(inCall);
         return player;
@@ -56,7 +70,7 @@ void main() {
   testWidgets('inicio -> practica: cabecera, texto del examinador y conmutadores', (tester) async {
     await _pumpApp(tester, prefs: {'ui_locale': 'es', 'target_level': 'B2'});
     expect(find.text('Practicar con compañero simulado'), findsOneWidget);
-    expect(find.text('Practicar con compañero VIP simulado'), findsOneWidget, reason: 'modo debug');
+    expect(find.text('Practicar con compañero VIP simulado'), findsNothing, reason: 'oculto en el lanzamiento (D-067)');
     await tester.tap(find.text('Practicar con compañero simulado'));
     await pumpUntilFound(tester, find.text('PARTE 1 DE 4'));
     expect(find.text('Interview'), findsOneWidget);

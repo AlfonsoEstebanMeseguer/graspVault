@@ -82,6 +82,8 @@ Los pasos son, en orden:
 8. Aceptación de los Términos de uso y la Política de privacidad. **Guarda la versión aceptada y la fecha.**
 
 ### Modelo de acceso (no existe plan gratuito)
+
+> **Lanzamiento (D-067):** la app sale **gratis para todos**; suscripciones y práctica premium quedan ocultas (`Features`), no borradas. Lo de abajo vuelve cuando se activen los pagos. Y nunca se nombran marcas de exámenes (Cambridge, Preliminary, First, Advanced): solo niveles MCER.
 - Cada usuario nuevo tiene **1 test de prueba**.
 - Ese test **se consume al empezar la Parte 1** (no en el lobby).
 - Después solo puede usar la app quien tenga **suscripción activa de 8 €/mes**.

@@ -4,9 +4,11 @@ Cómo vender y dar a conocer MirloTalk: una app para **practicar el speaking de 
 inglés (B1, B2, C1) por parejas, entre estudiantes reales**, con un examinador virtual que lee,
 reparte turnos y controla el tiempo, y feedback mutuo al final. Sin vídeo, solo voz.
 
-> Nota de marca: en toda la comunicación se usa «para preparar el B1 / B2 / C1» de forma
-> **descriptiva**. Nunca «Cambridge», ni su logo, ni «Preliminary/First/Advanced» como reclamo, ni
-> dar a entender afiliación. Repetir siempre: *examen simulado, no oficial, contenido original*.
+> **Regla de marca (D-067, sin excepciones):** solo niveles del MCER: «B1», «B2», «C1», «inglés
+> B2», «speaking B2». **Nunca** «Cambridge», «Preliminary», «First», «Advanced», «FCE», «CAE»,
+> «PET», sus logos, colores o tipografía, ni en la app, ni en la ficha, ni en anuncios, vídeos,
+> hashtags o palabras clave. Tampoco «oficial» ni «aprobado por». Repetir siempre: *simulación,
+> contenido original, sin relación con ningún organismo examinador*.
 > (Ver `docs/legal/ASPECTOS_A_COMPLETAR.md`, punto 4.)
 
 ---
@@ -36,17 +38,17 @@ hueco: **específico de examen + con personas + barato**.
 
 ## 2. Público objetivo
 
-1. **Núcleo (primero):** estudiantes de 16-30 años en España que preparan **B2 First** (el más
-   demandado para la universidad y el trabajo), y C1 Advanced. Muchos pagan academia y aun así llegan
+1. **Núcleo (primero):** estudiantes de 16-30 años en España que preparan un **B2** (el más
+   demandado para la universidad y el trabajo) o un C1. Muchos pagan academia y aun así llegan
    flojos de speaking.
 2. **Secundario:** adultos que necesitan el título para oposiciones, trabajo o la carrera (acceso,
    Erasmus, habilitación lingüística del profesorado).
 3. **Prescriptores:** **profesores de inglés y academias**. No son el usuario que paga, pero son
    quienes recomiendan. Un profesor que manda a sus alumnos a practicar speaking entre ellos es oro.
-4. **Expansión:** LATAM (mismo idioma, mismo dolor, exámenes Cambridge y también IELTS en el futuro).
+4. **Expansión:** LATAM (mismo idioma, mismo dolor; otros formatos de examen en el futuro).
 
 Dónde están: Instagram y TikTok (estudiantes), YouTube (búsquedas de «cómo es el speaking del B2»),
-grupos de Telegram/WhatsApp y foros de preparación, Reddit (r/EnglishLearning, r/Cambridge),
+grupos de Telegram/WhatsApp y foros de preparación, Reddit (r/EnglishLearning),
 y las propias academias.
 
 ---
@@ -100,16 +102,16 @@ Sin masa crítica, el emparejamiento en vivo está vacío y el usuario se va. T�
   - clips reales (con permiso) de una sesión: dos personas haciendo la Parte 2, con los subtítulos y
     el examinador — el anuncio en español de `marketing/ad` ya es esto; cortarlo en piezas de 15-30 s;
   - «errores típicos en el speaking del B2 y cómo evitarlos»;
-  - «así es de verdad la Parte 3 del First» (educativo = se comparte y se guarda);
+  - «así es una Parte 3 de speaking B2» (educativo = se comparte y se guarda);
   - retos: «¿sabrías responder esta pregunta del C1 en 1 minuto?».
-- **YouTube (SEO de vídeo)**: vídeos más largos tipo «Cómo es el speaking del B2 First (examen
+- **YouTube (SEO de vídeo)**: vídeos más largos tipo «Cómo es un speaking de B2 (examen
   completo explicado)». Captan búsquedas de alta intención y duran años.
 - **SEO (blog)**: artículos que responden lo que la gente busca: «partes del speaking del B2»,
   «cuánto dura el speaking del C1», «frases para la Parte 3». Cada artículo lleva a la app.
 
 ### 5.2 ASO (App Store Optimization) — imprescindible y gratis
-- **Palabras clave** en título/subtítulo/keywords: «speaking», «inglés B2 First», «C1 Advanced»,
-  «examen oral inglés», «practicar inglés hablando». (Descriptivo, sin la marca Cambridge.)
+- **Palabras clave** en título/subtítulo/keywords: «speaking», «inglés B2», «speaking C1»,
+  «examen oral inglés», «practicar inglés hablando». (Solo niveles MCER, regla D-067.)
 - **Capturas** que muestren el examinador, las fotos de la Parte 2 y el diagrama; la primera captura
   vende el P2P. Vídeo de preview = el anuncio recortado.
 - Pedir **reseñas** en el buen momento (tras una sesión completada con feedback positivo).
@@ -121,7 +123,7 @@ Sin masa crítica, el emparejamiento en vivo está vacío y el usuario se va. T�
 - **Embajadores** en universidades (quienes preparan el examen para Erasmus/acceso).
 
 ### 5.4 Comunidades
-- Participar (aportando, no spameando) en Reddit, foros de Cambridge/IELTS, grupos de Telegram y
+- Participar (aportando, no spameando) en Reddit, foros de preparación de exámenes de inglés, grupos de Telegram y
   Discord de preparación. Responder dudas reales y mencionar la app cuando venga a cuento.
 
 ### 5.5 Pago (cuando el orgánico valide el mensaje)
@@ -191,7 +193,7 @@ sana. Si la gente no se queda, pagar por traerla solo quema dinero.
 ## 9. Riesgos y cómo mitigarlos
 
 - **Arranque en frío** (el mayor): foco local + Agenda + horas punta + compañero simulado.
-- **Marca Cambridge**: lenguaje descriptivo, aviso de no afiliación siempre visible.
+- **Marcas de terceros**: solo niveles MCER (D-067), aviso de independencia siempre visible.
 - **Protección del menor / clasificación por edad**: depende de la decisión de edad mínima
   (`docs/legal/ASPECTOS_A_COMPLETAR.md`). Afecta a qué se puede anunciar y a quién.
 - **Calidad de la experiencia P2P**: gente que no aparece o se porta mal. Ya hay reportes, bloqueos y

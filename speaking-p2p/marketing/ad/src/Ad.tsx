@@ -479,7 +479,7 @@ const Cta: React.FC = () => {
       </Band>
       <Band top={1820} height={70}>
         <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 22, color: C.faint, opacity: useIn(30) }}>
-          Material original. Sin relación con Cambridge University Press & Assessment.
+          Material original. Sin relación con ningún organismo examinador.
         </div>
       </Band>
     </>

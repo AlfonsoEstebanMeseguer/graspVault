@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/config/env.dart';
+import '../../core/config/features.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/preferences.dart';
@@ -96,17 +97,19 @@ class HomeScreen extends ConsumerWidget {
               body: l.practiceSoloBody,
               onTap: practise,
             ),
-          // Also in release builds while testing (D-040): it is offline practice, the Pro controls
-          // only drive the local exam. Decide before publishing whether it stays Pro-only.
-          const SizedBox(height: 12),
-          _SoloTile(
-            key: const Key('practice-vip'),
-            icon: AppIcons.crown,
-            iconColor: p.pro,
-            title: l.practiceVip,
-            body: l.practiceVipBody,
-            onTap: () => practise(vip: true),
-          ),
+          // Offline practice with the Pro controls (D-040). Hidden at launch, with
+          // everything Pro (D-067): Features.premiumPractice brings it back.
+          if (Features.premiumPractice) ...[
+            const SizedBox(height: 12),
+            _SoloTile(
+              key: const Key('practice-vip'),
+              icon: AppIcons.crown,
+              iconColor: p.pro,
+              title: l.practiceVip,
+              body: l.practiceVipBody,
+              onTap: () => practise(vip: true),
+            ),
+          ],
           const SizedBox(height: 96), // room for the floating tab bar
         ]),
       ),
@@ -114,7 +117,7 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-/// "C1 Advanced ▾" pill.
+/// "C1 Avanzado ▾" pill.
 class _LevelPicker extends StatelessWidget {
   const _LevelPicker({required this.level, required this.onChanged});
   final Level level;
@@ -123,7 +126,7 @@ class _LevelPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
-    String short(Level lv) => levelName(l, lv).split(' ').last;
+    String short(Level lv) => levelName(l, lv).split(' ').skip(1).join(' '); // the badge already says B1/B2/C1
     return PopupMenuButton<Level>(
       key: const Key('home-level'),
       initialValue: level,
@@ -139,7 +142,11 @@ class _LevelPicker extends StatelessWidget {
         child: Row(mainAxisSize: MainAxisSize.min, children: [
           LevelBadge(level, size: 14),
           const SizedBox(width: 10),
-          Text(short(level), style: AppType.headline.copyWith(color: p.textPrimary)),
+          // CEFR names are longer than the old exam names (D-067): never push the title off.
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 110),
+            child: Text(short(level), maxLines: 1, overflow: TextOverflow.ellipsis, style: AppType.headline.copyWith(color: p.textPrimary)),
+          ),
           const SizedBox(width: 6),
           Icon(AppIcons.caretDown, size: 14, color: p.textSecondary),
         ]),

@@ -836,7 +836,7 @@ class _DoneMedal extends StatelessWidget {
   }
 }
 
-/// "Valora a marta": the four Cambridge criteria, five dots each. Private.
+/// "Valora a marta": the four speaking criteria, five dots each. Private.
 class _Rubric extends StatelessWidget {
   const _Rubric({required this.partnerName, required this.color, required this.rating, required this.onRate});
   final String partnerName;

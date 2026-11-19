@@ -167,19 +167,19 @@ abstract class AppLocalizations {
   /// No description provided for @levelB1.
   ///
   /// In es, this message translates to:
-  /// **'B1 Preliminary'**
+  /// **'B1 Intermedio'**
   String get levelB1;
 
   /// No description provided for @levelB2.
   ///
   /// In es, this message translates to:
-  /// **'B2 First'**
+  /// **'B2 Intermedio alto'**
   String get levelB2;
 
   /// No description provided for @levelC1.
   ///
   /// In es, this message translates to:
-  /// **'C1 Advanced'**
+  /// **'C1 Avanzado'**
   String get levelC1;
 
   /// No description provided for @partOf.
@@ -2273,7 +2273,7 @@ abstract class AppLocalizations {
   /// No description provided for @notAffiliated.
   ///
   /// In es, this message translates to:
-  /// **'App independiente, sin afiliación con Cambridge University Press & Assessment.'**
+  /// **'App independiente. Todo el contenido es original y no está vinculado a ningún organismo examinador.'**
   String get notAffiliated;
 
   /// No description provided for @createAccountTitle.

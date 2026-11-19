@@ -18,5 +18,5 @@ npm run render        # -> out/mirlotalk-anuncio.mp4
 - **Gasto:** cada llamada queda apuntada en `.openai-spend.json` (fuera de git), con un tope de 0,5 $ en el script.
 - **Capturas:** son las reales de la app en español y modo oscuro (`docs/screenshots/*-oscuro.png`), recortadas a `public/screens/`, cada una de 786×1702.
 - **Maquetación:** titular arriba, imagen en el centro y subtítulos abajo, todo centrado y con el mismo margen (80 px) a los dos lados.
-- **Marca:** sin logos ni nombres de examen de Cambridge; al final aparece el aviso de no afiliación.
+- **Marca:** sin logos ni nombres comerciales de exámenes (solo niveles MCER, D-067); al final aparece el aviso de independencia.
 - **Remotion:** licencia gratuita para particulares y empresas de hasta 3 personas.

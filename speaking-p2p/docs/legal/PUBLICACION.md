@@ -8,8 +8,14 @@ Estado a 24 de octubre de 2026. Los textos legales están en `apps/mobile/assets
 - Aceptación expresa con casilla en el registro. Se guarda la versión (`2026-10-24`) y la fecha en `profiles_private`.
 - Eliminación de la cuenta desde la app (Ajustes > Eliminar cuenta). La piden Apple (guía 5.1.1(v)) y Google.
 - Reportar y bloquear usuarios desde el chat, la sala de espera, el examen, el feedback y la Agenda; lista de bloqueados en Ajustes. La exigen Apple (guía 1.2) y la política de contenido generado por usuarios de Google Play.
-- Aviso de no afiliación con Cambridge en la bienvenida y en Ajustes.
+- Aviso de independencia (sin nombrar a ningún organismo examinador, D-067) en Ajustes.
 - Explicaciones de los permisos en iOS (micrófono, fotos, cámara) y nombre visible «Speaking P2P» en los dos sistemas.
+
+> **Actualizado el 2026-11-19:** edad mínima 16 (D-066), titular rellenado, teléfono eliminado
+> (D-065) y re-aceptación implementada. Las respuestas definitivas de los formularios están en
+> **`docs/legal/FORMULARIOS_TIENDAS.md`**; lo que queda por decidir, en `ASPECTOS_A_COMPLETAR.md`.
+> Ojo: con el lanzamiento gratis (D-067), **`assume_paid` NO se apaga**; solo `dev_instant_rooms` y
+> `dev_session_skip`.
 
 ## Decisiones tuyas antes de enviar
 

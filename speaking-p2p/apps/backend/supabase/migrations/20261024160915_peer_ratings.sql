@@ -1,5 +1,5 @@
 -- Guided feedback rubric (Design 2.0 §9.2 #4, D-042): after the exam each
--- candidate privately scores the other 1–5 on the four Cambridge speaking
+-- candidate privately scores the other 1–5 on the four usual speaking
 -- criteria. Only the person rated (and the rater, to edit it) can read it.
 -- Writes go through rate_partner(), which derives who is rated from the
 -- session: a client can never rate someone it did not take the exam with.

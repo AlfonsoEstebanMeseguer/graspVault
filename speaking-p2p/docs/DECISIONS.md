@@ -367,3 +367,11 @@
 - **Licencias:** textos OFL de las fuentes y MIT de Phosphor en el `LicenseRegistry` (`core/legal/bundled_licenses.dart`); Ajustes › Licencias de código abierto.
 - **Titular:** persona física (autónomo), datos en los dos documentos.
 - **Descartado:** forzar la re-aceptación con un trigger en el servidor (la app vieja no sabría mostrarla); `DELETE persons/:id` de PostHog (necesita antes buscar el id interno; `bulk_delete` acepta el uuid).
+
+### D-067 · 2026-11-19 · Sin marcas de exámenes, lanzamiento gratis y práctica con examen aleatorio
+- **Decisión de Alfonso:** evitar cualquier reclamación de marca y lanzar gratis para atraer usuarios. Cambia CLAUDE.md §0, §3 y §13 (monetización) mientras dure el lanzamiento.
+- **Marcas:** fuera «Cambridge», «Preliminary», «First», «Advanced» de la app, los documentos, el anuncio y el marketing. Niveles con la escala MCER (`levelB1/B2/C1`: «B1 Intermedio», «B2 Intermedio alto», «C1 Avanzado»; EN «Intermediate», «Upper intermediate», «Proficient», sin «Advanced» junto a C1). Aviso de independencia sin nombrar a nadie. Términos 2.1 y 2.5 reescritos. Regla permanente en `docs/MARKETING.md`.
+- **Lanzamiento gratis, oculto y no borrado:** `core/config/features.dart` con `Features.subscriptions` y `Features.premiumPractice` (por `--dart-define`, apagados por defecto). Ocultan la tarjeta de suscripción y la hoja «Mejorar a Pro» de Ajustes y la práctica con compañero VIP/premium del Inicio. Servidor sin cambios: `assume_paid` ya da plan Estándar activo a todos (D-020), así que nadie ve un paywall; ya no se apaga antes de publicar. Términos 6.0: gratis y aviso previo antes de cobrar.
+- **Práctica aleatoria:** `_practiceExamProvider` elige un examen al azar del nivel cada vez que se abre una práctica (antes, siempre el primero del índice); `practiceRandomProvider` permite fijarlo en los tests. Vale para la práctica normal y la premium.
+- **Tiendas:** respuestas en `docs/legal/FORMULARIOS_TIENDAS.md`; `ITSAppUsesNonExemptEncryption = NO` en el `Info.plist`.
+- **Descartado:** borrar el código de suscripciones (habría que reescribirlo); poner «C1 Advanced» en inglés (coincide con el nombre del producto de Cambridge).

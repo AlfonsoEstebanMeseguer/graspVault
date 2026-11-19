@@ -16,7 +16,7 @@ En estos Términos, «nosotros» se refiere al titular y «usted» o el «Usuari
 
 ## 2. Qué es la Aplicación
 
-2.1. La Aplicación permite a dos estudiantes practicar juntos, mediante una llamada de audio, una simulación de la prueba oral (Speaking) de los exámenes B1 Preliminary, B2 First y C1 Advanced. Un examinador virtual, con voz grabada de antemano, lee las instrucciones, reparte los turnos y controla el tiempo.
+2.1. La Aplicación permite a dos estudiantes practicar juntos, mediante una llamada de audio, una simulación de una prueba oral de inglés por parejas en los niveles B1, B2 y C1 del Marco Común Europeo de Referencia para las Lenguas (MCER). Un examinador virtual, con voz grabada de antemano, lee las instrucciones, reparte los turnos y controla el tiempo.
 
 2.2. Los usuarios pueden encontrarse de dos formas: emparejamiento en directo con otra persona que busca en ese momento el mismo nivel, o una reunión acordada en la sección Agenda, que incluye un chat entre los dos participantes.
 
@@ -24,7 +24,7 @@ En estos Términos, «nosotros» se refiere al titular y «usted» o el «Usuari
 
 2.4. La Aplicación es una herramienta de práctica. No es un examen oficial, no emite certificados ni calificaciones con valor académico y no garantiza ningún resultado en un examen real.
 
-2.5. La Aplicación es independiente y no está afiliada, patrocinada ni respaldada por Cambridge University Press & Assessment ni por ninguna otra entidad examinadora. «Cambridge», «B1 Preliminary», «B2 First» y «C1 Advanced» son marcas de sus respectivos titulares y se mencionan solo para describir el formato de examen que la Aplicación ayuda a preparar. Todo el contenido de los exámenes (preguntas, fotografías, diagramas y audios) es original y ha sido creado para la Aplicación.
+2.5. La Aplicación es independiente y no está afiliada, patrocinada ni respaldada por ninguna entidad examinadora, ni emite certificados. Los niveles B1, B2 y C1 se refieren a la escala pública del MCER del Consejo de Europa. Todo el contenido de los exámenes (preguntas, fotografías, diagramas y audios) es original y ha sido creado para la Aplicación.
 
 ## 3. Aceptación
 
@@ -47,6 +47,8 @@ En estos Términos, «nosotros» se refiere al titular y «usted» o el «Usuari
 5.2. Su nombre de usuario, su foto de perfil (si la sube), los idiomas que habla y su nivel son visibles para los demás usuarios. Su fecha de nacimiento y su correo electrónico no se muestran a nadie.
 
 ## 6. Prueba gratuita, planes y pagos
+
+6.0. **Lanzamiento gratuito.** Durante el periodo de lanzamiento, la Aplicación se ofrece gratis a todos los usuarios y no se vende ninguna suscripción: no se le cobrará nada. Los apartados 6.1 a 6.5 solo se aplicarán cuando habilitemos las suscripciones; se lo avisaremos con antelación, le pediremos que acepte la nueva versión de estos Términos y nunca se le cobrará sin que contrate usted mismo un plan en App Store o Google Play.
 
 6.1. Cada cuenta nueva incluye un examen de prueba gratuito, que se considera usado cuando empieza la Parte 1 de una sesión.
 

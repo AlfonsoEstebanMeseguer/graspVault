@@ -16,7 +16,6 @@ import '../../data/profile/profile_repository.dart';
 import '../../domain/account/account.dart';
 import '../../domain/exam/models.dart';
 import '../exam/widgets/exam_widgets.dart' show formatMs;
-import '../home/home_screen.dart' show levelName;
 import 'matchmaking_controller.dart';
 import '../../core/telemetry/telemetry.dart';
 
@@ -71,7 +70,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           child: Row(mainAxisSize: MainAxisSize.min, children: [
                             LevelBadge(m.level!, size: 13),
                             const SizedBox(width: 10),
-                            Text(l.fullExamOf(levelName(l, m.level!).split(' ').last),
+                            Text(l.fullExamOf(m.level!.code),
                                 style: AppType.headline.copyWith(fontSize: 15, color: p.textPrimary)),
                           ]),
                         ),

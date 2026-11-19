@@ -1,5 +1,5 @@
 // The guided feedback rubric (Design 2.0 §9.2 #4): each candidate privately
-// scores the other 1–5 on the four Cambridge speaking criteria. Only the person
+// scores the other 1–5 on the four usual speaking criteria. Only the person
 // rated sees it. Not an official mark: a nudge towards concrete feedback.
 enum Criterion { grammar, discourse, pronunciation, interaction }
 

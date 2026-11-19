@@ -883,7 +883,7 @@ class _SlotChip extends StatelessWidget {
   }
 }
 
-/// Filter dropdown: "● C1 Advanced ⌄".
+/// Filter dropdown: "● C1 Avanzado ⌄".
 class _FilterChip extends StatelessWidget {
   const _FilterChip({required this.label, this.dot, this.caret = false});
   final String label;

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/config/env.dart';
+import '../../core/config/features.dart';
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/preferences.dart';
@@ -47,8 +48,10 @@ class SettingsScreen extends ConsumerWidget {
             selected: locale.languageCode,
             onChanged: (c) => ref.read(localeProvider.notifier).set(Locale(c)),
           ),
-          section(l.subscription),
-          const _SubscriptionCard(),
+          if (Features.subscriptions) ...[
+            section(l.subscription),
+            const _SubscriptionCard(),
+          ],
           section(l.account),
           if (ref.watch(authUserProvider).value == null)
             Text(l.needsBackend, style: AppType.body.copyWith(color: p.textSecondary))

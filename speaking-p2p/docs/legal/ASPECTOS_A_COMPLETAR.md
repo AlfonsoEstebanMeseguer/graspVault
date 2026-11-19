@@ -45,13 +45,22 @@ en los textos de la app y en los dos documentos. Ningún usuario actual tenía m
 En el cuestionario de clasificación de Apple y Google, declara **comunicación sin moderar entre
 usuarios** y público objetivo **16+** (no marques menores en Google Play: evita la Families Policy).
 
-## 4. Marcas (Cambridge)
+## 4. Marcas de terceros — ✅ resuelto el 2026-11-19 (D-067)
 
-Los documentos dejan claro que la app es independiente y no está afiliada a Cambridge, y que los
-nombres de examen se usan solo de forma descriptiva. Conviene que un abogado de marcas confirme el
-uso de «B1 Preliminary», «B2 First» y «C1 Advanced» en la ficha de las tiendas y en la app. La
-práctica segura: usarlos solo descriptivamente («para preparar el B2 First»), sin logotipos ni la
-tipografía de Cambridge.
+Decisión de Alfonso: no usar **ningún** nombre de examen ni de organismo examinador. Ya no aparecen en
+la app, los documentos, el anuncio ni las guías de marketing:
+- Niveles con la escala pública del MCER: «B1 Intermedio», «B2 Intermedio alto», «C1 Avanzado»
+  (en inglés «B1 Intermediate», «B2 Upper intermediate», «C1 Proficient»).
+- Aviso de Ajustes: «App independiente. Todo el contenido es original y no está vinculado a ningún
+  organismo examinador.»
+- Términos 2.1 y 2.5 reescritos sin marcas: hablan de una prueba oral por parejas de niveles MCER.
+- Regla para siempre (`docs/MARKETING.md`): nunca «Cambridge», «Preliminary», «First», «Advanced»,
+  «FCE», «CAE», «PET», «oficial», sus logos ni su tipografía, tampoco en palabras clave o hashtags.
+
+Los nombres de las partes («Interview», «Long turn», «Collaborative task», «Discussion») y la palabra
+«Speaking» son términos genéricos del mundo de los exámenes de idiomas, no marcas, y se quedan.
+Las notas internas antiguas (`docs/plans`, `docs/design`) conservan el nombre por historia: no
+salen de la app ni de la ficha.
 
 ## 5. Teléfono — ✅ resuelto el 2026-11-19 (D-065)
 
@@ -59,16 +68,20 @@ Eliminado: la app ya no lo pide, el servidor ya no lo acepta y los números guar
 con la columna (migración `20261119160000_drop_phone_bans.sql`). La Política dice «No le pedimos el
 número de teléfono».
 
-## 6. Pagos y suscripción (RevenueCat aún no integrado)
+## 6. Pagos y suscripción — ⏸️ lanzamiento gratis (D-067)
 
-Los Términos ya describen los planes (Estándar 8 €, Pro 10 €), la renovación automática y el derecho
-de desistimiento. Antes de activar pagos:
+La app se lanza **gratis para todos**: en la app está oculto todo lo de suscripciones y Pro
+(`Features.subscriptions`, `Features.premiumPractice`), el servidor da a cada usuario nuevo el plan
+Estándar activo (`assume_paid`, D-020) y los Términos (6.0) dicen que no se cobra nada y que se
+avisará antes de activar los pagos.
 
-- Comprobar que **precios, texto de renovación automática y desistimiento** coinciden con lo
-  configurado en App Store Connect y Google Play. Apple exige el texto de renovación casi literal en
-  la pantalla de compra.
-- Si ofreces una **prueba gratuita gestionada por la tienda** (p. ej. 7 días), hay que describirla.
-- Añadir **RevenueCat** como encargado del tratamiento en el apartado 5 de Privacidad.
+Cuando quieras cobrar:
+1. Crea en App Store Connect y Google Play las suscripciones con los precios de los Términos
+   (Estándar 8 €, Pro 10 €). Si das una prueba gratis de la tienda, dime los días y la añado.
+2. Yo: integrar RevenueCat, paywall con el texto de renovación automática, RevenueCat en la Política,
+   quitar el 6.0 de los Términos y subir `termsVersion` (los usuarios volverán a aceptar).
+3. Build con `--dart-define=FEATURE_SUBSCRIPTIONS=true` (y `FEATURE_PREMIUM_PRACTICE=true` si quieres
+   la práctica con compañero premium) y apagar `assume_paid` (solo afecta a los usuarios nuevos).
 
 ## 7. Publicidad (AdMob aún no integrado)
 
@@ -83,7 +96,7 @@ Si integras el App Open Ad:
 Si decides no poner publicidad, hay que **borrar el apartado 14 de los Términos** y la mención
 correspondiente en Privacidad.
 
-## 8. Moderación y Reglamento de Servicios Digitales (DSA) — plazo fijado el 2026-11-19 (D-065)
+## 8. Moderación y Reglamento de Servicios Digitales (DSA) — ✅ plazo y proceso (D-065)
 
 Los Términos (10.2) prometen ahora revisar los reportes **en 72 horas como máximo**. Cubre el
 mecanismo de notificación (art. 16 DSA) y la motivación de las decisiones (art. 17), de las que las
@@ -96,14 +109,14 @@ Queda por tu parte, como proceso:
 - Para una baja definitiva: `select private.ban_user('<uuid>', '<motivo>');` en el editor SQL
   (ver §14).
 
-## 9. Analítica y errores (Sentry / PostHog) — redactado el 2026-11-19 (D-064)
+## 9. Analítica y errores (Sentry / PostHog) — ✅ paneles hechos por Alfonso (2026-11-19)
 
 Ya están en la Política (apartados 2.2, 3, 4 y 5.2). Decisión de Alfonso: **interés legítimo con
 opt-out** («Compartir estadísticas de uso» en Ajustes, activado por defecto), no consentimiento.
 Riesgo aceptado: la AEPD suele pedir consentimiento para analítica que guarda un identificador en
 el dispositivo; si se quiere el mínimo riesgo, cambiar a opt-in en el onboarding.
 
-Queda por verificar o hacer:
+Hecho (Alfonso confirma paneles, DPA y plazos):
 - **Plazos** escritos: errores hasta 90 días, estadísticas hasta 12 meses. Comprobar la retención
   real del plan de Sentry y de PostHog y ajustarla en sus paneles si es mayor.
 - En **Sentry**: activar *Prevent Storing of IP Addresses* y *Data Scrubber* en los dos proyectos.
@@ -115,7 +128,7 @@ Queda por verificar o hacer:
   Sin ellos no hace nada; un fallo llega a Sentry y no frena el borrado.
 - **Re-aceptación** ✅ (punto 11).
 
-## 10. Proveedores: regiones y contratos (DPA)
+## 10. Proveedores: regiones y contratos (DPA) — ✅ hecho por Alfonso (2026-11-19)
 
 - Confirmar en el panel de **LiveKit Cloud** y **Cloudflare R2** la región donde se procesan y
   guardan los datos. Si se puede, elegir la **UE** (R2 permite jurisdicción UE).
@@ -168,6 +181,14 @@ Términos (10.2).
 Uso: `select private.ban_user('<uuid>', '<motivo>');` guarda el hash, cierra los reportes abiertos
 contra el usuario y borra la cuenta igual que un borrado voluntario. Para levantar una expulsión:
 `delete from public.banned_identities where email_hash = private.email_hash('<correo>');`.
+
+## 15. Formularios de las tiendas — ✅ respuestas preparadas (2026-11-19)
+
+Todas las respuestas (clasificación por edad, privacidad de Apple, seguridad de los datos de Google,
+público objetivo, servicio en primer plano, notas para la revisión) están en
+**`docs/legal/FORMULARIOS_TIENDAS.md`**, listas para copiar. No puedo entrar en App Store Connect ni
+en Play Console: hay que pegarlas allí. Siguen bloqueando el envío §2 (correo) y la URL pública de la
+Política y del borrado de cuenta.
 
 ---
 

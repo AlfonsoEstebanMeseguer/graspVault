@@ -48,13 +48,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get practiceSimulated => 'Practicar con compañero simulado';
 
   @override
-  String get levelB1 => 'B1 Preliminary';
+  String get levelB1 => 'B1 Intermedio';
 
   @override
-  String get levelB2 => 'B2 First';
+  String get levelB2 => 'B2 Intermedio alto';
 
   @override
-  String get levelC1 => 'C1 Advanced';
+  String get levelC1 => 'C1 Avanzado';
 
   @override
   String partOf(int n) {
@@ -1271,7 +1271,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get notAffiliated =>
-      'App independiente, sin afiliación con Cambridge University Press & Assessment.';
+      'App independiente. Todo el contenido es original y no está vinculado a ningún organismo examinador.';
 
   @override
   String get createAccountTitle => 'Crea tu cuenta';
