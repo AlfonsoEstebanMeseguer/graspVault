@@ -1,5 +1,5 @@
 // Supabase clients. The service_role key never leaves the backend.
-import { createClient, type SupabaseClient, type User } from "npm:@supabase/supabase-js@2.45.4";
+import { createClient, type SupabaseClient, type User } from "npm:@supabase/supabase-js@2.119.2";
 import { HttpError, fromDbError } from "./http.ts";
 
 /// Values are always trimmed: a trailing newline pasted into a secret breaks
