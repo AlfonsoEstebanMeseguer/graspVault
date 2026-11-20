@@ -93,7 +93,7 @@ El workflow `.github/workflows/speaking-p2p-testflight.yml` firma con un certifi
 
 1. **Clave privada + CSR**: generados en este PC con openssl, en `C:\Users\alfon\Documents\MirloTalk-secretos\ios-dist\` (fuera del repo). `dist.key` no sale de ahí salvo dentro del `.p12`.
 2. **Certificado**: portal → Certificates → + → **Apple Distribution** → sube `MirloTalk-dist.certSigningRequest` → descarga `distribution.cer` a esa carpeta.
-3. **`.p12`**: `openssl x509 -inform DER` + `openssl pkcs12 -export` con cifrado 3DES/SHA1 (el llavero de macOS no siempre acepta el AES por defecto de OpenSSL 3). Contraseña aleatoria en `p12-password.txt`, en la misma carpeta; pásala con `-passout pass:` y sin salto de línea al final (con `file:` en Windows se coló un `` y el llavero la rechazó).
+3. **`.p12`**: `openssl x509 -inform DER` + `openssl pkcs12 -export` con cifrado 3DES/SHA1 (el llavero de macOS no siempre acepta el AES por defecto de OpenSSL 3). Contraseña aleatoria en `p12-password.txt`, en la misma carpeta; pásala con `-passout pass:` y sin salto de línea al final (con `file:` en Windows se coló un retorno de carro y el llavero la rechazó).
 4. **Perfil**: portal → Profiles → + → **App Store Connect** → App ID `com.speakingp2p.speakingP2p` → el certificado de arriba → nombre `MirloTalk App Store` → descarga. Si cambias capabilities del App ID, **regenera** el perfil y actualiza el secreto.
 5. **App Store Connect**: Apps → + → Nueva app (iOS, nombre MirloTalk, bundle de arriba, SKU `mirlotalk`).
 6. **Clave API**: App Store Connect → Usuarios y acceso → Integraciones → App Store Connect API → clave de equipo con rol **App Manager**. Apunta el Key ID y el Issuer ID; el `.p8` se descarga una sola vez.
