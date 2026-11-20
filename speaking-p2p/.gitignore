@@ -16,3 +16,8 @@ content/photos/*.jpeg
 content/photos/*.png
 content/photos/*.webp
 build-ios/
+
+# Local tool state (security audit 2026-11): never tracked in this public repo.
+.wrangler/
+__pycache__/
+*.pyc

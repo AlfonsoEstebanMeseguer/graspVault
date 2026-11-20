@@ -13,7 +13,9 @@
     <application
         android:label="MirloTalk"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules">
         <!-- PostHog is set up from Dart with the build-time key (core/telemetry). -->
         <meta-data android:name="com.posthog.posthog.AUTO_INIT" android:value="false" />
         <activity
