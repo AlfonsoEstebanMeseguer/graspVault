@@ -3,6 +3,7 @@
 import { z } from "npm:zod@3.23.8";
 import { handler, json, parseBody } from "../_shared/http.ts";
 import { requireAuthUser, rpc } from "../_shared/supabase.ts";
+import { rateLimit } from "../_shared/ratelimit.ts";
 
 const Body = z.discriminatedUnion("action", [
   z.object({ action: z.literal("enqueue"), level: z.enum(["B1", "B2", "C1"]), contentVersion: z.number().int().min(1) }),
@@ -11,6 +12,7 @@ const Body = z.discriminatedUnion("action", [
 
 Deno.serve(handler(async (req) => {
   const { user } = await requireAuthUser(req);
+  await rateLimit(user.id, "matchmaking");
   const b = await parseBody(req, Body);
   if (b.action === "cancel") {
     await rpc("svc_match_cancel", { p_user: user.id });

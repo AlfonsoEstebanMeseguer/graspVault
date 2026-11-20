@@ -4,9 +4,11 @@ import { env, requireAuthUser, rpc } from "../_shared/supabase.ts";
 import { participantToken } from "../_shared/livekit.ts";
 import { loadSession, tickAndApply } from "../_shared/session.ts";
 import { Body } from "./schema.ts";
+import { rateLimit } from "../_shared/ratelimit.ts";
 
 Deno.serve(handler(async (req) => {
   const { user } = await requireAuthUser(req);
+  await rateLimit(user.id, "sessionActions");
   const b = await parseBody(req, Body);
   const s = await loadSession(b.sessionId);
   if (!s || (s.user_a !== user.id && s.user_b !== user.id)) throw new HttpError(404, "not_found");
