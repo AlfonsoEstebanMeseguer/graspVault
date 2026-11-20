@@ -1,0 +1,12 @@
+{
+  "id": "c1-e02-global-and-local-identity",
+  "centralQuestion": "How might these factors help a country to preserve its cultural identity?",
+  "prompts": [
+    "the education system",
+    "local media",
+    "traditional festivals",
+    "protection of the national language",
+    "support for local businesses"
+  ],
+  "decisionQuestion": "Which would be the most important for future generations?"
+}

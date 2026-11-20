@@ -1,0 +1,193 @@
+{
+  "id": "b1-e14-part-time-jobs",
+  "level": "B1",
+  "version": 1,
+  "topic": "Part-time jobs",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p1-intro.mp3",
+          "audioMs": 6600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you have a job at the moment?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e14-part-time-jobs/p1-q1.mp3",
+          "audioMs": 3400
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what job would you like to do in the future?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e14-part-time-jobs/p1-q2.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about someone you know who has an interesting job.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e14-part-time-jobs/p1-q3.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, would you prefer to work indoors or outdoors?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e14-part-time-jobs/p1-q4.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what did you want to be when you were a child?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e14-part-time-jobs/p1-q5.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what are you going to do after you finish studying?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e14-part-time-jobs/p1-q6.mp3",
+          "audioMs": 4300
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e14-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a waiter working in a restaurant. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p2-a.mp3",
+          "audioMs": 7800
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e14-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a young woman working outside in a city. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p2-b.mp3",
+          "audioMs": 8500
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e14-part-time-jobs",
+          "text": "Some students want to get a part-time job in the summer. Here are some jobs they could do. Talk together about the different jobs, and say which would be the best.",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p3-discuss.mp3",
+          "audioMs": 10100
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about work and jobs.",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p4-intro.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think it is a good idea for students to have a job? Why?",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p4-q1.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, what is the most important thing when you choose a job, money or interest?",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p4-q2.mp3",
+          "audioMs": 6400
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, would you like to work for yourself one day?",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p4-q3.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "What are the difficult things about starting your first job?",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p4-q4.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think young people can learn useful things from a summer job?",
+          "audio": "audio/B1/b1-e14-part-time-jobs/p4-q5.mp3",
+          "audioMs": 5600
+        }
+      ]
+    }
+  ]
+}

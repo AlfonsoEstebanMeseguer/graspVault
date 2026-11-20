@@ -1,0 +1,12 @@
+{
+  "id": "b2-e43-the-power-of-advertising",
+  "centralQuestion": "How might these things make an advert successful?",
+  "prompts": [
+    "a catchy song",
+    "a famous person",
+    "humour",
+    "a clear message",
+    "beautiful pictures"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "c1-e24-lifelong-learning",
+  "centralQuestion": "How might these reasons motivate adults to keep learning?",
+  "prompts": [
+    "changing jobs",
+    "personal interest",
+    "keeping the mind active",
+    "keeping up with technology",
+    "meeting new people"
+  ],
+  "decisionQuestion": "Which is the strongest motivation?"
+}

@@ -1,0 +1,377 @@
+# Decisiones
+
+> Formato: fecha · contexto · decisión · alternativa descartada. Ordenadas por número.
+> Fuente de verdad nº 2 tras CLAUDE.md.
+
+### D-001 · 2026-10-15 · Dónde vive el proyecto
+- **Contexto:** CLAUDE.md espera el vault en `docs/vault/`, pero la sesión se abrió sobre el repo `graspVault`, que *es* el vault.
+- **Decisión:** el proyecto vive en `speaking-p2p/` dentro de este repo; el vault queda intacto en la raíz (no se mueve para no romper Obsidian). El CI va en `.github/workflows/speaking-p2p.yml` filtrado por ruta.
+- **Descartada:** mover el vault a `docs/vault/` (rompe la estructura del usuario). **Recomendado a futuro:** repo propio (`git subtree split --prefix speaking-p2p`), pendiente de confirmación.
+
+### D-002 · Framework móvil: Flutter
+- El vault usa Flutter + Riverpod + go_router con decisiones y trampas documentadas. CLAUDE.md §1.3 manda usar el del vault. React Native descartado.
+
+### D-003 · La sesión se dirige con una línea temporal precomputada
+- **Contexto:** "el servidor es la autoridad del estado" y "cada step lleva startedAt del servidor", pero los steps duran 20–60 s y pg_cron no da precisión de segundos.
+- **Decisión:** al empezar la Parte 1 el servidor copia en `exam_sessions.schedule` la línea temporal del examen (segmentos *lector* y *habla* con su política de micro). El estado es función de `now − exam_started_at`. `svc_session_tick` es idempotente: lo llaman ambos clientes en cada frontera y un cron cada 10 s como red de seguridad; si el segmento cambió, la Edge Function aplica `canPublish` en LiveKit y marca `applied_segment` (compare-and-set). 3 s de margen antes de la Parte 1.
+- **Descartada:** una función que avance paso a paso con timers (no existe un timer fiable en Edge Functions; un fallo deja la sesión colgada).
+
+### D-004 · `audioMs` obligatorio en cada step (amplía el esquema de CLAUDE.md §5)
+- Sin la duración del audio del lector el servidor no sabe cuándo abrir los micros (los `narration` ni siquiera tenían duración). `scripts/content/fill-derived.ts` la estima por palabras; el script de TTS escribirá la real.
+
+### D-005 · Un "golden" compartido entre TypeScript y Dart
+- La línea temporal existe dos veces (servidor y app). `content/fixtures/timeline-golden.json` la fija: los dos test suites lo comparan. Cambiar una sin la otra pone el CI en rojo.
+
+### D-006 · El email no se duplica en `profiles_private`
+- Ya está en `auth.users` (minimización, Art. 5.1.c). La app lo muestra desde la sesión.
+
+### D-007 · Lápida anti-abuso del test de prueba
+- `trial_claims(sha256(email))` sin FK: borrar la cuenta y volver a entrar con la misma cuenta de Google no regala otro test. Cuentas de Google nuevas sí (riesgo aceptado, ver REVIEW).
+
+### D-008 · El reloj del lobby arranca cuando los dos están dentro
+- Si arrancara al crear la sesión, en una reunión agendada (sala abierta desde −5 min) el examen empezaría con uno solo. En vivo, si alguien no entra en 90 s, la sesión se aborta como `no_show` (fantasmas de la cola).
+
+### D-009 · Latido de la cola en vivo
+- El cliente re-llama a `enqueue` cada ~10 s; quien no late en 25 s no se empareja y a los 60 s se borra. Evita emparejar con alguien que cerró la app.
+
+### D-010 · Reglas de negocio en SQL (`svc_*`), ejecutables solo por `service_role`
+- Toman el usuario explícito (la Edge Function ya verificó el JWT) y `p_now` para poder mover el reloj en tests. Errores con código estable en el mensaje (`not_eligible`, `overlap`…) → la app los traduce por clave.
+
+### D-011 · `CHECK` en línea, nunca llamando a funciones de `private`
+- Encontrado por la suite: un `CHECK` corre con los privilegios de quien escribe y el cliente no tiene `EXECUTE` en `private` → todo `UPDATE` de perfil fallaba.
+
+### D-012 · Versión de contenido
+- El catálogo del servidor (`exam_catalog`) lleva `content_version`; el cliente envía la suya y el servidor nunca elige un examen que esa build no tenga. Si aun así falta (reunión con una app vieja), la sesión se aborta con `content_missing`.
+
+### D-013 · Buckets de R2
+- `content` (audio y fotos de examen): **público** tras dominio propio con CDN; no es dato personal.
+- `media` (avatares): privado, URL firmada 300 s.
+- `recordings`: privado, **bucket y token propios** (las credenciales se entregan a LiveKit Egress), regla de ciclo de vida 30 días + cron de limpieza.
+
+### D-014 · Tarjeta de reunión
+- Solo se **modifica** una reunión `pending`; una confirmada se **cancela**. Cancelar una confirmada no reabre la oferta (las otras aceptaciones ya recibieron "no disponible").
+- Horas en múltiplos de 5 min; la franja mínima es 30 min y la reunión tiene que caber entera.
+
+### D-015 · Borrado de cuenta con solo Google
+- Reautenticación = inicio de sesión con Google de hace menos de 5 min (`iat` del JWT) + frase `ELIMINAR`/`DELETE` comprobada en el servidor. Borra también las grabaciones donde aparece su voz.
+
+### D-016 · Push
+- FCM HTTP v1 directo (Android e iOS vía APNs en Firebase), textos localizados en el dispositivo con `loc-key`. Cola `notification_outbox` con reintentos.
+
+### D-017 · SDKs nativos en su hito
+- LiveKit, RevenueCat, AdMob, Sentry y PostHog se añaden al pubspec en el hito que los usa: AdMob, por ejemplo, tumba la app al arrancar sin su `APPLICATION_ID` en el manifiesto.
+
+### D-018 · Política de micro fuera de las partes
+- Lobby y feedback: los dos abiertos. Lector: los dos cerrados. `turn`: solo el destinatario. `open`: los dos.
+
+### D-019 · Modo práctica sin conexión
+- `/practice/:level?at=<ms>&role=B` arranca el examen local con compañero simulado y permite saltar a cualquier punto (necesario para probar sin dos dispositivos y sin esperar 15 min).
+
+### D-020 · 2026-10-15 · "Todos han pagado" mientras RevenueCat está aplazado
+- **Contexto:** Alfonso aplaza RevenueCat y asume 8 € de entrada.
+- **Decisión:** `app_config.assume_paid = true` → un trigger da a cada usuario NUEVO suscripción activa hasta 2100. La lógica de test de prueba/paywall sigue intacta y testeada (la suite apaga el interruptor). Apagarlo no toca a los usuarios ya creados.
+- **Descartada:** quitar la comprobación de elegibilidad (habría que volver a escribirla y probarla).
+
+### D-021 · El token del cron se verifica contra Vault
+- `cron-worker` llama a `svc_verify_internal_token`, que compara hashes con el secreto `internal_cron_token` de Vault. Desaparece `INTERNAL_CRON_TOKEN_SHA256`: ningún secreto se copia a mano entre sistemas.
+
+### D-022 · Login por email y contraseña (provisional)
+- Google Sign-In aplazado hasta tener los clientes OAuth. Supabase Auth email+password; el resto del sistema no depende del proveedor. La reautenticación del borrado sigue siendo "sesión de menos de 5 min".
+
+### D-023 · R2: un endpoint por bucket con el bucket en la ruta
+- Nombres del proyecto: `R2_ENDPOINT_SPEAKING_{MEDIA,CONTENT,RECORDINGS}` + `R2_{MEDIA,RECORDINGS}_{ACCESS,SECRET}_KEY`. El bucket se lee de la ruta (no hay variable `*_BUCKET` que pueda contradecirlo) y todos los valores se recortan al leerlos (un salto de línea pegado rompía la firma: pasó).
+- Sin dominio CDN: el contenido del examen también se sirve con URL firmada (`media-view-url`, `kind: content`, 2 h).
+
+### D-024 · Migraciones aplicadas con el MCP y canonizadas
+- Cada fichero local se renombra al `version` que registra Supabase (vault ADR 0034). La regla de negocio se partió en 4 migraciones para que cada `apply` fuera manejable. El catálogo se cargó descargando `seed/exam_catalog.sql` de la rama y comprobando su md5 contra el local antes de ejecutarlo.
+
+### D-025 · Edge Functions desplegadas como un único fichero
+- `scripts/deploy/bundle-functions.mjs` (esbuild) inlina `_shared` y deja `npm:`/`jsr:` como imports. Comprobación tras desplegar: sin usuario, cada función devuelve su propio 401 (prueba que el bundle carga).
+
+### D-026 · 2026-10-15 · Migraciones con `DELETE`: script único para el SQL Editor
+- **Contexto:** el conector de Supabase pide confirmación para cualquier sentencia con `DELETE` y el diálogo caduca a los 60 s (pasó cuatro veces, también con la aprobación dada en el chat).
+- **Decisión:** `apps/backend/supabase/manual/apply_pending_2026-10-15.sql` junta las tres migraciones pendientes en una transacción y las registra en `supabase_migrations.schema_migrations` con el mismo `version` que el fichero local. Se niega a correr dos veces. Probado en Postgres 16 local (aplica, registra y la segunda ejecución falla limpia).
+- **Descartada:** reescribir las funciones para esquivar la palabra `DELETE` (sería engañar al control de seguridad).
+
+### D-027 · Reautenticación del borrado con email
+- Con login por email (D-022), "sesión de menos de 5 min" = la app vuelve a pedir la contraseña (`signInWithPassword`) justo antes de llamar a `account-delete`. El servidor no cambia: comprueba `iat` y la frase.
+
+### D-028 · Horas de la agenda en la zona del móvil, rejilla en UTC
+- Las franjas y huecos se calculan en UTC (rejilla de 30 min) y se muestran en hora local. Un test con `TZ=Europe/Madrid` encontró que el redondeo trataba una hora local como UTC; corregido.
+
+### D-029 · 2026-10-22 · Botón de debug "Crear sala ahora"
+- **Contexto:** probar la llamada exigía agendar con 5 min de antelación y esperar.
+- **Decisión:** `meeting-actions {enter_now}` → `svc_meeting_enter_now`. Crea una sesión `live` (sin `meeting_id`, para no marcar la reunión como `done`/`no_show`) entre los dos miembros de una reunión pendiente o confirmada; quien lo pulse en los 5 min siguientes entra en el mismo lobby. Solo funciona con `app_config.dev_instant_rooms = true` y el botón solo se dibuja con `kDebugMode`. **Apagar el interruptor antes de publicar.**
+- **Descartada:** relajar la ventana de −5/+10 min de `svc_meeting_enter` (cambiaría la regla real).
+
+### D-030 · 2026-10-22 · La sesión se lee por columnas, no con `.stream()`
+- **Contexto:** `.stream()` de supabase_flutter hace `select *`; `exam_sessions` solo concede columnas concretas (la `recording_key` no sale del backend) y Postgres respondía `permission denied` → "No se ha podido entrar en la sala" aunque el audio ya conectaba.
+- **Decisión:** `watch()` relee la fila con columnas explícitas al suscribirse y en cada `UPDATE` de Realtime (el payload solo se usa como aviso). Patrón del vault ADR 0038.
+- **Descartada:** `grant select` de la tabla entera (expondría la clave de la grabación).
+
+### D-031 · 2026-10-22 · Silenciarse a uno mismo y "saltar" de debug
+- **Silenciar:** el icono del micro era solo un indicador. Ahora `VoiceService.setSelfMuted` cierra **mi** micro; el micro queda abierto solo si el servidor lo permite (`canPublish`) **y** no me he silenciado. No existe silenciar al otro (vault ADR 0033).
+- **Saltar (debug):** `session-actions {skip}` → `svc_session_debug_skip`. En el lobby adelanta `lobby_deadline` a ahora; en el examen retrasa `exam_started_at` (y `feedback_ends_at`) lo que falte del segmento actual: siguiente segmento, feedback o fin. Los clientes rehacen el `ExamEngine` cuando cambia `exam_started_at`. Solo con `app_config.dev_session_skip = true` y botones con `kDebugMode`. **Apagar antes de publicar** (junto con `dev_instant_rooms`).
+- **Descartada:** un `step_index` forzado (rompería la regla "el estado sale de now − exam_started_at").
+
+### D-032 · 2026-10-22 · Rediseño "premium y calmado" + contador en directo
+- Briefing de Alfonso (cuestionario): minimal moderno tipo Linear, verde esmeralda/lima, fondo aurora, animación media, sin mascota, Inter, inicio bento, barra flotante en píldora, sin gamificación, oscuro casi negro, tono cercano. Primero propuesta (paleta + Inicio), luego el resto.
+- Tokens nuevos por rol: `accent/onAccent`, `aurora`, `glow`, `glass`. El test de contraste los cubre (AA en claro y oscuro). Inter va en el bundle (OFL), sin descarga en tiempo de ejecución.
+- `live_activity()` (security definer, solo `authenticated`): devuelve **solo recuentos** (buscando por nivel con latido < 25 s, exámenes en curso). Quién busca nunca sale de la base de datos.
+- **Revertido el 2026-10-23:** Alfonso prefiere el frontend inicial. Se restauraron tema, paleta, navegación e Inicio; se quitaron Inter y las claves i18n del rediseño. `live_activity()` sigue en la BD (inofensiva, sin uso). Copia del rediseño fuera del repo por si se retoma.
+
+### D-033 · 2026-10-23 · Voz del examinador: Kokoro en local, 4 voces
+- **Contexto:** sin presupuesto para TTS de pago; se quieren varias voces.
+- **Decisión:** Kokoro-82M (Apache-2.0) vía kokoro-onnx, generado en local (`scripts/content/tts/generate.py`): 4 voces británicas (`bf_emma`, `bm_george`, `bf_isabella`, `bm_lewis`), MP3 mono 64 kbps (~11 MB para los 3 exámenes × 4 voces). `audioMs` pasa a ser la duración **real** (la voz más larga + 250 ms), así la línea temporal del servidor nunca corta al lector; tras generar: validate → sync-catalog → sync-app y re-seed de `exam_catalog`.
+- Ruta en R2: `audio/{voz}/{nivel}/{examen}/{paso}.mp3`; el JSON conserva la ruta sin voz y la app la inserta. `media-view-url` acepta el segmento de voz.
+- La voz de una sesión sale de un hash estable del `sessionId` (ambos móviles la misma; cambia entre sesiones). En práctica, aleatoria. El audio se descarga en el lobby (lo que marca "Material descargado") y se reproduce desde disco; si falla, el lector queda mudo y el texto sigue en pantalla.
+- **Descartadas:** TTS del sistema (flutter_tts: calidad y voces distintas en cada móvil, sin sincronía exacta); Google Cloud TTS (requiere cuenta de facturación); Edge TTS (gratuito pero no oficial).
+
+### D-034 · 2026-10-23 · Foto de perfil
+- **Flujo (vault ADR 0010/0012/0013/0014):** hoja modal sobre Perfil (galería, cámara, quitar) → recorte propio en círculo (InteractiveViewer, sin `image_cropper`) → 512 px → WebP, o JPEG si el móvil no codifica WebP; el mime se declara **según los bytes producidos** → `avatar-upload-url` firma el PUT → subida directa a R2 `speaking-media` → `avatar-confirm` comprueba los magic bytes y escribe `profiles.avatar_key`. El trigger encola la foto anterior para borrarla (`storage_gc`).
+- `avatar-confirm {remove: true}` deja el perfil sin foto (vuelve la inicial).
+- La app cachea los **bytes** por `(userId, avatar_key)` durante la ejecución: la clave es inmutable (uuid nuevo por foto), así que nunca enseña una foto vieja y no depende de que la URL firmada (300 s) siga viva. Si falla, se ve la inicial.
+- Se ve en Perfil, chats, cabecera del chat, tablón, aceptar oferta, lobby y tarjetas del examen.
+- **Sin avatares prediseñados** (los tenía Grasp): CLAUDE.md solo pide avatar en R2 y opcional.
+
+### D-035 · 2026-10-23 · Banco de 150 exámenes y fotos locales
+- **Contexto:** se piden 50 exámenes por nivel (B1/B2/C1), originales y con el formato Cambridge. CLAUDE.md fijaba 5 por nivel para el MVP; el usuario lo amplía expresamente.
+- **Autoría:** `scripts/content/authoring/*.txt` (formato terso, 1 bloque por examen) → `scripts/content/author.ts` genera `content/exams`, `content/diagrams` (uno por examen, mismo id), `content/photos.json` y `content/photos/LISTA_DE_FOTOS.md`, y reescribe `index.json`. Es idempotente y conserva el `audioMs` real de los pasos cuyo texto no cambia. Los 3 exámenes originales no se tocan (51 por nivel en total).
+- **Regla de contenido:** las Partes 3 y 4 comparten tema (`theme` del bloque). Las preguntas de la Parte 4 retoman los prompts de la burbuja. Dificultad: B1 concreto y personal; B2 compara y especula; C1 abstracto ("to what extent…").
+- **Fotos:** `assets: ["b1-e01-a1"]` = `{nivel}-e{nn}-{candidato}{n}`. La descripción de cada una vive en `content/photos.json`; mientras no exista el archivo la app muestra el hueco con esa descripción. El archivo se deja en `content/photos/` con ese nombre (`.jpg/.jpeg/.png/.webp`) y `scripts/content/sync-photos.ts` lo copia a `apps/mobile/assets/photos/`; la app lo usa si está en el manifiesto (`photoCatalogProvider`).
+- **Alternativa descartada por ahora:** R2 (`img/{nivel}/{examen}/{asset}.webp`, CLAUDE.md §5). Con ~600 fotos en el bundle la app crece; cuando se quiera, `PhotoGrid.imageUrlFor` ya acepta una URL remota y esta carpeta se puede subir tal cual.
+- **Sustituido por D-036** (fotos comprimidas en R2): el bundle ya no lleva fotos.
+- **Pendiente:** TTS de los 147 exámenes nuevos (`tts/generate.py` — hasta entonces `audioMs` es una estimación y no hay audio en R2) y re-seed de `exam_catalog`.
+
+### D-036 · 2026-10-23 · Fotos de la Parte 2 comprimidas y en R2; subida masiva
+- **Contexto:** 612 fotos (150 exámenes) en el bundle harían crecer mucho la app; CLAUDE.md §5 pide R2.
+- **Compresión:** `scripts/content/build-photos.py` (Pillow) convierte lo que haya en `content/photos/` a WebP calidad 72, máx. 1024 px de lado, sin EXIF/GPS y girada según la orientación de la cámara → `content/.img-build/img/{nivel}/{examen}/{asset}.webp` (~50-120 KB por foto frente a 0,3-5 MB del original). Solo recodifica las nuevas o cambiadas y las saca de `.uploaded` para que se vuelvan a subir.
+- **App:** las fotos se descargan en el lobby junto con el audio (`ExamMedia`, mismo `media-view-url`); un 404 (foto aún no subida) deja el hueco con su descripción. El audio se reutiliza de disco entre sesiones; las fotos se bajan siempre (pocas y pequeñas, y se pueden sustituir con la misma clave).
+- **Subida:** `scripts/content/upload-r2.sh audio|img` usa `wrangler r2 bulk put` (lotes de 500, 20 en paralelo, reanudable con `.uploaded`). Antes era un `wrangler` por archivo (~10 s cada uno), inviable para ~11.600 audios.
+- **Descartada:** mantener las fotos en el bundle con compresión (seguiría añadiendo ~40 MB a la app).
+
+### D-037 · 2026-10-24 · Dos planes: Estándar (8 €) y Pro (10 €)
+- **Contexto:** Alfonso añade un plan de 10 € con control total del examen. Amplía expresamente CLAUDE.md §13 («1 test + 8 €/mes»).
+- **Decisión:** `entitlements.plan ∈ {standard, pro}`; `private.has_pro` = suscripción activa **y** `plan = 'pro'` (el test de prueba es Estándar). RevenueCat: entitlements `standard` y `pro`; el webhook lee `entitlement_ids` (`planOf`) y un evento sin ids no toca el plan. Mientras RevenueCat siga aplazado (D-020), `app_config.assume_paid_plan` fija el plan con el que nacen los usuarios; para probar, `update entitlements set plan='pro'` sobre una cuenta concreta. Ajustes muestra el plan y una hoja «Mejorar a Pro» con el botón de compra desactivado hasta que haya tienda.
+- Plan de implementación completo: `docs/plans/2026-10-24-plan-pro.md`.
+
+### D-038 · 2026-10-24 · Líder del examen
+- `exam_sessions.leader_id` (+ `pro_a`/`pro_b`, visibles para los dos: hacen falta para ofrecer «Ceder el control»). `private.assign_leader` en crear sesión, presencia y tick: un solo Pro → dirige él; dos → uno al azar; ninguno → nadie. Ceder solo a un Pro (`partner_not_pro`). Si el líder lleva > 10 s desconectado y el otro es Pro, pasa al otro. Sin veto del otro, pero cada acción deja `last_control` y los dos ven un aviso.
+- Encontrado por la suite: con `leader_id` nulo las comparaciones daban `null` (no `false`) y nunca se asignaba líder → `coalesce`.
+
+### D-039 · 2026-10-24 · Reloj controlable (amplía D-003 y D-031)
+- **Pausa:** `paused_at`; el tiempo transcurrido es `coalesce(paused_at, now) − exam_started_at`; reanudar suma la pausa al inicio y al fin del feedback. Solo en ventanas de habla (no mientras habla el lector). En pausa, los dos micros abiertos. Máx. 15 min (luego se reanuda solo); sesión máx. 3 h.
+- **Saltos** (saltar lector, siguiente pregunta/parte, terminar, repetir, ir a parte): `exam_started_at = now − destino`, conservando la duración del feedback.
+- **Minutos:** se reescribe `exam_sessions.schedule` (nunca el catálogo): ±30 s/+1/+2 min en el turno actual o fijar la duración de los turnos de la parte (mismo tipo y misma duración). Turnos de 10 s a 15 min, feedback ≤ 20 min.
+- El fin del feedback es `feedback_ends_at` (antes `total + 5 min`).
+- El micro se marca por clave `control_version:segmento` (`applied_key`), no con un índice monótono: así un salto **atrás** también se empuja a LiveKit.
+- `control_version` + `expectedVersion` del cliente → `stale_control` ante dobles toques.
+- Un solo contrato en dos lenguajes: `domain/exam/control.dart` y `private.ctl_apply` (función pura json→json) pasan los 24 casos de `content/fixtures/control-golden.json`.
+
+### D-040 · 2026-10-24 · Cambio de examen dentro de la sesión
+- En el lobby solo cambia el examen. Durante el examen: nueva `schedule`, pausa `switching`, precarga reiniciada; el tick arranca el nuevo (Parte 1, 3 s de margen) cuando los dos han descargado o a los 45 s. `join` envía la versión de contenido del móvil y no se acepta un examen que el compañero no tenga (`content_missing_partner`). `exam_history` (una fila por usuario y sesión) sigue al examen nuevo.
+- **Práctica con compañero VIP simulado** (petición de Alfonso): solo con `kDebugMode`, en Inicio junto a «Practicar con compañero simulado»; `LocalExamController` aplica el mismo reductor en el móvil y el compañero simulado devuelve el control a los 5 s. **2026-10-28 (Alfonso):** también en las versiones release mientras dure la fase de pruebas (el `.ipa` del iPhone no es debug). Es práctica sin conexión: los controles Pro solo mueven el examen local. Antes de publicar, decidir si queda solo para Pro.
+- Migraciones `20261024120418_pro_plan` y `20261024120548_session_control`, aplicadas con el MCP (Alfonso aprobó el aviso del `DROP FUNCTION` a tiempo; el script manual de reserva ya no hace falta).
+
+### D-041 · 2026-10-24 · «Pregunta anterior» y dock del líder
+- **Pregunta anterior** (`prev_step`): vuelve al principio del paso anterior (el examinador lo lee de nuevo); desde el feedback, a la última pregunta. En la primera pregunta, `out_of_range`. Mismo contrato en Dart y SQL (fixture con 28 casos; migración `20261024122328_control_prev_step`).
+- **Rediseño de los controles (pedido por Alfonso, más intuitivo):** la hoja escondida tras ⚙ pasa a un **dock fijo** bajo el examen, como un reproductor: ⏮ Anterior · ⏯ (Pausar/Reanudar, o **Saltar** mientras habla el examinador: el botón principal hace lo que tiene sentido en cada momento) · ⏭ Siguiente · Sig. parte · Más. «Más» despliega en el sitio (máx. ⅓ de pantalla, con scroll) el tiempo del turno, la duración de los turnos, ir a una parte, repetir, cambiar de examen, ceder y terminar. En el feedback, el líder ve directamente ±tiempo y «Volver a la última pregunta». Mantiene la paleta y componentes del frontend original (no reabre D-032).
+
+### D-042 · 2026-10-24 · Rúbrica de feedback privada
+- **Contexto:** el rediseño 2.0 (§9.2 n.º 4) propone que cada candidato valore al otro. CLAUDE.md la dejaba fuera del MVP; Alfonso la elige expresamente entre las incorporaciones con backend.
+- **Decisión:** `public.peer_ratings` (una fila por sesión y evaluador; 4 criterios de Cambridge, 1–5, todos opcionales). Solo se escribe con `public.rate_partner(sesión, …)`, `security definer`, que deduce a quién se valora a partir de la sesión (participante, examen empezado, compañero existente) y hace upsert. Lectura por RLS: el valorado y el evaluador. Perfil muestra «Lo que dicen de ti» (medias de las últimas 50). No es una nota oficial ni hay rankings.
+- El asesor de Supabase avisa de que `authenticated` puede ejecutar una función `security definer`: es intencionado (es la única vía de escritura y valida la sesión). Migración `20261024160915_peer_ratings`, suite `08_peer_ratings.sql`.
+
+### D-043 · 2026-10-24 · Frontend 2.0 «Turno y Reloj» (sustituye a D-032)
+- **Contexto:** Alfonso encarga el rediseño completo con su propio documento y mockups (`docs/img/img_remaked/`). Ahora esa es la fuente de diseño.
+- **Ajustes de Alfonso sobre el documento:** la tarjeta «papel» es **obsidiana** (negro-gris, texto claro) en los dos temas. Apple y Google aparecen en el login solo como interfaz: avisan de que llegarán pronto, y el email sigue siendo la vía real (D-022). Inicio mantiene el botón circular pulsante libre arriba y debajo los tiles «Próxima reunión» y «Practicar solo», sin racha, sin «Último examen» y sin contador de gente buscando. La mascota Pico está dibujada en código (CustomPainter con estados), no con Rive.
+- **Técnica:**
+  - Tokens en `core/theming/palette.dart` (contraste AA calculado por test) y `core/theming/tokens.dart`; piezas compartidas en `core/ui/` (`kit.dart`, `brand.dart`, `pico.dart`).
+  - Las fuentes van en el bundle (OFL): Instrument Sans, Newsreader, IBM Plex Mono y Caveat para el diagrama manuscrito. Los iconos Phosphor también, como fuentes (MIT); el paquete `phosphor_flutter` 2.1.0 no compila en Flutter 3.47 porque `IconData` es `final`.
+  - El cristal se hace con `BackdropFilter` propio, sin `liquid_glass_widgets`: menos dependencias y control del coste en Android. Tampoco se usan `rive`, `lottie` ni `google_fonts`.
+- **Descartado por ahora:** Live Activity, widget de inicio, calentamiento de micro, resumen final y racha (no se eligieron).
+- **2026-10-25 · Ondas del botón de Inicio en mandarina (Alfonso):** el círculo «Buscar pareja» sigue igual (cobalto, degradado, icono, texto, tamaño), pero sus ondas (`_Rings` en `search_pulse.dart`) usan `palette.roleB` en los dos temas, con la misma opacidad decreciente y sin animación si «Reducir movimiento» está activo. Solo afecta a Inicio: las ondas de «Buscando compañero…» no cambian.
+- **2026-10-25 · Solo en vertical:** `SystemChrome.setPreferredOrientations([portraitUp])`, `android:screenOrientation="portrait"` y solo `UIInterfaceOrientationPortrait` en iOS. En iPad, `UIRequiresFullScreen` (sin Split View ni Slide Over) para poder limitar la orientación sin dejar de publicar en iPad (elección de Alfonso; descartado «solo iPhone»).
+
+### D-044 · 2026-10-24 · Reportar y bloquear usuarios
+- **Contexto:** Apple (guía 1.2) y Google Play exigen poder reportar y bloquear en apps donde desconocidos se comunican. Sin ello rechazan la app.
+- **Decisión:** `user_blocks` y `user_reports`, con escritura solo por `block_user`, `unblock_user` y `report_user` (máximo 10 reportes al día por usuario). Un bloqueo afecta a los dos: no vuelven a emparejarse (`svc_match_enqueue`), no ven las ofertas del otro (política restrictiva), no pueden aceptarlas (`svc_offer_accept`) ni escribirse (política restrictiva en `chat_messages`), y se cancelan sus reuniones pendientes. Las políticas usan `public.is_blocked_with(otro)`, que solo informa de bloqueos entre quien pregunta y otra persona. Los reportes no los lee ningún cliente; se revisan a mano.
+- **App:** «Reportar o bloquear» desde el chat, la sala de espera, el examen (dock y hoja «Más»), el feedback y la tarjeta de oferta. Bloquear durante una sesión la termina. Ajustes > Usuarios bloqueados permite desbloquear. Migración `20261025085249_report_block` (aplicada con el MCP el 2026-10-25 y renombrada a su versión, D-024), suite `09_report_block.sql`. El asesor solo añade los avisos esperados: `security definer` ejecutable por `authenticated` (son la única vía de escritura) y `user_reports` sin políticas (nadie la lee desde el cliente).
+
+### D-045 · 2026-10-24 · Términos de uso y Política de privacidad (borrador)
+- Textos en `apps/mobile/assets/legal/`, versión `2026-10-24` (= `termsVersion`, que se guarda al aceptar). Las notas para Alfonso empiezan por «> [REVISAR]»: el visor de la app las omite (`parseLegal`, con test). Se pueden leer sin cuenta (`/legal/terms`, `/legal/privacy`), desde la bienvenida, el registro (junto a la casilla) y Ajustes > Legal.
+- Puntos abiertos para Alfonso: edad mínima de 14 años, titular, teléfono, URL pública y web de eliminación de cuenta. Lista completa en `docs/legal/PUBLICACION.md`.
+
+### D-046 · 2026-10-25 · Agenda v2: reserva directa, compañeros y chat ligado a la reunión
+- **Contexto:** Alfonso aprueba el análisis y el rediseño de `docs/plans/2026-10-25-agenda-rediseno.md`. Objetivo: quedar y hablar lo justo, repetir con compañeros habituales, no ser una red social. Amplía CLAUDE.md §8 (confirmación doble, varios aceptantes por oferta y chat permanente desaparecen).
+- **Reserva directa:** elegir un hueco de una propuesta lo **reserva**: la reunión nace confirmada (`svc_offer_accept`). La propuesta sigue abierta con los huecos que queden y pasa a `filled` cuando no queda ninguno (`private.offer_has_free_slot`). El tablón tacha los huecos ya reservados con `offer_taken_slots` (solo horas, nunca quién). Retirar una propuesta no cancela lo ya reservado. La pregunta abierta «¿cerrar la propuesta entera al reservar?» se resolvió con la recomendación del documento (huecos restantes abiertos).
+- **Cambiar hora:** vuelve a `pending` con el tick de quien la cambia; confirma solo el otro. Todas las horas (reservar, invitar, cambiar) en la rejilla de 30 min UTC (`private.valid_half_hour`).
+- **Compañeros:** `companions` (una fila por pareja ordenada). Solo se añade a alguien con quien has llegado al feedback de un examen (`companion_add(sesión)`; vale `feedback` porque «Terminar» sale antes de `ended`). Mutuo = los dos se han añadido. Máx. 20. `companion_remove` limpia mi lado (sin `DELETE`). `my_companions()` devuelve solo filas de quien pregunta, con exámenes juntos y la última sesión (para «Añadir también»).
+- **Invitación directa** (`meeting-actions {invite}` → `svc_meeting_invite`): solo entre compañeros mutuos, sin bloqueo, sin solape, máx. 3 pendientes. Nace con el tick de quien invita.
+- **Chat:** política restrictiva `chat_messages_meeting_alive`: se escribe si la reunión está `pending`/`confirmed`/`done`/`no_show` y no han pasado 2 h desde su hora. Mensajes ≤ 500 caracteres (`check ... not valid`, los antiguos siguen siendo válidos). `svc_cron_housekeeping` borra los chats de reuniones terminadas hace más de 30 días, salvo si hay un reporte abierto sobre ellos.
+- **Bloquear (D-044)** además anula el vínculo de compañeros; las invitaciones pendientes se cancelan con el resto de reuniones.
+- **App:** Agenda con dos pestañas («Mis exámenes»: compañeros, te toca, próximos, mis propuestas con quién reservó, anteriores plegadas; «Buscar horario»: tira de días y huecos tocables en cada tarjeta), botón «＋ Proponer» en la cabecera, tarjeta del chat con pasos y una sola acción principal, respuestas rápidas, chat de solo lectura al cerrarse, hoja de invitación, y en el feedback/fin del examen «Añadir a compañeros» / «Repetir con…» (`/agenda?invite=`).
+- Migración `20261025160537_agenda_v2` (aplicada con el MCP), suites `04_agenda.sql` (reescrita) y `10_companions.sql`.
+
+### D-047 · 2026-10-25 · Fotos de la Parte 2: Pixabay, compresión con tope y caché en el móvil
+- **Banco:** Pexels no da claves ahora mismo; Alfonso elige **Pixabay** (Pixabay Content License: uso comercial sin atribución; sus normas piden descargar en vez de enlazar y cachear 24 h, que es lo que hacemos). Descartados: Openverse/Wikimedia (fotos personales con gente reconocible sin cesión de imagen) y Unsplash (su API exige enlazar desde sus servidores).
+- **Flujo con revisión humana** (`scripts/content/photos_pixabay.py`): `search` hace hojas de contacto por turno de candidato (las fotos que se comparan, juntas); `pick id=n` descarga la elegida a 1280 px y apunta autor y página en `content/LICENSES.md`; `ai id` la manda a `content/photos/PROMPTS_IA.md` con un prompt listo (realista, 4:3, sin texto ni logos). Clave en `PIXABAY_API_KEY` (entorno o `.env`, nunca en el repo).
+- **Para no cargar Cloudflare:** `build-photos.py` recorta todas a 4:3 (las parejas se comparan mejor) y baja la calidad WebP de 72 hasta 50 como mucho, hasta que la foto quepa en 110 KB (612 fotos ≈ 50 MB en R2, lejos de los 10 GB gratuitos). La app reutiliza en disco cada foto descargada durante 14 días (`photoCacheTtl`, antes se pedía en cada sesión): cada reutilización ahorra una lectura de R2 y una URL firmada de `media-view-url`. El audio sigue reutilizándose siempre. Una foto sustituida con la misma clave llega a todos en 14 días como mucho.
+- **Resultado (2026-10-28):** 416 de 612 en R2; 196 a la lista de IA (sobre todo C1: escenas abstractas o muy concretas que los bancos no tienen). Palabras clave a mano por foto en `content/photos/queries.json`; se descartan las imágenes que Pixabay marca como generadas por IA. Las URLs de imagen de Pixabay caducan en 24 h: `pick` pide una nueva a la API por id. Corregido de paso: `build-photos.py` escribía `.uploaded` con CRLF en Windows y `upload-r2.sh` volvía a subir todo.
+- **Las 196 restantes, con IA (2026-10-28):** Alfonso descarta Google Imágenes (derechos de autor y de imagen) y aporta una clave de OpenAI con un presupuesto de 8 €. `scripts/content/photos_openai.py` lleva la cuenta del gasto real (tokens de cada respuesta → $) en `content/.openai/spend.json` y se niega a pasar de un tope (`--cap`, 7 $ por defecto). Modelo `gpt-image-1-mini`, calidad media, 1536×1024 (≈ 0,0127 $ por foto): 199 llamadas, **2,49 $**. Primero una de prueba, luego las 43 que completaban exámenes y después el resto, todo revisado en hojas de contacto. Rehechas 3: una con el emblema de la Cruz Roja (protegido) y dos bloqueadas por el filtro de contenido («niños vestidos de soldado», «refugiados») con otra redacción.
+
+### D-048 · 2026-10-29 · Una sola dueña de la sesión de audio (el examinador no sonaba hasta tocar el volumen)
+- **Síntoma (iPhone):** al empezar el examen no se oía al examinador hasta pulsar subir o bajar el volumen.
+- **Causa (leyendo el código de `livekit_client` 2.13.1 y `just_audio` 0.10.6; falta confirmarla en el iPhone):** había dos dueñas de la sesión de audio. (1) En su modo automático, LiveKit configura la sesión de iOS **según el motor de WebRTC**: `playAndRecord` si hay micro, `playback` si solo suena el otro, y **la desactiva cuando el motor queda sin entrada ni salida**. Eso pasa justo cuando habla el examinador, porque el servidor cierra los dos micros (§4) y deja de haber pistas que enviar o recibir. (2) `just_audio`, por defecto, activa al reproducir una sesión «música» propia (`playback` en iOS; en Android pide el foco de audio con uso `media`, aunque la llamada esté en modo comunicación). El reproductor empezaba y, al instante, LiveKit le cambiaba o le apagaba la sesión.
+- **Decisión:**
+  - **En llamada** (`ExamScreen.inCall`, la sesión en vivo): en iOS, `LiveKitEngine.join` fija con `AudioManager.setAudioSessionOptions` (modo manual) una sesión de llamada para toda la sala: `playAndRecord` + `videoChat` + `defaultToSpeaker`, Bluetooth (HFP y A2DP) y AirPlay. Ya no cambia ni se apaga bajo el lector. Al salir, `deactivateAudioSession`. El lector (`FileReaderPlayer(inCall: true)`) no activa ni reconfigura la sesión, no pide foco y no se pausa por las «interrupciones» de la propia llamada. En Android suena con uso `voiceCommunication`: mismo canal que la voz del compañero, mismo altavoz o auricular y las mismas teclas de volumen. Android mantiene el modo automático de LiveKit (comunicación, altavoz preferido).
+  - **Sin conexión** (práctica): el lector configura su propia sesión de voz hablada (`AudioSessionConfiguration.speech()`: `playback` + `spokenAudio` en iOS, que suena aunque el móvil esté en silencio; uso `media` en Android).
+  - Altavoz por defecto, salvo con auriculares o Bluetooth (sin `overrideOutputAudioPort` forzado). El procesado de voz (cancelación de eco) sigue igual. `audio_session` pasa a ser dependencia directa (ya estaba en el lockfile).
+- La API de sesión de LiveKit está marcada como experimental: hay que revisar `_iosCallSession` al actualizar `livekit_client`.
+- **Descartado:** `bypassVoiceProcessing` (empeora el eco); forzar el altavoz (rompe los auriculares); reproducir al examinador por WebRTC (no hay vía local).
+
+### D-049 · 2026-10-29 · Diagrama de la Parte 3 sin solapes
+- **Antes:** las 6 cajas estaban clavadas en puntos fijos de un lienzo con proporción 0,92. Con textos largos (C1), móviles pequeños o el texto grande, colapsaban unas sobre otras.
+- **Ahora:** un `RenderBox` propio (`_RenderDiagram`) las coloca en filas: 2 notas, la pregunta central, 2 notas y 1 nota. Cada fila empieza debajo de la caja más alta de la anterior más 28 px, y las dos notas de una fila van en mitades separadas por 20 px. Las cajas se miden **ya giradas**: el giro pasa a la disposición, que también lo aplica al pintar y al tocar, y las notas altas giran menos, así que la holgura está acotada. La altura crece con el texto. Si media anchura no llega para el tamaño del texto (`100 px × textScale`), las notas van una por fila en vez de partir palabras. Las líneas a mano alzada salen del centro real de cada caja.
+- Test `bubble_diagram_test.dart`: 4 pantallas (320, 393 ×2 y 430) × texto al 100 % y al 200 % × discusión, decisión y textos cortos. Ninguna caja girada toca a otra ni se sale de la tarjeta. Se comprobó que falla con una separación negativa. Capturas: `docs/screenshots/05-diagrama-parte-3(-oscuro).png`.
+
+### D-050 · 2026-10-29 · `SearchPulse` con colores configurables
+- Parámetros opcionales `circle`, `onCircle` y `rings` (roles de la paleta). Sin ellos queda igual que en Inicio: círculo cobalto `brand`/`onBrand` con ondas mandarina `roleB` (D-043). Para el botón naranja de la Agenda: `circle: roleB`, `onCircle: onRole` (pasa AA en los dos temas) y `rings: brand`. **Colocación (Alfonso: «donde consideres mejor»):** en el estado vacío de «Mis exámenes». Sustituye a Pico y al botón «Proponer el mío», abre «Proponer horario» y deja «Buscar horario» debajo. No quita sitio cuando ya hay reuniones (el «＋ Proponer» de la cabecera sigue siempre ahí), y en el estado vacío no hay propuestas, así que nunca choca con el máximo de 2. Descartado: tenerlo siempre visible arriba (empujaba las reuniones hacia abajo). **2026-10-29 (Alfonso):** «Buscar horario» sin propuestas también usa el círculo naranja en lugar del botón «Proponer el mío».
+
+### D-051 · 2026-10-29 · Moderación del sabotaje, fase 1: recoger pruebas sin sancionar
+- **Contexto:** análisis aprobado por Alfonso (`docs/plans/2026-10-29-reportes-sabotaje.md`): umbrales y escala (aviso → 24 h → 7 días → bloqueo manual), revisa él desde Supabase Studio, hash del email de las cuentas bloqueadas (fase 3) y empezar por la fase 1. Plan: `docs/plans/2026-10-29-plan-fase1-moderacion.md`.
+- **Decisión (fase 1, sin sanciones):**
+  - `session_events`: lo escribe un trigger `after update` en `exam_sessions`, que cubre presencia, «Listo», grabación, cada cambio de estado (con motivo y autor del abandono) y **cada** `last_control`, sin tocar `ctl_apply` ni su contrato. También lo escribe `svc_session_log`, con `self_mute` desde la app y `track_published/unpublished` (audio) desde el webhook de LiveKit, hasta 500 por persona y sesión.
+  - `session_talk_stats`: tiempo de voz de A, de B y a la vez por tramo (segmento, sala de espera o feedback), con los micros que abría el servidor. Lo mide cada móvil con `TalkMeter` a partir de los «active speakers» de LiveKit, que calcula el servidor de medios, así que los dos móviles deberían coincidir. Se valida con Zod y otra vez en SQL, y es idempotente por `(sesión, quien mide, segmento, inicio)`. Solo números, nunca audio.
+  - Ningún cliente lee las tablas nuevas (RLS sin políticas, solo `service_role`). Se borran a los 30 días (`svc_cron_housekeeping`), salvo si hay un reporte abierto sobre la sesión.
+  - `report_user` con la **misma firma**: una sesión solo vale si los dos participaron en ella (`not_in_session`); los motivos nuevos `silent`, `mocking`, `noise`, `quit` y `control_abuse` exigen sesión; y hay un reporte por persona y sesión (el segundo no hace nada). La hoja de reportar muestra esos motivos solo con sesión.
+  - Política de privacidad: qué se registra y durante cuánto tiempo. La versión del texto legal (`2026-10-24`) no cambia porque sigue siendo un borrador sin publicar (D-045).
+- Migración `20261029120000_moderation_evidence` (se renombrará a la versión con la que se aplique, D-024), suite `11_moderation.sql` y tests de Deno y Dart.
+- **Descartado:** medir la voz con un detector propio en el móvil (cada móvil daría cifras distintas y sería fácil de falsear) y apuntar cada control desde `svc_session_control` (el trigger cubre también los cambios automáticos de líder y los del tick).
+
+### D-052 · 2026-10-29 · Parte 2: las preguntas aparte, como en el cuadernillo
+- **Decisión (Alfonso deja elegir):** formatear en la app, sin tocar el contenido. `PromptParts.parse` separa la introducción hasta el primer « and say » y las preguntas por «, and » (con el punto final quitado). Solo acepta el resultado si al volver a unirlo sale **exactamente** el texto original; si no, la tarjeta lo muestra tal cual. La tarjeta (`QuestionCard(booklet: true)`, solo en la Parte 2) pinta «…and say:» y una viñeta por pregunta. Un lector de pantalla oye la frase original.
+- Test sobre los 153 exámenes: el texto reconstruido es idéntico; B1 nunca se formatea (describe una foto); B2 tiene 1 pregunta y C1 tiene 2 (204 enunciados). La Parte 3 de B1 también dice «… and say which …», por eso el formato se limita a la Parte 2. El JSON, el audio y `audioMs` no cambian.
+- **Descartado:** un campo nuevo generado por `author.ts`. Cambiaría los JSON y su versión de contenido (riesgo de `content_missing_partner` entre versiones de la app) sin ganar nada hoy.
+
+### D-053 · 2026-10-29 · El saludo del examinador no sonaba; cuenta atrás de 3 s
+- **Síntoma (iPhone, Alfonso):** «Good afternoon. First of all…» no sonaba; el primer audio que se oía era el del paso siguiente.
+- **Causa (reproducida con un test):** el examen empieza con 3 s de margen, tanto en vivo (`exam_started_at` = ahora + 3 s) como en la práctica. Durante el margen ya está activo el segmento 0 (el saludo), y el lector calla porque `readerCue` no suena mientras dura el margen. `ExamScreen` solo ponía en marcha el lector **al cambiar de segmento**. Al acabar el margen el segmento seguía siendo el 0, así que el saludo no se reproducía nunca. No era un corte al pulsar el botón.
+- **Arreglo:** la clave del lector es segmento + «estamos en el margen». Al acabar el margen cambia la clave y suena el saludo desde el principio. El test de la práctica avanza fotogramas durante el margen, como un móvil: con la lógica antigua falla y con la nueva pasa. (Una primera versión del test no avanzaba fotogramas durante el margen y pasaba también con el código antiguo.)
+- **Cuenta atrás (pedido de Alfonso):** el texto pequeño «El examen empieza en N» pasa a ser un número grande «3, 2, 1» (`_StartCountdown`, IBM Plex Mono XL, color `link`). Se anuncia al lector de pantalla y no se anima con «Reducir movimiento». Los 3 s ya existían en los dos modos, así que no cambian ni el servidor ni el contrato de los controles.
+
+### D-054 · 2026-10-29 · Número de compilación y commit visibles en Ajustes
+- **Contexto:** se instaló por error un `.ipa` anterior. Todos los artefactos se llaman igual y la versión de la app no cambiaba (0.1.0+1), así que desde el iPhone no había forma de saberlo.
+- **Decisión:** el workflow de iOS compila con `--build-number=<run>` (`CFBundleVersion` sube en cada run) y pasa `BUILD_NUMBER` y `GIT_COMMIT` (7 caracteres) como `--dart-define`. Ajustes muestra al final «Compilación #N · abc1234»; en un build local, «Compilación local». Sin paquetes nuevos (descartado `package_info_plus`).
+
+### D-055 · 2026-10-29 · Anuncio en vídeo con Remotion
+- **Pedido de Alfonso:** un anuncio en inglés. Formato vertical 9:16, unos 20 s, con voz de Kokoro (local y gratis, D-033). Aprobó instalar Remotion.
+- **Cómo:** `marketing/ad` (Remotion 4.0.539, React 19; `node_modules` y `out/` fuera de git). La voz se genera con `scripts/voiceover.py` y cada escena dura lo que su frase. Las capturas son las reales de la app en inglés y modo oscuro: `screens_test.dart` acepta ahora `SCREENSHOT_LOCALE=en` y escribe en `build/screenshots-en/`, no en `docs/`.
+- **Marca:** se dice «B1, B2 or C1 speaking exam», nunca «Preliminary/First/Advanced» ni el logo de Cambridge, y al final aparece el aviso de no afiliación. Como la app aún no está en las tiendas, el cierre dice «Coming soon · iOS & Android».
+- Kokoro se reinstaló fuera del repo (`D:/VSCODE/SpeakingApp/tts-venv` y `kokoro-models`), porque el entorno anterior ya no existía.
+
+### D-056 · 2026-10-29 · La app pasa a llamarse MirloTalk; anuncio en español
+- **Nombre (Alfonso):** «MirloTalk» sustituye a «Speaking P2P» en todo lo visible: el nombre en iOS (`CFBundleDisplayName` y el aviso del micrófono) y en Android (`android:label`), `appName` (ES/EN), la marca de `brand.dart`, los Términos y la Privacidad. No cambian el identificador del paquete, los nombres internos (`speaking_p2p`) ni el repositorio. Falta comprobar si la marca y el dominio están disponibles.
+- **Anuncio (sustituye al de D-055):** en español, de unos 44 s, contado en primera persona por una estudiante. Menciona el emparejamiento en vivo al mismo nivel, la Agenda («Propongo un horario… y otro estudiante lo reserva»), el examinador (4 partes, turnos y tiempo), los 51 exámenes por nivel (153 en total) y el feedback. Usa las capturas reales en español.
+- **Voz:** OpenAI `gpt-4o-mini-tts` (voz `marin`, con instrucciones de tono: estudiante española, cercana). Alfonso eligió OpenAI frente a Kokoro porque Kokoro le sonaba robótica. Los tiempos por palabra salen de `whisper-1` y se alinean con el guion; si Whisper se salta una palabra, su tiempo se interpola. Gasto: 0,024 $ en total, incluidas las 3 muestras. El registro está en `marketing/ad/.openai-spend.json` y el script tiene un tope de 0,5 $.
+- **Diseño:** tres zonas fijas (titular, imagen y subtítulos), todas centradas y con el mismo margen a los dos lados. Los subtítulos están siempre en pantalla: la palabra que se dice resplandece en cobalto, las ya dichas quedan encendidas y las que faltan, atenuadas. Los contadores «51» suben mientras se dice «cincuenta y un» y cada nivel aparece cuando se nombra.
+- **Descartado:** la captura de la Agenda con reuniones confirmadas, porque el tick «✓✓» sale como «□□» (a la fuente de las capturas le falta ese símbolo); se usa la de la Agenda vacía con el botón naranja.
+
+### D-057 · 2026-10-29 · El audio solo sonaba en el primer examen
+- **Síntoma (Alfonso):** el examinador solo sonaba en el primer examen; en los demás, nada.
+- **Causa (reproducida con un test):** `ExamScreen` creaba su lector una sola vez, en `initState`, con el audio que tuviera en ese momento. Al cambiar de examen (controles VIP en la práctica o del líder en vivo), la pantalla del examen nuevo se crea al instante y su audio se descarga después: la práctica lo vaciaba (`ExamMedia()`) y elegía un lector mudo para todo el examen. En vivo, la sesión conservaba el audio del examen anterior, y como los pasos se llaman igual en todos (`p1-intro`…), podía sonar el del examen viejo. No faltaba nada en R2: los 11.624 audios (153 exámenes × 4 voces) están subidos y `media-view-url` firma cualquier examen.
+- **Arreglo:** `ExamScreen.didUpdateWidget` rehace el lector cuando cambian los archivos de audio (o `inCall`), para el anterior y vuelve a poner el paso en curso. `LiveSession` vacía audio y fotos al cambiar de examen hasta descargar los del nuevo. Test `exam_reader_files_test.dart`: con el código anterior falla.
+- **Nota:** la práctica normal empieza siempre por el primer examen del nivel (`index.exams.firstWhere`); los demás solo se oyen cambiando de examen o en vivo.
+
+### D-058 · 2026-10-31 · Cronómetro solo para la respuesta, pitidos y dock fijo
+- **Petición (Alfonso):** respetar los tiempos de cada parte y que el cronómetro no corra mientras lee el examinador; un pitido al empezar cada respuesta y otro, suave, al acabar, con un botón de campana para silenciarlos; en la Parte 2, primero la pregunta y luego las fotos; un dock fijo (VIP · anterior · pausa · saltar · repetir · Más) también mientras lee el examinador; pausar al examinador y reanudar donde iba; quitar "Sig. parte" y "Repetir pregunta" de "Más".
+- **Tiempos:** revisados en los 153 exámenes. Ya cuadran con el formato oficial (CLAUDE.md §4): P1 25–30 s por pregunta; P2 1 min por turno largo (B1 una foto, B2/C1 dos fotos) + 30 s de respuesta del compañero en B2/C1; P3 2 min 30 s en B1, 2 min + 1 min de decisión en B2/C1; P4 ~3 min 30 s en B1, ~4 min en B2, ~5 min en C1. No se cambia el contenido. Lo que fallaba era el reloj: mostraba el paso entero (lectura + respuesta) y corría durante la lectura.
+- **Reloj:** solo cuenta la ventana de respuesta. Mientras lee el examinador, el anillo se queda lleno y gris con la duración que viene; en una narración, el anillo queda vacío con el icono del cronómetro. El aviso háptico de los 10 s solo salta en la ventana de respuesta.
+- **Pitidos:** WAV sintetizados (`scripts/content/cues.py`, sin licencia de terceros) que van en el bundle (`assets/sounds/`, unos 60 KB) porque se usan en todos los exámenes. Suena "inicio" al entrar en una ventana de respuesta nueva (también al saltar la lectura) y "fin" cuando el tiempo se acaba solo; reanudar o cambiar el tiempo no pita, y saltar o retroceder no pita "fin". Siguen la regla de sesión de audio de D-048. El silencio (campana) se guarda en `exam_cues_muted`.
+- **Pausa con el examinador:** `Pause` deja de rechazar el segmento del lector (`reader_speaking`), en `control.dart` y en la migración `20261031120000_pause_during_reader.sql`. Al reanudar, el reloj se desplaza lo que duró la pausa y el lector vuelve a sonar con el desfase exacto, así que sigue por donde iba. El primer caso de `control-golden.json` pasa a ser "pausa antes de empezar → `not_started`".
+- **Dock:** "Saltar" salta lo que está sonando: durante la lectura va a la respuesta (`skip_reader`) y durante la respuesta, a la pregunta siguiente (`next_step`). "Repetir" vuelve a leer la pregunta. "Más" conserva "Ir a parte", tiempo, duración del turno, cambiar examen, ceder y terminar.
+- **Descartado:** "Saltar" siempre a la pregunta siguiente (obligaría a perder la tarea en curso para no oír la lectura); un pitido del sistema (`SystemSound`), que en iOS es casi inaudible y no respeta la sesión de la llamada.
+
+### D-059 · 2026-11-02 · Tiempo para pensar en la Parte 3 y fotos de la Parte 2 en vertical
+- **Pedido de Alfonso:** incorporar los segundos de espera del examen real y ver las fotos de la Parte 2 en vertical.
+- **Investigación:** en B2 First y C1 Advanced, tras leer la tarea de la Parte 3 el examinador da **15 s** para mirarla (fuente consultada: kseacademy, C1 Parte 3). Las Partes 1, 2 y 4 no tienen preparación en B1/B2/C1; en B1 tampoco hay en la Parte 3. Alfonso recordaba 1 min: eso es del nivel C2 Proficiency, que no está en el MVP. Las fuentes de terceros no publican la tabla completa; conviene confirmarlo con el handbook oficial.
+- **Decisión:** campo opcional `prepSec` en los steps `open` (`p3-discuss` de B2 y C1 = 15). El tiempo se suma al final del segmento del lector: micros cerrados, y «Saltar» lo salta. Así no cambia el contrato SQL (`phase` sigue siendo `reader`/`speak`). La UI muestra «Tiempo para pensar» y el reloj cuenta esos 15 s (`ExamSnapshot.thinking`).
+- **Descartado:** una fase `prep` nueva (obligaba a tocar migraciones y controles).
+- **Fotos:** `PhotoGrid` apila las dos fotos una sobre otra (16:10) en vez del carrusel horizontal; tocar abre el zoom.
+- **Pendiente:** aplicar `seed/exam_catalog.sql` regenerado en Supabase para que las sesiones en vivo tengan los 15 s.
+
+### D-060 · 2026-11-02 · Términos y Privacidad finalizados para publicar
+- **Pedido de Alfonso:** cerrada la fase de funcionalidades, dejar los Términos y la Política de Privacidad listos y legales para App Store y Google Play, con aceptación obligatoria en el registro y un `.md` aparte con lo que falte por decidir.
+- **Decisión:** se limpian `assets/legal/terminos.md` y `privacidad.md` de notas internas (`> [REVISAR]`), se resuelven los correos de contacto (`soporte@mirlotalk.app`, `privacidad@mirlotalk.app`) y se sube la versión a `2026-11-02` (`termsVersion` en `account.dart`, que `legalVersion` deriva). Los datos del titular (nombre, NIF, domicilio) quedan como `[por completar antes de publicar]`: no se inventan porque un NIF falso es en sí un defecto legal.
+- **Aceptación:** ya estaba implementada (casilla del onboarding que bloquea el alta + `profiles_private.terms_version`/`terms_accepted_at` `not null`). No se toca.
+- **Notas trasladadas:** todo lo pendiente va a `docs/legal/ASPECTOS_A_COMPLETAR.md` (titular, edad mínima 14 vs 18, dominio y buzones, marcas Cambridge, teléfono, pagos/RevenueCat, AdMob, DSA, Sentry/PostHog, proveedores y regiones, re-aceptación por cambio de versión, transferencias, licencias, usuarios expulsados).
+- **Edad mínima:** sigue en 14 (CLAUDE.md §13). Señalado como la decisión más delicada para las tiendas; recomendación de subir a 18 (como ADR 0044 del vault) pendiente de que lo decida Alfonso. No se reabre sin su visto bueno.
+- **Test:** `legal_test.dart` pasa a exigir que los documentos publicados no lleven notas internas (antes exigía lo contrario).
+
+### D-061 · 2026-11-02 · Sentry y PostHog preparados en código (encender al final)
+- **Pedido de Alfonso:** dejar la observabilidad (errores con Sentry, producto/retención con PostHog) lista en código, para encenderla como último paso.
+- **Decisión:** andamiaje *no-op* hasta que lleguen las claves. Backend: `_shared/sentry.ts` (`captureException`, sin dependencias, `fetch` al Store API, enganchado al `catch` del `handler`) y `_shared/analytics.ts` (`track` → PostHog `/capture`). App: `lib/core/telemetry/telemetry.dart` (`Telemetry` con `captureError`/`track`/`identify`, lee `--dart-define`). Las variables ya estaban reservadas en `.env.example`.
+- **Principio:** la analítica de negocio (suscripción, emparejamientos, sesiones) se emite desde el servidor, no desde el cliente falsificable; la app solo emite interacción pura y sus propios errores.
+- **Pendiente:** crear cuentas, poner secretos, implementar los `TODO(observability)` (3 líneas por SDK), sembrar los `track(...)`, y añadir ambos proveedores a la Política de Privacidad. Todo en `docs/OBSERVABILITY.md`.
+
+### D-062 · 2026-11-18 · Login con Google y Apple (nativo, sustituye a D-022 como vía principal)
+- **Pedido de Alfonso:** registro y login con Apple ID y cuenta de Google. Aún no tiene cuentas de Google Cloud ni de Apple Developer; las crea hoy.
+- **Decisión:** login **nativo** con `signInWithIdToken` (sin navegador ni deep links). Google con `google_sign_in` 7 en las dos plataformas y Apple con `sign_in_with_apple` 8, este **solo en iOS**. El email y la contraseña se quedan (cuenta demo para App Review y pruebas). Registro y login son el mismo botón: la cuenta nueva cae en el onboarding.
+- **Encendido por configuración:** `GOOGLE_WEB_CLIENT_ID` y `GOOGLE_IOS_CLIENT_ID` (públicos) y `APPLE_SIGN_IN=true` en `env/dev.json`. Sin ellos, el botón sigue diciendo «llegará pronto». `Env.assertSafe` rechaza un client secret pegado por error. El URL scheme de Google en iOS se genera desde `env/dev.json` (`tool/ios_auth_config.dart` → `ios/Flutter/Auth.xcconfig`, ignorado por git) en el workflow.
+- **Nonce:** el valor crudo va a Supabase y su SHA-256 al proveedor. En Google se fija una vez por proceso (`initialize` solo se puede llamar una vez); en Apple es nuevo en cada intento.
+- **Borrado de cuenta:** reautentica según `app_metadata.provider`:
+  - email: la contraseña (D-027);
+  - Google o Apple: la hoja del proveedor.
+  - Si la hoja deja dentro a **otra** cuenta, no se borra (`reauth_mismatch`).
+  - Las cuentas de Apple mandan el `authorizationCode` y `account-delete` revoca el token (guía 5.1.1(v)): JWT ES256 con WebCrypto, sin dependencias, en `_shared/apple.ts`. Un fallo de Apple se reporta pero no bloquea el borrado.
+  - El servidor sigue exigiendo una sesión de menos de 5 min.
+- **Descartado:**
+  - Apple en Android por el flujo web: exige un Services ID, deep link y un client secret que caduca cada 6 meses. Riesgo aceptado: una cuenta creada con Apple no entra desde Android.
+  - `signInWithOAuth` en navegador también para Google: peor experiencia y más piezas.
+- **Requisito externo:** Apple solo funciona en un build firmado con un perfil que tenga la capability (cuenta de pago). El `.ipa` sin firmar con Sideloadly gratuito no sirve. Google sí funciona ahí.
+- Guía paso a paso: `docs/AUTH_OAUTH_SETUP.md`.
+
+### D-063 · 2026-11-19 · Sentry y PostHog encendidos en código: qué evento sale de dónde
+- **Pedido de Alfonso:** implementar la parte de código ahora que tiene las cuentas (completa D-061).
+- **Decisión:**
+  - **Servidor, directo** desde la Edge Function dueña del hecho: `signup_completed` (`onboarding-complete`), `subscription_started` / `subscription_cancelled` (`revenuecat-webhook`, solo si `applied`; las renovaciones no cuentan).
+  - **Servidor, por cola** (`public.analytics_outbox`, migración `20261119120000_analytics_outbox.sql`): triggers sobre `exam_sessions`, `meeting_offers`, `meetings` y `attendance` escriben una fila por usuario y hecho **en la misma transacción**; `cron-worker` (tarea `analytics`, cada minuto) la vacía con un solo `POST /batch/`. Cubre `matchmaking_matched`, `exam_lobby_entered`, `exam_part_started` (parte), `exam_completed`, `exam_aborted` (parte, motivo, `by_me`), `meeting_offer_created`, `meeting_accepted`, `meeting_confirmed`, `meeting_no_show`.
+  - **App** (`core/telemetry/telemetry.dart`): solo lo que no ve el servidor: `matchmaking_started`, `matchmaking_prompt_shown/accepted`, `text_toggle_used`, `timer_toggle_used`, y (cuando existan paywall y anuncio) `paywall_viewed`, `app_open_ad_shown`. Nombres en snake_case (`AppEvent.wireName`), igual que el servidor.
+  - El tiempo de espera del matchmaking no va como propiedad: lo da el embudo `matchmaking_started → matchmaking_matched` («time to convert»).
+  - `EdgeRuntime.waitUntil` (`_shared/background.ts`) para que el envío a Sentry/PostHog no se corte al devolver la respuesta.
+  - Privacidad: Sentry sin PII, capturas ni jerarquía de vistas; PostHog sin replay, encuestas ni GeoIP en el servidor; `distinct_id` = uuid; la cola cae en cascada al borrar la cuenta y se purga a los 7 días.
+- **Descartado:**
+  - Llamar a PostHog desde `tickAndApply`: se ejecuta muchas veces por transición (dos móviles + cron), así que duplicaría eventos.
+  - Emitir el examen desde la app: falsificable y contaría doble.
+
+### D-064 · 2026-11-19 · Stack traces legibles, alertas de Sentry y analítica con opt-out
+- **Pedido de Alfonso:** trazas legibles en Sentry, alertas, y Sentry/PostHog en la Política de Privacidad.
+- **Trazas:** los builds de release de iOS (CI) se compilan con `--obfuscate --split-debug-info=build/debug-info` y guardan el mapa de ofuscación; `sentry_dart_plugin` sube dSYM, símbolos de Dart y mapa (config en `pubspec.yaml`, sección `sentry`). Credenciales solo por entorno: secreto `SENTRY_AUTH_TOKEN` y variables `SENTRY_ORG` / `SENTRY_PROJECT` del repositorio. Sin ellas, el paso avisa y no falla. No se sube código fuente (`upload_sources: false`). Comprobado que nada depende de nombres de clase (`runtimeType`), así que la ofuscación es segura.
+- **Analítica (decisión de Alfonso):** interés legítimo con **opt-out**. «Compartir estadísticas de uso» en Ajustes, activado por defecto. La elección se guarda en `profiles_private.analytics_opt_out` (migración `20261119140000_analytics_opt_out.sql`): `analytics_emit` deja de encolar a ese usuario y un trigger borra lo pendiente. `revenuecat-webhook` lo comprueba con `trackUnlessOptedOut`. En el móvil, `PostHogConfig.optOut` y una copia en SharedPreferences que se sincroniza con la del servidor al iniciar sesión, antes de `identify`. Sentry no se ve afectado.
+- **Minimización:** PostHog sin GeoIP también en la app (`disableGeoIp`), para que la Política pueda decir «sin ubicación».
+- **Política:** versión `2026-11-19` (Términos y Privacidad comparten constante). Nuevos 2.2 (errores y estadísticas), 3 (bases y forma de oponerse), 4 (plazos) y 5.2 (Sentry y PostHog, ambos con datos en Fráncfort). Pendientes de verificar en `docs/legal/ASPECTOS_A_COMPLETAR.md` §9.
+- **Descartado:** opt-in en el onboarding (más seguro, pero pierde datos); sin interruptor (más riesgo ante la AEPD).
+
+### D-065 · 2026-11-19 · Sin teléfono, reportes en 72 h y bloqueo de cuentas expulsadas
+- **Decisión de Alfonso** (repaso de `docs/legal/ASPECTOS_A_COMPLETAR.md`), que cambia CLAUDE.md §3:
+  - **Teléfono fuera.** Se pedía (opcional) y no se usaba: choca con la minimización (art. 5.1.c RGPD). Migración `20261119160000_drop_phone_bans.sql`: borra los números guardados y la columna; `svc_onboarding_complete` pierde `p_phone` y el onboarding pierde el campo.
+  - **Reportes en 72 h** (Términos 10.2): un plazo concreto para el art. 16-17 del DSA que una persona sola puede cumplir.
+  - **Expulsión definitiva con huella:** tabla `public.banned_identities` (solo `sha256(lower(email))`, motivo y fecha; sin FK, como `trial_claims`). `svc_onboarding_complete` falla con `banned` (403) si el correo está en ella; la app lo traduce (`errorBanned`). La herramienta del moderador es `select private.ban_user('<uuid>', '<motivo>')` desde el editor SQL: guarda el hash, marca `actioned` los reportes abiertos contra él y borra la cuenta por el mismo camino que el borrado voluntario. Política §3 y §4 y Términos 10.2 lo explican.
+- **Descartado:** guardar el correo en claro (más de lo necesario); bloquear en un trigger de `auth.users` (el usuario no vería un mensaje propio, solo «Database error»).
+- **Sin decidir:** la edad mínima (sigue en 14; ver `ASPECTOS_A_COMPLETAR.md` §3).
+
+### D-066 · 2026-11-19 · Edad mínima 16, re-aceptación, borrado en PostHog y licencias en la app
+- **Decisión de Alfonso:** edad mínima **16** (antes 14; cambia CLAUDE.md §3 y §13). Es la edad de consentimiento digital más alta de la UE (art. 8 RGPD), así que vale en todos los países y encaja con la clasificación 16+ de las tiendas. Formulario (`Validators.minAge`), trigger `enforce_min_age` (migración `20261119170000_min_age_16.sql`), textos y documentos.
+- **Re-aceptación** (encargada a Claude): `MyProfile.acceptedTermsVersion` + `needsTermsUpdate`; el router manda a `/terms-update` (`TermsUpdateScreen`) mientras la versión aceptada sea anterior a `termsVersion`; `public.accept_terms(version)` (migración `20261119180000_terms_reaccept.sql`) guarda la versión con la hora del servidor. Las versiones se comparan como fechas ISO: una app antigua no pide bajar de versión y un valor raro no bloquea.
+- **Borrado en PostHog:** `account-delete` llama a `persons/bulk_delete` (`_shared/posthog_admin.ts`) en segundo plano tras borrar la cuenta. Apagado hasta tener `POSTHOG_PERSONAL_API_KEY` y `POSTHOG_PROJECT_ID`; un fallo va a Sentry y no frena el borrado.
+- **Licencias:** textos OFL de las fuentes y MIT de Phosphor en el `LicenseRegistry` (`core/legal/bundled_licenses.dart`); Ajustes › Licencias de código abierto.
+- **Titular:** persona física (autónomo), datos en los dos documentos.
+- **Descartado:** forzar la re-aceptación con un trigger en el servidor (la app vieja no sabría mostrarla); `DELETE persons/:id` de PostHog (necesita antes buscar el id interno; `bulk_delete` acepta el uuid).
+
+### D-067 · 2026-11-19 · Sin marcas de exámenes, lanzamiento gratis y práctica con examen aleatorio
+- **Decisión de Alfonso:** evitar cualquier reclamación de marca y lanzar gratis para atraer usuarios. Cambia CLAUDE.md §0, §3 y §13 (monetización) mientras dure el lanzamiento.
+- **Marcas:** fuera «Cambridge», «Preliminary», «First», «Advanced» de la app, los documentos, el anuncio y el marketing. Niveles con la escala MCER (`levelB1/B2/C1`: «B1 Intermedio», «B2 Intermedio alto», «C1 Avanzado»; EN «Intermediate», «Upper intermediate», «Proficient», sin «Advanced» junto a C1). Aviso de independencia sin nombrar a nadie. Términos 2.1 y 2.5 reescritos. Regla permanente en `docs/MARKETING.md`.
+- **Lanzamiento gratis, oculto y no borrado:** `core/config/features.dart` con `Features.subscriptions` y `Features.premiumPractice` (por `--dart-define`, apagados por defecto). Ocultan la tarjeta de suscripción y la hoja «Mejorar a Pro» de Ajustes y la práctica con compañero VIP/premium del Inicio. Servidor sin cambios: `assume_paid` ya da plan Estándar activo a todos (D-020), así que nadie ve un paywall; ya no se apaga antes de publicar. Términos 6.0: gratis y aviso previo antes de cobrar.
+- **Práctica aleatoria:** `_practiceExamProvider` elige un examen al azar del nivel cada vez que se abre una práctica (antes, siempre el primero del índice); `practiceRandomProvider` permite fijarlo en los tests. Vale para la práctica normal y la premium.
+- **Tiendas:** respuestas en `docs/legal/FORMULARIOS_TIENDAS.md`; `ITSAppUsesNonExemptEncryption = NO` en el `Info.plist`.
+- **Descartado:** borrar el código de suscripciones (habría que reescribirlo); poner «C1 Advanced» en inglés (coincide con el nombre del producto de Cambridge).

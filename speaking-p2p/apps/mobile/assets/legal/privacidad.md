@@ -1,0 +1,130 @@
+# Política de Privacidad
+
+Versión 2026-11-19 · Última actualización: 19 de noviembre de 2026
+
+En esta Política explicamos qué datos personales tratamos cuando usa la aplicación MirloTalk (la «Aplicación»), para qué los usamos, con quién los compartimos, durante cuánto tiempo los guardamos y cómo puede ejercer sus derechos. La aplicamos conforme al Reglamento (UE) 2016/679, General de Protección de Datos (RGPD), y a la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
+
+## 1. Responsable del tratamiento
+
+- Responsable: Alfonso Esteban Meseguer García
+- NIF: 54633962S
+- Domicilio: Calle Júcar, 10, La Alcayna, 30507 Molina de Segura (Murcia), España
+- Contacto para asuntos de privacidad: privacidad@mirlotalk.app
+
+## 2. Qué datos tratamos
+
+2.1. Datos que usted nos facilita:
+
+- Datos de la cuenta: correo electrónico y contraseña (la contraseña se guarda cifrada y nunca la conocemos).
+- Perfil público: nombre de usuario, foto de perfil (opcional), idiomas que habla y nivel de examen que prepara.
+- Datos privados del registro: fecha de nacimiento, para comprobar la edad mínima. No le pedimos el número de teléfono.
+- Constancia de la aceptación: versión de los Términos y de esta Política que aceptó y fecha.
+- Mensajes que escribe en los chats de las reuniones.
+- Valoraciones con rúbrica que hace a otros usuarios, y reportes que envía.
+- Grabaciones de audio de una sesión, solo si usted y la otra persona activan la grabación.
+
+2.2. Datos que se generan al usar la Aplicación:
+
+- Datos de uso del servicio: búsquedas de pareja, sesiones (con quién, cuándo, qué examen, rol A o B, quién dirigió y qué controles usó), asistencia o ausencia a las reuniones, exámenes realizados, ofertas y reuniones de la Agenda, y bloqueos que realiza.
+- Voz en tiempo real: durante una sesión, su voz se transmite a la otra persona a través de nuestro proveedor de llamadas. No se guarda salvo que los dos hayan activado la grabación.
+- Registro de la sesión para la moderación: cuándo entra y sale cada participante, los cambios de parte, los controles del examen, si alguien se silencia o abandona, y cuánto tiempo habla cada uno en cada tramo del examen (solo la duración, medida por nuestro proveedor de llamadas: no se graba ni se transcribe lo que dice).
+- Datos de la suscripción: plan contratado, estado y fecha de renovación. No recibimos los datos de su tarjeta ni de su medio de pago, que gestionan Apple o Google.
+- Datos técnicos: identificadores de la sesión, dirección IP, tipo de dispositivo y versión del sistema y de la Aplicación, que nuestros proveedores registran para que el servicio funcione y sea seguro. Si activa las notificaciones, también el identificador de notificaciones del dispositivo.
+- Informes de errores: cuando la Aplicación o nuestro servidor fallan, se genera un informe técnico con el tipo de error, el punto del código donde ocurrió, el modelo de dispositivo, la versión del sistema y de la Aplicación y un identificador interno de su cuenta (un código aleatorio, no su nombre ni su correo). No incluye capturas de pantalla, mensajes del chat ni audio.
+- Estadísticas de uso: qué funciones usa y cuándo (por ejemplo, que empezó a buscar pareja, que una sesión llegó a la Parte 2 o que mostró el texto del examinador), asociadas al mismo identificador interno, junto con el modelo de dispositivo y la versión de la Aplicación. No incluyen el contenido de sus mensajes ni su voz, ni su ubicación. Puede desactivarlas en cualquier momento (ver el apartado 3).
+- Preferencias guardadas solo en su dispositivo: tema claro u oscuro, idioma y nivel elegido.
+
+2.3. Datos de otros usuarios sobre usted: el otro participante puede valorarle con la rúbrica o reportarle. Solo usted ve las valoraciones que recibe; los reportes solo los ve el equipo que los revisa.
+
+## 3. Para qué usamos sus datos y con qué base legal
+
+- Prestar el servicio: crear y mantener su cuenta, emparejarle con otro estudiante, gestionar la Agenda y el chat, conectar las llamadas, controlar los turnos y el tiempo del examen, y mostrar su historial. Base legal: ejecución del contrato que acepta con los Términos (art. 6.1.b RGPD).
+- Comprobar la edad mínima: fecha de nacimiento. Base legal: cumplimiento de una obligación legal (art. 6.1.c RGPD, en relación con el art. 8 RGPD y el art. 7 LOPDGDD) y ejecución del contrato.
+- Gestionar la suscripción y el examen de prueba: comprobar si tiene acceso a las funciones de pago. Base legal: ejecución del contrato.
+- Grabar una sesión: solo cuando los dos participantes lo activan. Base legal: su consentimiento (art. 6.1.a RGPD), que puede retirar desactivando la opción antes de empezar o eliminando su cuenta.
+- Valoraciones entre usuarios: guardar la rúbrica que hace y mostrarle las que recibe. Base legal: ejecución del contrato (es una función del servicio que usted decide usar).
+- Seguridad y moderación: atender reportes, aplicar bloqueos, impedir que una cuenta dada de baja de forma definitiva vuelva a registrarse, prevenir abusos y el fraude, y colaborar con las autoridades cuando la ley lo exija. Base legal: nuestro interés legítimo, y el de los demás usuarios, en un entorno seguro (art. 6.1.f RGPD) y, en su caso, el cumplimiento de obligaciones legales.
+- Avisos del servicio: recordatorios de una reunión 10 minutos antes y avisos sobre cambios en ella. Base legal: ejecución del contrato. Las notificaciones push solo se envían si las permite en su dispositivo.
+- Detectar y corregir errores: recibir y analizar los informes de errores para que la Aplicación funcione. Base legal: nuestro interés legítimo en ofrecer un servicio que funcione y sea seguro (art. 6.1.f RGPD). Los informes no se usan para conocer su comportamiento ni para elaborar perfiles.
+- Mejorar la Aplicación con estadísticas de uso: saber qué funciones se usan, dónde se abandonan los exámenes o cuánto se tarda en encontrar pareja, y analizarlo de forma agregada. Base legal: nuestro interés legítimo en mejorar el servicio (art. 6.1.f RGPD). Puede oponerse en cualquier momento, sin dar explicaciones, desactivando «Compartir estadísticas de uso» en Ajustes: desde ese momento dejamos de registrar sus estadísticas, tanto en su dispositivo como en nuestro servidor, y se eliminan las que estuvieran pendientes de envío. No usamos estas estadísticas para publicidad ni para decisiones sobre usted.
+
+No usamos sus datos para tomar decisiones automatizadas que produzcan efectos jurídicos sobre usted ni le afecten de forma significativa. El emparejamiento automático solo une a dos personas que buscan el mismo nivel a la vez.
+
+## 4. Cuánto tiempo los guardamos
+
+- Datos de la cuenta y del perfil: mientras la cuenta esté activa. Cuando la elimina, se borran de inmediato.
+- Grabaciones: 30 días desde la sesión. Después se eliminan automáticamente.
+- Mensajes del chat: mientras exista la reunión. Si elimina su cuenta, sus mensajes se conservan para la otra persona, pero sin ninguna referencia a usted.
+- Historial de sesiones, asistencia y valoraciones: mientras la cuenta esté activa.
+- Reportes: hasta un año después de resolverlos, o más si son necesarios en un procedimiento legal.
+- Registro de la sesión para la moderación: 30 días. Si hay un reporte abierto sobre la sesión, hasta que se resuelva.
+- Datos técnicos de los proveedores: según sus políticas, normalmente entre 7 y 90 días.
+- Informes de errores: hasta 90 días.
+- Estadísticas de uso: hasta 12 meses. Si elimina su cuenta, dejan de estar vinculadas a ella.
+- Huella del correo electrónico: en dos casos guardamos un resumen cifrado e irreversible (hash) de su correo, que se conserva aunque se elimine la cuenta: si ya usó el examen de prueba, para que no se pueda obtener otro creando una cuenta nueva con el mismo correo; y si la cuenta se dio de baja de forma definitiva por incumplir los Términos, para impedir que vuelva a registrarse. El hash no permite conocer su correo ni contactarle; solo sirve para reconocerlo si se vuelve a usar. Se conserva mientras exista el servicio. Base legal: nuestro interés legítimo en evitar el fraude y en proteger a los demás usuarios (art. 6.1.f RGPD).
+
+Una vez vencidos estos plazos, los datos se suprimen o se bloquean durante el tiempo en que pudieran exigirse responsabilidades legales.
+
+## 5. Con quién compartimos sus datos
+
+No vendemos sus datos ni los cedemos a terceros para fines publicitarios. Los compartimos solo en estos casos:
+
+5.1. Con los demás usuarios, en la medida necesaria para el servicio: su perfil público (nombre de usuario, foto, idiomas y nivel), su voz durante la llamada, sus mensajes en el chat de la reunión y, si lo hace, la valoración que le da a esa persona.
+
+5.2. Con los proveedores que nos prestan servicios técnicos (encargados del tratamiento), que solo pueden usar los datos siguiendo nuestras instrucciones:
+
+- Supabase Inc.: base de datos, autenticación y funciones del servidor. Los datos se alojan en la Unión Europea (Fráncfort, Alemania).
+- LiveKit Inc. (LiveKit Cloud): transmisión del audio de las llamadas en tiempo real y, si se activa, grabación. Empresa estadounidense.
+- Cloudflare Inc. (R2): almacenamiento de fotos de perfil, grabaciones y material de los exámenes. Empresa estadounidense.
+- Functional Software, Inc. (Sentry): recepción y análisis de los informes de errores de la Aplicación y del servidor. Empresa estadounidense; los datos se alojan en la Unión Europea (Fráncfort, Alemania).
+- PostHog Inc.: estadísticas de uso de la Aplicación, solo si no las ha desactivado. Empresa estadounidense; los datos se alojan en la Unión Europea (Fráncfort, Alemania).
+- Apple Inc. y Google LLC: distribución de la Aplicación, pagos de suscripciones y notificaciones push, como responsables independientes según sus propias políticas.
+
+5.3. Con autoridades y tribunales, cuando la ley nos obligue o para defendernos de reclamaciones.
+
+## 6. Transferencias internacionales
+
+Algunos proveedores son empresas de Estados Unidos o pueden tratar datos fuera del Espacio Económico Europeo. LiveKit, Cloudflare, Functional Software (Sentry) y PostHog están adheridos al Marco de Privacidad de Datos UE-EE. UU., que la Comisión Europea reconoce como garantía adecuada (art. 45 RGPD); con Supabase, la transferencia se ampara en las cláusulas contractuales tipo aprobadas por la Comisión Europea (art. 46 RGPD), incluidas en su contrato de encargo. Aun así, Supabase, Sentry y PostHog guardan sus datos en la Unión Europea.
+
+## 7. Cómo protegemos sus datos
+
+Aplicamos medidas técnicas y organizativas adecuadas al riesgo:
+
+- conexiones cifradas;
+- acceso a cada dato limitado por reglas en la base de datos, de forma que ningún usuario puede leer los datos privados de otro;
+- contraseñas cifradas;
+- borrado automático de las grabaciones;
+- registros de acceso de los proveedores.
+
+Ningún sistema es infalible. Si se produjera una brecha de seguridad que suponga un riesgo para usted, se lo comunicaremos y lo notificaremos a la Agencia Española de Protección de Datos cuando proceda.
+
+## 8. Menores de edad
+
+La Aplicación está dirigida a personas de 16 años o más. A partir de esa edad una persona puede consentir por sí misma el tratamiento de sus datos en cualquier país de la Unión Europea (art. 8 RGPD; en España, desde los 14, art. 7 LOPDGDD). No permitimos el registro de menores de 16 años. Si sabemos que una cuenta pertenece a un menor de esa edad, la eliminaremos. Si es madre, padre o tutor y cree que su hijo o hija menor de 16 años se ha registrado, escríbanos a privacidad@mirlotalk.app.
+
+Los pagos de los menores de 18 años deben hacerse con autorización de sus padres o tutores, a través de la cuenta de la tienda.
+
+## 9. Sus derechos
+
+Puede ejercer en cualquier momento los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, así como retirar su consentimiento (por ejemplo, el de la grabación) sin que ello afecte a la licitud del tratamiento anterior.
+
+- Puede modificar gran parte de sus datos directamente en la Aplicación (Perfil > Editar perfil) y eliminar su cuenta desde Ajustes > Eliminar cuenta.
+- Para el resto, escriba a privacidad@mirlotalk.app indicando qué derecho quiere ejercer. Si tenemos dudas razonables sobre su identidad, le pediremos que nos escriba desde el correo de su cuenta. Le responderemos en el plazo de un mes.
+
+Si considera que no hemos atendido bien su solicitud, puede presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).
+
+## 10. Permisos del dispositivo
+
+- Micrófono: para hablar en las sesiones. Sin este permiso no puede participar en un examen.
+- Fotos y cámara: solo si decide subir una foto de perfil.
+- Notificaciones: para los avisos de las reuniones (opcional).
+
+Puede retirar estos permisos en los ajustes de su dispositivo.
+
+## 11. Cambios en esta Política
+
+Si cambiamos esta Política de forma relevante, se lo comunicaremos en la Aplicación antes de que el cambio se aplique. La versión vigente está siempre en Ajustes > Política de privacidad.
+
+## 12. Contacto
+
+Para cualquier cuestión sobre privacidad, escriba a privacidad@mirlotalk.app.

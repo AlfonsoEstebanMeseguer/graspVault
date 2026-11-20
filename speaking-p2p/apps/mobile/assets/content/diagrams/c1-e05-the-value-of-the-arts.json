@@ -1,0 +1,12 @@
+{
+  "id": "c1-e05-the-value-of-the-arts",
+  "centralQuestion": "How might the arts contribute to the well-being of a community?",
+  "prompts": [
+    "bringing people together",
+    "helping people express emotions",
+    "attracting tourists",
+    "preserving history and memory",
+    "encouraging new ways of thinking"
+  ],
+  "decisionQuestion": "Which would be the most valuable?"
+}

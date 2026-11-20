@@ -1,0 +1,12 @@
+{
+  "id": "c1-work-tech",
+  "centralQuestion": "How might these changes have affected people's lives?",
+  "prompts": [
+    "working from home",
+    "automation of routine tasks",
+    "instant messaging at work",
+    "online freelance platforms",
+    "flexible working hours"
+  ],
+  "decisionQuestion": "Which change has had the greatest impact on people's wellbeing?"
+}

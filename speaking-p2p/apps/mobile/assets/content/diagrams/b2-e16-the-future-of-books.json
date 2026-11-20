@@ -1,0 +1,12 @@
+{
+  "id": "b2-e16-the-future-of-books",
+  "centralQuestion": "How might these ideas encourage people to read more?",
+  "prompts": [
+    "book clubs",
+    "cheaper books",
+    "reading time at school",
+    "recommendations on social media",
+    "more films based on books"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

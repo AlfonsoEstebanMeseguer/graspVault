@@ -1,0 +1,193 @@
+{
+  "id": "b1-e46-the-past",
+  "level": "B1",
+  "version": 1,
+  "topic": "The past",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e46-the-past/p1-intro.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you spend time with your grandparents?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e46-the-past/p1-q1.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you like doing with older people in your family?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e46-the-past/p1-q2.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a story from your family.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e46-the-past/p1-q3.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer old things or new things?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e46-the-past/p1-q4.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what did you do when you were a child?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e46-the-past/p1-q5.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you hope to tell your grandchildren one day?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e46-the-past/p1-q6.mp3",
+          "audioMs": 4500
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e46-the-past/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e46-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a grandfather and grandchildren. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e46-the-past/p2-a.mp3",
+          "audioMs": 7800
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e46-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows an old family photo album. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e46-the-past/p2-b.mp3",
+          "audioMs": 8000
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e46-the-past/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e46-the-past",
+          "text": "Your class wants to find out more about life in the past in your town. Here are some ways to do it. Talk together about the different ways, and say which would be the best.",
+          "audio": "audio/B1/b1-e46-the-past/p3-discuss.mp3",
+          "audioMs": 10800
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about grandparents and the past.",
+          "audio": "audio/B1/b1-e46-the-past/p4-intro.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think life was better in the past? Why or why not?",
+          "audio": "audio/B1/b1-e46-the-past/p4-q1.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, what do older people know that young people do not?",
+          "audio": "audio/B1/b1-e46-the-past/p4-q2.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, how do you think life will be different in fifty years?",
+          "audio": "audio/B1/b1-e46-the-past/p4-q3.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is it important to keep old photos and objects?",
+          "audio": "audio/B1/b1-e46-the-past/p4-q4.mp3",
+          "audioMs": 4000
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, would you like to live in another period of history?",
+          "audio": "audio/B1/b1-e46-the-past/p4-q5.mp3",
+          "audioMs": 4700
+        }
+      ]
+    }
+  ]
+}

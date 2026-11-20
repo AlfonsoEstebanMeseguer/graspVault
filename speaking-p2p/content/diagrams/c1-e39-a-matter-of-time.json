@@ -1,0 +1,12 @@
+{
+  "id": "c1-e39-a-matter-of-time",
+  "centralQuestion": "How useful might these methods be for someone with a very busy life?",
+  "prompts": [
+    "making a daily plan",
+    "working in short, focused periods",
+    "saying no to extra tasks",
+    "limiting time online",
+    "scheduling rest"
+  ],
+  "decisionQuestion": "Which would be the most valuable?"
+}

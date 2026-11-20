@@ -1,0 +1,12 @@
+{
+  "id": "b1-e20-a-day-at-the-beach",
+  "centralQuestion": "What is the best thing to do on a day at the beach?",
+  "prompts": [
+    "swimming",
+    "playing volleyball",
+    "having a barbecue",
+    "learning to surf",
+    "walking along the coast"
+  ],
+  "decisionQuestion": "Which activity would be the best for the day?"
+}

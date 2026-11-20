@@ -1,0 +1,12 @@
+{
+  "id": "b1-e37-famous-people",
+  "centralQuestion": "Who would be the best famous person to invite to a school?",
+  "prompts": [
+    "a singer",
+    "a football player",
+    "a writer",
+    "a scientist",
+    "an explorer"
+  ],
+  "decisionQuestion": "Which person would be the best to invite?"
+}

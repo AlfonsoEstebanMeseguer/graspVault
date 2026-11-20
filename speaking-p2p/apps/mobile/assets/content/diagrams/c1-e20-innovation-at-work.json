@@ -1,0 +1,12 @@
+{
+  "id": "c1-e20-innovation-at-work",
+  "centralQuestion": "How might these factors help a company to become more innovative?",
+  "prompts": [
+    "freedom to make mistakes",
+    "teams with different backgrounds",
+    "time for personal projects",
+    "investment in research",
+    "rewards for new ideas"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "c1-e17-money-and-professional-sport",
+  "centralQuestion": "How might these issues affect the reputation of sport?",
+  "prompts": [
+    "very high salaries for players",
+    "cheating and drug use",
+    "pressure on young talent",
+    "the influence of sponsors",
+    "hosting costly international events"
+  ],
+  "decisionQuestion": "Which is the most damaging?"
+}

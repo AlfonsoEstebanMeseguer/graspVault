@@ -1,0 +1,12 @@
+{
+  "id": "c1-e16-prevention-in-health-care",
+  "centralQuestion": "How might these measures improve the health of a population?",
+  "prompts": [
+    "free regular check-ups",
+    "healthier school meals",
+    "a tax on sugary drinks",
+    "campaigns against smoking",
+    "more places to exercise"
+  ],
+  "decisionQuestion": "Which would be the most effective in the long term?"
+}

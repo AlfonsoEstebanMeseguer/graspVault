@@ -1,0 +1,12 @@
+{
+  "id": "b1-e05-learning-english",
+  "centralQuestion": "What is the best way to improve your English?",
+  "prompts": [
+    "go to evening classes",
+    "watch films in English",
+    "chat with people online",
+    "read books in English",
+    "travel to an English-speaking country"
+  ],
+  "decisionQuestion": "Which idea would be the best way to improve her English?"
+}

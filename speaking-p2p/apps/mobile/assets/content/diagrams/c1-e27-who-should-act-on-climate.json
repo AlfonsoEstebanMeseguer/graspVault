@@ -1,0 +1,12 @@
+{
+  "id": "c1-e27-who-should-act-on-climate",
+  "centralQuestion": "How effective might these actions be in reducing emissions?",
+  "prompts": [
+    "taxing fossil fuels",
+    "investing in renewable energy",
+    "changing individual habits",
+    "stricter rules for industry",
+    "international agreements"
+  ],
+  "decisionQuestion": "Which would have the greatest effect?"
+}

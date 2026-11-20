@@ -1,0 +1,193 @@
+{
+  "id": "b1-e40-after-school-activities",
+  "level": "B1",
+  "version": 1,
+  "topic": "After-school activities",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e40-after-school-activities/p1-intro.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what do you do after school?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e40-after-school-activities/p1-q1.mp3",
+          "audioMs": 3100
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you go to any clubs?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e40-after-school-activities/p1-q2.mp3",
+          "audioMs": 3100
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about an activity you did last year.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e40-after-school-activities/p1-q3.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer sports clubs or music clubs?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e40-after-school-activities/p1-q4.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you get to your activities?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e40-after-school-activities/p1-q5.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what would you like to try next year?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e40-after-school-activities/p1-q6.mp3",
+          "audioMs": 3600
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e40-after-school-activities/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e40-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows children acting in a school play. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e40-after-school-activities/p2-a.mp3",
+          "audioMs": 7800
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e40-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows students building a robot in a club. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e40-after-school-activities/p2-b.mp3",
+          "audioMs": 8200
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e40-after-school-activities/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e40-after-school-activities",
+          "text": "A school wants to start a new club after lessons. Here are some ideas. Talk together about the different ideas, and say which would be the best for the school.",
+          "audio": "audio/B1/b1-e40-after-school-activities/p3-discuss.mp3",
+          "audioMs": 10200
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about after-school activities.",
+          "audio": "audio/B1/b1-e40-after-school-activities/p4-intro.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think after-school clubs are a good idea? Why?",
+          "audio": "audio/B1/b1-e40-after-school-activities/p4-q1.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think children do too many activities?",
+          "audio": "audio/B1/b1-e40-after-school-activities/p4-q2.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what can you learn in a club that you cannot learn in a lesson?",
+          "audio": "audio/B1/b1-e40-after-school-activities/p4-q3.mp3",
+          "audioMs": 4900
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Who should pay for school clubs, the school or the parents?",
+          "audio": "audio/B1/b1-e40-after-school-activities/p4-q4.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, have you ever started a club with friends?",
+          "audio": "audio/B1/b1-e40-after-school-activities/p4-q5.mp3",
+          "audioMs": 4000
+        }
+      ]
+    }
+  ]
+}

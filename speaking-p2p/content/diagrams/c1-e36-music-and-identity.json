@@ -1,0 +1,12 @@
+{
+  "id": "c1-e36-music-and-identity",
+  "centralQuestion": "How might music influence the way people see themselves and others?",
+  "prompts": [
+    "a sense of belonging to a group",
+    "national pride",
+    "emotional support",
+    "fashion and style",
+    "political messages"
+  ],
+  "decisionQuestion": "Which influence is the strongest?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b2-e34-public-spaces",
+  "centralQuestion": "How might these things make a public space popular?",
+  "prompts": [
+    "plenty of seats",
+    "good lighting",
+    "cafes and stalls",
+    "plants and trees",
+    "regular events"
+  ],
+  "decisionQuestion": "Which is the most important for a new square?"
+}

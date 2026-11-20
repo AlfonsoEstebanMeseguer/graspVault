@@ -1,0 +1,12 @@
+{
+  "id": "b2-e45-exams-and-pressure",
+  "centralQuestion": "How might these ideas help students feel less stressed?",
+  "prompts": [
+    "a study timetable",
+    "talking to a teacher",
+    "exercise",
+    "fewer exams",
+    "relaxation classes"
+  ],
+  "decisionQuestion": "Which would be the most helpful for students?"
+}

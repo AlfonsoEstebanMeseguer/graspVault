@@ -1,0 +1,12 @@
+{
+  "id": "b1-e15-reading-books",
+  "centralQuestion": "How could a library get more young people to visit it?",
+  "prompts": [
+    "a coffee shop",
+    "free internet",
+    "a reading club",
+    "special events with writers",
+    "longer opening hours"
+  ],
+  "decisionQuestion": "Which idea would be the best to get more young people?"
+}

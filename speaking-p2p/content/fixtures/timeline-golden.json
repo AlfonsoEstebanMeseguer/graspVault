@@ -1,0 +1,297 @@
+{
+  "timeline": {
+    "segments": [
+      {
+        "index": 0,
+        "part": 1,
+        "stepId": "p1-intro",
+        "kind": "narration",
+        "phase": "reader",
+        "target": null,
+        "startMs": 0,
+        "endMs": 2600,
+        "mic": {
+          "A": false,
+          "B": false
+        }
+      },
+      {
+        "index": 1,
+        "part": 1,
+        "stepId": "p1-q1",
+        "kind": "turn",
+        "phase": "reader",
+        "target": "A",
+        "startMs": 2600,
+        "endMs": 4700,
+        "mic": {
+          "A": false,
+          "B": false
+        }
+      },
+      {
+        "index": 2,
+        "part": 1,
+        "stepId": "p1-q1",
+        "kind": "turn",
+        "phase": "speak",
+        "target": "A",
+        "startMs": 4700,
+        "endMs": 24700,
+        "mic": {
+          "A": true,
+          "B": false
+        }
+      },
+      {
+        "index": 3,
+        "part": 1,
+        "stepId": "p1-q2",
+        "kind": "turn",
+        "phase": "reader",
+        "target": "B",
+        "startMs": 24700,
+        "endMs": 26700,
+        "mic": {
+          "A": false,
+          "B": false
+        }
+      },
+      {
+        "index": 4,
+        "part": 1,
+        "stepId": "p1-q2",
+        "kind": "turn",
+        "phase": "speak",
+        "target": "B",
+        "startMs": 26700,
+        "endMs": 46700,
+        "mic": {
+          "A": false,
+          "B": true
+        }
+      },
+      {
+        "index": 5,
+        "part": 2,
+        "stepId": "p2-a",
+        "kind": "turn",
+        "phase": "reader",
+        "target": "A",
+        "startMs": 46700,
+        "endMs": 51300,
+        "mic": {
+          "A": false,
+          "B": false
+        }
+      },
+      {
+        "index": 6,
+        "part": 2,
+        "stepId": "p2-a",
+        "kind": "turn",
+        "phase": "speak",
+        "target": "A",
+        "startMs": 51300,
+        "endMs": 111300,
+        "mic": {
+          "A": true,
+          "B": false
+        }
+      },
+      {
+        "index": 7,
+        "part": 2,
+        "stepId": "p2-a-follow",
+        "kind": "turn",
+        "phase": "reader",
+        "target": "B",
+        "startMs": 111300,
+        "endMs": 112900,
+        "mic": {
+          "A": false,
+          "B": false
+        }
+      },
+      {
+        "index": 8,
+        "part": 2,
+        "stepId": "p2-a-follow",
+        "kind": "turn",
+        "phase": "speak",
+        "target": "B",
+        "startMs": 112900,
+        "endMs": 142900,
+        "mic": {
+          "A": false,
+          "B": true
+        }
+      },
+      {
+        "index": 9,
+        "part": 3,
+        "stepId": "p3-discuss",
+        "kind": "open",
+        "phase": "reader",
+        "target": "both",
+        "startMs": 142900,
+        "endMs": 146500,
+        "mic": {
+          "A": false,
+          "B": false
+        }
+      },
+      {
+        "index": 10,
+        "part": 3,
+        "stepId": "p3-discuss",
+        "kind": "open",
+        "phase": "speak",
+        "target": "both",
+        "startMs": 146500,
+        "endMs": 266500,
+        "mic": {
+          "A": true,
+          "B": true
+        }
+      },
+      {
+        "index": 11,
+        "part": 3,
+        "stepId": "p3-decide",
+        "kind": "open",
+        "phase": "reader",
+        "target": "both",
+        "startMs": 266500,
+        "endMs": 269100,
+        "mic": {
+          "A": false,
+          "B": false
+        }
+      },
+      {
+        "index": 12,
+        "part": 3,
+        "stepId": "p3-decide",
+        "kind": "open",
+        "phase": "speak",
+        "target": "both",
+        "startMs": 269100,
+        "endMs": 329100,
+        "mic": {
+          "A": true,
+          "B": true
+        }
+      },
+      {
+        "index": 13,
+        "part": 4,
+        "stepId": "p4-q1",
+        "kind": "open",
+        "phase": "reader",
+        "target": "A",
+        "startMs": 329100,
+        "endMs": 332200,
+        "mic": {
+          "A": false,
+          "B": false
+        }
+      },
+      {
+        "index": 14,
+        "part": 4,
+        "stepId": "p4-q1",
+        "kind": "open",
+        "phase": "speak",
+        "target": "A",
+        "startMs": 332200,
+        "endMs": 377200,
+        "mic": {
+          "A": true,
+          "B": true
+        }
+      }
+    ],
+    "totalMs": 377200
+  },
+  "probes": [
+    {
+      "elapsedMs": -500,
+      "state": "part1",
+      "segmentIndex": 0,
+      "remainingMs": 2600
+    },
+    {
+      "elapsedMs": 0,
+      "state": "part1",
+      "segmentIndex": 0,
+      "remainingMs": 2600
+    },
+    {
+      "elapsedMs": 2599,
+      "state": "part1",
+      "segmentIndex": 0,
+      "remainingMs": 1
+    },
+    {
+      "elapsedMs": 2600,
+      "state": "part1",
+      "segmentIndex": 1,
+      "remainingMs": 22100
+    },
+    {
+      "elapsedMs": 4699,
+      "state": "part1",
+      "segmentIndex": 1,
+      "remainingMs": 20001
+    },
+    {
+      "elapsedMs": 4700,
+      "state": "part1",
+      "segmentIndex": 2,
+      "remainingMs": 20000
+    },
+    {
+      "elapsedMs": 30000,
+      "state": "part1",
+      "segmentIndex": 4,
+      "remainingMs": 16700
+    },
+    {
+      "elapsedMs": 50000,
+      "state": "part2",
+      "segmentIndex": 5,
+      "remainingMs": 61300
+    },
+    {
+      "elapsedMs": 120000,
+      "state": "part2",
+      "segmentIndex": 8,
+      "remainingMs": 22900
+    },
+    {
+      "elapsedMs": 377199,
+      "state": "part4",
+      "segmentIndex": 14,
+      "remainingMs": 1
+    },
+    {
+      "elapsedMs": 377200,
+      "state": "feedback",
+      "segmentIndex": null,
+      "remainingMs": 300000
+    },
+    {
+      "elapsedMs": 677199,
+      "state": "feedback",
+      "segmentIndex": null,
+      "remainingMs": 1
+    },
+    {
+      "elapsedMs": 677200,
+      "state": "ended",
+      "segmentIndex": null,
+      "remainingMs": null
+    }
+  ]
+}

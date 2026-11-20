@@ -1,0 +1,12 @@
+{
+  "id": "b1-e50-television-and-news",
+  "centralQuestion": "What would be a good programme for young people?",
+  "prompts": [
+    "a talent show",
+    "a cooking competition",
+    "a quiz about the world",
+    "a programme about travel",
+    "a comedy series"
+  ],
+  "decisionQuestion": "Which programme would be the best for young people?"
+}

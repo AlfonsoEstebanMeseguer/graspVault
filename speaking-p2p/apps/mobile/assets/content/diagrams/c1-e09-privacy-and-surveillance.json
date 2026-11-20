@@ -1,0 +1,12 @@
+{
+  "id": "c1-e09-privacy-and-surveillance",
+  "centralQuestion": "How acceptable is it for personal information to be used in these ways?",
+  "prompts": [
+    "to target advertising",
+    "to prevent crime",
+    "to improve public services",
+    "to monitor workers",
+    "to recommend films and music"
+  ],
+  "decisionQuestion": "Which use of personal information is the most worrying?"
+}

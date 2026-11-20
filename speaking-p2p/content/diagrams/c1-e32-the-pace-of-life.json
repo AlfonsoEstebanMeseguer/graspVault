@@ -1,0 +1,12 @@
+{
+  "id": "c1-e32-the-pace-of-life",
+  "centralQuestion": "How have these factors changed the pace of modern life?",
+  "prompts": [
+    "instant communication",
+    "faster transport",
+    "competitive workplaces",
+    "constant news",
+    "online shopping and delivery"
+  ],
+  "decisionQuestion": "Which has had the greatest effect?"
+}

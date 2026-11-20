@@ -1,0 +1,20 @@
+{
+  "name": "mirlotalk-ad",
+  "private": true,
+  "description": "Vertical ad for MirloTalk, in Spanish, made with Remotion (D-056).",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Ad out/mirlotalk-anuncio.mp4",
+    "still": "remotion still src/index.ts Ad out/still.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b2-e36-growing-things",
+  "centralQuestion": "How might these ideas encourage people to grow food?",
+  "prompts": [
+    "community gardens",
+    "gardening lessons at school",
+    "free seeds",
+    "roof gardens",
+    "competitions for the best vegetables"
+  ],
+  "decisionQuestion": "Which would be the most effective in a big city?"
+}

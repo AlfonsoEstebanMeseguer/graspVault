@@ -1,0 +1,12 @@
+{
+  "id": "b1-e18-life-in-the-countryside",
+  "centralQuestion": "What is the most important thing when moving to the countryside?",
+  "prompts": [
+    "a good school nearby",
+    "a job close to home",
+    "shops and services",
+    "a nice house with a garden",
+    "friendly neighbours"
+  ],
+  "decisionQuestion": "Which thing is the most important for the family?"
+}

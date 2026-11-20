@@ -1,0 +1,193 @@
+{
+  "id": "b1-e29-museums-and-history",
+  "level": "B1",
+  "version": 1,
+  "topic": "Museums and history",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e29-museums-and-history/p1-intro.mp3",
+          "audioMs": 6600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you like visiting museums?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e29-museums-and-history/p1-q1.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is your favourite subject in history?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e29-museums-and-history/p1-q2.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about the last museum you visited.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e29-museums-and-history/p1-q3.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer old buildings or modern buildings?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e29-museums-and-history/p1-q4.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, who do you go to places of interest with?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e29-museums-and-history/p1-q5.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what place would you like to visit in the future?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e29-museums-and-history/p1-q6.mp3",
+          "audioMs": 4200
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e29-museums-and-history/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e29-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows children in a museum. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e29-museums-and-history/p2-a.mp3",
+          "audioMs": 7300
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e29-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows tourists at a castle. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e29-museums-and-history/p2-b.mp3",
+          "audioMs": 7200
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e29-museums-and-history/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e29-museums-and-history",
+          "text": "A teacher wants to take her class to visit an interesting place. Here are some places they could visit. Talk together about the different places, and say which would be the best for the class.",
+          "audio": "audio/B1/b1-e29-museums-and-history/p3-discuss.mp3",
+          "audioMs": 11900
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about museums.",
+          "audio": "audio/B1/b1-e29-museums-and-history/p4-intro.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think school visits are a good way to learn? Why?",
+          "audio": "audio/B1/b1-e29-museums-and-history/p4-q1.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you prefer learning about history in books or by visiting places?",
+          "audio": "audio/B1/b1-e29-museums-and-history/p4-q2.mp3",
+          "audioMs": 6000
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, should museums be free for everyone?",
+          "audio": "audio/B1/b1-e29-museums-and-history/p4-q3.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Why is it important to look after old buildings?",
+          "audio": "audio/B1/b1-e29-museums-and-history/p4-q4.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, do you take photos when you visit a place?",
+          "audio": "audio/B1/b1-e29-museums-and-history/p4-q5.mp3",
+          "audioMs": 4200
+        }
+      ]
+    }
+  ]
+}

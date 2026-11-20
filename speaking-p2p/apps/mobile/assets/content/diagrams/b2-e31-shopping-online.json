@@ -1,0 +1,12 @@
+{
+  "id": "b2-e31-shopping-online",
+  "centralQuestion": "How might these things make people choose to shop online?",
+  "prompts": [
+    "lower prices",
+    "home delivery",
+    "a wider choice",
+    "easy returns",
+    "no need to queue"
+  ],
+  "decisionQuestion": "Which is the most important for most customers?"
+}

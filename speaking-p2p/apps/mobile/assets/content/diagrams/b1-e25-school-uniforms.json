@@ -1,0 +1,12 @@
+{
+  "id": "b1-e25-school-uniforms",
+  "centralQuestion": "What would be the best clothes rule for a school?",
+  "prompts": [
+    "everyone wears a uniform",
+    "wear what you like",
+    "a uniform only for special days",
+    "a colour for each year",
+    "a simple sports uniform"
+  ],
+  "decisionQuestion": "Which idea would be the best for the school?"
+}

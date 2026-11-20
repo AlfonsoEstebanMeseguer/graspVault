@@ -1,0 +1,12 @@
+{
+  "id": "b2-e08-streaming-and-entertainment",
+  "centralQuestion": "How might these things help a new series become popular?",
+  "prompts": [
+    "famous actors",
+    "an exciting story",
+    "beautiful scenery",
+    "being shown on a streaming service",
+    "a lot of advertising"
+  ],
+  "decisionQuestion": "Which would be the most important for its success?"
+}

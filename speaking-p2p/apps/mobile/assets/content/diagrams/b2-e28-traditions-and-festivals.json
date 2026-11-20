@@ -1,0 +1,12 @@
+{
+  "id": "b2-e28-traditions-and-festivals",
+  "centralQuestion": "How might these ideas help keep traditions alive?",
+  "prompts": [
+    "teaching them at school",
+    "festivals for tourists",
+    "films and television",
+    "stories from grandparents",
+    "websites and videos"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

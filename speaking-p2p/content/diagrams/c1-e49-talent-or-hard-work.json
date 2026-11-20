@@ -1,0 +1,12 @@
+{
+  "id": "c1-e49-talent-or-hard-work",
+  "centralQuestion": "How might these factors contribute to a person's success?",
+  "prompts": [
+    "natural ability",
+    "hours of practice",
+    "a supportive family",
+    "a good teacher",
+    "strong motivation"
+  ],
+  "decisionQuestion": "Which is the most decisive?"
+}

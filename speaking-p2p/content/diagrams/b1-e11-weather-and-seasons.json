@@ -1,0 +1,12 @@
+{
+  "id": "b1-e11-weather-and-seasons",
+  "centralQuestion": "What is the best thing to do on a rainy day?",
+  "prompts": [
+    "go to the cinema",
+    "visit a museum",
+    "play board games at home",
+    "cook a meal together",
+    "go to a swimming pool"
+  ],
+  "decisionQuestion": "Which activity would be the best for a rainy day?"
+}

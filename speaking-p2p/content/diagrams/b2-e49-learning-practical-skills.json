@@ -1,0 +1,12 @@
+{
+  "id": "b2-e49-learning-practical-skills",
+  "centralQuestion": "How might these skills be useful in everyday life?",
+  "prompts": [
+    "cooking",
+    "basic repairs",
+    "first aid",
+    "sewing",
+    "managing money"
+  ],
+  "decisionQuestion": "Which is the most important for young people to learn?"
+}

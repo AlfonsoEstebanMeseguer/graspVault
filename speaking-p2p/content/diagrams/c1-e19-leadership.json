@@ -1,0 +1,12 @@
+{
+  "id": "c1-e19-leadership",
+  "centralQuestion": "How important are these qualities for a leader to be effective?",
+  "prompts": [
+    "honesty",
+    "the ability to listen",
+    "vision for the future",
+    "making difficult decisions",
+    "being able to inspire others"
+  ],
+  "decisionQuestion": "Which is the most essential?"
+}

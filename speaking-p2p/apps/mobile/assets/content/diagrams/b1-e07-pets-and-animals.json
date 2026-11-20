@@ -1,0 +1,12 @@
+{
+  "id": "b1-e07-pets-and-animals",
+  "centralQuestion": "Which pet would be the best for a family in a small flat?",
+  "prompts": [
+    "a cat",
+    "a small dog",
+    "a fish",
+    "a rabbit",
+    "a bird"
+  ],
+  "decisionQuestion": "Which animal would be the best pet for the family?"
+}

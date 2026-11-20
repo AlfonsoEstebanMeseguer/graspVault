@@ -1,0 +1,12 @@
+{
+  "id": "c1-e33-fairness-at-work",
+  "centralQuestion": "How might these measures help to create a fairer workplace?",
+  "prompts": [
+    "equal pay for equal work",
+    "flexible hours for parents",
+    "open recruitment processes",
+    "training on unconscious bias",
+    "clear ways to report problems"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

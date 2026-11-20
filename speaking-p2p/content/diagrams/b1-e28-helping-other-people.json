@@ -1,0 +1,12 @@
+{
+  "id": "b1-e28-helping-other-people",
+  "centralQuestion": "What is the best way to help people in your town?",
+  "prompts": [
+    "visit old people",
+    "collect clothes",
+    "clean the streets",
+    "help young children with reading",
+    "raise money with a concert"
+  ],
+  "decisionQuestion": "Which idea would be the best to help people?"
+}

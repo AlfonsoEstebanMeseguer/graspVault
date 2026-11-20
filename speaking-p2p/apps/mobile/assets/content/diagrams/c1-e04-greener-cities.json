@@ -1,0 +1,12 @@
+{
+  "id": "c1-e04-greener-cities",
+  "centralQuestion": "How might these ideas change the quality of life in a large city?",
+  "prompts": [
+    "car-free city centres",
+    "more parks and green roofs",
+    "affordable public transport",
+    "strict limits on construction",
+    "local food markets"
+  ],
+  "decisionQuestion": "Which would be the most effective in making the city a better place to live?"
+}

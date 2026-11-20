@@ -1,0 +1,193 @@
+{
+  "id": "b1-e24-video-games",
+  "level": "B1",
+  "version": 1,
+  "topic": "Video games",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e24-video-games/p1-intro.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you play video games?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e24-video-games/p1-q1.mp3",
+          "audioMs": 3100
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is your favourite game?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e24-video-games/p1-q2.mp3",
+          "audioMs": 3200
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about the first game you remember playing.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e24-video-games/p1-q3.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer playing alone or with friends?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e24-video-games/p1-q4.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how much time do you spend in front of a screen?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e24-video-games/p1-q5.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what would you like to do instead of playing games?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e24-video-games/p1-q6.mp3",
+          "audioMs": 4400
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e24-video-games/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e24-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows friends playing video games together. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e24-video-games/p2-a.mp3",
+          "audioMs": 8100
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e24-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a girl playing on a tablet during a trip. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e24-video-games/p2-b.mp3",
+          "audioMs": 8400
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e24-video-games/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e24-video-games",
+          "text": "A school wants to organise a video game afternoon but also wants students to learn something. Here are some ideas. Talk together about the different ideas, and say which would be the best.",
+          "audio": "audio/B1/b1-e24-video-games/p3-discuss.mp3",
+          "audioMs": 12400
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about video games and computers.",
+          "audio": "audio/B1/b1-e24-video-games/p4-intro.mp3",
+          "audioMs": 5700
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think video games are bad for young people? Why or why not?",
+          "audio": "audio/B1/b1-e24-video-games/p4-q1.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think games can help people learn?",
+          "audio": "audio/B1/b1-e24-video-games/p4-q2.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, how long should children play games each day?",
+          "audio": "audio/B1/b1-e24-video-games/p4-q3.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is playing a game with friends online the same as meeting in person?",
+          "audio": "audio/B1/b1-e24-video-games/p4-q4.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, do you think some games are too violent?",
+          "audio": "audio/B1/b1-e24-video-games/p4-q5.mp3",
+          "audioMs": 4000
+        }
+      ]
+    }
+  ]
+}

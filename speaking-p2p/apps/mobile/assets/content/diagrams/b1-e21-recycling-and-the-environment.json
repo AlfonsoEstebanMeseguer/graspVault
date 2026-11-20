@@ -1,0 +1,12 @@
+{
+  "id": "b1-e21-recycling-and-the-environment",
+  "centralQuestion": "What would help a school to protect the environment?",
+  "prompts": [
+    "recycling bins in every classroom",
+    "a school vegetable garden",
+    "no plastic bottles",
+    "cycling to school",
+    "turning off lights and computers"
+  ],
+  "decisionQuestion": "Which idea would be the best for the school?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "c1-e43-reviving-rural-life",
+  "centralQuestion": "How might these ideas help to bring new life to rural areas?",
+  "prompts": [
+    "fast internet access",
+    "cheaper housing",
+    "better public transport",
+    "support for new businesses",
+    "local schools and health centres"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

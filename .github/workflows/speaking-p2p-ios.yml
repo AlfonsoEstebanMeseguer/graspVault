@@ -57,11 +57,36 @@ jobs:
           if [ -n "$MOBILE_DEFINES" ]; then printf '%s\n' "$MOBILE_DEFINES" > env/dev.json; fi
           python3 -c "import json;d=json.load(open('env/dev.json'));print('keys:', sorted(d))"
       - name: Check the plists
-        run: plutil -lint ios/Runner/Info.plist
+        run: plutil -lint ios/Runner/Info.plist ios/Runner/Runner.entitlements
+      # Google Sign-In URL scheme from GOOGLE_IOS_CLIENT_ID in env/dev.json (D-062).
+      - name: Google Sign-In URL scheme
+        run: |
+          flutter pub get
+          dart run tool/ios_auth_config.dart env/dev.json
+      # Run number + commit: shown at the bottom of Settings and as the iOS build number,
+      # so an installed .ipa can be told from an older one (D-054).
+      # Obfuscated, with the Dart symbols split out to build/debug-info (D-064): smaller app,
+      # and Sentry turns the traces back into file:line once the symbols are uploaded below.
       - name: flutter build ios (unsigned)
         run: |
           flutter pub get
-          flutter build ios --release --no-codesign --dart-define-from-file=env/dev.json
+          flutter build ios --release --no-codesign --dart-define-from-file=env/dev.json --build-number=${{ github.run_number }} --dart-define=BUILD_NUMBER=${{ github.run_number }} --dart-define=GIT_COMMIT=${GITHUB_SHA::7} \
+            --obfuscate --split-debug-info=build/debug-info \
+            --extra-gen-snapshot-options=--save-obfuscation-map=build/debug-info/obfuscation.map.json
+      # dSYM + Dart symbols + obfuscation map -> Sentry. Skipped (not failed) while the
+      # SENTRY_AUTH_TOKEN secret is missing; SENTRY_ORG / SENTRY_PROJECT are repository variables.
+      - name: Upload debug symbols to Sentry
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ vars.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ vars.SENTRY_PROJECT }}
+          SENTRY_DIST: ${{ github.run_number }}
+        run: |
+          if [ -z "$SENTRY_AUTH_TOKEN" ] || [ -z "$SENTRY_ORG" ] || [ -z "$SENTRY_PROJECT" ]; then
+            echo "::warning::Sentry symbols not uploaded: set the SENTRY_AUTH_TOKEN secret and the SENTRY_ORG / SENTRY_PROJECT variables"
+            exit 0
+          fi
+          dart run sentry_dart_plugin
       - name: Package the .ipa
         if: ${{ inputs.ipa }}
         working-directory: speaking-p2p/apps/mobile/build/ios/iphoneos

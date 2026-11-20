@@ -1,0 +1,193 @@
+{
+  "id": "b1-e20-a-day-at-the-beach",
+  "level": "B1",
+  "version": 1,
+  "topic": "A day at the beach",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p1-intro.mp3",
+          "audioMs": 6600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you live near the sea?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p1-q1.mp3",
+          "audioMs": 3000
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you like swimming?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p1-q2.mp3",
+          "audioMs": 2800
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a day you spent at the beach.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p1-q3.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer sunbathing or doing water sports?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p1-q4.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what do you take with you when you go to the beach?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p1-q5.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, are you going to go to the beach this summer?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p1-q6.mp3",
+          "audioMs": 3900
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e20-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows surfers on a beach. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p2-a.mp3",
+          "audioMs": 7200
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e20-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a family playing on the sand at the beach. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p2-b.mp3",
+          "audioMs": 8300
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e20-a-day-at-the-beach",
+          "text": "A group of friends are going to the beach for the day. Here are some activities they could do. Talk together about the different activities, and say which would be the best.",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p3-discuss.mp3",
+          "audioMs": 10500
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about the beach and the sea.",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p4-intro.mp3",
+          "audioMs": 4800
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think a day at the beach is a good way to relax? Why?",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p4-q1.mp3",
+          "audioMs": 4600
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think beaches are too crowded in summer?",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p4-q2.mp3",
+          "audioMs": 4300
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what can you do to keep the beach clean?",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p4-q3.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is the sea important for the place where you live?",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p4-q4.mp3",
+          "audioMs": 3600
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, do you prefer the beach in summer or in winter?",
+          "audio": "audio/B1/b1-e20-a-day-at-the-beach/p4-q5.mp3",
+          "audioMs": 4500
+        }
+      ]
+    }
+  ]
+}

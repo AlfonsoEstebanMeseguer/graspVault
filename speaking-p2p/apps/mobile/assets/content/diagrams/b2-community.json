@@ -1,0 +1,12 @@
+{
+  "id": "b2-community",
+  "centralQuestion": "How might these things help people feel part of a community?",
+  "prompts": [
+    "local festivals",
+    "volunteering",
+    "sports clubs",
+    "street markets",
+    "online groups"
+  ],
+  "decisionQuestion": "Which would be the most effective for a new neighbourhood?"
+}

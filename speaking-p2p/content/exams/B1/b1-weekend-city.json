@@ -1,0 +1,184 @@
+{
+  "id": "b1-weekend-city",
+  "level": "B1",
+  "version": 1,
+  "topic": "Free time in your town",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good afternoon. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-weekend-city/p1-intro.mp3",
+          "audioMs": 6800
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, where do you live? Do you like living there?",
+          "audio": "audio/B1/b1-weekend-city/p1-q1.mp3",
+          "audioMs": 4000,
+          "durationSec": 25
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what do you usually do at the weekend?",
+          "audio": "audio/B1/b1-weekend-city/p1-q2.mp3",
+          "audioMs": 3800,
+          "durationSec": 25
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a place you like to visit with your friends.",
+          "audio": "audio/B1/b1-weekend-city/p1-q3.mp3",
+          "audioMs": 4800,
+          "durationSec": 30
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer spending time indoors or outdoors? Why?",
+          "audio": "audio/B1/b1-weekend-city/p1-q4.mp3",
+          "audioMs": 5300,
+          "durationSec": 30
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what did you do last summer?",
+          "audio": "audio/B1/b1-weekend-city/p1-q5.mp3",
+          "audioMs": 3100,
+          "durationSec": 25
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how often do you use public transport?",
+          "audio": "audio/B1/b1-weekend-city/p1-q6.mp3",
+          "audioMs": 4000,
+          "durationSec": 25
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Long turn",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-weekend-city/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, here is your photograph. It shows people enjoying a day at a street market. Please tell us what you can see.",
+          "audio": "audio/B1/b1-weekend-city/p2-a.mp3",
+          "audioMs": 8700,
+          "durationSec": 60,
+          "assets": [
+            "market"
+          ]
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, here is your photograph. It shows a family having a picnic in a park. Please tell us what you can see.",
+          "audio": "audio/B1/b1-weekend-city/p2-b.mp3",
+          "audioMs": 8100,
+          "durationSec": 60,
+          "assets": [
+            "picnic"
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-weekend-city/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "text": "A young person has just moved to a new town and wants to make friends. Here are some activities they could try. Talk together about the different activities, and say which would be the best way to meet new people.",
+          "audio": "audio/B1/b1-weekend-city/p3-discuss.mp3",
+          "audioMs": 13300,
+          "durationSec": 150,
+          "diagram": "b1-new-town"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about free time.",
+          "audio": "audio/B1/b1-weekend-city/p4-intro.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "A",
+          "text": "Candidate A, do you think it is easy to make friends in a new place?",
+          "audio": "audio/B1/b1-weekend-city/p4-q1.mp3",
+          "audioMs": 5000,
+          "durationSec": 40
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "B",
+          "text": "Candidate B, what activities are popular with young people in your town?",
+          "audio": "audio/B1/b1-weekend-city/p4-q2.mp3",
+          "audioMs": 5100,
+          "durationSec": 40
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "both",
+          "text": "Is it better to do activities alone or with other people? Why?",
+          "audio": "audio/B1/b1-weekend-city/p4-q3.mp3",
+          "audioMs": 4700,
+          "durationSec": 45
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "text": "Do you think towns should have more free activities for young people?",
+          "audio": "audio/B1/b1-weekend-city/p4-q4.mp3",
+          "audioMs": 4600,
+          "durationSec": 45
+        }
+      ]
+    }
+  ]
+}

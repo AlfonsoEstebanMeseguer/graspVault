@@ -1,0 +1,193 @@
+{
+  "id": "b1-e08-a-weekend-trip",
+  "level": "B1",
+  "version": 1,
+  "topic": "A weekend trip",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p1-intro.mp3",
+          "audioMs": 6600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, where did you go on your last holiday?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p1-q1.mp3",
+          "audioMs": 3900
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer holidays by the sea or in the mountains?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p1-q2.mp3",
+          "audioMs": 5000
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a place you would like to visit.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p1-q3.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, who do you usually travel with?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p1-q4.mp3",
+          "audioMs": 3400
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what do you always take with you on a trip?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p1-q5.mp3",
+          "audioMs": 3800
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, where are you going to go next summer?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p1-q6.mp3",
+          "audioMs": 3400
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e08-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows tourists visiting an old town. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p2-a.mp3",
+          "audioMs": 7900
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e08-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a family camping by a lake. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p2-b.mp3",
+          "audioMs": 7700
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e08-a-weekend-trip",
+          "text": "Some friends are planning a weekend trip together. Here are some places they could go. Talk together about the different places, and say which would be the best for a weekend.",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p3-discuss.mp3",
+          "audioMs": 11000
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about short trips and holidays.",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p4-intro.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you prefer short trips or long holidays? Why?",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p4-q1.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, what do you think is the best way to find a cheap place to stay?",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p4-q2.mp3",
+          "audioMs": 5400
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, is it better to plan a trip carefully or to decide when you arrive?",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p4-q3.mp3",
+          "audioMs": 5800
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Why do you think so many people like to travel?",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p4-q4.mp3",
+          "audioMs": 3400
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, have you ever had a problem on a trip?",
+          "audio": "audio/B1/b1-e08-a-weekend-trip/p4-q5.mp3",
+          "audioMs": 3800
+        }
+      ]
+    }
+  ]
+}

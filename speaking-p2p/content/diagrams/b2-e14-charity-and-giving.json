@@ -1,0 +1,12 @@
+{
+  "id": "b2-e14-charity-and-giving",
+  "centralQuestion": "How might these events help to raise money for charity?",
+  "prompts": [
+    "a sponsored run",
+    "a concert",
+    "a cake sale",
+    "an online campaign",
+    "a school auction"
+  ],
+  "decisionQuestion": "Which would raise the most money for a local charity?"
+}

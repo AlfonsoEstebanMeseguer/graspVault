@@ -1,0 +1,12 @@
+{
+  "id": "b1-e30-taking-photos",
+  "centralQuestion": "What would be a good activity for a photo club?",
+  "prompts": [
+    "a photo walk in the town",
+    "learning to use a camera",
+    "a competition",
+    "an exhibition of the best photos",
+    "editing photos on the computer"
+  ],
+  "decisionQuestion": "Which idea would be the best for the club?"
+}

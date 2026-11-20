@@ -1,0 +1,12 @@
+{
+  "id": "b2-e11-money-and-consumerism",
+  "centralQuestion": "How might these things affect what people decide to buy?",
+  "prompts": [
+    "adverts on social media",
+    "the opinion of friends",
+    "low prices",
+    "the brand of the product",
+    "reviews online"
+  ],
+  "decisionQuestion": "Which has the biggest influence on young people?"
+}

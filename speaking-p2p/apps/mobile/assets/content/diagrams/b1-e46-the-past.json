@@ -1,0 +1,12 @@
+{
+  "id": "b1-e46-the-past",
+  "centralQuestion": "What is the best way to find out about the past?",
+  "prompts": [
+    "interview older people",
+    "visit a local museum",
+    "look at old photos",
+    "read old newspapers",
+    "watch an old film"
+  ],
+  "decisionQuestion": "Which way would be the best to learn about the past?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "c1-e48-global-cooperation",
+  "centralQuestion": "How important is it for countries to work together on these challenges?",
+  "prompts": [
+    "climate change",
+    "diseases that spread across borders",
+    "poverty",
+    "cyber crime",
+    "the protection of the oceans"
+  ],
+  "decisionQuestion": "Which one most urgently needs international action?"
+}

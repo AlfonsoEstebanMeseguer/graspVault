@@ -1,0 +1,12 @@
+{
+  "id": "b1-e02-cooking-and-eating-at-home",
+  "centralQuestion": "What is the best way to organise a class lunch?",
+  "prompts": [
+    "everyone brings a dish",
+    "a picnic in the park",
+    "a pizza delivery",
+    "a barbecue at school",
+    "a table at a restaurant"
+  ],
+  "decisionQuestion": "Which idea would be the best for the class lunch?"
+}

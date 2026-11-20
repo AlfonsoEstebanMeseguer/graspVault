@@ -1,0 +1,65 @@
+name: speaking-p2p
+
+on:
+  push:
+    paths: ["speaking-p2p/**", ".github/workflows/speaking-p2p.yml"]
+  pull_request:
+    paths: ["speaking-p2p/**", ".github/workflows/speaking-p2p.yml"]
+
+defaults:
+  run:
+    working-directory: speaking-p2p
+
+jobs:
+  content-and-functions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Validate exam content
+        run: deno run --allow-read scripts/content/validate.ts
+      - name: Content + shared function tests (golden, catalog and app copy freshness)
+        run: deno test --allow-read --allow-env scripts/content apps/backend/supabase/functions/_shared
+      - name: Type-check Edge Functions
+        run: deno check apps/backend/supabase/functions/*/index.ts
+      - name: Lint Edge Functions
+        working-directory: speaking-p2p/apps/backend/supabase/functions
+        run: deno lint
+
+  sql:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - name: SQL suite (RLS, grants, eligibility, matchmaking, session, agenda)
+        run: apps/backend/supabase/tests/run-plain.sh
+
+  flutter:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: speaking-p2p/apps/mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.7"
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test

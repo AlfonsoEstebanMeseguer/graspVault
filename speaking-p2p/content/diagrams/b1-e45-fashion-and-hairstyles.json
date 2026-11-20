@@ -1,0 +1,12 @@
+{
+  "id": "b1-e45-fashion-and-hairstyles",
+  "centralQuestion": "How can you make a good impression at an interview?",
+  "prompts": [
+    "buy a new suit",
+    "get a haircut",
+    "wear something comfortable",
+    "arrive early",
+    "learn about the company"
+  ],
+  "decisionQuestion": "Which thing would be the most important?"
+}

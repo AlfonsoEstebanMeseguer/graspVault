@@ -1,0 +1,193 @@
+{
+  "id": "b1-e50-television-and-news",
+  "level": "B1",
+  "version": 1,
+  "topic": "Television and news",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good evening. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e50-television-and-news/p1-intro.mp3",
+          "audioMs": 6600
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you watch television?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e50-television-and-news/p1-q1.mp3",
+          "audioMs": 3000
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what is your favourite programme?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e50-television-and-news/p1-q2.mp3",
+          "audioMs": 3400
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about a programme you watched last week.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e50-television-and-news/p1-q3.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you prefer television programmes or videos on the internet?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e50-television-and-news/p1-q4.mp3",
+          "audioMs": 5500
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, how do you find out what is happening in the world?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e50-television-and-news/p1-q5.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, what would you like to see on television in the future?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e50-television-and-news/p1-q6.mp3",
+          "audioMs": 4700
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e50-television-and-news/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e50-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a family watching television. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e50-television-and-news/p2-a.mp3",
+          "audioMs": 7700
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e50-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows a person reading the news on television. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e50-television-and-news/p2-b.mp3",
+          "audioMs": 8700
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e50-television-and-news/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e50-television-and-news",
+          "text": "A television channel wants to make a new programme for young people. Here are some ideas. Talk together about the different ideas, and say which would be the best.",
+          "audio": "audio/B1/b1-e50-television-and-news/p3-discuss.mp3",
+          "audioMs": 10300
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about television and news.",
+          "audio": "audio/B1/b1-e50-television-and-news/p4-intro.mp3",
+          "audioMs": 5100
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think television is a good way to learn things? Why or why not?",
+          "audio": "audio/B1/b1-e50-television-and-news/p4-q1.mp3",
+          "audioMs": 5300
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think young people watch less television than in the past?",
+          "audio": "audio/B1/b1-e50-television-and-news/p4-q2.mp3",
+          "audioMs": 5400
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, how often do you watch the news?",
+          "audio": "audio/B1/b1-e50-television-and-news/p4-q3.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Is it better to watch a programme when it is on or when you want?",
+          "audio": "audio/B1/b1-e50-television-and-news/p4-q4.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, would you like to be on television?",
+          "audio": "audio/B1/b1-e50-television-and-news/p4-q5.mp3",
+          "audioMs": 3700
+        }
+      ]
+    }
+  ]
+}

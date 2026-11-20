@@ -1,0 +1,12 @@
+{
+  "id": "b1-e41-computers-at-school",
+  "centralQuestion": "What should a school buy with the money?",
+  "prompts": [
+    "a tablet for each student",
+    "new computers",
+    "a science laboratory",
+    "a big screen for each classroom",
+    "free wifi everywhere"
+  ],
+  "decisionQuestion": "Which thing would be the best for the students?"
+}

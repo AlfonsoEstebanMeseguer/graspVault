@@ -1,0 +1,12 @@
+{
+  "id": "b2-e35-cooking-and-restaurants",
+  "centralQuestion": "How might these things help a new restaurant to succeed?",
+  "prompts": [
+    "delicious food",
+    "a pleasant atmosphere",
+    "friendly staff",
+    "reasonable prices",
+    "a good location"
+  ],
+  "decisionQuestion": "Which is the most important?"
+}

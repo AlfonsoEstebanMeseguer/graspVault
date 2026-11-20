@@ -1,0 +1,12 @@
+{
+  "id": "b1-e04-a-birthday-party",
+  "centralQuestion": "What would make a birthday party special?",
+  "prompts": [
+    "a live band",
+    "a surprise guest",
+    "a themed costume party",
+    "a party in a park",
+    "a big dinner at home"
+  ],
+  "decisionQuestion": "Which idea would make the best party?"
+}

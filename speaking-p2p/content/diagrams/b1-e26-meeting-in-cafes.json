@@ -1,0 +1,12 @@
+{
+  "id": "b1-e26-meeting-in-cafes",
+  "centralQuestion": "Where is the best place to meet friends every week?",
+  "prompts": [
+    "a cafe",
+    "a park",
+    "a friend's home",
+    "a sports centre",
+    "a restaurant"
+  ],
+  "decisionQuestion": "Which place would be the best for meeting every week?"
+}

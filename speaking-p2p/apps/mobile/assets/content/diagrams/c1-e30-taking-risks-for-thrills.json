@@ -1,0 +1,12 @@
+{
+  "id": "c1-e30-taking-risks-for-thrills",
+  "centralQuestion": "How might these reasons explain why people choose extreme sports?",
+  "prompts": [
+    "the wish to test themselves",
+    "the excitement",
+    "escape from daily routine",
+    "admiration from others",
+    "being close to nature"
+  ],
+  "decisionQuestion": "Which is the strongest motive?"
+}

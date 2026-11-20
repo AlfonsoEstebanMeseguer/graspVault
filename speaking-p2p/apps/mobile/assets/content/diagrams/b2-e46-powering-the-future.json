@@ -1,0 +1,12 @@
+{
+  "id": "b2-e46-powering-the-future",
+  "centralQuestion": "How might these ideas help a city to save energy?",
+  "prompts": [
+    "solar panels on roofs",
+    "electric buses",
+    "better insulation in buildings",
+    "turning off street lights at night",
+    "cheaper tickets for public transport"
+  ],
+  "decisionQuestion": "Which would make the most difference?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b2-e22-teamwork",
+  "centralQuestion": "How might these things help a team work well?",
+  "prompts": [
+    "a clear leader",
+    "trust between members",
+    "good communication",
+    "different skills",
+    "working towards a shared goal"
+  ],
+  "decisionQuestion": "Which is the most important for a successful team?"
+}

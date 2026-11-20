@@ -1,0 +1,12 @@
+{
+  "id": "b1-e32-healthy-eating",
+  "centralQuestion": "What would help students to eat healthier food?",
+  "prompts": [
+    "fruit in the canteen",
+    "cooking classes",
+    "no sweets machines",
+    "a school garden",
+    "posters about healthy food"
+  ],
+  "decisionQuestion": "Which idea would be the best for the students?"
+}

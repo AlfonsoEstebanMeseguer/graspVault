@@ -1,0 +1,12 @@
+{
+  "id": "b1-e09-music-and-concerts",
+  "centralQuestion": "What would be the best music event for the school?",
+  "prompts": [
+    "a rock concert",
+    "a talent show",
+    "a choir evening",
+    "a disco",
+    "a street concert"
+  ],
+  "decisionQuestion": "Which event would be the best to get money for the charity?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "c1-e40-water-a-precious-resource",
+  "centralQuestion": "How might these measures help to secure future water supplies?",
+  "prompts": [
+    "charging more for large amounts of water",
+    "recycling waste water",
+    "protecting rivers from pollution",
+    "repairing leaking pipes",
+    "teaching people about saving water"
+  ],
+  "decisionQuestion": "Which would be the most effective?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "c1-e25-the-gig-economy",
+  "centralQuestion": "How might these measures improve life for freelance and short-contract workers?",
+  "prompts": [
+    "a minimum payment for each job",
+    "paid holiday",
+    "access to a pension",
+    "training opportunities",
+    "unemployment support"
+  ],
+  "decisionQuestion": "Which would make the greatest difference?"
+}

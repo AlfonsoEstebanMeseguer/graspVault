@@ -1,0 +1,185 @@
+import 'package:flutter/material.dart';
+import 'package:speaking_p2p/domain/feedback/peer_rating.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:speaking_p2p/core/l10n/l10n.dart';
+import 'package:speaking_p2p/core/theming/app_theme.dart';
+import 'package:speaking_p2p/core/theming/preferences.dart';
+import 'package:speaking_p2p/data/account/account_repository.dart';
+import 'package:speaking_p2p/data/auth/auth_repository.dart';
+import 'package:speaking_p2p/data/profile/profile_repository.dart';
+import 'package:speaking_p2p/domain/account/account.dart';
+import 'package:speaking_p2p/domain/exam/models.dart';
+import 'package:speaking_p2p/features/agenda/agenda_common.dart';
+import 'package:speaking_p2p/features/profile/profile_screen.dart';
+import 'package:speaking_p2p/features/settings/settings_screen.dart';
+
+final now = DateTime(2026, 10, 15, 16);
+
+class FakeAccount implements AccountRepository {
+  final deletes = <(String?, String)>[];
+  String? failWith;
+  ({String username, List<String> languages, Level level})? saved;
+
+  @override
+  Future<int> examsDone() async => 7;
+  @override
+  Future<FeedbackSummary> feedbackReceived() async => FeedbackSummary.of(const [
+        PeerRating(scores: {Criterion.grammar: 4, Criterion.discourse: 3, Criterion.pronunciation: 4, Criterion.interaction: 5}),
+        PeerRating(scores: {Criterion.grammar: 3, Criterion.discourse: 4, Criterion.pronunciation: 5, Criterion.interaction: 4}),
+      ]);
+  @override
+  Future<List<RecordingItem>> recordings() async => [
+        RecordingItem(
+          sessionId: 's1',
+          level: Level.c1,
+          partnerId: null,
+          startedAt: DateTime(2026, 10, 12, 19),
+          duration: const Duration(minutes: 19),
+          expiresAt: DateTime(2026, 11, 11, 19, 30),
+        ),
+      ];
+  @override
+  Future<Entitlement?> entitlement() async => Entitlement(status: 'active', periodEnd: DateTime.utc(2100));
+  @override
+  Future<void> updateProfile({required String username, required List<String> languages, required Level targetLevel}) async =>
+      saved = (username: username, languages: languages, level: targetLevel);
+  @override
+  Future<String> recordingUrl(String sessionId) async => 'https://example.invalid';
+  final optOuts = <bool>[];
+  @override
+  Future<void> setAnalyticsOptOut(bool optOut) async {
+    if (failWith != null) throw AppFailure(failWith!);
+    optOuts.add(optOut);
+  }
+
+  @override
+  Future<void> deleteAccount({String? password, required String phrase}) async {
+    if (failWith != null) throw AppFailure(failWith!);
+    deletes.add((password, phrase));
+  }
+}
+
+Future<FakeAccount> pump(WidgetTester tester, Widget home, {SignInMethod method = SignInMethod.email}) async {
+  tester.view.physicalSize = const Size(1080, 2340);
+  tester.view.devicePixelRatio = 2.75;
+  addTearDown(tester.view.reset);
+  SharedPreferences.setMockInitialValues({});
+  final prefs = await SharedPreferences.getInstance();
+  final fake = FakeAccount();
+  await tester.pumpWidget(ProviderScope(
+    overrides: [
+      accountRepositoryProvider.overrideWithValue(fake),
+      authUserProvider.overrideWith((ref) => Stream.value(AuthUser(id: 'me', email: 'laura@example.com', method: method))),
+      sharedPreferencesProvider.overrideWithValue(prefs),
+      agendaClockProvider.overrideWithValue(() => now),
+      myProfileProvider.overrideWith((ref) async => const MyProfile(id: 'me', username: 'laura_m', languages: ['es', 'en'], targetLevel: Level.c1)),
+    ],
+    child: MaterialApp(
+      theme: buildTheme(Brightness.light),
+      locale: const Locale('es'),
+      supportedLocales: const [Locale('es'), Locale('en')],
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+      home: home,
+    ),
+  ));
+  for (var i = 0; i < 5; i++) {
+    await tester.pump(const Duration(milliseconds: 50));
+  }
+  return fake;
+}
+
+void main() {
+  testWidgets('perfil: nivel, exámenes hechos y días que le quedan a la grabación', (tester) async {
+    await pump(tester, const ProfileScreen());
+    expect(find.text('laura_m'), findsOneWidget);
+    expect(find.text('C1 Avanzado'), findsOneWidget);
+    expect(find.text('7'), findsOneWidget);
+    expect(find.text('C1 con un compañero'), findsOneWidget);
+    expect(find.text('Se borra en 28 días'), findsOneWidget);
+  });
+
+  testWidgets('perfil: editar envía username, idiomas y nivel', (tester) async {
+    final fake = await pump(tester, const ProfileScreen());
+    await tester.tap(find.text('Editar perfil'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'Laura M');
+    await tester.pump();
+    expect(find.textContaining('minúsculas'), findsOneWidget);
+    await tester.enterText(find.byType(TextField), 'laura.m');
+    await tester.tap(find.text('B2').last);
+    await tester.pump();
+    await tester.tap(find.text('Guardar'));
+    await tester.pumpAndSettle();
+    expect(fake.saved?.username, 'laura.m');
+    expect(fake.saved?.level, Level.b2);
+    expect(fake.saved?.languages.toSet(), {'es', 'en'});
+  });
+
+  // The subscription card (D-037) is hidden at launch (D-067); it comes back
+  // with --dart-define=FEATURE_SUBSCRIPTIONS=true.
+  testWidgets('ajustes: lanzamiento gratis, sin nada de suscripciones (D-067)', (tester) async {
+    await pump(tester, const SettingsScreen());
+    expect(find.text('SUSCRIPCIÓN'), findsNothing);
+    expect(find.text('Plan Estándar'), findsNothing);
+    expect(find.byKey(const Key('upgrade-pro')), findsNothing);
+    expect(find.textContaining('Próximo pago'), findsNothing);
+  });
+
+  testWidgets('eliminar cuenta: exige contraseña y la frase ELIMINAR', (tester) async {
+    final fake = await pump(tester, const Scaffold(body: DeleteAccountDialog()));
+    FilledButton button() => tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Eliminar para siempre'));
+    expect(button().onPressed, isNull);
+    final fields = find.byType(TextField);
+    await tester.enterText(fields.at(0), 'secreto123');
+    await tester.enterText(fields.at(1), 'borrar');
+    await tester.pump();
+    expect(button().onPressed, isNull);
+    await tester.enterText(fields.at(1), 'eliminar');
+    await tester.pump();
+    expect(button().onPressed, isNotNull);
+
+    fake.failWith = 'invalid_credentials';
+    await tester.tap(find.text('Eliminar para siempre'));
+    await tester.pump();
+    expect(find.text('Email o contraseña incorrectos'), findsOneWidget);
+    fake.failWith = null;
+    await tester.tap(find.text('Eliminar para siempre'));
+    await tester.pump();
+    expect(fake.deletes.single, ('secreto123', 'eliminar'));
+  });
+
+  testWidgets('eliminar cuenta de Google: sin contraseña, se reautentica con Google', (tester) async {
+    final fake = await pump(tester, const Scaffold(body: DeleteAccountDialog()), method: SignInMethod.google);
+    FilledButton button() => tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Eliminar para siempre'));
+    expect(find.byType(TextField), findsOneWidget); // only the phrase
+    expect(find.text('Al confirmar te pediremos que vuelvas a entrar con Google.'), findsOneWidget);
+    expect(button().onPressed, isNull);
+    await tester.enterText(find.byType(TextField), 'ELIMINAR');
+    await tester.pump();
+    expect(button().onPressed, isNotNull);
+
+    // Closing Google's sheet is not an error.
+    fake.failWith = 'sign_in_cancelled';
+    await tester.tap(find.text('Eliminar para siempre'));
+    await tester.pump();
+    expect(find.textContaining('fallado'), findsNothing);
+    fake.failWith = 'reauth_mismatch';
+    await tester.tap(find.text('Eliminar para siempre'));
+    await tester.pump();
+    expect(find.textContaining('otra cuenta'), findsOneWidget);
+    fake.failWith = null;
+    await tester.tap(find.text('Eliminar para siempre'));
+    await tester.pump();
+    expect(fake.deletes.single, (null, 'ELIMINAR'));
+  });
+
+  test('método de acceso: el proveedor de Supabase decide la reautenticación', () {
+    expect(SignInMethod.fromProvider('google'), SignInMethod.google);
+    expect(SignInMethod.fromProvider('apple'), SignInMethod.apple);
+    expect(SignInMethod.fromProvider('email'), SignInMethod.email);
+    expect(SignInMethod.fromProvider(null), SignInMethod.email);
+  });
+}

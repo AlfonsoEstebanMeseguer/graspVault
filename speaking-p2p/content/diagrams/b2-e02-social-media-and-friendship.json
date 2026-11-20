@@ -1,0 +1,12 @@
+{
+  "id": "b2-e02-social-media-and-friendship",
+  "centralQuestion": "How might social media change the way people make and keep friends?",
+  "prompts": [
+    "sharing photos and news",
+    "chatting in groups",
+    "meeting people from other countries",
+    "seeing what friends are doing all the time",
+    "talking without seeing faces"
+  ],
+  "decisionQuestion": "Which has the biggest effect on friendship?"
+}

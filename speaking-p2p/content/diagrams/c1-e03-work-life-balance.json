@@ -1,0 +1,12 @@
+{
+  "id": "c1-e03-work-life-balance",
+  "centralQuestion": "How might these measures benefit both employees and employers?",
+  "prompts": [
+    "a four-day working week",
+    "flexible hours",
+    "paid time for volunteering",
+    "on-site childcare",
+    "a ban on emails after hours"
+  ],
+  "decisionQuestion": "Which would have the greatest impact on staff well-being?"
+}

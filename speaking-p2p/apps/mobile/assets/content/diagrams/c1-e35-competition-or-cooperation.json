@@ -1,0 +1,12 @@
+{
+  "id": "c1-e35-competition-or-cooperation",
+  "centralQuestion": "How might competition affect the people involved?",
+  "prompts": [
+    "it can make them work harder",
+    "it can cause stress",
+    "it can damage friendships",
+    "it can produce better results",
+    "it can discourage the less confident"
+  ],
+  "decisionQuestion": "Which effect is the most important?"
+}

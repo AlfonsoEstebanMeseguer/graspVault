@@ -1,0 +1,12 @@
+{
+  "id": "c1-e18-feeding-the-world",
+  "centralQuestion": "How might these approaches help to feed the world in the future?",
+  "prompts": [
+    "eating less meat",
+    "reducing food waste",
+    "new farming technology",
+    "supporting small farmers",
+    "buying more locally produced food"
+  ],
+  "decisionQuestion": "Which would be the most important?"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "b1-e48-family-time",
+  "centralQuestion": "What would be a good way for a family to spend time together?",
+  "prompts": [
+    "a day trip",
+    "cooking together",
+    "a games afternoon",
+    "a walk in the park",
+    "watching a film at home"
+  ],
+  "decisionQuestion": "Which idea would be the best for the family?"
+}

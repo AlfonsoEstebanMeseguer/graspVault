@@ -1,0 +1,193 @@
+{
+  "id": "b1-e27-housework",
+  "level": "B1",
+  "version": 1,
+  "topic": "Housework",
+  "parts": [
+    {
+      "index": 1,
+      "title": "Interview",
+      "steps": [
+        {
+          "id": "p1-intro",
+          "kind": "narration",
+          "text": "Good morning. In this test, I'm going to ask you some questions about yourselves. Let's begin.",
+          "audio": "audio/B1/b1-e27-housework/p1-intro.mp3",
+          "audioMs": 6500
+        },
+        {
+          "id": "p1-q1",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, do you live with your family?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e27-housework/p1-q1.mp3",
+          "audioMs": 3300
+        },
+        {
+          "id": "p1-q2",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, who does the housework in your home?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e27-housework/p1-q2.mp3",
+          "audioMs": 3700
+        },
+        {
+          "id": "p1-q3",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, tell us about your favourite room at home.",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e27-housework/p1-q3.mp3",
+          "audioMs": 4200
+        },
+        {
+          "id": "p1-q4",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, do you like cleaning?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e27-housework/p1-q4.mp3",
+          "audioMs": 2700
+        },
+        {
+          "id": "p1-q5",
+          "kind": "turn",
+          "target": "A",
+          "text": "Candidate A, what do you do to help at home?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e27-housework/p1-q5.mp3",
+          "audioMs": 3300
+        },
+        {
+          "id": "p1-q6",
+          "kind": "turn",
+          "target": "B",
+          "text": "Candidate B, how will your home be different in the future?",
+          "durationSec": 25,
+          "audio": "audio/B1/b1-e27-housework/p1-q6.mp3",
+          "audioMs": 4100
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Photograph",
+      "steps": [
+        {
+          "id": "p2-intro",
+          "kind": "narration",
+          "text": "Now I'm going to give each of you a photograph. I'd like you to talk about it on your own for about one minute.",
+          "audio": "audio/B1/b1-e27-housework/p2-intro.mp3",
+          "audioMs": 7500
+        },
+        {
+          "id": "p2-a",
+          "kind": "turn",
+          "target": "A",
+          "durationSec": 60,
+          "assets": [
+            "b1-e27-a1"
+          ],
+          "text": "Candidate A, here is your photograph. It shows a man doing the dishes. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e27-housework/p2-a.mp3",
+          "audioMs": 7400
+        },
+        {
+          "id": "p2-b",
+          "kind": "turn",
+          "target": "B",
+          "durationSec": 60,
+          "assets": [
+            "b1-e27-b1"
+          ],
+          "text": "Candidate B, here is your photograph. It shows children tidying a room. Please tell us what you can see.",
+          "audio": "audio/B1/b1-e27-housework/p2-b.mp3",
+          "audioMs": 7500
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Collaborative task",
+      "steps": [
+        {
+          "id": "p3-intro",
+          "kind": "narration",
+          "text": "Now, in this part of the test, you're going to talk about something together for about two or three minutes.",
+          "audio": "audio/B1/b1-e27-housework/p3-intro.mp3",
+          "audioMs": 6700
+        },
+        {
+          "id": "p3-discuss",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 150,
+          "diagram": "b1-e27-housework",
+          "text": "Some friends share a flat and want to share the housework fairly. Here are some ideas. Talk together about the different ideas, and say which would be the best.",
+          "audio": "audio/B1/b1-e27-housework/p3-discuss.mp3",
+          "audioMs": 10300
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Discussion",
+      "steps": [
+        {
+          "id": "p4-intro",
+          "kind": "narration",
+          "text": "Now I'd like to ask you some more questions about life at home.",
+          "audio": "audio/B1/b1-e27-housework/p4-intro.mp3",
+          "audioMs": 4700
+        },
+        {
+          "id": "p4-q1",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Do you think everybody at home should help with the housework? Why?",
+          "audio": "audio/B1/b1-e27-housework/p4-q1.mp3",
+          "audioMs": 4500
+        },
+        {
+          "id": "p4-q2",
+          "kind": "open",
+          "target": "A",
+          "durationSec": 40,
+          "text": "Candidate A, do you think children should have jobs to do at home?",
+          "audio": "audio/B1/b1-e27-housework/p4-q2.mp3",
+          "audioMs": 4400
+        },
+        {
+          "id": "p4-q3",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, what housework do you find the most boring?",
+          "audio": "audio/B1/b1-e27-housework/p4-q3.mp3",
+          "audioMs": 4100
+        },
+        {
+          "id": "p4-q4",
+          "kind": "open",
+          "target": "both",
+          "durationSec": 45,
+          "text": "Would you like a robot to do the housework for you?",
+          "audio": "audio/B1/b1-e27-housework/p4-q4.mp3",
+          "audioMs": 3500
+        },
+        {
+          "id": "p4-q5",
+          "kind": "open",
+          "target": "B",
+          "durationSec": 40,
+          "text": "Candidate B, how do you feel when your home is tidy?",
+          "audio": "audio/B1/b1-e27-housework/p4-q5.mp3",
+          "audioMs": 3900
+        }
+      ]
+    }
+  ]
+}

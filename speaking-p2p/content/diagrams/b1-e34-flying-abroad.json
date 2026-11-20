@@ -1,0 +1,12 @@
+{
+  "id": "b1-e34-flying-abroad",
+  "centralQuestion": "What would make a long flight easier for a family?",
+  "prompts": [
+    "games and books",
+    "a tablet with films",
+    "healthy snacks",
+    "a travel pillow",
+    "a favourite toy for each child"
+  ],
+  "decisionQuestion": "Which thing would be the most useful on the flight?"
+}

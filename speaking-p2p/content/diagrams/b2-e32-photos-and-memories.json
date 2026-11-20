@@ -1,0 +1,12 @@
+{
+  "id": "b2-e32-photos-and-memories",
+  "centralQuestion": "How might these reasons explain why people take so many photos?",
+  "prompts": [
+    "to remember special moments",
+    "to share with friends",
+    "to show how happy they are",
+    "to record their travels",
+    "to be creative"
+  ],
+  "decisionQuestion": "Which is the most common reason in your opinion?"
+}

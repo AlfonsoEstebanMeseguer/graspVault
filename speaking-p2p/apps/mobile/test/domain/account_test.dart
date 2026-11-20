@@ -1,0 +1,67 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:speaking_p2p/core/router/router.dart';
+import 'package:speaking_p2p/domain/account/account.dart';
+import 'package:speaking_p2p/domain/exam/models.dart';
+
+void main() {
+  group('edad minima 16 (mismo criterio que el trigger de la base)', () {
+    final today = DateTime(2026, 10, 15);
+    test('cumple 16 hoy: entra', () => expect(Validators.isOldEnough(DateTime(2010, 10, 15), today), isTrue));
+    test('cumple 16 manana: no entra', () => expect(Validators.isOldEnough(DateTime(2010, 10, 16), today), isFalse));
+  });
+
+  test('fechas imposibles no se convierten en otra fecha', () {
+    expect(Validators.date(31, 2, 2000), isNull);
+    expect(Validators.date(29, 2, 2000), DateTime(2000, 2, 29));
+    expect(Validators.date(1, 13, 2000), isNull);
+    expect(Validators.date(1, 1, 1899), isNull);
+  });
+
+  test('username con las mismas reglas que el CHECK', () {
+    expect(Validators.username.hasMatch('laura_m'), isTrue);
+    expect(Validators.username.hasMatch('Laura'), isFalse);
+    expect(Validators.username.hasMatch('ab'), isFalse);
+  });
+
+  test('el JSON del onboarding es el que espera la Edge Function', () {
+    final j = OnboardingData(
+      username: 'laura_m', languages: ['es', 'en'], targetLevel: Level.c1,
+      birthDate: DateTime(2004, 3, 12), termsVersion: 'v1',
+    ).toJson();
+    expect(j, {'username': 'laura_m', 'languages': ['es', 'en'], 'targetLevel': 'C1', 'birthDate': '2004-03-12', 'termsVersion': 'v1'});
+  });
+
+  group('puerta de sesion', () {
+    String? gate(AsyncValue<Object?> user, AsyncValue<Object?> profile, String at, {bool backend = true}) =>
+        gateRedirect(hasBackend: backend, user: user, profile: profile, location: at);
+    const someone = AsyncData<Object?>('u');
+    const nobody = AsyncData<Object?>(null);
+
+    test('sin backend no hay puerta (modo practica)', () => expect(gate(nobody, nobody, '/', backend: false), isNull));
+    test('sin sesion -> login', () => expect(gate(nobody, nobody, '/agenda'), '/login'));
+    test('con sesion y sin perfil -> onboarding', () => expect(gate(someone, nobody, '/'), '/onboarding'));
+    test('con perfil, el login y el onboarding llevan al inicio', () {
+      expect(gate(someone, someone, '/login'), '/');
+      expect(gate(someone, someone, '/onboarding'), '/');
+      expect(gate(someone, someone, '/agenda'), isNull);
+    });
+    test('documentos nuevos sin aceptar -> re-aceptacion, y nada mas se abre', () {
+      MyProfile me(String? v) => MyProfile(id: 'u', username: 'u_x', languages: const ['es'], targetLevel: Level.b2, acceptedTermsVersion: v);
+      final old = AsyncData<Object?>(me('2026-10-01'));
+      expect(gate(someone, old, '/'), '/terms-update');
+      expect(gate(someone, old, '/agenda'), '/terms-update');
+      expect(gate(someone, old, '/terms-update'), isNull);
+      expect(gate(someone, old, '/legal/terms'), isNull, reason: 'puede leerlos antes de aceptar');
+      final current = AsyncData<Object?>(me(termsVersion));
+      expect(gate(someone, current, '/terms-update'), '/');
+      expect(gate(someone, AsyncData<Object?>(me('2099-01-01')), '/'), isNull, reason: 'una app vieja no pide volver atras');
+      expect(gate(someone, AsyncData<Object?>(me(null)), '/'), isNull, reason: 'sin dato, no bloquea');
+      expect(gate(someone, AsyncData<Object?>(me('v1')), '/'), isNull, reason: 'version no ISO, no bloquea');
+    });
+    test('mientras carga, pantalla de carga', () {
+      expect(gate(const AsyncLoading<Object?>(), nobody, '/'), '/loading');
+      expect(gate(someone, const AsyncLoading<Object?>(), '/'), '/loading');
+    });
+  });
+}

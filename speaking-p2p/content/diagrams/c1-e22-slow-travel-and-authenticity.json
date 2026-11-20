@@ -1,0 +1,12 @@
+{
+  "id": "c1-e22-slow-travel-and-authenticity",
+  "centralQuestion": "How might these factors affect the way people choose to explore a new place?",
+  "prompts": [
+    "the cost",
+    "concern for the environment",
+    "the wish to meet local people",
+    "the amount of time available",
+    "recommendations on social media"
+  ],
+  "decisionQuestion": "Which has the strongest influence on travellers today?"
+}

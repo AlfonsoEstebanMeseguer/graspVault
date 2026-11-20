@@ -1,0 +1,12 @@
+{
+  "id": "b2-e01-working-from-home",
+  "centralQuestion": "How might these things help people work well from home?",
+  "prompts": [
+    "a quiet room",
+    "a fast internet connection",
+    "a clear daily timetable",
+    "regular video calls with colleagues",
+    "a break outside every day"
+  ],
+  "decisionQuestion": "Which would be the most important for someone starting to work from home?"
+}

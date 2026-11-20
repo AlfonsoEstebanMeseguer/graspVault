@@ -1,0 +1,12 @@
+{
+  "id": "c1-e08-is-university-worth-it",
+  "centralQuestion": "How might these reasons influence a young person's decision to go to university?",
+  "prompts": [
+    "better job prospects",
+    "the social life",
+    "pressure from family",
+    "a love of the subject",
+    "time to decide what to do next"
+  ],
+  "decisionQuestion": "Which is the most convincing reason?"
+}

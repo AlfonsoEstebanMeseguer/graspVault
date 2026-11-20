@@ -1,0 +1,12 @@
+{
+  "id": "b2-e05-learning-in-different-ways",
+  "centralQuestion": "How might these things help students learn better?",
+  "prompts": [
+    "small classes",
+    "online resources",
+    "field trips",
+    "group projects",
+    "a lot of homework"
+  ],
+  "decisionQuestion": "Which would be the most useful for students?"
+}
