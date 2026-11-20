@@ -12,15 +12,19 @@ import { deletePosthogPerson } from "../_shared/posthog_admin.ts";
 import { handler, HttpError, json, parseBody } from "../_shared/http.ts";
 import { captureException } from "../_shared/sentry.ts";
 import { adminClient, requireAuthUser, rpc } from "../_shared/supabase.ts";
+import { rateLimit } from "../_shared/ratelimit.ts";
 
 const PHRASES = new Set(["ELIMINAR", "DELETE"]); // ES / EN, both accepted by the server
 const Body = z.object({ confirmation: z.string(), appleAuthorizationCode: z.string().min(1).max(2048).optional() });
 
 Deno.serve(handler(async (req) => {
-  const { user, iat } = await requireAuthUser(req);
+  const { user, authTime } = await requireAuthUser(req);
+  await rateLimit(user.id, "accountDelete");
   const { confirmation, appleAuthorizationCode } = await parseBody(req, Body);
   if (!PHRASES.has(confirmation.trim().toUpperCase())) throw new HttpError(422, "bad_confirmation");
-  if (Date.now() / 1000 - iat > 300) throw new HttpError(401, "reauth_required");
+  // The last REAL sign-in, not the token age: a refreshed token has a fresh iat
+  // but keeps the original amr timestamp (security audit 2026-11, C10).
+  if (Date.now() / 1000 - authTime > 300) throw new HttpError(401, "reauth_required");
   const usesApple = (user.app_metadata?.providers as string[] | undefined)?.includes("apple") ?? user.app_metadata?.provider === "apple";
   if (usesApple && appleAuthorizationCode) {
     try {
