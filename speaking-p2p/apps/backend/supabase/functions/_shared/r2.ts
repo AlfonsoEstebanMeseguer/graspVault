@@ -10,6 +10,9 @@
 import { AwsClient } from "npm:aws4fetch@1.0.20";
 import { env } from "./supabase.ts";
 
+/// Server ceiling for avatars; the app compresses to 300 KB (avatar_image.dart maxAvatarBytes).
+export const MAX_AVATAR_BYTES = 512 * 1024;
+
 export type BucketKind = "media" | "content" | "recordings";
 
 const ENDPOINT_VAR: Record<BucketKind, string> = {
@@ -54,23 +57,58 @@ function objectUrl(cfg: BucketConfig, key: string): URL {
   return new URL(`${cfg.origin}/${cfg.bucket}/${key.split("/").map(encodeURIComponent).join("/")}`);
 }
 
-export async function presign(method: "GET" | "PUT", kind: BucketKind, key: string, expiresSec: number, contentType?: string): Promise<string> {
+/// For a PUT, Content-Type and Content-Length are bound into the signature, so
+/// R2 refuses a body of another type or size. aws4fetch treats both headers as
+/// "unsignable" unless `allHeaders` is set (security audit 2026-11, C6).
+export async function presign(
+  method: "GET" | "PUT",
+  kind: BucketKind,
+  key: string,
+  expiresSec: number,
+  contentType?: string,
+  contentLength?: number,
+): Promise<string> {
   const { cfg, client } = r2(kind);
   const url = objectUrl(cfg, key);
   url.searchParams.set("X-Amz-Expires", String(expiresSec));
-  const signed = await client.sign(new Request(url, {
-    method,
-    headers: contentType ? { "Content-Type": contentType } : undefined,
-  }), { aws: { signQuery: true } });
+  const headers: Record<string, string> = {};
+  if (contentType) headers["Content-Type"] = contentType;
+  if (contentLength !== undefined) headers["Content-Length"] = String(contentLength);
+  const signed = await client.sign(new Request(url, { method, headers }), {
+    aws: { signQuery: true, allHeaders: Object.keys(headers).length > 0 },
+  });
   return signed.url;
 }
 
-export async function getObjectHead(kind: BucketKind, key: string, bytes = 32): Promise<Uint8Array | null> {
+export type ObjectHead = { head: Uint8Array; size: number | null };
+
+/// First [bytes] of an object plus its total size (from Content-Range). Reads at
+/// most [bytes] even if R2 ignores the Range header.
+export async function getObjectHead(kind: BucketKind, key: string, bytes = 32): Promise<ObjectHead | null> {
   const { cfg, client } = r2(kind);
   const res = await client.fetch(objectUrl(cfg, key), { headers: { Range: `bytes=0-${bytes - 1}` } });
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`R2 GET ${res.status}`);
-  return new Uint8Array(await res.arrayBuffer());
+  if (res.status === 404) {
+    await res.body?.cancel();
+    return null;
+  }
+  if (!res.ok) {
+    await res.body?.cancel();
+    throw new Error(`R2 GET ${res.status}`);
+  }
+  const range = res.headers.get("Content-Range")?.match(/\/(\d+)$/);
+  const size = range ? Number(range[1]) : res.status === 200 ? Number(res.headers.get("Content-Length") ?? NaN) : NaN;
+  const reader = res.body?.getReader();
+  const out = new Uint8Array(bytes);
+  let n = 0;
+  while (reader && n < bytes) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    const take = Math.min(value.length, bytes - n);
+    out.set(value.subarray(0, take), n);
+    n += take;
+  }
+  await reader?.cancel();
+  return { head: out.subarray(0, n), size: Number.isFinite(size) ? size : null };
 }
 
 export async function deleteObject(kind: BucketKind, key: string): Promise<void> {
