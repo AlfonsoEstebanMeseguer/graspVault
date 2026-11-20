@@ -1,3 +1,5 @@
 #include "Generated.xcconfig"
 // Google Sign-In URL scheme (D-062); generated, optional.
 #include? "Auth.xcconfig"
+// Distribution signing for TestFlight (D-062); written by the TestFlight workflow, optional.
+#include? "Signing.xcconfig"

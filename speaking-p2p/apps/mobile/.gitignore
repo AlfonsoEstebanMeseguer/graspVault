@@ -49,3 +49,4 @@ app.*.map.json
 
 # Generated from env/dev.json by tool/ios_auth_config.dart (D-062)
 /ios/Flutter/Auth.xcconfig
+/ios/Flutter/Signing.xcconfig

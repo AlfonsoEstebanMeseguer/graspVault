@@ -80,13 +80,28 @@ La inscripción suele tardar de 24 a 48 h en aprobarse. Hasta entonces, deja `AP
    - `APPLE_KEY_ID`
    - `APPLE_CLIENT_ID` = `com.speakingp2p.speakingP2p`
    - `APPLE_PRIVATE_KEY` = el contenido entero del `.p8`, incluidas las líneas `-----BEGIN/END PRIVATE KEY-----`
-3. Redespliega `account-delete`. Sin esos secretos, el borrado funciona igual pero no revoca, y deja un aviso en los logs.
+3. No hace falta redesplegar: la función lee los secretos en cada petición. Sin ellos, el borrado funciona igual pero no revoca, y deja un aviso en los logs.
 
-### 2.3 App y firma
-1. `env/dev.json` → `"APPLE_SIGN_IN": "true"`.
+### 2.3 App
+1. `env/dev.json` → `"APPLE_SIGN_IN": "true"` (hecho el 2026-11-20).
 2. `ios/Runner/Runner.entitlements` ya declara la capability. **Solo funciona en un build firmado con un perfil que la incluya**:
-   - El `.ipa` sin firmar + Sideloadly con Apple ID gratuito **no** sirve (Apple devuelve el error 1000).
-   - Con la cuenta de pago, la vía buena es firmar en CI y subir a TestFlight. Es el siguiente paso a montar en el workflow (certificado de distribución + perfil como secretos de GitHub).
+   - El `.ipa` sin firmar + Sideloadly con Apple ID gratuito **no** sirve: el botón sale, pero Apple devuelve el error 1000.
+   - Con la cuenta de pago: workflow **«speaking-p2p TestFlight»** (2.4).
+
+### 2.4 Firma y TestFlight sin Mac
+El workflow `.github/workflows/speaking-p2p-testflight.yml` firma con un certificado de distribución y un perfil App Store, y sube a TestFlight con una clave de la API de App Store Connect. Todo vive en secretos de GitHub; el Team ID y el nombre del perfil los saca del propio perfil.
+
+1. **Clave privada + CSR**: generados en este PC con openssl, en `C:\Users\alfon\Documents\MirloTalk-secretos\ios-dist\` (fuera del repo). `dist.key` no sale de ahí salvo dentro del `.p12`.
+2. **Certificado**: portal → Certificates → + → **Apple Distribution** → sube `MirloTalk-dist.certSigningRequest` → descarga `distribution.cer` a esa carpeta.
+3. **`.p12`**: `openssl x509 -inform DER` + `openssl pkcs12 -export` con cifrado 3DES/SHA1 (el llavero de macOS no siempre acepta el AES por defecto de OpenSSL 3). Contraseña aleatoria en `p12-password.txt`, en la misma carpeta.
+4. **Perfil**: portal → Profiles → + → **App Store Connect** → App ID `com.speakingp2p.speakingP2p` → el certificado de arriba → nombre `MirloTalk App Store` → descarga. Si cambias capabilities del App ID, **regenera** el perfil y actualiza el secreto.
+5. **App Store Connect**: Apps → + → Nueva app (iOS, nombre MirloTalk, bundle de arriba, SKU `mirlotalk`).
+6. **Clave API**: App Store Connect → Usuarios y acceso → Integraciones → App Store Connect API → clave de equipo con rol **App Manager**. Apunta el Key ID y el Issuer ID; el `.p8` se descarga una sola vez.
+7. **Secretos de GitHub** (repo `graspVault`): `IOS_DIST_CERT_P12` (base64), `IOS_DIST_CERT_PASSWORD`, `IOS_APPSTORE_PROFILE` (base64), `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8` (el texto del `.p8`). Desde un archivo, sin que se vea: `gh secret set NOMBRE < archivo`.
+8. Lanza el workflow. Cuando Apple procese el build (5–30 min), en App Store Connect → TestFlight → Pruebas internas añade tu Apple ID como tester e instala desde la app **TestFlight** del iPhone.
+
+- El certificado caduca al año: repite los pasos 2–4 y 7.
+- El número de build es el `run_number` de este workflow, así que siempre crece.
 
 ---
 
