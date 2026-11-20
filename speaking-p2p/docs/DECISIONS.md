@@ -375,3 +375,8 @@
 - **Práctica aleatoria:** `_practiceExamProvider` elige un examen al azar del nivel cada vez que se abre una práctica (antes, siempre el primero del índice); `practiceRandomProvider` permite fijarlo en los tests. Vale para la práctica normal y la premium.
 - **Tiendas:** respuestas en `docs/legal/FORMULARIOS_TIENDAS.md`; `ITSAppUsesNonExemptEncryption = NO` en el `Info.plist`.
 - **Descartado:** borrar el código de suscripciones (habría que reescribirlo); poner «C1 Advanced» en inglés (coincide con el nombre del producto de Cambridge).
+
+### D-068 · 2026-11-20 · Firma de Android para Google Play y subida desde CI
+- **Contexto:** el release de Android se firmaba con la clave de debug; Play exige una clave propia. iOS ya sube a TestFlight desde CI (D-062).
+- **Decisión:** clave de **subida** propia (`upload-keystore.jks`, RSA 2048, alias `upload`) generada en este PC y guardada fuera del repo, con **Play App Signing** (Google guarda la clave de firma real). `build.gradle.kts` firma el release con `android/key.properties` (local, gitignorado) o con `ANDROID_KEYSTORE_*` (CI); sin ninguno, cae a debug para que `flutter run --release` siga funcionando. Workflow manual `speaking-p2p-play.yml`: AAB firmado y ofuscado, `versionCode` = número de ejecución, artefacto siempre y subida a la pista elegida con `tool/play_upload.py` cuando existe `PLAY_SERVICE_ACCOUNT_JSON`. Login con Google: un cliente OAuth Android más con el SHA-1 de la clave de firma de Play. Guía en `docs/ANDROID_PLAY_SETUP.md`.
+- **Descartado:** acciones de terceros para subir a Play (más dependencias que fijar; la API son tres llamadas); fastlane (Ruby en el runner para tan poco); firmar con la clave de la app sin Play App Signing (perderla sería perder la app).

@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
@@ -29,11 +31,31 @@ android {
         versionName = flutter.versionName
     }
 
+    // Upload key for Google Play (D-068): android/key.properties locally (gitignored, points at the
+    // keystore kept outside the repo), or ANDROID_KEYSTORE_* env vars in CI. Without either, release
+    // builds keep the debug key so `flutter run --release` still works.
+    val keyProps = Properties().apply {
+        val f = rootProject.file("key.properties")
+        if (f.exists()) f.inputStream().use { load(it) }
+    }
+    fun signing(prop: String, env: String): String? =
+        keyProps.getProperty(prop) ?: System.getenv(env)?.takeIf { it.isNotBlank() }
+    val storePath = signing("storeFile", "ANDROID_KEYSTORE_PATH")
+
+    signingConfigs {
+        if (storePath != null) {
+            create("upload") {
+                storeFile = file(storePath)
+                storePassword = signing("storePassword", "ANDROID_KEYSTORE_PASSWORD")
+                keyAlias = signing("keyAlias", "ANDROID_KEY_ALIAS") ?: "upload"
+                keyPassword = signing("keyPassword", "ANDROID_KEYSTORE_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.findByName("upload") ?: signingConfigs.getByName("debug")
         }
     }
 }
