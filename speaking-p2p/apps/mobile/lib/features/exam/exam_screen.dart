@@ -720,8 +720,9 @@ class _FeedbackState extends State<_Feedback> {
               child: SingleChildScrollView(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                   Row(children: [
-                    const _DoneMedal(),
-                    const SizedBox(width: 16),
+                    // Pico congratulates both while they give each other feedback.
+                    const Pico(key: Key('feedback-pico'), size: 84, mood: PicoMood.celebrate),
+                    const SizedBox(width: 12),
                     Expanded(
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                         Text(l.examFinished, style: AppType.title1.copyWith(fontSize: 28, color: p.textPrimary)),
@@ -809,29 +810,6 @@ class _FeedbackState extends State<_Feedback> {
           ]),
         ),
       ),
-    );
-  }
-}
-
-/// The clay "done" medal.
-class _DoneMedal extends StatelessWidget {
-  const _DoneMedal();
-  @override
-  Widget build(BuildContext context) {
-    final p = context.palette;
-    return Container(
-      width: 64,
-      height: 64,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: RadialGradient(
-          center: const Alignment(-0.4, -0.5),
-          colors: [Color.lerp(p.success, Colors.white, 0.35)!, p.success, Color.lerp(p.success, Colors.black, 0.25)!],
-          stops: const [0, 0.6, 1],
-        ),
-        boxShadow: [BoxShadow(color: p.success.withValues(alpha: 0.35), blurRadius: 18, offset: const Offset(0, 8))],
-      ),
-      child: Icon(AppIcons.check, color: p.onRole, size: 30),
     );
   }
 }

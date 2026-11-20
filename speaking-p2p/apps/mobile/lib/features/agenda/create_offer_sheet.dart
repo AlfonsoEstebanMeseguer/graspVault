@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
+import '../../core/ui/ui_sounds.dart';
 import '../../data/agenda/agenda_repository.dart';
 import '../../domain/agenda/agenda.dart';
 import '../../domain/exam/models.dart';
@@ -73,6 +74,7 @@ class _CreateOfferSheetState extends ConsumerState<CreateOfferSheet> {
     setState(() => _busy = true);
     try {
       await ref.read(agendaRepositoryProvider)!.createOffer(_level, _at(_from), _at(_to));
+      ref.read(uiSoundsProvider).play(UiSound.propose);
       if (mounted) Navigator.of(context).pop(true);
     } catch (e) {
       if (mounted) {

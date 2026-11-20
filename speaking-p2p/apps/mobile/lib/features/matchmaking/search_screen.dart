@@ -12,6 +12,7 @@ import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/tokens.dart';
 import '../../core/ui/kit.dart';
+import '../../core/ui/pico.dart';
 import '../../data/profile/profile_repository.dart';
 import '../../domain/account/account.dart';
 import '../../domain/exam/models.dart';
@@ -225,6 +226,11 @@ class _SearchingState extends State<_Searching> with SingleTickerProviderStateMi
             decoration: BoxDecoration(shape: BoxShape.circle, color: p.roleA.withValues(alpha: 0.92)),
             child: Text(widget.initial, style: AppType.largeTitle.copyWith(fontSize: 40, color: p.onRole)),
           ),
+        ),
+        // Pico on the lookout above the pair.
+        Transform.translate(
+          offset: const Offset(0, -d * 0.98),
+          child: const Pico(key: Key('search-pico'), size: 84, mood: PicoMood.search),
         ),
       ]),
     );
