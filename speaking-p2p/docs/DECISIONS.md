@@ -397,3 +397,8 @@
 - **Moderación:** si un usuario denunciado borra la cuenta, el hash de su email se queda en sus reportes **abiertos** (`reported_email_hash`) para poder banearlo con `private.ban_report`; se borra en cuanto ningún reporte sigue abierto (minimización). `report_user` solo acepta el chat de la propia pareja.
 - **Borrado de cuenta:** la reautenticación se mide con el último inicio de sesión real (`amr[].timestamp`), no con la edad del token (un refresco renueva `iat`).
 - **Descartado:** quitar los flags de desarrollo en una migración (decisión de Alfonso: se revisan a mano, `docs/legal/PUBLICACION.md`); tokens de LiveKit sin micro y concedido solo por push (se resuelve con un re-push al reconectar); CORS restringido (la app no tiene origen web y la auth va por Bearer).
+
+### D-071 · 2026-11-21 · Los crons solo invocan `cron-worker` si hay trabajo
+- **Contexto:** cuota de 500 000 invocaciones/mes de Edge Functions (plan free). Los crons `sessions` (10 s), `outbox` (30 s), `analytics` (1 min) y `storage-gc` (5 min) invocaban siempre: ~13 000/día en reposo, 77 954 en los 6 primeros días del periodo (proyección ~390 000/mes).
+- **Decisión:** `private.cron_has_work(task)` comprueba en la base las mismas condiciones que selecciona el worker y el cron solo llama a la función si devuelve `true`. `analytics` pasa a cada 5 min. `sessions` mantiene los 10 s: con la guarda solo cuesta mientras hay sesiones activas.
+- **Descartado:** bajar `sessions` a 30 s (con la guarda ya no hace falta y empeoraría el respaldo cuando un cliente no avanza el segmento).
