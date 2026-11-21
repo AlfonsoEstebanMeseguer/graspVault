@@ -10,6 +10,7 @@
 //  * Only a 404 means "not in the room".
 import { env } from "./supabase.ts";
 import { bucketConfig } from "./r2.ts";
+import { timingSafeEqual } from "./internal.ts";
 
 const enc = new TextEncoder();
 const b64url = (bytes: Uint8Array) =>
@@ -121,21 +122,49 @@ export async function startAudioEgress(sessionId: string, objectKey: string): Pr
   return body.egress_id ?? body.egressId;
 }
 
-/// Webhook authenticity: the Authorization header is a JWT signed with the API
-/// secret whose `sha256` claim is base64(sha256(raw body)).
-export async function verifyWebhook(rawBody: string, authHeader: string | null, apiSecret: string): Promise<boolean> {
-  if (!authHeader) return false;
+/// Webhook authenticity (C-H1): the Authorization header is an HS256 JWT signed
+/// with the API secret, issued by our API key, with a mandatory `exp` (LiveKit
+/// signs it for 5 minutes) and a `sha256` claim = base64(sha256(raw body)).
+/// The signature is checked by WebCrypto (constant time). Replays inside the
+/// validity window are stopped by the caller, deduplicating on the event id.
+export async function verifyWebhook(
+  rawBody: string,
+  authHeader: string | null,
+  apiSecret: string,
+  apiKey: string,
+  nowSec = Date.now() / 1000,
+): Promise<boolean> {
+  if (!authHeader || !apiSecret || !apiKey) return false;
   const token = authHeader.replace(/^Bearer /, "");
-  const [h, p, s] = token.split(".");
-  if (!h || !p || !s) return false;
-  if (b64url(await hmac(apiSecret, `${h}.${p}`)) !== s) return false;
-  let claims: { sha256?: string; exp?: number };
+  const parts = token.split(".");
+  if (parts.length !== 3) return false;
+  const [h, p, s] = parts;
+  let header: { alg?: string };
+  let claims: { sha256?: unknown; exp?: unknown; nbf?: unknown; iss?: unknown };
+  let sig: Uint8Array<ArrayBuffer>;
   try {
-    claims = JSON.parse(atob(p.replace(/-/g, "+").replace(/_/g, "/")));
+    header = JSON.parse(b64urlDecodeText(h));
+    claims = JSON.parse(b64urlDecodeText(p));
+    sig = b64urlDecode(s);
   } catch {
     return false;
   }
-  if (claims.exp && claims.exp < Date.now() / 1000) return false;
+  if (header.alg !== "HS256") return false;
+  const key = await crypto.subtle.importKey("raw", enc.encode(apiSecret), { name: "HMAC", hash: "SHA-256" }, false, ["verify"]);
+  if (!(await crypto.subtle.verify("HMAC", key, sig, enc.encode(`${h}.${p}`)))) return false;
+  if (typeof claims.exp !== "number" || claims.exp < nowSec) return false;
+  if (typeof claims.nbf === "number" && claims.nbf > nowSec + WEBHOOK_SKEW_SEC) return false;
+  if (claims.iss !== apiKey) return false;
+  if (typeof claims.sha256 !== "string") return false;
   const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(rawBody)));
-  return claims.sha256 === btoa(String.fromCharCode(...digest));
+  return timingSafeEqual(claims.sha256, btoa(String.fromCharCode(...digest)));
 }
+
+const WEBHOOK_SKEW_SEC = 60;
+
+function b64urlDecode(s: string): Uint8Array<ArrayBuffer> {
+  const b64 = s.replace(/-/g, "+").replace(/_/g, "/");
+  return Uint8Array.from(atob(b64 + "=".repeat((4 - (b64.length % 4)) % 4)), (c) => c.charCodeAt(0));
+}
+
+const b64urlDecodeText = (s: string) => new TextDecoder().decode(b64urlDecode(s));

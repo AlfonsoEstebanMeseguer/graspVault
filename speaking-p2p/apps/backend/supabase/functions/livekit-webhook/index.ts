@@ -10,15 +10,24 @@ Deno.serve(async (req) => {
   const pre = preflight(req);
   if (pre) return pre;
   const raw = await req.text();
-  if (!(await verifyWebhook(raw, req.headers.get("Authorization"), env("LIVEKIT_API_SECRET")))) {
+  if (!(await verifyWebhook(raw, req.headers.get("Authorization"), env("LIVEKIT_API_SECRET"), env("LIVEKIT_API_KEY")))) {
     return json({ error: "unauthenticated" }, 401);
   }
   const ev = JSON.parse(raw) as {
+    id?: string;
     event: string;
     room?: { name?: string };
     participant?: { identity?: string };
     track?: { type?: string; source?: string };
   };
+  // Replay protection (C-H1): a signed delivery stays valid for 5 minutes, so the
+  // same event id is processed once. LiveKit retries reuse the id; we answer 200.
+  if (
+    typeof ev.id === "string" && ev.id.length > 0 &&
+    !(await rpc<boolean>("svc_webhook_first_seen", { p_source: "livekit", p_event_id: ev.id }))
+  ) {
+    return json({ duplicate: true });
+  }
   const m = ev.room?.name?.match(/^exam_([0-9a-f-]{36})$/);
   const identity = ev.participant?.identity;
   if (m && identity && (ev.event === "track_published" || ev.event === "track_unpublished") && ev.track?.type === "AUDIO") {
