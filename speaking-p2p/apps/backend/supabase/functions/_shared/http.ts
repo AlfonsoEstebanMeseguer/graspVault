@@ -84,6 +84,8 @@ const STATUS_BY_CODE: Record<string, number> = {
   // Moderation evidence (D-051)
   bad_stats: 422,
   bad_kind: 422,
+  // Daily agenda quotas (private.agenda_quota)
+  rate_limited: 429,
 };
 
 /// Turns a PostgREST/RPC error into an HttpError, or rethrows an unknown one as 500.

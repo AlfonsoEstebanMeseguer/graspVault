@@ -397,3 +397,8 @@
 - **Moderación:** si un usuario denunciado borra la cuenta, el hash de su email se queda en sus reportes **abiertos** (`reported_email_hash`) para poder banearlo con `private.ban_report`; se borra en cuanto ningún reporte sigue abierto (minimización). `report_user` solo acepta el chat de la propia pareja.
 - **Borrado de cuenta:** la reautenticación se mide con el último inicio de sesión real (`amr[].timestamp`), no con la edad del token (un refresco renueva `iat`).
 - **Descartado:** quitar los flags de desarrollo en una migración (decisión de Alfonso: se revisan a mano, `docs/legal/PUBLICACION.md`); tokens de LiveKit sin micro y concedido solo por push (se resuelve con un re-push al reconectar); CORS restringido (la app no tiene origen web y la auth va por Bearer).
+
+### D-072 · 2026-11-21 · Cupos diarios en los ciclos de la agenda
+- **Contexto:** endurecimiento de la auditoría 2026-11. Invitar/cancelar, reservar/cancelar y modificar escribían un mensaje de sistema o un push a la pareja sin límite; reconfirmar escribía un mensaje cada vez; `offer_taken_slots` aceptaba arrays de cualquier tamaño.
+- **Decisión:** cupos de 24 h en SQL con `svc_rate_hit` (`private.agenda_quota`, error `rate_limited` → 429): invitar 5 por compañero y 20 en total; reservar 5 por creador y 30 en total; modificar 10 por reunión y 50 en total; crear ofertas 20. Solo cuentan las acciones que se completan. Reconfirmar es un no-op. `offer_taken_slots` lee como mucho 100 ids (lo que muestra el tablón).
+- **Descartado:** contadores en columnas de `meetings` (más esquema para lo mismo) y limitar en la Edge Function (no ve la pareja ni la reunión).
