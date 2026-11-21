@@ -9,7 +9,7 @@ Auditoría completa de `speaking-p2p/` y de `.github/workflows/speaking-p2p*.yml
 ## 1. Resumen ejecutivo
 
 1. **No hay nada crítico ni alto confirmado.** RLS en las 26 tablas, permisos por columna, funciones `svc_*` inaccesibles para el cliente, webhooks y token del cron que fallan cerrados, sin inyección SQL y sin secretos en el historial de git (comprobado con gitleaks).
-2. **El mayor riesgo económico depende de producción:** los flags `dev_instant_rooms` y `dev_session_skip` se crean **activados** en las migraciones. Si siguen así en producción, cualquiera crea sesiones y grabaciones ilimitadas (coste en LiveKit y R2) y salta partes del examen (C1, C2). **Esto no se ha cambiado en el código, por decisión tuya:** compruébalo a mano (§4).
+2. **El mayor riesgo económico estaba activo en producción** (comprobado y cerrado a mano el 2026-11-21): los flags `dev_instant_rooms` y `dev_session_skip` se crean **activados** en las migraciones. Si siguen así en producción, cualquiera crea sesiones y grabaciones ilimitadas (coste en LiveKit y R2) y salta partes del examen (C1, C2). **Esto no se ha cambiado en el código, por decisión tuya:** compruébalo a mano (§4).
 3. **Faltaban límites por usuario en todo** (punto 12) y **la subida de avatares no limitaba ni el tipo ni el tamaño** (C6). Ambas cosas están corregidas en esta rama.
 
 ## 2. Hallazgos
@@ -18,8 +18,8 @@ Los estados posibles son: **corregido** (en esta rama, con test), **pendiente** 
 
 | ID | Veredicto | Sev. | Qué pasa | Estado |
 |---|---|---|---|---|
-| C1 | por validar | — | `enter_now` (flag `dev_instant_rooms`, activado al crearse) crea sesiones ilimitadas sin elegibilidad ni ventana horaria: 20 salas con grabación por usuario en el sandbox | **pendiente (tú)** |
-| C2 | por validar | — | `skip` (flag `dev_session_skip`, activado al crearse) deja que cualquier participante salte segmentos, aunque eso es exclusivo del líder Pro | **pendiente (tú)** |
+| C1 | **confirmado en producción** | media | `enter_now` (flag `dev_instant_rooms`, activado al crearse) crea sesiones ilimitadas sin elegibilidad ni ventana horaria: 20 salas con grabación por usuario en el sandbox. El 2026-11-21 el flag estaba a `true` en producción | **cerrado a mano 2026-11-21** (flag a `false`) |
+| C2 | **confirmado en producción** | baja | `skip` (flag `dev_session_skip`, activado al crearse) deja que cualquier participante salte segmentos, aunque eso es exclusivo del líder Pro. El 2026-11-21 el flag estaba a `true` en producción | **cerrado a mano 2026-11-21** (flag a `false`) |
 | C3 | confirmado | baja | `report_user` aceptaba el chat de otra pareja y lo retenía más allá de los 30 días | corregido `8913df3` |
 | C4 | por validar | — | Al reconectar con un token antiguo de LiveKit no se volvía a aplicar el permiso de micro | corregido `e2a5057` (re-push) |
 | C5 | rechazado | — | Carrera entre ticks concurrentes: falla del lado seguro y no da ventaja a nadie | — |
@@ -69,7 +69,7 @@ Los detalles completos, con trazas `archivo:línea`, reproducción y planes de v
 
 ## 4. Acciones manuales (por urgencia)
 
-1. **Flags de desarrollo en producción (C1, C2).** Ejecuta en el editor SQL de Supabase:
+1. ~~**Flags de desarrollo en producción (C1, C2).**~~ **Hecho el 2026-11-21:** estaban a `true` y se pusieron a `false`. Para revisarlo de nuevo, en el editor SQL de Supabase:
    `select key, value from public.app_config order by key;`
    Si `dev_instant_rooms` o `dev_session_skip` valen `true`:
    `update public.app_config set value = 'false' where key in ('dev_instant_rooms','dev_session_skip');`
