@@ -2,6 +2,7 @@
 import { z } from "npm:zod@3.23.8";
 import { handler, json, parseBody } from "../_shared/http.ts";
 import { requireAuthUser, rpc } from "../_shared/supabase.ts";
+import { rateLimit } from "../_shared/ratelimit.ts";
 
 const Id = z.string().uuid();
 const Level = z.enum(["B1", "B2", "C1"]);
@@ -22,6 +23,7 @@ const Body = z.discriminatedUnion("action", [
 
 Deno.serve(handler(async (req) => {
   const { user } = await requireAuthUser(req);
+  await rateLimit(user.id, "meetingActions");
   const b = await parseBody(req, Body);
   const u = user.id;
   switch (b.action) {

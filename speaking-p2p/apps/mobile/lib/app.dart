@@ -6,6 +6,7 @@ import 'core/l10n/l10n.dart';
 import 'core/router/router.dart';
 import 'core/theming/app_theme.dart';
 import 'core/theming/preferences.dart';
+import 'core/ui/ui_sounds.dart';
 import 'features/matchmaking/matchmaking_controller.dart';
 
 class SpeakingApp extends ConsumerWidget {
@@ -17,6 +18,7 @@ class SpeakingApp extends ConsumerWidget {
     ref.listen(matchmakingProvider, (prev, next) {
       final id = next.matchedSessionId;
       if (id != null && id != prev?.matchedSessionId) {
+        ref.read(uiSoundsProvider).play(UiSound.match);
         ref.read(routerProvider).go('/session/$id');
         ref.read(matchmakingProvider.notifier).consumeMatch();
       }

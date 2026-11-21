@@ -14,6 +14,8 @@ import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/tokens.dart';
 import '../../core/ui/kit.dart';
+import '../../core/ui/pico.dart';
+import '../../core/ui/ui_sounds.dart';
 import '../../core/ui/placeholder_screen.dart';
 import '../../data/agenda/agenda_repository.dart';
 import '../../data/safety/safety_repository.dart';
@@ -282,6 +284,7 @@ class _EmptyMine extends StatelessWidget {
             circle: p.roleB,
             onCircle: p.onRole,
             rings: p.brand,
+            sound: UiSound.propose,
             onTap: onCreate,
           ),
           const SizedBox(height: 4),
@@ -710,7 +713,8 @@ class _BoardTabState extends ConsumerState<_BoardTab> {
             future: _board,
             builder: (context, snap) {
               if (snap.hasError) return _Message(text: l.errorGeneric);
-              if (!snap.hasData) return const Padding(padding: EdgeInsets.all(32), child: Center(child: CircularProgressIndicator()));
+              // Pico looks for a time while the board loads.
+              if (!snap.hasData) return const Padding(padding: EdgeInsets.all(24), child: Center(child: Pico(size: 96, mood: PicoMood.search)));
               final offers = [
                 for (final o in snap.data!)
                   if (_day == null || (o.windowStart.toLocal().isBefore(_day!.add(const Duration(days: 1))) && o.windowEnd.toLocal().isAfter(_day!)))
@@ -737,6 +741,7 @@ class _BoardTabState extends ConsumerState<_BoardTab> {
                         circle: p.roleB,
                         onCircle: p.onRole,
                         rings: p.brand,
+                        sound: UiSound.propose,
                         onTap: widget.onCreate,
                       ),
                     ],

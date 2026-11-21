@@ -208,7 +208,20 @@ Future<void> _sheet(String file, String heading, List<(String, ui.Image)> shots)
 Exam _exam(String level, String id) =>
     Exam.fromJson(jsonDecode(File('assets/content/exams/$level/$id.json').readAsStringSync()) as Map<String, Object?>);
 
+/// The material_fonts cache (or SCREENSHOT_FONT_DIR) is only present on dev
+/// machines; on CI runners it is missing, so the design capture is skipped there.
+bool get _fontsAvailable {
+  final dir = Platform.environment['SCREENSHOT_FONT_DIR'] ??
+      '${Platform.environment['FLUTTER_ROOT']}/bin/cache/artifacts/material_fonts';
+  return File('$dir/roboto-regular.ttf').existsSync();
+}
+
 void main() {
+  if (!_fontsAvailable) {
+    test('pantallas principales -> docs/screenshots', () {},
+        skip: 'Roboto/material_fonts not found (set SCREENSHOT_FONT_DIR); screenshots are a dev-machine task');
+    return;
+  }
   setUpAll(() async {
     WidgetsApp.debugAllowBannerOverride = false; // no DEBUG ribbon on the pictures
     await _loadFonts();

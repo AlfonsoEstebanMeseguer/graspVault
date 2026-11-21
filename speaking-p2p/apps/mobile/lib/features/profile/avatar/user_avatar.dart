@@ -35,7 +35,10 @@ class UserAvatar extends ConsumerWidget {
     return CircleAvatar(
       radius: size / 2,
       backgroundColor: background ?? p.brandSoft,
-      foregroundImage: bytes == null ? null : MemoryImage(bytes),
+      // Decode at the drawn size, never at the file's own resolution (audit 2026-11, C7).
+      foregroundImage: bytes == null
+          ? null
+          : ResizeImage.resizeIfNeeded((size * MediaQuery.devicePixelRatioOf(context)).ceil(), null, MemoryImage(bytes)),
       onForegroundImageError: bytes == null ? null : (_, _) {},
       child: Text(name.isEmpty ? '?' : name.characters.first.toUpperCase(),
           style: TextStyle(color: foreground ?? p.onBrandSoft, fontWeight: FontWeight.w700, fontSize: size * 0.4)),

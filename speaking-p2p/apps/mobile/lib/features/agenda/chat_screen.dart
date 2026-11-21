@@ -12,6 +12,7 @@ import '../../core/l10n/l10n.dart';
 import '../../core/theming/palette.dart';
 import '../../core/theming/tokens.dart';
 import '../../core/ui/kit.dart';
+import '../../core/ui/ui_sounds.dart';
 import '../../data/agenda/agenda_repository.dart';
 import '../../domain/agenda/agenda.dart';
 import '../../domain/exam/models.dart';
@@ -76,6 +77,7 @@ class _ChatViewState extends ConsumerState<_ChatView> {
     setState(() => _sending = true);
     try {
       await ref.read(agendaRepositoryProvider)!.send(widget.summary.chatId, body, newClientId());
+      ref.read(uiSoundsProvider).play(UiSound.sent);
       if (quick == null) _text.clear();
     } catch (e) {
       if (mounted) showError(context, e);

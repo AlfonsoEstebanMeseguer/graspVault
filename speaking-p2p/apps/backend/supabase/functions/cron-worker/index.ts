@@ -37,7 +37,7 @@ async function outbox() {
 async function storageGc() {
   const db = adminClient();
   const { data: rows } = await db.from("storage_gc_queue").select("id,object_key,attempts")
-    .eq("status", "pending").order("id").limit(200);
+    .eq("status", "pending").lte("not_before", new Date().toISOString()).order("id").limit(200);
   let done = 0;
   for (const row of rows ?? []) {
     try {

@@ -6,6 +6,10 @@ on:
   pull_request:
     paths: ["speaking-p2p/**", ".github/workflows/speaking-p2p.yml"]
 
+# Least privilege: this workflow also runs on pull requests (security audit 2026-11).
+permissions:
+  contents: read
+
 defaults:
   run:
     working-directory: speaking-p2p
@@ -15,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
@@ -45,6 +51,8 @@ jobs:
       PGPASSWORD: postgres
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: SQL suite (RLS, grants, eligibility, matchmaking, session, agenda)
         run: apps/backend/supabase/tests/run-plain.sh
 
@@ -55,6 +63,8 @@ jobs:
         working-directory: speaking-p2p/apps/mobile
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.47.7"

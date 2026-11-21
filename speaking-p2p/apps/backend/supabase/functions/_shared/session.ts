@@ -37,7 +37,9 @@ export async function loadSession(id: string): Promise<SessionRow | null> {
 
 export async function tickAndApply(sessionId: string): Promise<TickResult> {
   const r = await rpc<TickResult>("svc_session_tick", { p_session: sessionId });
-  if (!r.needs_push && r.state !== "ended" && r.state !== "aborted" && r.state !== "part1") return r;
+  // Closed sessions only need work once (their final key): a repeated tick on an
+  // ended/aborted session no longer reaches LiveKit (security audit 2026-11, C13).
+  if (!r.needs_push && r.state !== "part1") return r;
   const s = await loadSession(sessionId);
   if (!s) return r;
   if (r.needs_push) {
@@ -49,7 +51,7 @@ export async function tickAndApply(sessionId: string): Promise<TickResult> {
       console.error("mic push failed", sessionId, e);
     }
   }
-  if (r.state === "ended" || r.state === "aborted") {
+  if ((r.state === "ended" || r.state === "aborted") && r.needs_push) {
     await deleteRoom(sessionId).catch((e) => console.error("deleteRoom", e));
   }
   if (r.state === "part1" && s.recording_consent_a && s.recording_consent_b && !s.recording_key) {
@@ -64,7 +66,9 @@ async function maybeStartRecording(s: SessionRow) {
   const expires = new Date(new Date(s.feedback_ends_at ?? Date.now()).getTime() + 30 * 86400_000).toISOString();
   const { data } = await adminClient().from("exam_sessions")
     .update({ recording_key: key, recording_expires_at: expires })
-    .eq("id", s.id).is("recording_key", null).select("id");
+    // Only a session that is still in part1 (an account deletion may have aborted
+    // it since the tick was read; security audit 2026-11, C12).
+    .eq("id", s.id).eq("state", "part1").is("recording_key", null).select("id");
   if (!data?.length) return;
   try {
     await startAudioEgress(s.id, key);

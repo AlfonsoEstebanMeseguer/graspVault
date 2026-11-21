@@ -4,6 +4,7 @@ import { track } from "../_shared/analytics.ts";
 import { inBackground } from "../_shared/background.ts";
 import { handler, json, parseBody } from "../_shared/http.ts";
 import { requireAuthUser, rpc } from "../_shared/supabase.ts";
+import { rateLimit } from "../_shared/ratelimit.ts";
 
 const Body = z.object({
   username: z.string().trim().toLowerCase().regex(/^[a-z0-9_.]{3,20}$/),
@@ -15,6 +16,7 @@ const Body = z.object({
 
 Deno.serve(handler(async (req) => {
   const { user } = await requireAuthUser(req);
+  await rateLimit(user.id, "onboarding");
   const b = await parseBody(req, Body);
   const result = await rpc("svc_onboarding_complete", {
     p_user: user.id,

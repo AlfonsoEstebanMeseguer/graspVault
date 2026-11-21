@@ -10,6 +10,10 @@ import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import '../../core/config/env.dart';
 import '../../domain/account/account.dart';
 
+/// Never buffer more than this from a peer's avatar (security audit 2026-11, C7);
+/// the server refuses uploads above 512 KB and the app compresses to 300 KB.
+const maxAvatarDownloadBytes = 512 * 1024;
+
 abstract class AvatarRepository {
   /// [mimeType] must describe the bytes for real: it is signed into the PUT.
   Future<void> upload(Uint8List bytes, String mimeType);
@@ -35,7 +39,8 @@ class SupabaseAvatarRepository implements AvatarRepository {
 
   @override
   Future<void> upload(Uint8List bytes, String mimeType) async {
-    final signed = await _invoke('avatar-upload-url', {'mimeType': mimeType});
+    // Type AND size are signed into the PUT (security audit 2026-11, C6).
+    final signed = await _invoke('avatar-upload-url', {'mimeType': mimeType, 'sizeBytes': bytes.length});
     final req = await _http.putUrl(Uri.parse(signed['url'] as String));
     req.headers.set(HttpHeaders.contentTypeHeader, mimeType);
     req.contentLength = bytes.length;
@@ -63,9 +68,14 @@ class SupabaseAvatarRepository implements AvatarRepository {
       await res.drain<void>();
       return null;
     }
+    if (res.contentLength > maxAvatarDownloadBytes) {
+      await res.drain<void>().catchError((_) {});
+      return null;
+    }
     final out = BytesBuilder(copy: false);
     await for (final chunk in res) {
       out.add(chunk);
+      if (out.length > maxAvatarDownloadBytes) return null; // the subscription is cancelled on return
     }
     return out.takeBytes();
   }

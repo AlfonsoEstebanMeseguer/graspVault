@@ -11,6 +11,7 @@ import '../../core/theming/palette.dart';
 import '../../core/theming/preferences.dart';
 import '../../core/theming/tokens.dart';
 import '../../core/ui/kit.dart';
+import '../../core/ui/ui_sounds.dart';
 import '../../data/profile/profile_repository.dart';
 import '../../domain/exam/models.dart';
 import '../matchmaking/matchmaking_controller.dart';
@@ -76,6 +77,8 @@ class HomeScreen extends ConsumerWidget {
             child: SearchPulse(
               key: const Key('home-search'),
               label: offline ? l.practiceSimulated : l.searchPartner,
+              sound: UiSound.search,
+              tapDelay: const Duration(milliseconds: 420), // let the burst be seen
               onTap: () {
                 if (offline) return practise();
                 ref.read(matchmakingProvider.notifier).start(level);
