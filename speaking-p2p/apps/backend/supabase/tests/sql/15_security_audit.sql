@@ -71,5 +71,9 @@ begin
   update public.user_reports set status = 'open', reported_email_hash = 'h' where id = rid;
   update public.user_reports set status = 'dismissed' where id = rid;
   perform tests.assert_eq((select reported_email_hash from public.user_reports where id = rid), null, 'C9 descartar borra el hash');
+  -- C1/C2: the debug switches come up off and their functions fail closed.
+  perform tests.assert_eq((select value from public.app_config where key = 'dev_instant_rooms'), 'false', 'C1 dev_instant_rooms apagado');
+  perform tests.assert_eq((select value from public.app_config where key = 'dev_session_skip'), 'false', 'C2 dev_session_skip apagado');
+  perform tests.assert_fails(format('select public.svc_meeting_enter_now(%L, %L, 1)', a, m), 'not_found', 'C1 enter_now cerrado');
 end $$;
 rollback;
