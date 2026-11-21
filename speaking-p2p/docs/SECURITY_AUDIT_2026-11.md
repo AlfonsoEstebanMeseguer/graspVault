@@ -33,7 +33,7 @@ Los estados posibles son: **corregido** (en esta rama, con test), **pendiente** 
 | C13 | por validar | — | Cada `tick` sobre una sesión cerrada llamaba a `DeleteRoom` de LiveKit, sin límite | corregido `bd0da02` |
 | C14 | confirmado | baja | Un usuario bloqueado podía revivir y modificar una reunión en curso con quien lo bloqueó | corregido `23b004f` |
 | C15 | confirmado | baja | Un ausente podía reprogramar una reunión ya empezada y así evitar el no-show | corregido `23b004f` |
-| C-H1 | endurecimiento | — | El webhook de LiveKit compara la firma con `!==`, no en tiempo constante; además `exp` es opcional y no hay protección contra replay. Sin el secreto no es explotable | pendiente |
+| C-H1 | endurecimiento | — | El webhook de LiveKit compara la firma con `!==`, no en tiempo constante; además `exp` es opcional y no hay protección contra replay. Sin el secreto no es explotable | corregido en rama `claude/hardening-livekit-webhook`: verificación con WebCrypto (tiempo constante), `alg` HS256, `exp` obligatorio, `iss` = nuestra API key y deduplicación por id de evento (`svc_webhook_first_seen`) |
 | C-H2 | endurecimiento | — | Función `config-check` desplegada en producción y ausente del repo: devuelve los **nombres** de las variables de entorno y los buckets de R2 (no valores) y cada llamada hace 3 listados en R2 (operaciones de pago). La puede llamar cualquier usuario con sesión | **pendiente (tú):** borrarla en el panel |
 
 Los detalles completos, con trazas `archivo:línea`, reproducción y planes de validación, están en los artefactos de la skill (`REPORT.md` y `NEEDS-VALIDATION.md`).
