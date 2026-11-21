@@ -34,7 +34,7 @@ Los estados posibles son: **corregido** (en esta rama, con test), **pendiente** 
 | C14 | confirmado | baja | Un usuario bloqueado podía revivir y modificar una reunión en curso con quien lo bloqueó | corregido `23b004f` |
 | C15 | confirmado | baja | Un ausente podía reprogramar una reunión ya empezada y así evitar el no-show | corregido `23b004f` |
 | C-H1 | endurecimiento | — | El webhook de LiveKit compara la firma con `!==`, no en tiempo constante; además `exp` es opcional y no hay protección contra replay. Sin el secreto no es explotable | pendiente |
-| C-H2 | endurecimiento | — | Función `config-check` desplegada en producción y ausente del repo: devuelve los **nombres** de las variables de entorno y los buckets de R2 (no valores) y cada llamada hace 3 listados en R2 (operaciones de pago). La puede llamar cualquier usuario con sesión | **pendiente (tú):** borrarla en el panel |
+| C-H2 | endurecimiento | — | Función `config-check` desplegada en producción y ausente del repo: devuelve los **nombres** de las variables de entorno y los buckets de R2 (no valores) y cada llamada hace 3 listados en R2 (operaciones de pago). La puede llamar cualquier usuario con sesión | **hecho 2026-11-21:** función borrada en producción |
 
 Los detalles completos, con trazas `archivo:línea`, reproducción y planes de validación, están en los artefactos de la skill (`REPORT.md` y `NEEDS-VALIDATION.md`).
 
@@ -80,7 +80,7 @@ Los detalles completos, con trazas `archivo:línea`, reproducción y planes de v
    - ~~Activa **Confirm email**~~ **Hecho el 2026-11-21** (C11 mitigado).
    - **Leaked password protection** no está disponible en el plan actual de Supabase (requiere un plan de pago). Mitigación: el registro por contraseña es solo para la cuenta demo de App Review; el resto entra con Google/Apple.
    - Activa **Realtime › solo canales privados** (endurecimiento).
-3b. **Borrar la función `config-check`** en Supabase → Edge Functions (C-H2).
+3b. ~~**Borrar la función `config-check`** en Supabase → Edge Functions (C-H2).~~ **Hecho el 2026-11-21.**
 4. **Historial público:** `wrangler-account.json` sigue en commits antiguos. No es una credencial (solo el ID de cuenta y tu nombre), así que **no hace falta revocar nada** ni reescribir el historial. Si aun así quieres borrarlo, se haría con `git filter-repo`, y eso exige un *force push*: avísame antes.
 5. **Topes y alertas de gasto:**
    - **LiveKit Cloud:** límite de minutos y de egress.
@@ -93,6 +93,59 @@ Los detalles completos, con trazas `archivo:línea`, reproducción y planes de v
 ## 5. Qué no se ha podido verificar
 
 - **El comportamiento real de LiveKit** (C4, C13): no se ejecutó nada contra LiveKit. C4 se mitiga con un re-push; la mitigación completa sería emitir los tokens con `canPublish=false`.
-- **La aceptación de cabeceras firmadas por R2** (C6): sigue la semántica estándar de S3 y está cubierta con un test de firma. Conviene confirmarlo con una subida real en pruebas.
+- ~~**La aceptación de cabeceras firmadas por R2** (C6)~~: **confirmada el 2026-11-21** con una subida real de foto desde el build 5 de iOS (TestFlight).
 - **El valor de los flags y la configuración de Auth en producción** (C1, C2, C11): el sistema de permisos bloqueó la lectura en producción. Lo tienes en §4.1 y §4.3.
-- **La app Flutter en un dispositivo**: se ejecutaron `flutter analyze` y `flutter test`, pero ningún build nativo.
+- ~~**La app Flutter en un dispositivo**~~: **probada el 2026-11-21** en iPhone con el build 5 de TestFlight (subida de foto, micro al reconectar y borrado de cuenta sin reautenticación justo tras iniciar sesión). Android sigue sin build real.
+
+## 6. Vigilancia de costes y cuotas
+
+### 6.1 Planes contratados
+
+| Proveedor | Plan | ¿Puede cobrar? | Riesgo real |
+|---|---|---|---|
+| LiveKit Cloud | gratuito, sin tarjeta | No | Disponibilidad: al agotar la cuota mensual se cortan las llamadas para todos |
+| Cloudflare R2 | capa gratuita con método de pago registrado | **Sí**, lo que exceda 10 GB/mes, 1 M de operaciones clase A y 10 M clase B | Factura por almacenamiento u operaciones |
+| Supabase | free | No | Disponibilidad: limita el servicio al pasar la cuota; se pausa tras 7 días sin actividad |
+| OpenAI | pago por uso | **Sí** | Solo en scripts locales de contenido (`photos_openai.py --cap 7`) |
+| Sentry / PostHog | free | No | El DSN y la clave `phc_` son públicos (van en la app): alguien podría agotar la cuota de eventos |
+| GitHub Actions | repo público | No | Ninguno relevante |
+
+### 6.2 Qué vigilar
+
+| Prioridad | Proveedor | Qué vigilar | Umbral de alarma | Dónde |
+|---|---|---|---|---|
+| **ALTA** | Supabase · invocaciones de Edge Functions | Los crons consumen unas 345 000 de las 500 000 mensuales del plan free (estimación: `sessions` cada 10 s ≈ 259 000; `outbox` cada 30 s ≈ 86 000; más `storage-gc` y `analytics`) | > 80 % de la cuota antes del día 20 del mes | Organización → Usage |
+| **ALTA** | Cloudflare R2 | Almacenamiento de `speaking-recordings` y `speaking-media`; operaciones clase A | > 7 GB o > 700 000 operaciones clase A en el mes | R2 → Metrics; alerta *Usage Based Billing* en Notifications |
+| **ALTA** | LiveKit Cloud | Minutos de participante y de egress (grabaciones) | > 70 % de la cuota antes de mitad de mes | Panel LiveKit → Usage |
+| MEDIA | Supabase · base de datos | Tamaño de la base y egress | > 400 MB de los 500 MB | Organización → Usage |
+| MEDIA | Sentry / PostHog | Picos anómalos de eventos (posible abuso de las claves públicas) | > 3× la media diaria | Paneles respectivos |
+| BAJA | OpenAI | Gasto mensual | Alerta a 5 $ | Settings → Limits / Usage |
+
+### 6.3 Límites por usuario implantados
+
+`_shared/ratelimit.ts`, ventana de 1 h, `svc_rate_hit`; al superarlos la función responde 429 `rate_limited`:
+avatarUpload 20 · avatarConfirm 40 · mediaView 600 · sessionActions 3600 · meetingActions 300 · matchmaking 1500 · onboarding 20 · accountDelete 10.
+
+### 6.4 Consultas para el editor SQL
+
+Usuarios que tocan los límites:
+
+```sql
+select bucket, count(*) filter (where hits > 0) as users, max(hits) as max_hits from private.rate_limits group by bucket order by max_hits desc;
+```
+
+Sesiones por usuario en las últimas 24 h (abuso de salas):
+
+```sql
+select u, count(*) from (select user_a u from public.exam_sessions where created_at > now() - interval '1 day' union all select user_b from public.exam_sessions where created_at > now() - interval '1 day') x group by u order by 2 desc limit 10;
+```
+
+Borrados de R2 atascados:
+
+```sql
+select status, reason, count(*) from public.storage_gc_queue group by 1, 2 order by 1, 2;
+```
+
+### 6.5 Antes de pasar a un plan de pago
+
+Antes de contratar LiveKit Ship o Supabase Pro: configurar topes de gasto y alertas en ese proveedor y revisar los límites por usuario de §6.3.
