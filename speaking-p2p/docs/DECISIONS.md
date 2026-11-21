@@ -402,3 +402,8 @@
 - **Contexto:** cuota de 500 000 invocaciones/mes de Edge Functions (plan free). Los crons `sessions` (10 s), `outbox` (30 s), `analytics` (1 min) y `storage-gc` (5 min) invocaban siempre: ~13 000/día en reposo, 77 954 en los 6 primeros días del periodo (proyección ~390 000/mes).
 - **Decisión:** `private.cron_has_work(task)` comprueba en la base las mismas condiciones que selecciona el worker y el cron solo llama a la función si devuelve `true`. `analytics` pasa a cada 5 min. `sessions` mantiene los 10 s: con la guarda solo cuesta mientras hay sesiones activas.
 - **Descartado:** bajar `sessions` a 30 s (con la guarda ya no hace falta y empeoraría el respaldo cuando un cliente no avanza el segmento).
+
+### D-072 · 2026-11-21 · Cupos diarios en los ciclos de la agenda
+- **Contexto:** endurecimiento de la auditoría 2026-11. Invitar/cancelar, reservar/cancelar y modificar escribían un mensaje de sistema o un push a la pareja sin límite; reconfirmar escribía un mensaje cada vez; `offer_taken_slots` aceptaba arrays de cualquier tamaño.
+- **Decisión:** cupos de 24 h en SQL con `svc_rate_hit` (`private.agenda_quota`, error `rate_limited` → 429): invitar 5 por compañero y 20 en total; reservar 5 por creador y 30 en total; modificar 10 por reunión y 50 en total; crear ofertas 20. Solo cuentan las acciones que se completan. Reconfirmar es un no-op. `offer_taken_slots` lee como mucho 100 ids (lo que muestra el tablón).
+- **Descartado:** contadores en columnas de `meetings` (más esquema para lo mismo) y limitar en la Edge Function (no ve la pareja ni la reunión).
