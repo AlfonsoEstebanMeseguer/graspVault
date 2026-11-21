@@ -9,10 +9,10 @@
 | Migraciones aplicadas | `baseline_schema`, `rules_helpers_onboarding`, `rules_sessions`, `dev_access_and_internal_token`, `security_advisor_fixes` |
 | Pendientes de 2026-10-15 | Ya aplicadas (el 2026-10-29 `list_migrations` muestra todo hasta `agenda_v2`) |
 | Catálogo de exámenes | Cargado (3 exámenes; md5 verificado contra el repo) |
-| Auditoría de seguridad 2026-11-20 | Aplicada en producción el 2026-11-21: migraciones `20261121092211`…`092250`, 10 Edge Functions redesplegadas, flags `dev_*` a `false`, Confirm email activado (`docs/SECURITY_AUDIT_2026-11.md`, D-070). **Pendiente:** borrar `config-check`, topes de gasto, probar build TestFlight |
+| Auditoría de seguridad 2026-11-20 | Aplicada en producción el 2026-11-21: migraciones `20261121092211`…`092250`, 10 Edge Functions redesplegadas, flags `dev_*` a `false`, Confirm email activado (`docs/SECURITY_AUDIT_2026-11.md`, D-070). `config-check` borrada (C-H2). Build 5 de iOS probado en TestFlight: subida de foto a R2, micro al reconectar y borrado de cuenta, todo correcto. Vigilancia de costes en §6 del informe. **Pendiente:** topes y alertas de gasto (Cloudflare, OpenAI), build de Android |
 | Auditoría de permisos | `anon` sin ningún permiso; `authenticated` solo las columnas previstas |
 | Asesor de seguridad | Solo el aviso informativo "RLS sin políticas" de las tablas de servidor (intencionado) |
-| Edge Functions desplegadas | `onboarding-complete`, `matchmaking`, `session-actions`, `meeting-actions`, `media-view-url`, `avatar-upload-url`, `avatar-confirm`, `account-delete`, `livekit-webhook`, `cron-worker` + `config-check` (diagnóstico, se vaciará). Sin sesión, cada una devuelve su propio 401; `livekit-webhook` rechaza firmas falsas; `cron-worker` acepta el token de Vault |
+| Edge Functions desplegadas | `onboarding-complete`, `matchmaking`, `session-actions`, `meeting-actions`, `media-view-url`, `avatar-upload-url`, `avatar-confirm`, `account-delete`, `livekit-webhook`, `cron-worker` (`config-check` borrada el 2026-11-21). Sin sesión, cada una devuelve su propio 401; `livekit-webhook` rechaza firmas falsas; `cron-worker` acepta el token de Vault |
 | Auth | Email + contraseña; confirmación de email desactivada (según Alfonso). Queda 1 usuario de prueba sin confirmar (`+e2e1`) creado antes de desactivarla: borrar en Authentication → Users |
 | Aplazadas por decisión | Google Sign-In, RevenueCat, dominio CDN, TTS, Sentry, AdMob, PostHog, Firebase (push) |
 
