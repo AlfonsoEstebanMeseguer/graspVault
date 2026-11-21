@@ -28,12 +28,13 @@ Los estados posibles son: **corregido** (en esta rama, con test), **pendiente** 
 | C8 | por validar | — | Los avatares subidos y nunca confirmados no se borraban nunca | corregido `f41ad0e` |
 | C9 | confirmado | baja | Un denunciado que borra su cuenta antes del baneo vuelve con el mismo email | corregido `8913df3` |
 | C10 | por validar | — | `account-delete` se conformaba con un token refrescado (`iat`) | corregido `bd0da02` (`amr`) |
-| C11 | por validar | — | Con el registro por email sin confirmación, se puede quemar la prueba o banear el email de otra persona | **pendiente (tú)** |
+| C11 | por validar | — | Con el registro por email sin confirmación, se puede quemar la prueba o banear el email de otra persona | **mitigado 2026-11-21** (Confirm email activado en producción) |
 | C12 | por validar | — | Carrera: una grabación podía reclamarse en una sesión ya abortada por un borrado de cuenta | corregido `bd0da02` |
 | C13 | por validar | — | Cada `tick` sobre una sesión cerrada llamaba a `DeleteRoom` de LiveKit, sin límite | corregido `bd0da02` |
 | C14 | confirmado | baja | Un usuario bloqueado podía revivir y modificar una reunión en curso con quien lo bloqueó | corregido `23b004f` |
 | C15 | confirmado | baja | Un ausente podía reprogramar una reunión ya empezada y así evitar el no-show | corregido `23b004f` |
 | C-H1 | endurecimiento | — | El webhook de LiveKit compara la firma con `!==`, no en tiempo constante; además `exp` es opcional y no hay protección contra replay. Sin el secreto no es explotable | pendiente |
+| C-H2 | endurecimiento | — | Función `config-check` desplegada en producción y ausente del repo: devuelve los **nombres** de las variables de entorno y los buckets de R2 (no valores) y cada llamada hace 3 listados en R2 (operaciones de pago). La puede llamar cualquier usuario con sesión | **pendiente (tú):** borrarla en el panel |
 
 Los detalles completos, con trazas `archivo:línea`, reproducción y planes de validación, están en los artefactos de la skill (`REPORT.md` y `NEEDS-VALIDATION.md`).
 
@@ -74,14 +75,12 @@ Los detalles completos, con trazas `archivo:línea`, reproducción y planes de v
    Si `dev_instant_rooms` o `dev_session_skip` valen `true`:
    `update public.app_config set value = 'false' where key in ('dev_instant_rooms','dev_session_skip');`
    (`assume_paid` se queda en `true` a propósito, D-067.)
-2. **Aplicar las migraciones y desplegar las funciones** de esta rama. Hazlo primero en un entorno de pruebas si lo tienes: son 3 migraciones `20261120*` y **las 11 Edge Functions** (todas, porque cambia el código compartido de `_shared/`).
-   - Después publica la app, porque **la versión anterior ya no puede subir foto de perfil** (ahora se exige `sizeBytes`).
-   - Prueba en un dispositivo `livekit_client` 2.14, que trae una dependencia nativa nueva.
-   - En pruebas, comprueba que un token refrescado sigue conservando `amr` (C10). Si no fuera así, `account-delete` pediría reautenticarse siempre, que falla del lado seguro.
+2. ~~**Aplicar las migraciones y desplegar las funciones.**~~ **Hecho el 2026-11-21:** 4 migraciones (`20261121092211`…`092250`) y 10 Edge Functions (`revenuecat-webhook` sigue sin desplegar, como antes). Todas arrancan sin errores y rechazan llamadas sin sesión. Build de iOS enviado a TestFlight; Android pendiente de un build real.
 3. **Supabase → Authentication:**
-   - Activa **Confirm email**, o limita el registro por contraseña a la cuenta demo de App Review (C11).
-   - Activa **Leaked password protection** (advisor).
+   - ~~Activa **Confirm email**~~ **Hecho el 2026-11-21** (C11 mitigado).
+   - **Leaked password protection** no está disponible en el plan actual de Supabase (requiere un plan de pago). Mitigación: el registro por contraseña es solo para la cuenta demo de App Review; el resto entra con Google/Apple.
    - Activa **Realtime › solo canales privados** (endurecimiento).
+3b. **Borrar la función `config-check`** en Supabase → Edge Functions (C-H2).
 4. **Historial público:** `wrangler-account.json` sigue en commits antiguos. No es una credencial (solo el ID de cuenta y tu nombre), así que **no hace falta revocar nada** ni reescribir el historial. Si aun así quieres borrarlo, se haría con `git filter-repo`, y eso exige un *force push*: avísame antes.
 5. **Topes y alertas de gasto:**
    - **LiveKit Cloud:** límite de minutos y de egress.
