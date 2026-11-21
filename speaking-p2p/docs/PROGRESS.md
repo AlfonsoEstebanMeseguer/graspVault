@@ -10,6 +10,7 @@
 | Pendientes de 2026-10-15 | Ya aplicadas (el 2026-10-29 `list_migrations` muestra todo hasta `agenda_v2`) |
 | Catálogo de exámenes | Cargado (3 exámenes; md5 verificado contra el repo) |
 | Auditoría de seguridad 2026-11-20 | Aplicada en producción el 2026-11-21: migraciones `20261121092211`…`092250`, 10 Edge Functions redesplegadas, flags `dev_*` a `false`, Confirm email activado (`docs/SECURITY_AUDIT_2026-11.md`, D-070). **Pendiente:** borrar `config-check`, topes de gasto, probar build TestFlight |
+| Cuota de Edge Functions | 2026-11-21: los crons solo invocan `cron-worker` si hay trabajo (migración `20261121102751`, D-071). Antes ~13 000 invocaciones/día en reposo; después, 0 sin actividad. Verificado en logs y en `cron.job_run_details` |
 | Auditoría de permisos | `anon` sin ningún permiso; `authenticated` solo las columnas previstas |
 | Asesor de seguridad | Solo el aviso informativo "RLS sin políticas" de las tablas de servidor (intencionado) |
 | Edge Functions desplegadas | `onboarding-complete`, `matchmaking`, `session-actions`, `meeting-actions`, `media-view-url`, `avatar-upload-url`, `avatar-confirm`, `account-delete`, `livekit-webhook`, `cron-worker` + `config-check` (diagnóstico, se vaciará). Sin sesión, cada una devuelve su propio 401; `livekit-webhook` rechaza firmas falsas; `cron-worker` acepta el token de Vault |
