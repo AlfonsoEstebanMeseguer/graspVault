@@ -49,11 +49,35 @@ Deno.test("UpdateParticipant manda SIEMPRE el permiso completo en snake_case", (
 Deno.test("webhook de LiveKit: acepta la firma correcta y rechaza cuerpo alterado o firma ajena", async () => {
   const body = JSON.stringify({ event: "participant_left", room: { name: "exam_x" } });
   const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(body)));
-  const jwt = await signJwt({ sha256: btoa(String.fromCharCode(...digest)) }, "key", "secret");
-  assert(await verifyWebhook(body, jwt, "secret"));
-  assert(!(await verifyWebhook(body + " ", jwt, "secret")), "cuerpo alterado");
-  assert(!(await verifyWebhook(body, jwt, "otro-secreto")), "firma ajena");
-  assert(!(await verifyWebhook(body, null, "secret")), "sin cabecera");
+  const sha256 = btoa(String.fromCharCode(...digest));
+  const jwt = await signJwt({ sha256 }, "key", "secret", 300);
+  assert(await verifyWebhook(body, jwt, "secret", "key"));
+  assert(await verifyWebhook(body, `Bearer ${jwt}`, "secret", "key"), "con prefijo Bearer");
+  assert(!(await verifyWebhook(body + " ", jwt, "secret", "key")), "cuerpo alterado");
+  assert(!(await verifyWebhook(body, jwt, "otro-secreto", "key")), "firma ajena");
+  assert(!(await verifyWebhook(body, jwt, "secret", "otra-clave")), "iss ajeno");
+  assert(!(await verifyWebhook(body, null, "secret", "key")), "sin cabecera");
+  const [h, p, sig] = jwt.split(".");
+  const flipped = (sig[0] === "A" ? "B" : "A") + sig.slice(1);
+  assert(!(await verifyWebhook(body, `${h}.${p}.${flipped}`, "secret", "key")), "firma manipulada");
+  assert(!(await verifyWebhook(body, jwt, "secret", "key", Date.now() / 1000 + 301)), "C-H1: caducado");
+});
+
+Deno.test("webhook de LiveKit (C-H1): exp obligatorio y solo HS256", async () => {
+  const te = new TextEncoder();
+  const b64u = (b: Uint8Array) => btoa(String.fromCharCode(...b)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const enc = (o: unknown) => b64u(te.encode(JSON.stringify(o)));
+  const sign = async (h: string, p: string) => {
+    const k = await crypto.subtle.importKey("raw", te.encode("secret"), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+    return `${h}.${p}.${b64u(new Uint8Array(await crypto.subtle.sign("HMAC", k, te.encode(`${h}.${p}`))))}`;
+  };
+  const body = "{}";
+  const sha256 = btoa(String.fromCharCode(...new Uint8Array(await crypto.subtle.digest("SHA-256", te.encode(body)))));
+  const now = Math.floor(Date.now() / 1000);
+  const hs = enc({ alg: "HS256", typ: "JWT" });
+  assert(!(await verifyWebhook(body, await sign(hs, enc({ iss: "key", sha256 })), "secret", "key")), "sin exp");
+  assert(!(await verifyWebhook(body, await sign(enc({ alg: "none" }), enc({ iss: "key", sha256, exp: now + 300 })), "secret", "key")), "alg none");
+  assert(await verifyWebhook(body, await sign(hs, enc({ iss: "key", sha256, exp: now + 300 })), "secret", "key"), "control valido");
 });
 
 Deno.test("RevenueCat: cancelar no quita el periodo pagado; expirar si", () => {
